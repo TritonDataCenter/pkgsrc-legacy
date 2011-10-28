@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.common,v 1.14 2011/03/25 21:37:02 abs Exp $
+@comment $NetBSD: PLIST.common,v 1.15 2011/10/28 13:09:06 tnn Exp $
 bin/transmission-cli
 bin/transmission-create
 bin/transmission-daemon
@@ -26,31 +26,32 @@ share/transmission/web/images/buttons/toolbar_buttons.png
 share/transmission/web/images/buttons/torrent_buttons.png
 share/transmission/web/images/favicon.ico
 share/transmission/web/images/favicon.png
+share/transmission/web/images/graphics/blue-turtle.png
 share/transmission/web/images/graphics/chrome.png
 share/transmission/web/images/graphics/filter_bar.png
 share/transmission/web/images/graphics/filter_icon.png
 share/transmission/web/images/graphics/iphone_chrome.png
 share/transmission/web/images/graphics/lock_icon.png
 share/transmission/web/images/graphics/logo.png
-share/transmission/web/images/graphics/transfer_arrows.png
-share/transmission/web/images/graphics/wait20.gif
 share/transmission/web/images/progress/progress.png
 share/transmission/web/images/webclip-icon.png
 share/transmission/web/index.html
 share/transmission/web/javascript/common.js
 share/transmission/web/javascript/dialog.js
+share/transmission/web/javascript/file-row.js
 share/transmission/web/javascript/formatter.js
+share/transmission/web/javascript/inspector.js
 share/transmission/web/javascript/jquery/jquery.contextmenu.min.js
 share/transmission/web/javascript/jquery/jquery.form.js
 share/transmission/web/javascript/jquery/jquery.form.min.js
-share/transmission/web/javascript/jquery/jquery.min.js
 share/transmission/web/javascript/jquery/jquery.transmenu.min.js
-share/transmission/web/javascript/jquery/json.min.js
-share/transmission/web/javascript/menu.js
+share/transmission/web/javascript/jquery/json2.min.js
+share/transmission/web/javascript/prefs-dialog.js
+share/transmission/web/javascript/remote.js
+share/transmission/web/javascript/torrent-row.js
 share/transmission/web/javascript/torrent.js
 share/transmission/web/javascript/transmission.js
-share/transmission/web/javascript/transmission.remote.js
 share/transmission/web/stylesheets/common.css
-share/transmission/web/stylesheets/ie6.css
 share/transmission/web/stylesheets/ie7.css
-share/transmission/web/stylesheets/iphone.css
+share/transmission/web/stylesheets/ieAll.css
+share/transmission/web/stylesheets/mobile.css

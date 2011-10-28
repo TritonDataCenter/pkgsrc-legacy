@@ -1,8 +1,8 @@
-$NetBSD: distinfo,v 1.56 2011/09/04 19:23:34 tnn Exp $
+$NetBSD: distinfo,v 1.57 2011/10/28 13:09:06 tnn Exp $
 
-SHA1 (transmission-2.33.tar.bz2) = ebdd0bdea937e4b90eceddfcbb3cbbf079f3e701
-RMD160 (transmission-2.33.tar.bz2) = dd30c7cf732fa0a62149da8be266312de65b5aa6
-Size (transmission-2.33.tar.bz2) = 3858044 bytes
+SHA1 (transmission-2.42.tar.bz2) = 744068c76f68c141d2aada689bc49a5b56cd618b
+RMD160 (transmission-2.42.tar.bz2) = 83f380f0b4f63e52c129c906dc8e8e4649e04c5c
+Size (transmission-2.42.tar.bz2) = 3846260 bytes
 SHA1 (patch-aa) = 9a97eb880af17dceeb0ed826b8e508c4ae59102e
 SHA1 (patch-ab) = 96174f474e3301f9062eaa17fafe3cd5c26a5243
 SHA1 (patch-ac) = 75e0d1fbfc5bb895b17fa22d8d09d6257e798847
