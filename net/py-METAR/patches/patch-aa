@@ -1,6 +1,6 @@
-$NetBSD: patch-aa,v 1.4 2010/02/24 18:43:34 drochner Exp $
+$NetBSD: patch-aa,v 1.5 2011/11/01 12:09:29 obache Exp $
 
---- setup.py.orig	2010-01-10 18:22:33.000000000 +0000
+--- setup.py.orig	2011-06-03 14:24:32.000000000 +0000
 +++ setup.py
 @@ -16,6 +16,7 @@
  from distutils.core import setup
@@ -15,8 +15,8 @@ $NetBSD: patch-aa,v 1.4 2010/02/24 18:43:34 drochner Exp $
        packages= [ "" ],
        py_modules=["pymetar"],
 -      scripts = [ "bin/pymetar" ], 
--      data_files = [("share/doc/pymetar-%s/"%pymetar.__version__,
+-      data_files = [("share/doc/pymetar-%s"%pymetar.__version__,
 +      scripts = [ "bin/pymetar" + sys.version[0:3] ], 
-+      data_files = [("share/doc/pymetar-%s-%s/"%(sys.version[0:3],pymetar.__version__),
++      data_files = [("share/doc/pymetar-%s-%s"%(sys.version[0:3],pymetar.__version__),
         ['README', 'COPYING', 'THANKS', 'librarydoc.txt'])]
        )

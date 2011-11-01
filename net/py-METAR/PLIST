@@ -1,5 +1,6 @@
-@comment $NetBSD: PLIST,v 1.6 2010/02/24 18:43:34 drochner Exp $
+@comment $NetBSD: PLIST,v 1.7 2011/11/01 12:09:29 obache Exp $
 bin/pymetar${PYVERSSUFFIX}
+${PLIST.eggfile}${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/pymetar.py
 ${PYSITELIB}/pymetar.pyc
 ${PYSITELIB}/pymetar.pyo
