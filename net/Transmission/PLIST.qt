@@ -1,4 +1,0 @@
-@comment $NetBSD: PLIST.qt,v 1.2 2011/06/27 10:44:27 abs Exp $
-bin/transmission-qt
-share/man/man1/transmission-qt.1
-

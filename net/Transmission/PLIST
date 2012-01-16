@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.common,v 1.15 2011/10/28 13:09:06 tnn Exp $
+@comment $NetBSD: PLIST,v 1.10 2012/01/16 22:15:00 abs Exp $
 bin/transmission-cli
 bin/transmission-create
 bin/transmission-daemon
