@@ -25,6 +25,7 @@ PLIST.worker=		yes
 .elif !empty(PKG_OPTIONS:Mapache-mpm-worker)
 CONFIGURE_ARGS+=	--with-mpm=worker
 PLIST.worker=		yes
+PKGNAME=		${DISTNAME:S/httpd/apache-worker/}
 .else
 CONFIGURE_ARGS+=	--with-mpm=prefork
 .endif
