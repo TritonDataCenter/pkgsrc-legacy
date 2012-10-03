@@ -1,0 +1,15 @@
+libcouchbase is a callback oriented client which makes it very easy to
+write high performance, thread safe programs. If you're interested in
+the early history of libcouchbase you might want to check out the blog
+post
+
+http://trondn.blogspot.com/2011/10/libcouchbase-explore-full-features-of.html
+
+The key component of libcouchbase is that its asynchronous, giving you
+full freedom in adding it to your application logic. From using the
+asynchronous interface you may schedule a lot of operations to be
+performed, and then you'll get the callbacks whenever they are
+performed. I do know that there are a lot of people who don't care
+about an async interface, so you may also enable synchronous
+mode. When synchronous mode is enabled you can't use this batching.
+
