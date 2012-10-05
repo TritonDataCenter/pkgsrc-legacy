@@ -1,8 +1,8 @@
-# $NetBSD: Makefile.common,v 1.4 2012/07/28 15:13:42 wiz Exp $
+# $NetBSD: Makefile.common,v 1.5 2012/10/05 19:43:41 wiz Exp $
 # used by net/Transmission/Makefile
 # used by net/Transmission-gui/Makefile
 
-DISTNAME=		transmission-2.61
+DISTNAME=		transmission-2.71
 
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
