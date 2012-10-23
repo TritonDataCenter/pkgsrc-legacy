@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.6 2012/10/21 20:54:01 wiz Exp $
+# $NetBSD: Makefile.common,v 1.7 2012/10/23 17:18:08 asau Exp $
 # used by net/Transmission/Makefile
 # used by net/Transmission-gui/Makefile
 
@@ -12,7 +12,6 @@ MAINTAINER=		tnn@NetBSD.org
 HOMEPAGE=		http://www.transmissionbt.com/
 COMMENT=		Free, lightweight BitTorrent client
 
-PKG_DESTDIR_SUPPORT=	user-destdir
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake pkg-config intltool msgfmt

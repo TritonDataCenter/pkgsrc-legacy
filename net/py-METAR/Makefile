@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2011/11/01 12:09:29 obache Exp $
+# $NetBSD: Makefile,v 1.20 2012/10/23 17:19:01 asau Exp $
 #
 
 DISTNAME=	pymetar-0.18
@@ -10,8 +10,6 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.schwarzvogel.de/software-pymetar.shtml
 COMMENT=	Downloads weather reports
 LICENSE=	gnu-gpl-v2 # or later
-
-PKG_DESTDIR_SUPPORT=	user-destdir
 
 PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX:Q}
 
