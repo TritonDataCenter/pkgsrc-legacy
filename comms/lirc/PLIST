@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2012/12/02 01:21:50 cheusov Exp $
+@comment $NetBSD: PLIST,v 1.1.1.1 2012/12/02 01:23:46 cheusov Exp $
 bin/ircat
 bin/irexec
 bin/irpty

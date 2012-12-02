@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2012/12/02 01:21:50 cheusov Exp $
+# $NetBSD: Makefile,v 1.1.1.1 2012/12/02 01:23:46 cheusov Exp $
 #
 
 DISTNAME=	lirc-0.9.0

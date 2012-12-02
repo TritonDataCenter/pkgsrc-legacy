@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.1 2012/12/02 01:21:51 cheusov Exp $
+# $NetBSD: buildlink3.mk,v 1.1.1.1 2012/12/02 01:23:46 cheusov Exp $
 
 # Check whether LIRC is available on this platform
 .include "available.mk"
