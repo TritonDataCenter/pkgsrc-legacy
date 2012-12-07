@@ -16,7 +16,7 @@ BUILDLINK_FILES.gcc47=		#empty
 BUILDLINK_AUTO_VARS.gcc47=	no
 
 # Packages that link against shared libraries need a full dependency.
-.if defined(_USE_GCC_SHLIB)
+.if defined(_USE_GCC_SHLIB) && empty(USE_PKGSRC_GCC_RUNTIME:M[Yy][Ee][Ss])
 DEPENDS+=	{gcc47,gcc47-libs}>=4.7:../../lang/gcc47-libs
 ABI_DEPENDS+=	{gcc47,gcc47-libs}>=4.7.0:../../lang/gcc47-libs
 .endif

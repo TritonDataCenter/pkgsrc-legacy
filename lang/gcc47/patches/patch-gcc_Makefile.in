@@ -5,9 +5,11 @@ are found.
 
 NOTE: the %M spec string is added by patch-gcc_gcc.c
 
---- gcc/Makefile.in.orig	2012-03-07 10:59:56.000000000 +0000
+Disable fixincludes, as per joyent/pkgsrc#270
+
+--- gcc/Makefile.in.orig	2013-07-08 09:15:35.000000000 +0000
 +++ gcc/Makefile.in
-@@ -2074,6 +2074,7 @@ prefix.o: prefix.c $(CONFIG_H) $(SYSTEM_
+@@ -2090,6 +2090,7 @@ prefix.o: prefix.c $(CONFIG_H) $(SYSTEM_
  # Language-independent files.
  
  DRIVER_DEFINES = \
@@ -15,3 +17,12 @@ NOTE: the %M spec string is added by patch-gcc_gcc.c
    -DSTANDARD_STARTFILE_PREFIX=\"$(unlibsubdir)/\" \
    -DSTANDARD_EXEC_PREFIX=\"$(libdir)/gcc/\" \
    -DSTANDARD_LIBEXEC_PREFIX=\"$(libexecdir)/gcc/\" \
+@@ -4204,7 +4205,7 @@ stmp-fixinc: gsyslimits.h macro_list fix
+ 	      gcc_dir=`${PWD_COMMAND}` ; \
+ 	      export TARGET_MACHINE srcdir SHELL MACRO_LIST && \
+ 	      cd $(build_objdir)/fixincludes && \
+-	      $(SHELL) ./fixinc.sh "$${gcc_dir}/$${fix_dir}" \
++	      $(SHELL) -c true "$${gcc_dir}/$${fix_dir}" \
+ 	        $(SYSTEM_HEADER_DIR) $(OTHER_FIXINCLUDES_DIRS) ); \
+ 	    rm -f $${fix_dir}/syslimits.h; \
+ 	    if [ -f $${fix_dir}/limits.h ]; then \
