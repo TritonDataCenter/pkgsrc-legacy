@@ -43,12 +43,22 @@ CONFIGURE_ARGS+=	--disable-libstdcxx-pch
 UNLIMIT_RESOURCES+=	datasize
 UNLIMIT_RESOURCES+=	stacksize
 
+FILES_SUBST+=		GCC49_DIST_VERSION=${GCC49_DIST_VERSION}
+FILES_SUBST+=		MACHINE_GNU_PLATFORM=${MACHINE_GNU_PLATFORM}
+
 SUBST_CLASSES+=		vars
 SUBST_STAGE.vars=	pre-configure
 SUBST_FILES.vars=	gcc/Makefile.in
 SUBST_VARS.vars=	GCC_TARGET_MACHINE
 
 .include "../../mk/bsd.prefs.mk"
+
+# For the tools build (i.e. when not using USE_GCC_LOCALBASE_PREFIX) we
+# do not want rpaths to leak into final binaries.
+.if ${USE_GCC_LOCALBASE_PREFIX:Uno:tl} != "yes"
+SUBST_SED.vars+=	-e '/-R/d'
+SUBST_SED.vars+=	-e '/-DLINK_LIBGCC_SPEC=/d'
+.endif
 
 LANGS=			c
 
@@ -80,7 +90,11 @@ CONFIGURE_ARGS+=        --enable-libssp
 CONFIGURE_ARGS+=	--enable-languages=${LANGS:Q}
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--enable-long-long
+.if ${USE_GCC_LOCALBASE_PREFIX:Uno:tl} == "yes"
+CONFIGURE_ARGS+=	--with-local-prefix=${LOCALBASE:Q}
+.else
 CONFIGURE_ARGS+=	--with-local-prefix=${GCC_PREFIX:Q}
+.endif
 CONFIGURE_ARGS+=	--enable-threads=posix
 CONFIGURE_ARGS+=	--with-boot-ldflags=${BOOT_LDFLAGS:Q}
 
