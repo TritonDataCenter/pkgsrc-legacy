@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.80 2012/12/16 01:52:27 obache Exp $
+# $NetBSD: Makefile,v 1.81 2013/01/06 01:12:33 wiz Exp $
 
 PKGNAME=		${DISTNAME:C:t:T:}
-PKGREVISION=		1
 
 pre-configure:
 	touch ${WRKSRC}/po/Makefile
