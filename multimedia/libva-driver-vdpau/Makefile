@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2013/04/14 00:48:05 cheusov Exp $
+# $NetBSD: Makefile,v 1.1.1.1 2013/04/14 00:49:55 cheusov Exp $
 #
 
 DISTNAME=	vdpau-driver-${PKGNAME:C/^.*-//}
