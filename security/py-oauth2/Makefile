@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2013/05/12 19:55:42 cheusov Exp $
+# $NetBSD: Makefile,v 1.1.1.1 2013/05/12 19:57:19 cheusov Exp $
 
 DISTNAME=	oauth2-1.5.211
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
