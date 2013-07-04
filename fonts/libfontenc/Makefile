@@ -10,6 +10,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		Library for handling fonts with different character set encodings
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 PKGCONFIG_OVERRIDE+=	fontenc.pc.in
 GNU_CONFIGURE=		yes
