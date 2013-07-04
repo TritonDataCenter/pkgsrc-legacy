@@ -17,6 +17,7 @@ LICENSE=	mit
 PREV_PKGPATH=		misc/proj
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
 
