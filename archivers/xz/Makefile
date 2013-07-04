@@ -11,6 +11,7 @@ COMMENT=	XZ utilities
 LICENSE=	public-domain AND gnu-gpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE=	src/liblzma/liblzma.pc.in
 

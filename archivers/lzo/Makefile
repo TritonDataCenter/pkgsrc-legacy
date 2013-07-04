@@ -10,6 +10,7 @@ COMMENT=	Portable lossless data compression library
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 TEST_TARGET=		test
 

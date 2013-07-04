@@ -14,7 +14,7 @@ all: libbz2.la bzip2 bzip2recover
 
 libbz2.la: ${LOBJS}
 	${LIBTOOL} --tag=CC --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o ${.TARGET} \
-	    ${LOBJS} -version-info 0:0 -rpath ${PREFIX}/lib -no-undefined
+	    ${LOBJS} -version-info 0:0 -rpath ${PREFIX}/lib${LIBARCHSUFFIX} -no-undefined
 
 libbz2.a: ${OBJS}
 	${AR} cq ${.TARGET} ${OBJS}
