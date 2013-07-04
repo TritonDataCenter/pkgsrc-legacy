@@ -16,6 +16,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 
 PKGCONFIG_OVERRIDE+=	SDL_Pango.pc.in

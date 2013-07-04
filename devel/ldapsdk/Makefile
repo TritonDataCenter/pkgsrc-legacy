@@ -17,6 +17,7 @@ NOT_FOR_BULK_PLATFORM=	Linux-*-*
 MAKE_JOBS_SAFE=	no
 
 WRKSRC=		${WRKDIR}/mozilla
+USE_MULTIARCH=	lib
 USE_TOOLS+=	gmake perl
 
 PKG_SYSCONFSUBDIR=	ldapsdk
@@ -44,14 +45,14 @@ do-install:
 	#
 	# XXX kludge
 	#
-	${INSTALL_DATA} ${WRKSRC}/dist/${OPSYS}*/lib/libldap.a ${DESTDIR}${PREFIX}/lib/libldap.a
-	${INSTALL_DATA} ${WRKSRC}/dist/${OPSYS}*/lib/liblber.a ${DESTDIR}${PREFIX}/lib/liblber.a
-	${INSTALL_LIB} ${WRKSRC}/dist/${OPSYS}*/bin/libldap.so.1.0 ${DESTDIR}${PREFIX}/lib/libldap.so.1.0
-	${LN} -sf libldap.so.1.0 ${DESTDIR}${PREFIX}/lib/libldap.so.1
-	${LN} -sf libldap.so.1.0 ${DESTDIR}${PREFIX}/lib/libldap.so
-	${INSTALL_LIB} ${WRKSRC}/dist/${OPSYS}*/bin/liblber.so.1.0 ${DESTDIR}${PREFIX}/lib/liblber.so.1.0
-	${LN} -sf liblber.so.1.0 ${DESTDIR}${PREFIX}/lib/liblber.so.1
-	${LN} -sf liblber.so.1.0 ${DESTDIR}${PREFIX}/lib/liblber.so
+	${INSTALL_DATA} ${WRKSRC}/dist/${OPSYS}*/lib/libldap.a ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/libldap.a
+	${INSTALL_DATA} ${WRKSRC}/dist/${OPSYS}*/lib/liblber.a ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/liblber.a
+	${INSTALL_LIB} ${WRKSRC}/dist/${OPSYS}*/bin/libldap.so.1.0 ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/libldap.so.1.0
+	${LN} -sf libldap.so.1.0 ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/libldap.so.1
+	${LN} -sf libldap.so.1.0 ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/libldap.so
+	${INSTALL_LIB} ${WRKSRC}/dist/${OPSYS}*/bin/liblber.so.1.0 ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/liblber.so.1.0
+	${LN} -sf liblber.so.1.0 ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/liblber.so.1
+	${LN} -sf liblber.so.1.0 ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/liblber.so
 	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
 	${INSTALL_DATA} ${WRKSRC}/dist/${OPSYS}*/etc/ldapfilter.conf      ${DESTDIR}${EGDIR}/ldapfilter.conf
 	${INSTALL_DATA} ${WRKSRC}/dist/${OPSYS}*/etc/ldapsearchprefs.conf ${DESTDIR}${EGDIR}/ldapsearchprefs.conf

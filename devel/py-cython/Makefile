@@ -25,10 +25,12 @@ do-test:
 	(cd ${WRKSRC} && ${PYTHONBIN} runtests.py)
 
 post-install:
+	if [ -f ${DESTDIR}${PREFIX}/bin/cython ]; then \
 	cd ${DESTDIR}${PREFIX}/bin && \
 		${MV} cython cython${PYVERSSUFFIX} && \
 		${MV} cythonize cythonize${PYVERSSUFFIX} && \
-		${MV} cygdb cygdb${PYVERSSUFFIX}
+		${MV} cygdb cygdb${PYVERSSUFFIX}; \
+	fi
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

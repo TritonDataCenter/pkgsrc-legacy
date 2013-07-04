@@ -12,6 +12,7 @@ HOMEPAGE=	http://www.hdfgroup.org/HDF5/
 LICENSE=	original-bsd
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pax tr
 GNU_CONFIGURE=		yes
 TEST_TARGET=		check
@@ -23,7 +24,7 @@ PATCHDIR=	${.CURDIR}/../../devel/hdf5/patches
 
 # it appears that this file is informative only and is not actually
 # used by any installed tools
-CHECK_WRKREF_SKIP=	${PREFIX}/lib/libhdf5.settings
+CHECK_WRKREF_SKIP=	${PREFIX}/lib${LIBARCHSUFFIX}/libhdf5.settings
 
 INSTALL_ENV+=		INSTALL_SCRIPT=${INSTALL_SCRIPT:Q}
 

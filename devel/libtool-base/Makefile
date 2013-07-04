@@ -60,8 +60,8 @@ USE_TOOLS+=		echo
 .PHONY: fix-libtool
 fix-libtool:
 	cd ${WRKSRC}; for f in libtool; do				\
-		${SED}	-e "s,-L${BUILDLINK_DIR}/lib *,,g"		\
-			-e "s,${BUILDLINK_DIR}/lib *,,g"		\
+		${SED}	-e "s,-L${BUILDLINK_DIR}/lib${LIBARCHSUFFIX} *,,g" \
+			-e "s,${BUILDLINK_DIR}/lib${LIBARCHSUFFIX} *,,g" \
 			$$f > $$f.new;					\
 		if [ -x $$f ]; then ${CHMOD} +x $$f.new; fi;		\
 		${MV} -f $$f.new $$f;					\
@@ -75,7 +75,7 @@ post-build:
 		${FILESDIR}/shlibtool.in > ${WRKSRC}/shlibtool
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/shlibtool ${DESTDIR}${PREFIX}/bin/shlibtool
+	${INSTALL_SCRIPT} ${WRKSRC}/shlibtool ${DESTDIR}${PREFIX}/bin${BINARCHSUFFIX}/shlibtool
 
 BUILDLINK_DEPMETHOD.dlcompat=	build
 

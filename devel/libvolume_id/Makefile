@@ -12,8 +12,9 @@ HOMEPAGE=		${MASTER_SITES}
 COMMENT=		Library to provide file system type information
 LICENSE=		gnu-gpl-v2
 
-INSTALLATION_DIRS=	include lib lib/pkgconfig
+INSTALLATION_DIRS=	include lib${LIBARCHSUFFIX} lib${LIBARCHSUFFIX}/pkgconfig
 USE_TOOLS+=		gmake pkg-config
+USE_MULTIARCH=		lib
 
 USE_LIBTOOL=yes
 

@@ -12,6 +12,7 @@ LICENSE=		gnu-gpl-v2
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 MANCOMPRESSED=		yes
 
 .include "../../mk/bsd.pkg.mk"

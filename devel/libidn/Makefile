@@ -11,6 +11,7 @@ COMMENT=	Internationalized Domain Names command line tool
 LICENSE=	gnu-gpl-v3 AND gnu-lgpl-v2.1
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		makeinfo pkg-config perl:build gsed
 TEXINFO_REQD=		4.7

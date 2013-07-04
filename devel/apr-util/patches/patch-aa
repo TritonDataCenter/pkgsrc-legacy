@@ -14,7 +14,6 @@ $NetBSD: patch-aa,v 1.7 2013/12/10 08:27:06 obache Exp $
          ;;
      *)
 -        cp $APR_BUILD_DIR/apr_rules.mk $abs_builddir/build/rules.mk
-+        sed -e 's:^LIBTOOL=.*:LIBTOOL=$(WRAPPER_DIR)/bin/libtool:' -e "s:^LDFLAGS=.*:LDFLAGS=${LDFLAGS}:" $APR_BUILD_DIR/apr_rules.mk > $abs_builddir/build/rules.mk
++        sed -e 's:^LIBTOOL=.*:LIBTOOL=$(WRAPPER_DIR)/bin$(BINARCHSUFFIX)/libtool:' -e "s:^LDFLAGS=.*:LDFLAGS=${LDFLAGS}:" $APR_BUILD_DIR/apr_rules.mk > $abs_builddir/build/rules.mk
          ;;
  esac
- 

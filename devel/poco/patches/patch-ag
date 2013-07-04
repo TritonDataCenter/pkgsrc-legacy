@@ -1,6 +1,7 @@
 $NetBSD: patch-ag,v 1.2 2016/01/16 12:15:12 ryoon Exp $
 
 # Only include only the non-omitted components 
+# Support multiarch
 
 --- Makefile.orig	2015-08-04 05:21:07.000000000 +0000
 +++ Makefile
@@ -15,3 +16,23 @@ $NetBSD: patch-ag,v 1.2 2016/01/16 12:15:12 ryoon Exp $
  
  cppunit:
  	$(MAKE) -C $(POCO_BASE)/CppUnit 
+@@ -37,7 +39,7 @@ CppUnit-clean:
+ 
+ install: libexecs
+ 	mkdir -p $(INSTALLDIR)/include/Poco
+-	mkdir -p $(INSTALLDIR)/lib
++	mkdir -p $(INSTALLDIR)/lib${LIBARCHSUFFIX}
+ 	mkdir -p $(INSTALLDIR)/bin
+ 	for comp in $(COMPONENTS) ; do \
+ 		if [ -d "$(POCO_BASE)/$$comp/include" ] ; then \
+@@ -47,8 +49,8 @@ install: libexecs
+ 			find $(POCO_BUILD)/$$comp/bin -perm -700 -type f -exec cp -f {} $(INSTALLDIR)/bin \; ; \
+ 		fi ; \
+ 	done
+-	find $(POCO_BUILD)/lib -name "libPoco*" -type f -exec cp -f {} $(INSTALLDIR)/lib \;
+-	find $(POCO_BUILD)/lib -name "libPoco*" -type l -exec cp -Rf {} $(INSTALLDIR)/lib \;
++	find $(POCO_BUILD)/lib -name "libPoco*" -type f -exec cp -f {} $(INSTALLDIR)/lib${LIBARCHSUFFIX} \;
++	find $(POCO_BUILD)/lib -name "libPoco*" -type l -exec cp -Rf {} $(INSTALLDIR)/lib${LIBARCHSUFFIX} \;
+ 
+ libexecs =  Foundation-libexec XML-libexec JSON-libexec Util-libexec Net-libexec Crypto-libexec NetSSL_OpenSSL-libexec Data-libexec Data/SQLite-libexec Data/ODBC-libexec Data/MySQL-libexec MongoDB-libexec Zip-libexec PageCompiler-libexec PageCompiler/File2Page-libexec
+ tests    =  Foundation-tests XML-tests JSON-tests Util-tests Net-tests Crypto-tests NetSSL_OpenSSL-tests Data-tests Data/SQLite-tests Data/ODBC-tests Data/MySQL-tests MongoDB-tests Zip-tests

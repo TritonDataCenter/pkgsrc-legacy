@@ -45,6 +45,8 @@ PATCHDIR=	${.CURDIR}/../../devel/libtool/patches
 
 AUTOMAKE_OVERRIDE=	NO
 
+USE_MULTIARCH=	bin lib
+
 .include "../../mk/bsd.prefs.mk"
 
 # The configure script persists in trying to find the path to ld, which

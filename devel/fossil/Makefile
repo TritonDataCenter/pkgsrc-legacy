@@ -11,13 +11,14 @@ HOMEPAGE=	http://www.fossil-scm.org/
 COMMENT=	High-reliability, distributed software configuration management
 LICENSE=	2-clause-bsd
 
+USE_MULTIARCH=	bin
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl:Q}
 
-INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1 share/doc/${PKGBASE}
+INSTALLATION_DIRS+=	bin${BINARCHSUFFIX} ${PKGMANDIR}/man1 share/doc/${PKGBASE}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/fossil ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/fossil ${DESTDIR}${PREFIX}/bin${BINARCHSUFFIX}
 	${INSTALL_MAN} ${WRKSRC}/fossil.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 	${INSTALL_DATA} ${WRKSRC}/COPYRIGHT-BSD2.txt \
 		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}

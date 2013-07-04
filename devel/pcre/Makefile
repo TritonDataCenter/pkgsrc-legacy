@@ -13,10 +13,17 @@ LICENSE=	modified-bsd
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-pcre16
 CONFIGURE_ARGS+=	--enable-unicode-properties
 CONFIGURE_ARGS+=	--enable-utf8
+
+SUBST_CLASSES+=		lns
+SUBST_STAGE.lns=	post-patch
+SUBST_MESSAGE.lns=	Fixing ln -s commands in Makefile.in
+SUBST_FILES.lns=	Makefile.in
+SUBST_SED.lns=		-e 's,ln -s,ln -f -s,'
 
 SUBST_CLASSES+=		rpath
 SUBST_STAGE.rpath=	pre-configure

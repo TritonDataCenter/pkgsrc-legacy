@@ -21,6 +21,7 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config
 USE_LANGUAGES=		c c++ c99
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 TEST_TARGET=		check
 
 DISTINFO_FILE=		${.CURDIR}/../../devel/glib2/distinfo

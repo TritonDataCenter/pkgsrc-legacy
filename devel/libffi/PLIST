@@ -1,5 +1,5 @@
 @comment $NetBSD: PLIST,v 1.4 2012/09/14 23:45:27 asau Exp $
-include/ffi.h
+include${INCARCHSUFFIX}/ffi.h
 include/ffitarget.h
 info/libffi.info
 lib/libffi.la

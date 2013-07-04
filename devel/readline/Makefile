@@ -13,6 +13,7 @@ COMMENT=	GNU library that can recall and edit previous input
 LICENSE=	gnu-gpl-v3
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 INFO_FILES=		yes
 

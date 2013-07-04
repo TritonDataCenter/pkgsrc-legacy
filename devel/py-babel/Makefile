@@ -16,8 +16,8 @@ DEPENDS+=	${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
 USE_LANGUAGES=	# none
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/bin/pybabel \
-		${DESTDIR}${PREFIX}/bin/pybabel-${PYVERSSUFFIX}
+	[ -f ${DESTDIR}${PREFIX}/bin/pybabel ] && ${MV} ${DESTDIR}${PREFIX}/bin/pybabel \
+		${DESTDIR}${PREFIX}/bin/pybabel-${PYVERSSUFFIX} || ${TRUE}
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -10,6 +10,7 @@ HOMEPAGE=	http://www.memcached.org/
 COMMENT=	High-performance distributed memory object caching system
 LICENSE=	2-clause-bsd
 
+USE_MULTIARCH=		bin
 USE_TOOLS+=		perl
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-libevent=${BUILDLINK_PREFIX.libevent}
@@ -44,7 +45,7 @@ TEST_TARGET=		test
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/*.txt ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${DESTDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${DESTDIR}${PREFIX}/bin${BINARCHSUFFIX}
 
 .include "../../devel/libevent/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.0

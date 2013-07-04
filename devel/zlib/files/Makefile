@@ -11,7 +11,7 @@ all: libz.la
 
 libz.la: ${LOBJS}
 	${LIBTOOL} --mode=link --tag=CC ${CC} ${LDFLAGS} ${CFLAGS} -o ${.TARGET} \
-	    ${LOBJS} -version-info 1:2 -rpath ${PREFIX}/lib
+	    ${LOBJS} -version-info 1:2 -rpath ${PREFIX}/lib${LIBARCHSUFFIX}
 
 libz.a: ${OBJS}
 	${AR} cq ${.TARGET} ${OBJS}

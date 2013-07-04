@@ -95,13 +95,14 @@ pre-configure:
 .    include "../../devel/boost-headers/buildlink3.mk"
 do-configure:
 	${CP} -f \
-	    ${BUILDLINK_PREFIX.boost-headers}/include/boost/config/user.hpp \
+	    ${BUILDLINK_PREFIX.boost-headers}/include/boost/config${INCARCHSUFFIX}/user.hpp \
 	    ${WRKSRC}/boost/config/user.hpp
 .  elif ${BOOST_CONFIG} == "generate"
 do-configure:
 	cd ${WRKSRC}/libs/config && \
 	    ${SETENV} ${CONFIGURE_ENV} ${SH} ./configure
-	${CP} -f ${WRKSRC}/libs/config/user.hpp ${WRKSRC}/boost/config/user.hpp
+	${MKDIR} ${WRKSRC}/boost/config${INCARCHSUFFIX}
+	${CP} -f ${WRKSRC}/libs/config/user.hpp ${WRKSRC}/boost/config${INCARCHSUFFIX}/user.hpp
 .  endif
 
 boost-install-libs:

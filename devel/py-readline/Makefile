@@ -11,11 +11,13 @@ EXTRACT_ELEMENTS=	${PYSUBDIR}/Modules/readline.c
 
 USE_GCC_RUNTIME=	yes
 
+MULTIARCH_DIRS.lib=	${PYLIB}/lib-dynload
+
 PYDISTUTILSPKG=	yes
 PY_PATCHPLIST=	yes
 PY_SETUP_SUBST+= RLPREFIX=${BUILDLINK_PREFIX.readline}
 PY_SETUP_SUBST+= RLRTPREFIX=${BUILDLINK_PREFIX.readline}
-PYSETUPINSTALLARGS+=	--install-lib ${PREFIX}/${PYLIB}/lib-dynload
+PYSETUPINSTALLARGS+=	--install-lib ${PREFIX}/${PYLIB}/lib-dynload${LIBARCHSUFFIX}
 
 # ignore errors due to missing files (EXTRACT_ELEMENTS!)
 do-patch:

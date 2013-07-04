@@ -21,6 +21,7 @@ DISTINFO_FILE=	${.CURDIR}/../../devel/poco/distinfo
 
 HAS_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
+USE_MULTIARCH=	lib
 USE_TOOLS+=	gmake
 
 # Various places have:

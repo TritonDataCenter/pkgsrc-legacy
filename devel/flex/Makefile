@@ -11,6 +11,7 @@ COMMENT=	Fast clone of lex(1), the lexical scanner generator
 LICENSE=	2-clause-bsd
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gm4:run
 GNU_CONFIGURE=		yes

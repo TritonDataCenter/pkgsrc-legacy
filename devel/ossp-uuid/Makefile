@@ -18,6 +18,7 @@ GNU_CONFIGURE=		yes
 
 USE_TOOLS+=		gmake
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		lib
 
 CONFIGURE_ARGS+=	--with-dce
 CONFIGURE_ARGS+=	--with-cxx

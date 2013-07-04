@@ -11,19 +11,25 @@ COMMENT=	Apache Portable Runtime
 LICENSE=	apache-2.0
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		pkg-config
 PKGCONFIG_OVERRIDE+=	apr.pc.in
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-devrandom=/dev/urandom
-CONFIGURE_ARGS+=	--with-installbuilddir=${PREFIX}/libexec/apr
+CONFIGURE_ARGS+=	--with-installbuilddir=${PREFIX}/libexec${LIBARCHSUFFIX}/apr
 CONFIGURE_ENV+=		LIBS=${LIBS:M*:Q}
 LIBS.SunOS+=		-lnsl
+
+MULTIARCH_DIRS.lib=	lib libexec
+
+# XXX: why is this required for multiarch?
+CHECK_INTERPRETER_SKIP+=	lib/*.exp
 
 TEST_TARGET=		check
 
 post-install:
-	${RM} ${DESTDIR}${PREFIX}/libexec/apr/libtool
-	${INSTALL_SCRIPT} ${PKG_LIBTOOL} ${DESTDIR}${PREFIX}/libexec/apr/libtool
+	${RM} ${DESTDIR}${PREFIX}/libexec${LIBARCHSUFFIX}/apr/libtool
+	${INSTALL_SCRIPT} ${PKG_LIBTOOL} ${DESTDIR}${PREFIX}/libexec${LIBARCHSUFFIX}/apr/libtool
 
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "Linux" || ${OPSYS} == "SunOS"

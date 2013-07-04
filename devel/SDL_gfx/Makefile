@@ -11,6 +11,7 @@ LICENSE=	zlib
 
 USE_TOOLS+=		gmake
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE=	SDL_gfx.pc.in
 

@@ -15,6 +15,7 @@ GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c99
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 PKGCONFIG_OVERRIDE=	atk.pc.in
 
 # glib-mkenums overflows a 2048kb stack on atkobject.h

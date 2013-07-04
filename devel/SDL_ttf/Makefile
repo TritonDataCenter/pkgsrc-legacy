@@ -11,6 +11,7 @@ COMMENT=	Use TrueType fonts in your SDL applications
 LICENSE=	zlib
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 
 PKGCONFIG_OVERRIDE+=	SDL_ttf.pc.in

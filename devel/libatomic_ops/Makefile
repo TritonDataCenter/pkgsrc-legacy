@@ -12,6 +12,7 @@ LICENSE=	gnu-gpl-v2
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	gmake
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 TEST_TARGET=	check
 PKGCONFIG_OVERRIDE=	pkgconfig/atomic_ops.pc.in
 

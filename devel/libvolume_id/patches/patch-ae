@@ -28,7 +28,7 @@ $NetBSD: patch-ae,v 1.2 2011/01/18 10:34:39 markd Exp $
  
 +libvolume_id.la: $(OBJS:.o=.lo)
 +	$(LIBTOOL) --mode=link $(CC) $(LDFLAGS) $(CFLAGS) -o $@ \
-+	    $^ -version-info $(SHLIB_CUR):$(SHLIB_REV):$(SHLIB_AGE) -rpath $(PREFIX)/lib
++	    $^ -version-info $(SHLIB_CUR):$(SHLIB_REV):$(SHLIB_AGE) -rpath $(PREFIX)/lib${LIBARCHSUFFIX}
 +
 +%.lo: %.c
 +	$(LIBTOOL) --mode=compile $(CC) -c $(CFLAGS) -o $@ $<
@@ -51,7 +51,7 @@ $NetBSD: patch-ae,v 1.2 2011/01/18 10:34:39 markd Exp $
 -	$(Q) echo "Cflags: -I\$${includedir}" >> $@
 +	echo "prefix=$(PREFIX)" >> $@
 +	echo "exec_prefix=\$${prefix}" >> $@
-+	echo "libdir=\$${exec_prefix}/lib" >> $@
++	echo "libdir=\$${exec_prefix}/lib${LIBARCHSUFFIX}" >> $@
 +	echo "includedir=\$${exec_prefix}/include" >> $@
 +	echo "" >> $@
 +	echo "Name: libvolume_id" >> $@
@@ -72,9 +72,9 @@ $NetBSD: patch-ae,v 1.2 2011/01/18 10:34:39 markd Exp $
 -	ln -sf $(libdir)/$(SHLIB) $(DESTDIR)$(usrlibdir)/libvolume_id.so
 -endif
 -	$(INSTALL_DATA) -D libvolume_id.pc $(DESTDIR)$(usrlibdir)/pkgconfig/libvolume_id.pc
-+	$(LIBTOOL) --mode=install $(INSTALL_LIB) libvolume_id.la $(DESTDIR)$(PREFIX)/lib
++	$(LIBTOOL) --mode=install $(INSTALL_LIB) libvolume_id.la $(DESTDIR)$(PREFIX)/lib${LIBARCHSUFFIX}
 +	$(INSTALL_DATA) libvolume_id.h $(DESTDIR)$(PREFIX)/include
-+	$(INSTALL_DATA) libvolume_id.pc $(DESTDIR)$(PREFIX)/lib/pkgconfig
++	$(INSTALL_DATA) libvolume_id.pc $(DESTDIR)$(PREFIX)/lib${LIBARCHSUFFIX}/pkgconfig
  .PHONY: install
  
  uninstall:
