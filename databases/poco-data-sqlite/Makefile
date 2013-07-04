@@ -18,14 +18,14 @@ CONFIGURE_ARGS+=	--no-samples
 USE_TOOLS+=	pax
 
 BUILD_DIRS=		Data/SQLite
-INSTALLATION_DIRS=	include/Poco/Data/SQLite lib
+INSTALLATION_DIRS=	include/Poco/Data/SQLite lib${LIBARCHSUFFIX}
 
 do-install:
 	# using the same logic as Poco's Makefile install target.
 	cd ${WRKSRC} && find lib -name 'libPoco*' -type f -exec cp -f {} \
-						    ${DESTDIR}${PREFIX}/lib \;
+	    ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX} \;
 	cd ${WRKSRC} && find lib -name 'libPoco*' -type l -exec cp -Rf {} \
-						    ${DESTDIR}${PREFIX}/lib \;
+	    ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX} \;
 	cd ${WRKSRC}/Data/SQLite && \
 	    ${PAX} -rw -v -pp include ${DESTDIR}${PREFIX}
 

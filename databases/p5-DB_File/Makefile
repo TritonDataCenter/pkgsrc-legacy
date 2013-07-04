@@ -10,6 +10,7 @@ HOMEPAGE=	http://search.cpan.org/dist/DB_File/
 COMMENT=	Perl5 module to use Berkeley DB version 1 API
 LICENSE=	${PERL5_LICENSE}
 
+USE_MULTIARCH=	lib
 PERL5_PACKLIST=	auto/DB_File/.packlist
 
 .include "../../mk/bsd.prefs.mk"

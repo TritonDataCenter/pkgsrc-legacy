@@ -16,4 +16,5 @@ DISTINFO_FILE=	${.CURDIR}/../../databases/gdbm/distinfo
 PATCHDIR=	${.CURDIR}/../../databases/gdbm/patches
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes

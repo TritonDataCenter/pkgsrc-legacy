@@ -12,6 +12,7 @@ HOMEPAGE=	http://www.mysql.com/
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 
 .include "../../mk/bsd.prefs.mk"
@@ -104,7 +105,7 @@ CONFIGURE_ENV+=		ac_cv_func_pthread_attr_setschedparam=no
 
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		autoconf bash autoheader gmake perl:run
-LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/mysql
+LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib${LIBARCHSUFFIX}/mysql
 
 # reset the platform diff on SunOS unless it's a GNU diff
 # which is required by the MySQL build

@@ -40,6 +40,7 @@ COMMON_FILESDIR?=	${.CURDIR}/../../databases/postgresql92/files
 PATCHDIR?=		${.CURDIR}/../../databases/postgresql92/patches
 
 USE_GCC_RUNTIME=	yes
+USE_MULTIARCH=		bin lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		bison gmake lex msgfmt
 PKG_SYSCONFSUBDIR=	postgresql

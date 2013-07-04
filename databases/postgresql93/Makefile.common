@@ -39,6 +39,7 @@ DISTINFO_FILE?=		${.CURDIR}/../../databases/postgresql93/distinfo
 COMMON_FILESDIR?=	${.CURDIR}/../../databases/postgresql93/files
 PATCHDIR?=		${.CURDIR}/../../databases/postgresql93/patches
 
+USE_MULTIARCH=		bin lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		bison gmake lex msgfmt
 PKG_SYSCONFSUBDIR=	postgresql

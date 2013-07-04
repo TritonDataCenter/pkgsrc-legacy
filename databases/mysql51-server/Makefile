@@ -74,7 +74,7 @@ REPLACE_PERL+=		mysql-test/lib/My/SafeProcess/safe_process.pl \
 			mysql-test/mtr \
 			scripts/mysqld_multi.sh
 
-INSTALLATION_DIRS+=	bin
+INSTALLATION_DIRS+=	bin${BINARCHSUFFIX}
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -103,16 +103,16 @@ post-build:
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/mysqld_safe \
-		${DESTDIR}${PREFIX}/bin
+		${DESTDIR}${PREFIX}/bin${BINARCHSUFFIX}
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/mysql_install_db \
-		${DESTDIR}${PREFIX}/bin
+		${DESTDIR}${PREFIX}/bin${BINARCHSUFFIX}
 	${INSTALL_SCRIPT} ${WRKSRC}/support-files/mysql.server \
-		${DESTDIR}${PREFIX}/bin
+		${DESTDIR}${PREFIX}/bin${BINARCHSUFFIX}
 	${INSTALL_MAN} ${WRKSRC}/man/mysqld_multi.1 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 #	${INSTALL_MAN} ${WRKSRC}/man/mysqld_safe.1 \
 #		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/mysql_secure_installation.sh \
-		${DESTDIR}${PREFIX}/bin/mysql_secure_installation
+		${DESTDIR}${PREFIX}/bin${BINARCHSUFFIX}/mysql_secure_installation
 
 .include "../../mk/bsd.pkg.mk"

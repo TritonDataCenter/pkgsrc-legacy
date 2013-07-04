@@ -11,6 +11,7 @@ COMMENT=	Implementation of TDS protocol used by Sybase and MS-SQL servers
 LICENSE=	gnu-lgpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/share

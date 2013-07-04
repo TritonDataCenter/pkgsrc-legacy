@@ -19,14 +19,14 @@ CONFIGURE_ARGS+=	--no-samples
 USE_TOOLS+=	pax
 
 BUILD_DIRS=		Data
-INSTALLATION_DIRS=	include/Poco/Data lib
+INSTALLATION_DIRS=	include/Poco/Data lib${LIBARCHSUFFIX}
 
 do-install:
 	# using the same logic as Poco's Makefile install target.
 	cd ${WRKSRC} && find lib -name 'libPoco*' -type f -exec cp -f {} \
-						    ${DESTDIR}${PREFIX}/lib \;
+	    ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX} \;
 	cd ${WRKSRC} && find lib -name 'libPoco*' -type l -exec cp -Rf {} \
-						    ${DESTDIR}${PREFIX}/lib \;
+	    ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX} \;
 	cd ${WRKSRC}/Data && \
 	    ${PAX} -rw -v -pp include ${DESTDIR}${PREFIX}
 

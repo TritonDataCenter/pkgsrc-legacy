@@ -14,6 +14,7 @@ LICENSE=		apache-2.0
 
 GNU_CONFIGURE=		yes
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		bin
 USE_TOOLS+=		gmake
 USE_LIBTOOL=		yes
 INFO_FILES=		yes
