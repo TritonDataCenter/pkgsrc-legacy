@@ -10,6 +10,7 @@ COMMENT=	Find the country from any IP address
 LICENSE=	gnu-lgpl-v2.1 AND gnu-gpl-v2 #  md5.c and types.h, from GNUPG
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 

@@ -14,6 +14,7 @@ LICENSE=	gnu-lgpl-v2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+= --without-gtk
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	pkg-config gmake
 
 PKGCONFIG_OVERRIDE+=	gssdp-1.0.pc.in

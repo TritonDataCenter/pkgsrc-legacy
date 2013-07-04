@@ -9,7 +9,7 @@ Change linking for gst-plugins0.10-libnice package.
  
  COMMON_LIBADD = \
 -	$(top_builddir)/nice/libnice.la
-+	$(prefix)/lib/libnice.la
++	$(libdir)/libnice.la
  
  
  # libgstnice

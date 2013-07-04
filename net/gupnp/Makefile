@@ -13,6 +13,7 @@ LICENSE=	gnu-lgpl-v2
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	gmake pkg-config
 
 PKGCONFIG_OVERRIDE+=	gupnp-1.0.pc.in
@@ -28,7 +29,7 @@ TEST_TARGET=	check
 
 .if !empty(OPSYS:M*BSD) || ${OPSYS} == "DragonFly" || ${OPSYS} == "Darwin"
 pre-configure:
-	cp ${FILESDIR}/uuid.pc ${BUILDLINK_DIR}/lib/pkgconfig/
+	cp ${FILESDIR}/uuid.pc ${BUILDLINK_DIR}/lib${LIBARCHSUFFIX}/pkgconfig/
 .else
 .include "../../devel/libuuid/buildlink3.mk"
 .endif

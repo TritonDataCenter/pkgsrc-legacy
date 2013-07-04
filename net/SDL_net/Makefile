@@ -12,6 +12,7 @@ LICENSE=	zlib
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-gui
 PKGCONFIG_OVERRIDE=	SDL_net.pc.in

@@ -14,6 +14,7 @@ LICENSE=	gnu-gpl-v2
 CONFLICTS+=		ethereal-[0-9]*
 
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake perl pkg-config yacc lex
 
 USE_LIBTOOL=		yes
