@@ -24,6 +24,7 @@ PATCHDIR=	${.CURDIR}/../../audio/libao/patches
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake pkg-config
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 MAKE_FLAGS+=		MANDIR=${PREFIX}/${PKGMANDIR}
 MAKE_FLAGS+=		mandir=${PREFIX}/${PKGMANDIR}
 

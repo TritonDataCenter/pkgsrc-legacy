@@ -13,6 +13,7 @@ LICENSE=	zlib
 CONFLICTS=		SDL-mixer-[0-9]*
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE=	SDL_mixer.pc.in

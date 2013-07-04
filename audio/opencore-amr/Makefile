@@ -7,10 +7,12 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=opencore-amr/}
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://opencore-amr.sourceforge.net/
 COMMENT=	Adaptive Multi-Rate speech codec libraries
+
 LICENSE=	apache-2.0
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 

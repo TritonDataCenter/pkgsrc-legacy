@@ -14,6 +14,7 @@ GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake
 USE_LIBTOOL=		yes
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		lib
 
 LDFLAGS.SunOS+=		-lm
 

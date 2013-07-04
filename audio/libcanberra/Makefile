@@ -11,6 +11,7 @@ COMMENT=	Desktop event sound library
 LICENSE=	gnu-lgpl-v2.1
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ENV+=		ac_cv_lib_ltdl_lt_dladvise_init=yes
