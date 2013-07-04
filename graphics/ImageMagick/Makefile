@@ -10,6 +10,7 @@ COMMENT=	Package for display and interactive manipulation of images
 CONFLICTS=	geomview<1.8.1nb2  # used to have a program named 'animate'
 
 USE_LANGUAGES=		c c++ c99
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		gmake pkg-config:run
 CONFIGURE_ARGS+=	--disable-assert
 CONFIGURE_ARGS+=	--with-fontconfig

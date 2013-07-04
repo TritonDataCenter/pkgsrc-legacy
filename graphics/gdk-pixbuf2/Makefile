@@ -18,6 +18,7 @@ CONFLICTS+=	gtk2+<2.22
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config gmake
 USE_PKGLOCALEDIR=	yes
 

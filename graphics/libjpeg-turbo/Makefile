@@ -20,6 +20,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+= --with-jpeg8
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++
+USE_MULTIARCH=	lib
 
 PKGCONFIG_OVERRIDE=	release/libturbojpeg.pc.in release/libjpeg.pc.in
 

@@ -15,9 +15,11 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-stsci.distutils-[0-9]*:../../devel/py-stsci.distu
 REPLACE_PYTHON=	lib/pyfits/core.py
 
 post-install:
+	if [ -f ${DESTDIR}${PREFIX}/bin/fitscheck ]; then \
 	cd ${DESTDIR}${PREFIX}/bin && \
 		${MV} fitscheck fitscheck${PYVERSSUFFIX} && \
-		${MV} fitsdiff fitsdiff${PYVERSSUFFIX}
+		${MV} fitsdiff fitsdiff${PYVERSSUFFIX}; \
+	fi
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

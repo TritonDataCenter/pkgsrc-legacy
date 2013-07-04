@@ -17,6 +17,7 @@ WRKSRC=			${WRKDIR}/${DISTNAME:S/.orig//:S/_/-/}
 USE_TOOLS+=		msgfmt
 USE_PKGLOCALEDIR=	yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-locale-dir=${PREFIX}/${PKGLOCALEDIR}/locale

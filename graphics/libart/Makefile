@@ -12,6 +12,7 @@ COMMENT=		High-performance 2D graphics library
 
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		bin lib
 PKGCONFIG_OVERRIDE=	libart-2.0.pc.in
 # bmake cannot handle the self-made libtool logic in Makefile.am.
 USE_TOOLS+=		gmake

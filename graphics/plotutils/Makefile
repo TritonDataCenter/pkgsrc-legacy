@@ -14,6 +14,7 @@ CONFLICTS+=	plotutils-nox11-[0-9]*
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		lex:run yacc
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-libplotter

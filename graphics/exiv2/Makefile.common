@@ -18,6 +18,7 @@ PATCHDIR=	${.CURDIR}/../../graphics/exiv2/patches
 GCC_REQD+=		3.3
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake msgfmt
 GNU_CONFIGURE=		yes
 # The visibility feature seems complicated and causes problems on DragonFly

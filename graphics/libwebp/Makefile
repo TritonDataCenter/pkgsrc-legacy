@@ -10,6 +10,7 @@ COMMENT=	WebP image format library and tools
 LICENSE=	modified-bsd
 
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS+=	--enable-libwebpdemux

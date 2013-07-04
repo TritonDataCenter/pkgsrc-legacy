@@ -15,6 +15,7 @@ GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake msgfmt pkg-config intltool
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 # XXX not sure whether it is useful, just to keep status quo
 CONFIGURE_ARGS+=	--enable-glade

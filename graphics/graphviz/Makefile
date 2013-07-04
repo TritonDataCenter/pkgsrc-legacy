@@ -16,6 +16,7 @@ PRIVILEGED_STAGES+=	clean
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		automake bison flex pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-java
@@ -30,6 +31,8 @@ CONFIGURE_ARGS+=	--with-qt=no
 # build fails when PHP and/or Ruby are also installed
 CONFIGURE_ENV+=		ac_cv_prog_PHP=
 CONFIGURE_ENV+=		ac_cv_prog_RUBY=
+# Not ideal but configure hardcodes paths
+CONFIGURE_ENV+=		LIBPOSTFIX=${LIBARCHSUFFIX}
 CPPFLAGS+=		-DNO_POSTSCRIPT_ALIAS=1
 PKGCONFIG_OVERRIDE+=	lib/cdt/libcdt.pc.in
 PKGCONFIG_OVERRIDE+=	lib/cgraph/libcgraph.pc.in
@@ -40,6 +43,8 @@ PKGCONFIG_OVERRIDE+=	lib/gvpr/libgvpr.pc.in
 PKGCONFIG_OVERRIDE+=	lib/pathplan/libpathplan.pc.in
 PKGCONFIG_OVERRIDE+=	lib/xdot/libxdot.pc.in
 XAW_TYPE=		standard
+
+MULTIARCH_DIRS.lib=	# defined in PLIST
 
 # With lua51 there's a PLIST divergence and it isn't obvious whether
 # it's serious or not, or what causes it.
@@ -69,9 +74,9 @@ pre-build:
 
 # Remove temporary files and directories created by re-linking "libgv_lua.la".
 post-install:
-	${RM} -rf ${DESTDIR}${PREFIX}/lib/graphviz/lua/gv.so \
-	  ${DESTDIR}${PREFIX}/lib/graphviz/tcl/tcl \
-	  ${DESTDIR}${PREFIX}/lib/lua/5.1/gv.so
+	${RM} -rf ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/graphviz/lua/gv.so \
+	  ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/graphviz/tcl/tcl \
+	  ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/lua/5.1/gv.so
 
 .include "options.mk"
 
