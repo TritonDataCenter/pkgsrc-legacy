@@ -33,11 +33,11 @@ BUILDLINK_API_DEPENDS.poppler+=     poppler-${POPPLER_VERS}{,nb*}
 BUILD_DIRS=		goo fofi poppler glib
 INSTALL_DIRS=		glib
 
-INSTALLATION_DIRS+=	lib/pkgconfig
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/pkgconfig
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/poppler-cairo.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
-	${INSTALL_DATA} ${WRKSRC}/poppler-glib.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/poppler-cairo.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/poppler-glib.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"

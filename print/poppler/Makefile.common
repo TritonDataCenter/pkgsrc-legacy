@@ -23,6 +23,7 @@ PATCHDIR=		${.CURDIR}/../../print/poppler/patches
 USE_TOOLS+=		pkg-config
 USE_LIBTOOL=		yes
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		lib
 
 # Don't accidentally find libtiff
 CONFIGURE_ARGS+=	--disable-libtiff

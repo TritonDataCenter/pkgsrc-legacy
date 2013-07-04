@@ -18,7 +18,7 @@ BUILDLINK_API_DEPENDS.poppler+= poppler>=${POPPLER_VERS}
 
 PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler-qt4.pc.in
 
-INSTALLATION_DIRS+=	lib include/poppler lib/pkgconfig
+INSTALLATION_DIRS+=	lib include/poppler lib${LIBARCHSUFFIX}/pkgconfig
 
 BUILD_DIRS=		qt4/src
 
@@ -26,7 +26,7 @@ pre-build:
 	cd ${WRKSRC}/qt4/src && ${BUILD_MAKE_CMD}
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/poppler-qt4.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/poppler-qt4.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig
 
 BUILDLINK_DEPMETHOD.qt4-tools?=	full
 
