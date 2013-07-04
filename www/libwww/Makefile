@@ -17,6 +17,7 @@ SITES.libwww-configure-5.4.0nb2.gz=	${MASTER_SITE_LOCAL}
 
 USE_TOOLS+=		automake14 gmake gzcat perl
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		bin lib
 
 GNU_CONFIGURE=		YES
 CONFIGURE_ARGS+=	--with-zlib --without-x
