@@ -12,6 +12,7 @@ LICENSE=	modified-bsd OR gnu-lgpl-v2.1
 
 GNU_CONFIGURE=	YES
 USE_LIBTOOL=	YES
+USE_MULTIARCH=	lib
 
 CONFLICTS+=	libspf_alt-[0-9]*
 
