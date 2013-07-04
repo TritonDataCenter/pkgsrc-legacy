@@ -26,6 +26,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-zlib
 CONFIGURE_ARGS+=	--with-pciids-path=${PREFIX}/share/pciids
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 
 PKGCONFIG_OVERRIDE+=	pciaccess.pc.in

@@ -20,6 +20,7 @@ USE_PKGLOCALEDIR=	YES
 USE_TOOLS+=		gmake intltool msgfmt perl pkg-config
 USE_TOOLS+=		autoconf automake autoreconf
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 
 MAKE_DIRS+=		/media
 MAKE_DIRS+=		${VARBASE}/cache/hald

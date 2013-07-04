@@ -14,6 +14,7 @@ MAKE_JOBS_SAFE=		NO
 GNU_CONFIGURE=		YES
 USE_TOOLS+=		gmake msgfmt pkg-config
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 
 PKGCONFIG_OVERRIDE=	dbus-glib-1.pc.in
 

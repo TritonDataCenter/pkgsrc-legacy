@@ -31,7 +31,6 @@ MAKE_DIRS=	${PKG_SYSCONFDIR}/run-seat.d		\
 		${PKG_SYSCONFBASE}/logrotate.d		\
 		${PKG_SYSCONFBASE}/X11/xinit/xinitrc.d
 
-
 CONF_FILES+=	${EGDIR}/ConsoleKit/seats.d/00-primary.seat		\
 		${PKG_SYSCONFDIR}/seats.d/00-primary.seat		\
 		${EGDIR}/dbus-1/system.d/ConsoleKit.conf 		\
@@ -44,6 +43,9 @@ CONF_FILES+=	${EGDIR}/ConsoleKit/seats.d/00-primary.seat		\
 GNU_CONFIGURE=	YES
 USE_TOOLS+=	gmake intltool msgfmt perl pkg-config automake
 USE_LIBTOOL=	YES
+USE_MULTIARCH=		lib
+
+MULTIARCH_SKIP_DIRS.lib=	lib/ConsoleKit
 
 CONFIGURE_ARGS+=--sysconfdir=${PKG_SYSCONFBASE}			\
 		--localstatedir=${VARBASE}			\

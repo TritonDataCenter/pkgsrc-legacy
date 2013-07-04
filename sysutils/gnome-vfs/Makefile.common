@@ -23,6 +23,7 @@ GNU_CONFIGURE=		YES
 USE_PKGLOCALEDIR=	YES
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 
 CONFIGURE_ARGS+=	--disable-cdda
 CONFIGURE_ARGS+=	--disable-howl
@@ -81,19 +82,19 @@ SUBST_CLASSES+=		libs
 SUBST_MESSAGE.libs=	Fixing path to dependent libraries.
 SUBST_STAGE.libs=	pre-configure
 SUBST_FILES.libs=	modules/Makefile.in
-SUBST_SED.libs=		-e 's|../libgnomevfs/libgnomevfs-2.la|${BUILDLINK_PREFIX.gnome-vfs}/lib/libgnomevfs-2.la|g'
+SUBST_SED.libs=		-e 's|../libgnomevfs/libgnomevfs-2.la|${BUILDLINK_PREFIX.gnome-vfs}/lib${LIBARCHSUFFIX}/libgnomevfs-2.la|g'
 
 BUILDLINK_API_DEPENDS.gnome-vfs+=	gnome-vfs>=${GNOME_VFS_VERSION}
 .include "../../sysutils/gnome-vfs/buildlink3.mk"
 
-INSTALLATION_DIRS+=	lib/gnome-vfs-2.0/modules
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/gnome-vfs-2.0/modules
 
 do-install:
 	cd ${WRKSRC}/modules && ${LIBTOOL} --mode=install \
 		${INSTALL_DATA} lib${GNOME_VFS_NAME}.la \
-			${DESTDIR}${PREFIX}/lib/gnome-vfs-2.0/modules
+			${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/gnome-vfs-2.0/modules
 	cd ${WRKSRC}/modules && ${LIBTOOL} --mode=finish \
-			${DESTDIR}${PREFIX}/lib/gnome-vfs-2.0/modules
+			${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/gnome-vfs-2.0/modules
 .endif
 
 .include "../../archivers/bzip2/buildlink3.mk"

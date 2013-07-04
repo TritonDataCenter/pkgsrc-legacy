@@ -11,6 +11,7 @@ COMMENT=	Collection of GSettings schemas for the GNOME desktop
 LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 USE_PKGLOCALEDIR=	yes
 # Necessary because of configure test
