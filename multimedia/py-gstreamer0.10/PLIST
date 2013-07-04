@@ -3,8 +3,8 @@ include/gstreamer-0.10/gst/pygst.h
 include/gstreamer-0.10/gst/pygstexception.h
 include/gstreamer-0.10/gst/pygstminiobject.h
 include/gstreamer-0.10/gst/pygstvalue.h
-lib/gstreamer-0.10/libgstpython.la
-lib/pkgconfig/gst-python-0.10.pc
+lib${LIBARCHSUFFIX}/gstreamer-0.10/libgstpython.la
+lib${LIBARCHSUFFIX}/pkgconfig/gst-python-0.10.pc
 ${PYSITELIB}/gst-0.10/gst/__init__.py
 ${PYSITELIB}/gst-0.10/gst/__init__.pyc
 ${PYSITELIB}/gst-0.10/gst/__init__.pyo

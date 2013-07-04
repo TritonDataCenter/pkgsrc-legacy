@@ -17,6 +17,7 @@ CONFLICTS+=		mpeg4ip<1.5.0.1 mp4v2-[0-9]*
 USE_LANGUAGES=		c c++
 USE_PKGLOCALEDIR=	yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	USENASM=no
 # the "bootstrap" script checks too much, and isn't useful anyway

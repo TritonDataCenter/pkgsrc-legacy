@@ -12,6 +12,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 USE_TOOLS+=		gmake
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE=	libdvbpsi.pc.in
 

@@ -12,6 +12,7 @@ COMMENT=	Library for decoding mpeg-2 and mpeg-1 video streams
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	gmake pkg-config
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 
 PKGCONFIG_OVERRIDE+=	libmpeg2/convert/libmpeg2convert.pc.in
 PKGCONFIG_OVERRIDE+=	libmpeg2/libmpeg2.pc.in
