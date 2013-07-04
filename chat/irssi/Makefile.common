@@ -14,3 +14,6 @@ SITES.${IRSSI_DISTFILE}=	https://github.com/irssi/irssi/releases/download/${IRSS
 # plugins to compile properly.
 IRSSI_CONFIG=			${PREFIX}/share/irssi/irssi-config
 IRSSI_CONFIG_H=			${PREFIX}/include/irssi/irssi-config.h
+
+USE_MULTIARCH=			lib
+MULTIARCH_SKIP_DIRS.lib=	lib/perl5

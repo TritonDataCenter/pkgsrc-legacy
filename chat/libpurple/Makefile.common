@@ -17,6 +17,7 @@ HOMEPAGE=	http://www.pidgin.im/
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		pkg-config gmake
 GNU_CONFIGURE=		yes
