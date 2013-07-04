@@ -13,6 +13,7 @@ COMMENT=	GNU cryptographic library
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 
 TEST_TARGET=		check

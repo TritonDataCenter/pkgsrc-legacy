@@ -15,6 +15,7 @@ COMMENT=	Hash algorithms library
 
 USE_TOOLS+=		gmake perl autoconf
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 
 INSTALLATION_DIRS=	include/mutils

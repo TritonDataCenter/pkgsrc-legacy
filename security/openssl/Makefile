@@ -18,6 +18,7 @@ BUILD_DEPENDS+=	p5-Perl4-CoreLibs-[0-9]*:../../devel/p5-Perl4-CoreLibs
 
 USE_GCC_RUNTIME=	yes
 
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		fgrep gmake perl:run
 BUILD_TARGET=		depend all
 TEST_TARGET=		tests
@@ -28,6 +29,7 @@ CONFIGURE_SCRIPT=	./config
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--install_prefix=${DESTDIR}
 CONFIGURE_ARGS+=	--openssldir=${PKG_SYSCONFDIR}
+CONFIGURE_ARGS+=	--libdir=lib${LIBARCHSUFFIX}
 CONFIGURE_ARGS+=	shared no-fips
 
 .include "../../mk/compiler.mk"
@@ -39,24 +41,18 @@ CC=			gcc
 .endif
 
 .if ${OPSYS} == "SunOS"
-.  if ${MACHINE_ARCH} == "sparc"
-OPENSSL_MACHINE_ARCH=	sparcv7
-.  elif ${MACHINE_ARCH} == "sparc64"
-OPENSSL_MACHINE_ARCH=	sparcv9
-.  elif ${MACHINE_ARCH} == "i386"
-OPENSSL_MACHINE_ARCH=	x86
-.  elif ${MACHINE_ARCH} == "x86_64"
-OPENSSL_MACHINE_ARCH=	${MACHINE_ARCH}
+.  if !empty(MACHINE_ARCH:Msparc)
+OPENSSL_MACHINE_ARCH.32=	sparcv7
+OPENSSL_MACHINE_ARCH.64=	sparcv9
+.  elif ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
+OPENSSL_MACHINE_ARCH.32=	x86
+OPENSSL_MACHINE_ARCH.64=	x86_64
 .  endif
-# only override the configure target if we know the platform, falling
-# back to ./config's autodetection if not.
-.  if defined(OPENSSL_MACHINE_ARCH) && !empty(OPENSSL_MACHINE_ARCH)
 CONFIGURE_SCRIPT=	./Configure
-.    if ${PKGSRC_COMPILER} == "clang" || ${PKGSRC_COMPILER} == "gcc"
-CONFIGURE_ARGS+=	solaris${${ABI}==64:?64:}-${OPENSSL_MACHINE_ARCH}-gcc
-.    else
-CONFIGURE_ARGS+=	solaris${${ABI}==64:?64:}-${OPENSSL_MACHINE_ARCH}-cc
-.    endif
+.  if ${PKGSRC_COMPILER} == "clang" || ${PKGSRC_COMPILER} == "gcc"
+CONFIGURE_ARGS+=	solaris${${ABI}==64:?64:}-${OPENSSL_MACHINE_ARCH.${ABI}}-gcc
+.  else
+CONFIGURE_ARGS+=	solaris${${ABI}==64:?64:}-${OPENSSL_MACHINE_ARCH.${ABI}}-cc
 .  endif
 .elif ${OPSYS} == "IRIX"
 CONFIGURE_ARGS+=	no-asm

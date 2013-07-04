@@ -16,6 +16,7 @@ BUILD_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	gmake intltool pkg-config msgfmt gsed
 
 PKGCONFIG_OVERRIDE+=	libsecret/libsecret-unstable.pc.in

@@ -12,6 +12,7 @@ COMMENT=	Open Crypto Development Kit
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 TEST_TARGET=		check
 

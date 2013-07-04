@@ -12,6 +12,7 @@ HOMEPAGE=	http://perlgssapi.sourceforge.net/
 COMMENT=	Perl extension providing access to the GSSAPIv2 library
 LICENSE=	${PERL5_LICENSE}
 
+USE_MULTIARCH=	lib
 PERL5_PACKLIST=	auto/GSSAPI/.packlist
 MAKE_PARAMS+=	--gssapiimpl=${KRB5BASE}
 

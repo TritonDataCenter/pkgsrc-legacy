@@ -11,11 +11,12 @@ COMMENT=	Crypto algorithms library
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 
 INSTALLATION_DIRS=	include/mutils
 
 post-install:
-	rmdir ${DESTDIR}${PREFIX}/lib/libmcrypt
+	rmdir ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/libmcrypt
 
 .include "../../mk/bsd.pkg.mk"

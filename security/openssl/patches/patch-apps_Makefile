@@ -12,7 +12,17 @@ Adjust build procedure.
  CC=		cc
  INCLUDES=	-I$(TOP) -I../include $(KRB5_INCLUDES)
  CFLAG=		-g -static
-@@ -112,13 +113,13 @@ install:
+@@ -105,20 +106,20 @@ install:
+ 	@set -e; for i in $(EXE); \
+ 	do  \
+ 	(echo installing $$i; \
+-	 cp $$i $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$i.new; \
+-	 chmod 755 $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$i.new; \
+-	 mv -f $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$i.new $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$i ); \
++	 cp $$i $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX)/$$i.new; \
++	 chmod 755 $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX)/$$i.new; \
++	 mv -f $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX)/$$i.new $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX)/$$i ); \
+ 	 done;
  	@set -e; for i in $(SCRIPTS); \
  	do  \
  	(echo installing $$i; \

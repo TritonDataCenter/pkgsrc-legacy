@@ -2,7 +2,7 @@ $NetBSD: patch-Makefile.org,v 1.5 2016/01/28 16:30:43 jperkin Exp $
 
 Adjust build procedure.
 
---- Makefile.org.orig	2016-01-28 13:56:08.000000000 +0000
+--- Makefile.org.orig	2016-03-01 13:35:53.000000000 +0000
 +++ Makefile.org
 @@ -28,6 +28,7 @@ INSTALLTOP=/usr/local/ssl
  
@@ -25,11 +25,11 @@ Adjust build procedure.
  SHARED_SSL=libssl$(SHLIB_EXT)
  SHARED_LIBS=
  SHARED_LIBS_LINK_EXTS=
-+LIBRPATH=$(INSTALLTOP)/lib
++LIBRPATH=$(INSTALLTOP)/lib$(LIBARCHSUFFIX)
  SHARED_LDFLAGS=
  
  GENERAL=        Makefile
-@@ -528,7 +530,7 @@ dist:   
+@@ -528,10 +530,10 @@ dist:   
  	@$(MAKE) SDIRS='$(SDIRS)' clean
  	@$(MAKE) TAR='$(TAR)' TARFLAGS='$(TARFLAGS)' $(DISTTARVARS) tar
  
@@ -37,7 +37,24 @@ Adjust build procedure.
 +install: install_docs install_sw
  
  install_sw:
- 	@$(PERL) $(TOP)/util/mkdir-p.pl $(INSTALL_PREFIX)$(INSTALLTOP)/bin \
+-	@$(PERL) $(TOP)/util/mkdir-p.pl $(INSTALL_PREFIX)$(INSTALLTOP)/bin \
++	@$(PERL) $(TOP)/util/mkdir-p.pl $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX) \
+ 		$(INSTALL_PREFIX)$(INSTALLTOP)/$(LIBDIR) \
+ 		$(INSTALL_PREFIX)$(INSTALLTOP)/$(LIBDIR)/engines \
+ 		$(INSTALL_PREFIX)$(INSTALLTOP)/$(LIBDIR)/pkgconfig \
+@@ -563,9 +565,9 @@ install_sw:
+ 			(       echo installing $$i; \
+ 				if expr "$(PLATFORM)" : "Cygwin" >/dev/null; then \
+ 					c=`echo $$i | sed 's/^lib\(.*\)\.dll\.a/cyg\1-$(SHLIB_VERSION_NUMBER).dll/'`; \
+-					cp $$c $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$c.new; \
+-					chmod 755 $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$c.new; \
+-					mv -f $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$c.new $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$c; \
++					cp $$c $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX)/$$c.new; \
++					chmod 755 $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX)/$$c.new; \
++					mv -f $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX)/$$c.new $(INSTALL_PREFIX)$(INSTALLTOP)/bin$(BINARCHSUFFIX)/$$c; \
+ 					cp $$i $(INSTALL_PREFIX)$(INSTALLTOP)/$(LIBDIR)/$$i.new; \
+ 					chmod 644 $(INSTALL_PREFIX)$(INSTALLTOP)/$(LIBDIR)/$$i.new; \
+ 					mv -f $(INSTALL_PREFIX)$(INSTALLTOP)/$(LIBDIR)/$$i.new $(INSTALL_PREFIX)$(INSTALLTOP)/$(LIBDIR)/$$i; \
 @@ -637,41 +639,56 @@ install_docs:
  	@pod2man="`cd ./util; ./pod2mantest $(PERL)`"; \
  	here="`pwd`"; \

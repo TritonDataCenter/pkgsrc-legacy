@@ -14,6 +14,7 @@ CONFLICTS+=	gnome-keyring<2.30
 USE_TOOLS+=		gmake intltool msgfmt pkg-config xgettext
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 
 PKGCONFIG_OVERRIDE+=	library/gnome-keyring-1.pc.in
 

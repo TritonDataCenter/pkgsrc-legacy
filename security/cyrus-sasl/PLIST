@@ -6,8 +6,8 @@ include/sasl/prop.h
 include/sasl/sasl.h
 include/sasl/saslplug.h
 include/sasl/saslutil.h
-lib/libsasl2.la
-lib/pkgconfig/libsasl2.pc
+lib${LIBARCHSUFFIX}/libsasl2.la
+lib${LIBARCHSUFFIX}/pkgconfig/libsasl2.pc
 lib/sasl2/libsasldb.la
 man/man3/sasl.3
 man/man3/sasl_authorize_t.3

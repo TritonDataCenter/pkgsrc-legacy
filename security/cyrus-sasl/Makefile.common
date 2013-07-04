@@ -47,6 +47,8 @@ MAKE_JOBS_SAFE=		no
 USE_TOOLS+=		gmake
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
+MULTIARCH_DIRS.lib=	# manually defined in PLIST
 
 DOCDIR=			${PREFIX}/share/doc/cyrus-sasl
 PLUGINDIR=		${PREFIX}/lib/sasl2
