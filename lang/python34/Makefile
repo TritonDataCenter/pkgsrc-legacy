@@ -30,6 +30,11 @@ CONFIGURE_ENV+=		ac_cv_path_mkdir=${TOOLS_PATH.mkdir}
 PKGCONFIG_OVERRIDE+=	Misc/python.pc.in
 
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		bin lib
+MAKE_JOBS_SAFE=		no
+MULTIARCH_DIRS.lib=	# empty, manually set in PLIST
+NO_MULTIARCH_LIBDIR=	# defined, manually set
+CHECK_INTERPRETER=no	# $PREFIX/bin/python3.4 not created until pkg_add
 
 PTHREAD_OPTS+=	require
 .include "../../mk/pthread.buildlink3.mk"
@@ -129,6 +134,34 @@ SUBST_FILES.sslbase=	setup.py
 SUBST_VARS.sslbase=	SSLBASE
 
 CHECK_INTERPRETER_SKIP=	lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc
+
+SUBST_CLASSES+=		vars
+SUBST_MESSAGE.vars=	Substituting multiarch vars.
+SUBST_STAGE.vars=	pre-configure
+SUBST_FILES.vars=	Makefile.pre.in Modules/getpath.c
+SUBST_FILES.vars+=	Lib/distutils/command/install.py Lib/site.py
+SUBST_FILES.vars+=	Lib/distutils/sysconfig.py Lib/sysconfig.py
+SUBST_SED.vars=		-e 's,@LIBARCHSUFFIX@,${LIBARCHSUFFIX},'
+.if !empty(MULTIARCH:M[Yy][Ee][Ss])
+SUBST_SED.vars+=	-e 's,@LIBARCHSUFFIX.32@,${LIBARCHSUFFIX.32},'
+SUBST_SED.vars+=	-e 's,@LIBARCHSUFFIX.64@,${LIBARCHSUFFIX.64},'
+.else
+SUBST_SED.vars+=	-e 's,@LIBARCHSUFFIX.32@,,'
+SUBST_SED.vars+=	-e 's,@LIBARCHSUFFIX.64@,,'
+.endif
+
+do-install-multiarch-hook:
+	${MKDIR} ${DESTDIR}/${PREFIX}/include/python${PY_VER_SUFFIX}/${INCARCHSUFFIX}
+	${MV} ${DESTDIR}/${PREFIX}/include/python${PY_VER_SUFFIX}/pyconfig.h \
+		${DESTDIR}/${PREFIX}/include/python${PY_VER_SUFFIX}/${INCARCHSUFFIX}
+
+.if !empty(MULTIARCH:M[Yy][Ee][Ss])
+post-install:
+	${INSTALL_DATA} ${FILESDIR}/pyconfig.h \
+		${DESTDIR}/${PREFIX}/include/python${PY_VER_SUFFIX}
+	# XXX: figure out why this isn't removed in 64-bit case
+	${RM} -rf ${DESTDIR}/${PREFIX}/lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/__pycache__
+.endif
 
 .if ${OPSYS} == "HPUX"
 post-install:

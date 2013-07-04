@@ -9,7 +9,8 @@ DEINSTALL)
 	case "$archlib" in
 	$prefix/*)	archlib="${PKG_PREFIX-@PREFIX@}/${archlib#$prefix/}" ;;
 	esac
-	${RM} -f $archlib/perllocal.pod
+	# XXX: multiarch
+	${RM} -f $archlib/../*/perllocal.pod
 	${RMDIR} -p $archlib 2>/dev/null || ${TRUE}
 
 	# Remove any symlinked bits that belong to this module.

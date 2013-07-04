@@ -12,3 +12,7 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.perl.org/
 LICENSE=	${PERL5_LICENSE}
+
+USE_MULTIARCH=		bin lib
+MULTIARCH_DIRS.bin=	# configured manually
+MULTIARCH_DIRS.lib=	# empty

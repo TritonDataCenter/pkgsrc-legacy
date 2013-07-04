@@ -21,7 +21,7 @@ buildlink-bin-ruby:
 	${RUN} \
 	f=${BUILDLINK_PREFIX.${RUBY_BASE}:Q}"/bin/ruby${RUBY_SUFFIX}"; \
 	if ${TEST} -f $$f; then \
-		${LN} -s $$f ${BUILDLINK_DIR}/bin/ruby; \
+		${LN} -fs $$f ${BUILDLINK_DIR}/bin/ruby; \
 	fi
 
 .if empty(RUBY_USE_PTHREAD:M[nN][oO])

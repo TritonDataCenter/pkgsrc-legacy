@@ -37,8 +37,14 @@ vendorscript='@PERL5_VENDORBASE@/bin'
 # Put any compiled binaries into vendor- and site-specific locations to
 # avoid conflicts with each other.  The perllink script will handle all
 # the appropriate symlinking.
+bin='@PERL5_PREFIX@/bin@BINARCHSUFFIX@'
 sitebin='@PERL5_SITEBIN@'
 vendorbin='@PERL5_VENDORBASE@/bin'
+
+# Paths required for multiarch. XXX: arch-specific dirs are still used in
+# some places.
+perlpath="@PERL5_PREFIX@/bin/perl"
+startperl="#!@PERL5_PREFIX@/bin/perl"
 
 # Put the API-specific files into API-specific directories instead
 # of the default version-specific directories.
@@ -94,7 +100,7 @@ fi
 # Set pkgsrc defaults for library and header search paths:
 # nail down the directories in which headers and libraries of
 # locally-installed software may be found.
-loclibpth="@LOCALBASE@/lib"
+loclibpth="@LOCALBASE@/lib@LIBARCHSUFFIX@"
 locincpth="@LOCALBASE@/include"
 
 # Set pkgsrc defaults for "plateform"/general path used to 
@@ -103,12 +109,17 @@ if $test -n "@SYSLIBPATH@"; then
 	glibpth="@SYSLIBPATH@"
 fi
 
-# Strip /usr/local/lib... from ldflags
+# Strip /usr/local/lib... from ldflags, unless LOCALBASE=/usr/local
+case "@LOCALBASE@" in
+/usr/local) ;;
+*)
 case "\$ldflags" in */usr/local/lib*)
 	set \`echo "X \$ldflags " | sed 's, [^ ]*/usr/local/lib[^ ]* , ,g'\`
 	shift
 	ldflags="\$*"
 	;;
+esac
+;;
 esac
 
 # Strip gdbm from libswanted

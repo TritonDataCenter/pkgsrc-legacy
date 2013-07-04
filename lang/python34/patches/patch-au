@@ -1,6 +1,8 @@
 $NetBSD: patch-au,v 1.2 2015/03/16 13:53:05 tnn Exp $
 
---- Makefile.pre.in.orig	2015-02-25 11:27:45.000000000 +0000
+Support multiarch.
+
+--- Makefile.pre.in.orig	2015-12-21 06:01:02.000000000 +0000
 +++ Makefile.pre.in
 @@ -86,7 +86,7 @@ PY_CFLAGS_NODIST=$(CONFIGURE_CFLAGS_NODI
  # be able to build extension modules using the directories specified in the
@@ -11,6 +13,15 @@ $NetBSD: patch-au,v 1.2 2015/03/16 13:53:05 tnn Exp $
  NO_AS_NEEDED=	@NO_AS_NEEDED@
  LDLAST=		@LDLAST@
  SGI_ABI=	@SGI_ABI@
+@@ -135,7 +135,7 @@ EXT_SUFFIX=	@EXT_SUFFIX@
+ LDSHARED=	@LDSHARED@ $(PY_LDFLAGS)
+ BLDSHARED=	@BLDSHARED@ $(PY_LDFLAGS)
+ LDCXXSHARED=	@LDCXXSHARED@
+-DESTSHARED=	$(BINLIBDEST)/lib-dynload
++DESTSHARED=	$(BINLIBDEST)/lib-dynload@LIBARCHSUFFIX@
+ 
+ # Executable suffix (.exe on Windows and Mac OS X)
+ EXE=		@EXEEXT@
 @@ -683,7 +683,7 @@ Modules/_testembed: Modules/_testembed.o
  Modules/_freeze_importlib: Modules/_freeze_importlib.o $(LIBRARY_OBJS_OMIT_FROZEN)
  	$(LINKCC) $(PY_LDFLAGS) -o $@ Modules/_freeze_importlib.o $(LIBRARY_OBJS_OMIT_FROZEN) $(LIBS) $(MODLIBS) $(SYSLIBS) $(LDLAST)
@@ -29,9 +40,29 @@ $NetBSD: patch-au,v 1.2 2015/03/16 13:53:05 tnn Exp $
  
  Python/frozen.o: Python/importlib.h
  
-@@ -1066,7 +1066,8 @@ altbininstall: $(BUILDPYTHON) @FRAMEWORK
+@@ -1035,7 +1035,7 @@ $(DESTSHARED):
+ # Install the interpreter with $(VERSION) affixed
+ # This goes into $(exec_prefix)
+ altbininstall: $(BUILDPYTHON) @FRAMEWORKPYTHONW@
+-	@for i in $(BINDIR) $(LIBDIR); \
++	@for i in $(BINDIR) $(LIBDIR)@LIBARCHSUFFIX@; \
+ 	do \
+ 		if test ! -d $(DESTDIR)$$i; then \
+ 			echo "Creating directory $$i"; \
+@@ -1058,15 +1058,16 @@ altbininstall: $(BUILDPYTHON) @FRAMEWORK
+ 		if test -n "$(DLLLIBRARY)" ; then \
+ 			$(INSTALL_SHARED) $(DLLLIBRARY) $(DESTDIR)$(BINDIR); \
+ 		else \
+-			$(INSTALL_SHARED) $(LDLIBRARY) $(DESTDIR)$(LIBDIR)/$(INSTSONAME); \
++			$(INSTALL_SHARED) $(LDLIBRARY) $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@/$(INSTSONAME); \
+ 			if test $(LDLIBRARY) != $(INSTSONAME); then \
+-				(cd $(DESTDIR)$(LIBDIR); $(LN) -sf $(INSTSONAME) $(LDLIBRARY)) \
++				(cd $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@; $(LN) -sf $(INSTSONAME) $(LDLIBRARY)) \
+ 			fi \
+ 		fi; \
  		if test -n "$(PY3LIBRARY)"; then \
- 			$(INSTALL_SHARED) $(PY3LIBRARY) $(DESTDIR)$(LIBDIR)/$(PY3LIBRARY); \
+-			$(INSTALL_SHARED) $(PY3LIBRARY) $(DESTDIR)$(LIBDIR)/$(PY3LIBRARY); \
++			$(INSTALL_SHARED) $(PY3LIBRARY) $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@/$(PY3LIBRARY); \
  		fi; \
 -	else	true; \
 +	elif test -f $(INSTSONAME); then \
@@ -39,3 +70,12 @@ $NetBSD: patch-au,v 1.2 2015/03/16 13:53:05 tnn Exp $
  	fi
  	if test "x$(LIPO_32BIT_FLAGS)" != "x" ; then \
  		rm -f $(DESTDIR)$(BINDIR)python$(VERSION)-32$(EXE); \
+@@ -1313,7 +1314,7 @@ inclinstall:
+ LIBPL=		@LIBPL@
+ 
+ # pkgconfig directory
+-LIBPC=		$(LIBDIR)/pkgconfig
++LIBPC=		$(LIBDIR)@LIBARCHSUFFIX@/pkgconfig
+ 
+ libainstall:	all python-config
+ 	@for i in $(LIBDIR) $(LIBPL) $(LIBPC); \

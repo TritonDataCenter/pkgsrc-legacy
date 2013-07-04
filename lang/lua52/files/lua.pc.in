@@ -2,15 +2,15 @@
 # lua.pc is not any longer distributed, but is still required by other packages.
 
 prefix= @PREFIX@
-INSTALL_BIN= ${prefix}/bin
+INSTALL_BIN= ${prefix}/bin@BINARCHSUFFIX@
 INSTALL_INC= ${prefix}/include
-INSTALL_LIB= ${prefix}/lib
+INSTALL_LIB= ${prefix}/lib@LIBARCHSUFFIX@
 INSTALL_MAN= ${prefix}/man/man1
 INSTALL_LMOD= ${prefix}/share/lua/@VER@
-INSTALL_CMOD= ${prefix}/lib/lua/@VER@
+INSTALL_CMOD= ${prefix}/lib@LIBARCHSUFFIX@/lua/@VER@
 
 exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
+libdir=${exec_prefix}/lib@LIBARCHSUFFIX@
 includedir=${prefix}/include/lua-5.2
 
 Name: Lua
