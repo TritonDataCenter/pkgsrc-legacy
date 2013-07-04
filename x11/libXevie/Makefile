@@ -11,6 +11,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		X Event Interceptor Library
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config autoconf
 

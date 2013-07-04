@@ -17,6 +17,7 @@ COMMENT=	Fast Light Tool Kit for graphical user interfaces
 WRKSRC=			${WRKDIR}/${DISTNAME:S/-source//}
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		gmake
 TEST_TARGET=		test
 

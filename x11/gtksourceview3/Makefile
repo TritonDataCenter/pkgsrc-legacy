@@ -14,6 +14,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake gsed intltool msgfmt pkg-config
 USE_PKGLOCALEDIR=	yes
 #CONFIGURE_ARGS+=	--disable-deprecations

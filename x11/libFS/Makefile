@@ -10,6 +10,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		X Font Server Interface Library
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
 

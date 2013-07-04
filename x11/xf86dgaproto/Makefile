@@ -11,6 +11,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		XF86DGA extension headers
 
 PKGCONFIG_OVERRIDE+=	xf86dgaproto.pc.in
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 

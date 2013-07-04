@@ -10,6 +10,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		X Display Manager Control Protocol library from X.org
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 PKGCONFIG_OVERRIDE+=	xdmcp.pc.in
 GNU_CONFIGURE=		yes

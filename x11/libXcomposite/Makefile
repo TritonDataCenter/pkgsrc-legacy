@@ -12,6 +12,7 @@ COMMENT=		X Composite Library
 LICENSE=		mit
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
 

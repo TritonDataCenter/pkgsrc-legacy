@@ -24,6 +24,7 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake msgfmt perl pkg-config
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 PTHREAD_AUTO_VARS=	yes
 
 GNU_CONFIGURE=		yes
@@ -46,9 +47,9 @@ PKGCONFIG_OVERRIDE+=	gtk+-unix-print-2.0.pc.in
 #PKGCONFIG_OVERRIDE+=	gdk-pixbuf-2.0.pc.in
 #PKGCONFIG_OVERRIDE+=	contrib/gdk-pixbuf-xlib/gdk-pixbuf-xlib-2.0.pc.in
 
-INSTALLATION_DIRS+=	lib/gtk-2.0/immodules
-INSTALLATION_DIRS+=	lib/gtk-2.0/modules
-INSTALLATION_DIRS+=	lib/gtk-2.0/2.10.0/filesystems
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/gtk-2.0/immodules
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/gtk-2.0/modules
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/gtk-2.0/2.10.0/filesystems
 
 REQD_DIRS+=		${PREFIX}/libdata/gtk-2.0
 

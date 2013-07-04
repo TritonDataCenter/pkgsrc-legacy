@@ -6,7 +6,7 @@ PKGREVISION= 1
 PKGNAME=	qt4-qdbus-${QTVERSION}
 COMMENT=	QT DBus support
 
-CONFIGURE_ARGS+=	-I${QTDIR}/include -L${QTDIR}/lib
+CONFIGURE_ARGS+=	-I${QTDIR}/include -L${QTDIR}/lib${LIBARCHSUFFIX}
 CONFIGURE_ARGS+=	-qdbus
 
 USE_TOOLS+=		pkg-config
@@ -22,14 +22,14 @@ do-build:
 	cd ${WRKSRC}/src/dbus && env ${MAKE_ENV} ${GMAKE}
 	cd ${WRKSRC}/tools/qdbus && env ${MAKE_ENV} ${GMAKE}
 
-INSTALLATION_DIRS=	${QTPREFIX}/bin ${QTPREFIX}/lib lib/pkgconfig
+INSTALLATION_DIRS=	${QTPREFIX}/bin ${QTPREFIX}/lib${LIBARCHSUFFIX} lib${LIBARCHSUFFIX}/pkgconfig
 
 do-install:
 	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/lib/libQtDBus.la \
-		${DESTDIR}${QTPREFIX}/lib/
+		${DESTDIR}${QTPREFIX}/lib${LIBARCHSUFFIX}/
 	${SED} -e "s:${WRKSRC}:${QTPREFIX}:g" \
 		${WRKSRC}/lib/pkgconfig/QtDBus.pc > ${WRKDIR}/QtDBus.pc
-	${INSTALL_DATA} ${WRKDIR}/QtDBus.pc ${DESTDIR}${PREFIX}/lib/pkgconfig/
+	${INSTALL_DATA} ${WRKDIR}/QtDBus.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig/
 	cd ${WRKSRC}/src/dbus && env ${MAKE_ENV} INSTALL_ROOT=${DESTDIR} \
                 ${MAKE_PROGRAM} install_flat_headers install_targ_headers install_class_headers
 .for f in qdbus qdbuscpp2xml qdbusviewer qdbusxml2cpp

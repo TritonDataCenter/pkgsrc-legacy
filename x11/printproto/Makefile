@@ -10,6 +10,7 @@ MAINTAINER=		joerg@NetBSD.org
 HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		Print extension headers from X.org
 
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 

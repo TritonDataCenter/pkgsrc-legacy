@@ -12,6 +12,7 @@ COMMENT=		X PixMap Library from modular Xorg X11
 CONFLICTS+=		xpm-[0-9]*
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config xgettext
 PKGCONFIG_OVERRIDE+=	xpm.pc.in
 GNU_CONFIGURE=		yes

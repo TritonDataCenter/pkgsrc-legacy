@@ -10,6 +10,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		Xv Extension library
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 PKGCONFIG_OVERRIDE+=	xv.pc.in
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config

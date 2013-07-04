@@ -13,6 +13,7 @@ LICENSE=	gnu-lgpl-v2
 
 USE_PKGLOCALEDIR=	yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 

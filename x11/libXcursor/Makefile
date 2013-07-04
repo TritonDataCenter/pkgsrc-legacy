@@ -12,6 +12,7 @@ COMMENT=		Client-side cursor loading library for X
 CONFLICTS+=		xcursor-[0-9]*
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
 
