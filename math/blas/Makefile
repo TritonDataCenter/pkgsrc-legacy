@@ -13,6 +13,6 @@ BUILD_TARGET=	blaslib
 
 do-install:
 	${LIBTOOL} --mode=install ${INSTALL_DATA} ${WRKSRC}/BLAS/SRC/libblas.la \
-		${DESTDIR}${PREFIX}/lib
+		${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}
 
 .include "../../mk/bsd.pkg.mk"

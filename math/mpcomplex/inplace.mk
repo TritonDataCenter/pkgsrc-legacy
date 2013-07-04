@@ -14,5 +14,5 @@ fetch-inplace-mpcomplex:
 
 extract-inplace-mpcomplex:
 	(cd ../../math/mpcomplex && ${MAKE} WRKDIR=${WRKSRC}/.devel.mpcomplex EXTRACT_DIR=${WRKSRC} \
-		WRKSRC='$${EXTRACT_DIR}/$${DISTNAME}' SKIP_DEPENDS=YES patch)
+		WRKSRC='$${EXTRACT_DIR}/$${DISTNAME}' SKIP_DEPENDS=YES MULTIARCH=NO patch)
 	${MV} ${WRKSRC}/mpc-* ${WRKSRC}/mpc

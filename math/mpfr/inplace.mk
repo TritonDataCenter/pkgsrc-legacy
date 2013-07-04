@@ -15,5 +15,5 @@ fetch-inplace-mpfr:
 
 extract-inplace-mpfr:
 	(cd ../../math/mpfr && ${MAKE} WRKDIR=${WRKSRC}/.devel.mpfr EXTRACT_DIR=${WRKSRC} \
-		WRKSRC='$${EXTRACT_DIR}/$${DISTNAME}' SKIP_DEPENDS=YES patch)
+		WRKSRC='$${EXTRACT_DIR}/$${DISTNAME}' SKIP_DEPENDS=YES MULTIARCH=NO patch)
 	${MV} ${WRKSRC}/mpfr-* ${WRKSRC}/mpfr
