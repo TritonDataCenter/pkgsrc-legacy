@@ -5,9 +5,9 @@ from distutils.core import setup, Extension
 
 expatprefix = '@EXPATPREFIX@'
 expatincl = expatprefix + '/include'
-expatlib = expatprefix + '/lib'
+expatlib = expatprefix + '/lib@LIBARCHSUFFIX@'
 expatrtprefix = '@EXPATPREFIX@'
-expatrtlib = expatrtprefix + '/lib'
+expatrtlib = expatrtprefix + '/lib@LIBARCHSUFFIX@'
 
 setup(
 	ext_modules = [

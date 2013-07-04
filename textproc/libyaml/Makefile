@@ -12,6 +12,7 @@ LICENSE=	mit
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 PKGCONFIG_OVERRIDE=	yaml-0.1.pc.in
 TEST_TARGET=		check
 

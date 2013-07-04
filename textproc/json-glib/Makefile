@@ -12,6 +12,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	gmake msgfmt msgmerge pkg-config xgettext
 
 CONFIGURE_ARGS+=	--disable-man

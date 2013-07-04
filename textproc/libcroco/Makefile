@@ -12,6 +12,7 @@ LICENSE=	gnu-lgpl-v2
 
 USE_TOOLS+=		gmake pkg-config
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 
 PKGCONFIG_OVERRIDE+=	libcroco-0.6.pc

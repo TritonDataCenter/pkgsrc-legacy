@@ -28,7 +28,9 @@ CMDS+=	rst2xetex rst2xml rstpep2html
 
 post-install:
 	for f in ${CMDS}; do \
+	if [ -f ${DESTDIR}${PREFIX}/bin/$$f.py ]; then \
 	${MV} ${DESTDIR}${PREFIX}/bin/$$f.py ${DESTDIR}${PREFIX}/bin/$$f-${PYVERSSUFFIX}.py; \
+	fi; \
 	done
 
 .include "../../lang/python/application.mk"

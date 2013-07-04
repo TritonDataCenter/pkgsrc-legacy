@@ -22,6 +22,7 @@ USE_TOOLS+=		intltool pkg-config gmake gawk msgfmt bash:run
 GNU_CONFIGURE=		YES
 MAKE_JOBS_SAFE=		no
 TEST_TARGET=		check
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	YES
 REPLACE_BASH=		tools/gnome-doc-tool.in
 
