@@ -42,6 +42,8 @@
 #	to ${PREFIX}. As a convenience, a leading gnu/ is transformed
 #	to ${PKGGNUDIR} and a leading man/ is transformed to
 #	${PKGMANDIR}, to save package authors from typing too much.
+#	Additionally, in the MULTIARCH case, ${{BIN,LIB}ARCHDIR} will
+#	be expanded to all supported MULTIARCH_ABIS.
 #
 # AUTO_MKDIRS
 # INSTALLATION_DIRS_FROM_PLIST
@@ -99,7 +101,11 @@ ${_COOKIE.install}: real-install
 _REAL_INSTALL_TARGETS+=	install-check-interactive
 _REAL_INSTALL_TARGETS+=	install-check-version
 _REAL_INSTALL_TARGETS+=	install-message
+.if defined(_MULTIARCH)
+_REAL_INSTALL_TARGETS+=	stage-install-vars-multi
+.else
 _REAL_INSTALL_TARGETS+=	stage-install-vars
+.endif
 _REAL_INSTALL_TARGETS+=	unprivileged-install-hook
 _REAL_INSTALL_TARGETS+=	install-all
 _REAL_INSTALL_TARGETS+=	install-cookie
@@ -164,16 +170,26 @@ _INSTALL_ALL_TARGETS+=		install-check-umask
 .if empty(CHECK_FILES:M[nN][oO]) && !empty(CHECK_FILES_SUPPORTED:M[Yy][Ee][Ss])
 _INSTALL_ALL_TARGETS+=		check-files-pre
 .endif
+.if defined(_MULTIARCH)
+_INSTALL_ALL_TARGETS+=		install-makedirs-multi
+.else
 _INSTALL_ALL_TARGETS+=		install-makedirs
+.endif
 .if defined(INSTALLATION_DIRS_FROM_PLIST) && \
 	!empty(INSTALLATION_DIRS_FROM_PLIST:M[Yy][Ee][Ss])
 _INSTALL_ALL_TARGETS+=		install-dirs-from-PLIST
 .elif defined(AUTO_MKDIRS) && !empty(AUTO_MKDIRS:M[Yy][Ee][Ss])
 _INSTALL_ALL_TARGETS+=		install-dirs-from-PLIST
 .endif
+.if defined(_MULTIARCH)
+_INSTALL_ALL_TARGETS+=		pre-install-multi
+_INSTALL_ALL_TARGETS+=		do-install-multi
+_INSTALL_ALL_TARGETS+=		post-install-multi
+.else
 _INSTALL_ALL_TARGETS+=		pre-install
 _INSTALL_ALL_TARGETS+=		do-install
 _INSTALL_ALL_TARGETS+=		post-install
+.endif
 _INSTALL_ALL_TARGETS+=		plist
 .if !empty(STRIP_DEBUG:M[Yy][Ee][Ss])
 _INSTALL_ALL_TARGETS+=		install-strip-debug
@@ -310,6 +326,28 @@ pre-install:
 .if !target(post-install)
 post-install:
 	@${DO_NADA}
+.endif
+
+.if defined(_MULTIARCH)
+.  for tgt in stage-install-vars install-makedirs pre-install do-install post-install
+# This is a bit ugly, but we need a hook here so that we can modify
+# the DESTDIR in between each ABI install, for example to move ABI
+# specific headers to their own sub-directory.  Also the ugly PATH
+# setting is required for packages which call ${LIBTOOL} directly
+# in a do-install target as it may need to relink and we must ensure
+# the correct wrappers are used.
+.PHONY: ${tgt}-multiarch-hook
+.    if !target(${tgt}-multiarch-hook)
+${tgt}-multiarch-hook:
+	@${DO_NADA}
+.    endif
+.PHONY: ${tgt}-multi
+${tgt}-multi:
+.    for _abi_ in ${MULTIARCH_ABIS}
+	@${MAKE} ${MAKE_FLAGS} ABI=${_abi_} PATH=${WRAPPER_DIR}/bin${BINARCHSUFFIX.${_abi_}}:${TOOLS_DIR}/bin${BINARCHSUFFIX.${_abi_}}:${PATH} WRKSRC=${WRKSRC}-${_abi_} ${tgt}
+	@${MAKE} ${MAKE_FLAGS} ABI=${_abi_} PATH=${WRAPPER_DIR}/bin${BINARCHSUFFIX.${_abi_}}:${TOOLS_DIR}/bin${BINARCHSUFFIX.${_abi_}}:${PATH} WRKSRC=${WRKSRC}-${_abi_} ${tgt}-multiarch-hook
+.    endfor
+.  endfor
 .endif
 
 ######################################################################

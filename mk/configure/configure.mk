@@ -129,6 +129,15 @@ ${_COOKIE.configure}: real-configure
 #
 _REAL_CONFIGURE_TARGETS+=	configure-check-interactive
 _REAL_CONFIGURE_TARGETS+=	configure-message
+.if defined(_MULTIARCH)
+_REAL_CONFIGURE_TARGETS+=	configure-vars-multi
+_REAL_CONFIGURE_TARGETS+=	pre-configure-multi
+_REAL_CONFIGURE_TARGETS+=	do-configure-pre-hook-multi
+_REAL_CONFIGURE_TARGETS+=	pre-configure-checks-hook-multi
+_REAL_CONFIGURE_TARGETS+=	do-configure-multi
+_REAL_CONFIGURE_TARGETS+=	do-configure-post-hook-multi
+_REAL_CONFIGURE_TARGETS+=	post-configure-multi
+.else
 _REAL_CONFIGURE_TARGETS+=	configure-vars
 _REAL_CONFIGURE_TARGETS+=	pre-configure
 _REAL_CONFIGURE_TARGETS+=	do-configure-pre-hook
@@ -136,6 +145,7 @@ _REAL_CONFIGURE_TARGETS+=	pre-configure-checks-hook
 _REAL_CONFIGURE_TARGETS+=	do-configure
 _REAL_CONFIGURE_TARGETS+=	do-configure-post-hook
 _REAL_CONFIGURE_TARGETS+=	post-configure
+.endif
 _REAL_CONFIGURE_TARGETS+=	_configure-cookie
 _REAL_CONFIGURE_TARGETS+=	error-check
 
@@ -271,6 +281,23 @@ pre-configure:
 .if !target(post-configure)
 post-configure:
 	@${DO_NADA}
+.endif
+
+.if defined(_MULTIARCH)
+_MULTIARCH_TARGETS+=	configure-vars
+_MULTIARCH_TARGETS+=	pre-configure
+_MULTIARCH_TARGETS+=	do-configure-pre-hook
+_MULTIARCH_TARGETS+=	pre-configure-checks-hook
+_MULTIARCH_TARGETS+=	do-configure
+_MULTIARCH_TARGETS+=	do-configure-post-hook
+_MULTIARCH_TARGETS+=	post-configure
+.  for tgt in ${_MULTIARCH_TARGETS}
+.PHONY: ${tgt}-multi
+${tgt}-multi:
+.    for _abi_ in ${MULTIARCH_ABIS}
+	@${MAKE} ${MAKE_FLAGS} ABI=${_abi_} WRKSRC=${WRKSRC}-${_abi_} ${tgt}
+.    endfor
+.  endfor
 .endif
 
 # configure-help:

@@ -72,7 +72,11 @@ _SUBST_IS_TEXT_FILE?= \
 _SUBST_BACKUP_SUFFIX=	.subst.sav
 
 .for _class_ in ${SUBST_CLASSES}
+.  if defined(_MULTIARCH)
+_SUBST_COOKIE.${_class_}=	${WRKDIR}/.subst_${_class_}-${ABI}_done
+.  else
 _SUBST_COOKIE.${_class_}=	${WRKDIR}/.subst_${_class_}_done
+.  endif
 
 SUBST_FILTER_CMD.${_class_}?=	${SED} ${SUBST_SED.${_class_}}
 SUBST_VARS.${_class_}?=		# none

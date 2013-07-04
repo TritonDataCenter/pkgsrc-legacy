@@ -76,7 +76,7 @@ BUILD_DEFS+=		KERBEROS
 PKG_FAIL_REASON+=	"Cross-compiling Fortran with libtool NYI."
 .  endif
 
-PKG_LIBTOOL?=		${LOCALBASE}/bin/libtool-fortran
+PKG_LIBTOOL?=		${LOCALBASE}/bin${BINARCHSUFFIX}/libtool-fortran
 PKG_SHLIBTOOL?=		${LOCALBASE}/bin/shlibtool-fortran
 
 .  if defined(USE_LIBTOOL)
@@ -87,7 +87,7 @@ BUILD_DEPENDS+=		libtool-fortran>=${_OPSYS_LIBTOOL_REQD:U${LIBTOOL_REQD}}:../../
 PKG_LIBTOOL?=		${CROSSBASE}/bin/libtool
 PKG_SHLIBTOOL?=		${CROSSBASE}/bin/shlibtool
 .  else
-PKG_LIBTOOL?=		${LOCALBASE}/bin/libtool
+PKG_LIBTOOL?=		${LOCALBASE}/bin${BINARCHSUFFIX}/libtool
 PKG_SHLIBTOOL?=		${LOCALBASE}/bin/shlibtool
 .  endif
 .endif

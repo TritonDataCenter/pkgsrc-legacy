@@ -254,7 +254,7 @@ TOOLS_CREATE+=			bison-yacc
 TOOLS_PATH.bison-yacc=		${LOCALBASE}/bin/bison
 TOOLS_ARGS.bison-yacc=		-y
 .  endif
-TOOLS_CMD.bison-yacc=		${TOOLS_DIR}/bin/yacc
+TOOLS_CMD.bison-yacc=		${TOOLS_DIR}/bin${BINARCHSUFFIX}/yacc
 #
 # bison/yacc is typically a build tool whose path is not embedded in
 # any scripts or config files.  In this case, pass the full command
@@ -281,7 +281,7 @@ MAKEFLAGS+=			TOOLS_IGNORE.byacc=
 TOOLS_DEPENDS.byacc?=		byacc>=20040328:../../devel/byacc
 TOOLS_CREATE+=			byacc
 TOOLS_PATH.byacc=		${LOCALBASE}/bin/yacc
-TOOLS_CMD.byacc=		${TOOLS_DIR}/bin/yacc
+TOOLS_CMD.byacc=		${TOOLS_DIR}/bin${BINARCHSUFFIX}/yacc
 .  endif
 .endif
 
@@ -708,7 +708,7 @@ TOOLS_DEPENDS.sh?=		pdksh>=5.2.14:../../shells/pdksh
 TOOLS_CREATE+=			sh
 TOOLS_PATH.sh=			${LOCALBASE}/bin/pdksh
 .  endif
-TOOLS_CMD.sh=			${TOOLS_DIR}/bin/sh
+TOOLS_CMD.sh=			${TOOLS_DIR}/bin${BINARCHSUFFIX}/sh
 .endif
 
 .if !defined(TOOLS_IGNORE.shlock) && !empty(_USE_TOOLS:Mshlock)

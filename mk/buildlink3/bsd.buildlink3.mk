@@ -406,7 +406,7 @@ BUILDLINK_LDFLAGS.${_pkg_}?=	# empty
 BUILDLINK_LIBS.${_pkg_}?=	# empty
 BUILDLINK_AUTO_DIRS.${_pkg_}?=	yes
 BUILDLINK_INCDIRS.${_pkg_}?=	include
-BUILDLINK_LIBDIRS.${_pkg_}?=	lib
+BUILDLINK_LIBDIRS.${_pkg_}?=	lib${LIBARCHSUFFIX}
 .  if !empty(BUILDLINK_DEPMETHOD.${_pkg_}:Mfull)
 BUILDLINK_RPATHDIRS.${_pkg_}?=	${BUILDLINK_LIBDIRS.${_pkg_}}
 .  else
@@ -499,8 +499,8 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 #
 # Ensure that ${LOCALBASE}/lib is in the runtime library search path.
 #
-.if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${LOCALBASE}/lib)
-BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${LOCALBASE}/lib
+.if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${LOCALBASE}/lib${LIBARCHSUFFIX})
+BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${LOCALBASE}/lib${LIBARCHSUFFIX}
 .endif
 #
 # Add the X11 library directory to the library search paths if the package
@@ -838,7 +838,7 @@ _BLNK_PASSTHRU_RPATHDIRS+=	${BUILDLINK_PREFIX.${_pkg_}}/${_dir_}
 # that wildcard dependencies work correctly when installing from binary
 # packages.
 #
-_BLNK_PASSTHRU_RPATHDIRS+=	${LOCALBASE}/lib
+_BLNK_PASSTHRU_RPATHDIRS+=	${LOCALBASE}/lib${LIBARCHSUFFIX}
 #
 # Allow ${X11BASE}/lib in the runtime library search path for USE_X11
 # packages so that X11 libraries can be found.
@@ -1111,7 +1111,7 @@ _WRAP_TRANSFORM.SHLIBTOOL=	${_WRAP_TRANSFORM.LIBTOOL}
 # before the system headers and libraries.
 #
 _BLNK_CPPFLAGS=			-I${BUILDLINK_DIR}/include
-_BLNK_LDFLAGS=			-L${BUILDLINK_DIR}/lib
+_BLNK_LDFLAGS=			-L${BUILDLINK_DIR}/lib${LIBARCHSUFFIX}
 _WRAP_EXTRA_ARGS.CC+=		${_BLNK_CPPFLAGS} ${_BLNK_LDFLAGS}
 _WRAP_EXTRA_ARGS.CXX+=		${_BLNK_CPPFLAGS} ${_BLNK_LDFLAGS}
 _WRAP_EXTRA_ARGS.CPP+=		${_BLNK_CPPFLAGS}

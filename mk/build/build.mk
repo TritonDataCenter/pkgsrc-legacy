@@ -120,11 +120,21 @@ build-clean: install-clean _package-clean
 ###
 _REAL_BUILD_TARGETS+=	build-check-interactive
 _REAL_BUILD_TARGETS+=	build-message
+.if defined(_MULTIARCH)
+_REAL_BUILD_TARGETS+=	build-vars-multi
+.else
 _REAL_BUILD_TARGETS+=	build-vars
+.endif
 _REAL_BUILD_TARGETS+=	pre-build-checks-hook
+.if defined(_MULTIARCH)
+_REAL_BUILD_TARGETS+=	pre-build-multi
+_REAL_BUILD_TARGETS+=	do-build-multi
+_REAL_BUILD_TARGETS+=	post-build-multi
+.else
 _REAL_BUILD_TARGETS+=	pre-build
 _REAL_BUILD_TARGETS+=	do-build
 _REAL_BUILD_TARGETS+=	post-build
+.endif
 _REAL_BUILD_TARGETS+=	build-cookie
 _REAL_BUILD_TARGETS+=	error-check
 
@@ -176,6 +186,16 @@ pre-build:
 .if !target(post-build)
 post-build:
 	@${DO_NADA}
+.endif
+
+.if defined(_MULTIARCH)
+.  for _tgt_ in build-vars pre-build do-build post-build
+.PHONY: ${_tgt_}-multi
+${_tgt_}-multi:
+.    for _abi_ in ${MULTIARCH_ABIS}
+	@${MAKE} ${MAKE_FLAGS} ABI=${_abi_} WRKSRC=${WRKSRC}-${_abi_} ${_tgt_}
+.    endfor
+.  endfor
 .endif
 
 BUILD_ENV_SHELL?=	${SH}

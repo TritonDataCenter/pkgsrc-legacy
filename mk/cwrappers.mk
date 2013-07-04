@@ -9,7 +9,7 @@ BUILD_DEPENDS+=		cwrappers>=20150314:../../pkgtools/cwrappers
 
 # XXX This should be PREFIX, but USE_CROSSBASE overrides it.
 CWRAPPERS_SRC_DIR=	${LOCALBASE}/libexec/cwrappers
-CWRAPPERS_CONFIG_DIR=	${WRKDIR}/.cwrapper/config
+CWRAPPERS_CONFIG_DIR=	${WRKDIR}/.cwrapper/config${LIBARCHSUFFIX}
 CONFIGURE_ENV+=		CWRAPPERS_CONFIG_DIR=${CWRAPPERS_CONFIG_DIR}
 MAKE_ENV+=		CWRAPPERS_CONFIG_DIR=${CWRAPPERS_CONFIG_DIR}
 ALL_ENV+=		CWRAPPERS_CONFIG_DIR=${CWRAPPERS_CONFIG_DIR}
@@ -115,7 +115,11 @@ ${_COOKIE.wrapper}: real-wrapper
 .endif
 
 .PHONY: real-wrapper
+.if defined(_MULTIARCH)
+real-wrapper: wrapper-message wrapper-dirs-multi wrapper-vars-multi pre-wrapper do-wrapper-multi post-wrapper wrapper-cookie error-check
+.else
 real-wrapper: wrapper-message wrapper-dirs wrapper-vars pre-wrapper do-wrapper post-wrapper wrapper-cookie error-check
+.endif
 
 .PHONY: wrapper-message
 wrapper-message:
@@ -132,6 +136,16 @@ do-wrapper: generate-cwrappers
 .if !target(do-wrapper)
 do-wrapper:
 	@${DO_NADA}
+.endif
+
+.if defined(_MULTIARCH)
+.  for _tgt_ in wrapper-dirs wrapper-vars do-wrapper
+.PHONY: ${_tgt_}-multi
+${_tgt_}-multi:
+.    for _abi_ in ${MULTIARCH_ABIS}
+	@${MAKE} ${MAKE_FLAGS} ABI=${_abi_} WRKSRC=${WRKSRC}-${_abi_} ${_tgt_}
+.    endfor
+.  endfor
 .endif
 
 .if !target(pre-wrapper)

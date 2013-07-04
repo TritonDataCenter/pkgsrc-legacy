@@ -1,0 +1,4 @@
+This package provides the same functionality as /usr/lib/isaexec, but as
+we cannot guarantee that packages are on the root file system, we need a
+separate copy to ensure that hard links work correctly.  We also rename
+it to abiexec to avoid confusion.

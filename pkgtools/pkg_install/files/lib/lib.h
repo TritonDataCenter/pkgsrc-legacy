@@ -167,7 +167,8 @@ typedef enum pl_ent_t {
 	PLIST_OPTION,		/* 14 */
 	PLIST_PKGCFL,		/* 15 */
 	PLIST_BLDDEP,		/* 16 */
-	PLIST_PKGDIR		/* 17 */
+	PLIST_PKGDIR,		/* 17 */
+	PLIST_LINK		/* 18 */
 }       pl_ent_t;
 
 /* Enumerated constants for build info */

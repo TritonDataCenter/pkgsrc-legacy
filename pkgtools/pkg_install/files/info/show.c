@@ -95,6 +95,7 @@ static const show_t showv[] = {
 	{PLIST_PKGCFL, "@pkgcfl ", "\tPackage conflicts with: "},
 	{PLIST_BLDDEP, "@blddep ", "\tPackage depends exactly on: "},
 	{PLIST_PKGDIR, "@pkgdir ", "\tManaged directory: "},
+	{PLIST_LINK, "@link ", "\tLINK "},
 	{-1, NULL, NULL}
 };
 
@@ -162,10 +163,21 @@ show_plist(const char *title, package_t *plist, pl_ent_t type)
 	for (ign = FALSE, p = plist->head; p; p = p->next) {
 		if (p->type == type || type == PLIST_SHOW_ALL) {
 			switch (p->type) {
+			case PLIST_LINK:
 			case PLIST_FILE:
-				printf("%s%s",
-				    Quiet ? showv[p->type].sh_quiet :
-				    showv[p->type].sh_verbose, p->name);
+				if (p->type == PLIST_LINK) {
+					char *freelink, *linkdst;
+					freelink = linkdst = xstrdup(p->name);
+					(void) strsep(&linkdst, " \t");
+					printf("%s%s",
+					    Quiet ? showv[p->type].sh_quiet :
+					    showv[p->type].sh_verbose, linkdst);
+					free(freelink);
+				} else {
+					printf("%s%s",
+					    Quiet ? showv[p->type].sh_quiet :
+					    showv[p->type].sh_verbose, p->name);
+				}
 				if (ign) {
 					if (!Quiet) {
 						printf(" (ignored)");
@@ -227,10 +239,22 @@ show_files(const char *title, package_t *plist)
 	}
 	for (ign = FALSE, p = plist->head; p; p = p->next) {
 		switch (p->type) {
+		case PLIST_LINK:
 		case PLIST_FILE:
 			if (!ign) {
-				printf("%s%s%s\n", dir,
-					(strcmp(dir, "/") == 0) ? "" : "/", p->name);
+				if (p->type == PLIST_LINK) {
+					char *freelink, *linkdst;
+					freelink = linkdst = xstrdup(p->name);
+					(void) strsep(&linkdst, " \t");
+					printf("%s%s%s\n", dir,
+						(strcmp(dir, "/") == 0)
+						? "" : "/", linkdst);
+					free(freelink);
+				} else {
+					printf("%s%s%s\n", dir,
+						(strcmp(dir, "/") == 0)
+						? "" : "/", p->name);
+				}
 			}
 			ign = FALSE;
 			break;

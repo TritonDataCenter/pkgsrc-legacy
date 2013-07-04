@@ -100,11 +100,21 @@ ${_COOKIE.extract}: real-extract
 ###
 _REAL_EXTRACT_TARGETS+=	extract-check-interactive
 _REAL_EXTRACT_TARGETS+=	extract-message
+.if defined(_MULTIARCH)
+_REAL_EXTRACT_TARGETS+=	extract-vars-multi
+.else
 _REAL_EXTRACT_TARGETS+=	extract-vars
+.endif
 _REAL_EXTRACT_TARGETS+=	extract-dir
+.if defined(_MULTIARCH)
+_REAL_EXTRACT_TARGETS+=	pre-extract-multi
+_REAL_EXTRACT_TARGETS+=	do-extract-multi
+_REAL_EXTRACT_TARGETS+=	post-extract-multi
+.else
 _REAL_EXTRACT_TARGETS+=	pre-extract
 _REAL_EXTRACT_TARGETS+=	do-extract
 _REAL_EXTRACT_TARGETS+=	post-extract
+.endif
 _REAL_EXTRACT_TARGETS+=	extract-cookie
 _REAL_EXTRACT_TARGETS+=	error-check
 
@@ -233,4 +243,23 @@ pre-extract:
 .if !target(post-extract)
 post-extract:
 	@${DO_NADA}
+.endif
+
+.if defined(_MULTIARCH)
+.PHONY: do-extract-multi
+do-extract-multi:
+.  for _abi_ in ${MULTIARCH_ABIS}
+	@${MAKE} ${MAKE_FLAGS} do-extract
+	@if [ -d ${WRKSRC} ]; then \
+		${MV} ${WRKSRC} ${WRKSRC}-${_abi_}; \
+	fi
+.  endfor
+
+.  for _tgt_ in extract-vars pre-extract post-extract
+.PHONY: ${_tgt_}-multi
+${_tgt_}-multi:
+.    for _abi_ in ${MULTIARCH_ABIS}
+	@${MAKE} ${MAKE_FLAGS} ABI=${_abi_} WRKSRC=${WRKSRC}-${_abi_} ${_tgt_}
+.    endfor
+.  endfor
 .endif
