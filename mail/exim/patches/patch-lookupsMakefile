@@ -1,0 +1,10 @@
+$NetBSD$
+
+--- scripts/lookups-Makefile.orig       2013-08-31 20:11:09.363021248 +0000
++++ scripts/lookups-Makefile
+@@ -1,4 +1,5 @@
+ #! /bin/sh
++alias local=typeset
+ 
+ # We turn the configure-built build-$foo/lookups/Makefile.predynamic into Makefile
+ 
