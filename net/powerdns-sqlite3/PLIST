@@ -1,0 +1,2 @@
+@comment $NetBSD$
+lib/pdns/libgsqlite3backend.la
