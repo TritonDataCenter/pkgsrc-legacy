@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.1 2013/09/30 17:17:57 wiz Exp $
+
+SHA1 (PyKerberos-1.1.tar.gz) = c998a830a623b5c6ccb511d9919df787e7c21a7f
+RMD160 (PyKerberos-1.1.tar.gz) = 9dddbc145dc447ca5a9784e7d0fe8c137c90007e
+Size (PyKerberos-1.1.tar.gz) = 26917 bytes
