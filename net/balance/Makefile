@@ -13,6 +13,11 @@ LICENSE=	gnu-gpl-v2
 BUILD_DEFS+=	VARBASE
 MAKE_ENV+=	VARBASE=${VARBASE}
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "SunOS"
+MAKE_ENV+=	LIBRARIES="-lsocket -lnsl"
+.endif
+
 OWN_DIRS_PERMS=	${VARBASE}/run/balance \
 		${ROOT_USER} ${ROOT_GROUP} 0750
 
