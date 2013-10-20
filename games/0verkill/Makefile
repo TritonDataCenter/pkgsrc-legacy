@@ -27,6 +27,8 @@ SUBST_MESSAGE.prefix=	Fix game configuration path prefix
 SUBST_FILES.prefix=	cfg.h
 SUBST_SED.prefix=	-e "s|@PREFIX@|${PREFIX}|g"
 
+CFLAGS.SunOS+=		-Du_int32_t=uint32_t
+
 do-install:
 	cd ${WRKSRC} && ${INSTALL_PROGRAM} 0verkill ${DESTDIR}${PREFIX}/bin
 	cd ${WRKSRC} && for f in avi bot editor server test_server; do \
