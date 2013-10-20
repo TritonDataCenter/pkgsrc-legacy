@@ -2,16 +2,16 @@ $NetBSD$
 
 On Solaris limits.h is required for PATH_MAX / _MIN
 
---- minidlna.c.orig	2013-10-20 15:46:22.581554931 +0000
-+++ minidlna.c
-@@ -75,6 +75,10 @@
- #include <libintl.h>
- #endif
+--- upnphttp.c.orig	2013-03-18 05:37:46.000000000 +0000
++++ upnphttp.c
+@@ -62,6 +62,10 @@
+ #include <sys/time.h>
+ #include <sys/resource.h>
  
 +#if defined(__sun)
 +#include <limits.h>
 +#endif
 +
+ #include "config.h"
  #include "upnpglobalvars.h"
- #include "sql.h"
  #include "upnphttp.h"
