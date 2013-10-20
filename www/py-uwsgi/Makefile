@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.18 2012/10/28 06:31:02 asau Exp $
 
-DISTNAME=	uwsgi-1.2.4
+DISTNAME=	uwsgi-1.9.18.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	http://projects.unbit.it/downloads/
