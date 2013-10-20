@@ -13,6 +13,7 @@ LICENSE=	gnu-gpl-v2
 USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		yes
 CPPFLAGS.SunOS+=	-DDISABLE_JOYSTICK
+LDFLAGS.SunOS+=		-lsocket
 INSTALLATION_DIRS=	share/doc/dosbox
 
 SUBST_CLASSES+=		fixme
