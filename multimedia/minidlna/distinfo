@@ -1,22 +1,17 @@
-$NetBSD: distinfo,v 1.3 2012/12/17 12:51:32 drochner Exp $
+$NetBSD$
 
-SHA1 (minidlna_1.0.25_src.tar.gz) = 33742f02367006c6e4af7128b91c830026e59b9f
-RMD160 (minidlna_1.0.25_src.tar.gz) = 7008ef98c03f820d9200c1b1db2ec2f7995ece6d
-Size (minidlna_1.0.25_src.tar.gz) = 211756 bytes
-SHA1 (patch-aa) = 7eade704068ea67e8ced43453976aa2ef24b3ef8
-SHA1 (patch-ab) = 7e62ef89c7bf2029cacda3e43cfe41800b90201f
-SHA1 (patch-conf) = f02d87c245efd80ca43158b172c13e10c2130610
-SHA1 (patch-icons) = f9bdf47cd8cd6ee67a3e011655fd0ce7d8a1dcc2
-SHA1 (patch-image_utils.c) = 1f8a5d31aef9fa7182ac5ee40f9b9ad374a2772c
-SHA1 (patch-inline) = 3bab5f706124d96492f6fd017b671e34c3f2bd59
-SHA1 (patch-lg) = 3889c03ca8118a7769266bb25687945701f3d29e
-SHA1 (patch-minidlna.c) = 4c8de50a3de506cb6f34b43e60504a930f6f5282
-SHA1 (patch-other-subnets) = 3739394543005a658c73a62bd150a161d43253e1
-SHA1 (patch-replace-glob3) = 08f9676870e4143bdadbd68c8c09cf39aa504d89
-SHA1 (patch-scanner.c) = d07998a31ec8b890baa7cccc58d211af69953625
-SHA1 (patch-tagutils.c) = 0010283c8a538024abf1dddd64e9b5446ec7ee02
-SHA1 (patch-tagutils_asf.h) = 855b7e59b657f1e6ea8d07b48c0ca261cd9ddacd
-SHA1 (patch-tagutils_misc.c) = b49931d9a3d338576a8fb9911da1664085475aa6
-SHA1 (patch-upnpglobalvars.c) = fbe22ff08d1462bf6a3cc36c456cf41624bcbd4e
-SHA1 (patch-upnphttp) = deeda56b30f06bbacdf9190ca18d65b2ae93e863
-SHA1 (patch-utils-mpo) = 8f94873331d2d87f2b2652d131f506a12cf171b8
+SHA1 (minidlna-1.1.0.tar.gz) = 9d5da7052db77fb4f4dc1b51348a852705d962ac
+RMD160 (minidlna-1.1.0.tar.gz) = 1901f4acd125ec142a26bd5786f47662e2fc510d
+Size (minidlna-1.1.0.tar.gz) = 423555 bytes
+SHA1 (patch-albumart.c) = 7e255e6c1a1c73494d3ed7376d1ea1922dc31f83
+SHA1 (patch-getifaddr.c) = cfd94390a9ab284c02d7a2e04c8591000cd838f9
+SHA1 (patch-image_utils.c) = e0057bbc2cc6a613c55854f9d8a05629786a6a82
+SHA1 (patch-minidlna.c) = 9c8b27a0babdc0f1cfa41d0d12d9d8210aae6edb
+SHA1 (patch-misc.c) = 8c7ca6cc7305968151171aadeffc7f8c2fde013b
+SHA1 (patch-scanner.c) = 6440e78ef41730a0d4cf3241a04014115830e167
+SHA1 (patch-tagutils-asf.h) = 9d87e1fc1da77842bc095b736788f178b9288b80
+SHA1 (patch-upnpglobalvars.c) = d0209116015d82de59228452420598c107fec739
+SHA1 (patch-upnpglobalvars.h) = 7e9da27aa671d5bed14532458f2d0fec6dbcb4d8
+SHA1 (patch-upnphttp.c) = 3926c77442e0e9a62f2f9a1b2cd96d01974e8446
+SHA1 (patch-utils.c) = f46c5d059ce7bc789c4b60fe33e8cdb405fa19f6
+SHA1 (patch-utils.h) = 8d959a46992307b2258b34a98de548167550012a

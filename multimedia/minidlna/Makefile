@@ -1,41 +1,34 @@
 # $NetBSD: Makefile,v 1.4 2013/05/09 07:40:19 adam Exp $
 #
 
-DISTNAME=	minidlna_1.0.25_src
-PKGNAME=	minidlna-1.0.25
-PKGREVISION=	2
+DISTNAME=	minidlna-1.1.0
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=minidlna/1.0.25/}
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=minidlna/1.1.0/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://minidlna.sourceforge.net/
 COMMENT=	DLNA server
 LICENSE=	gnu-gpl-v2
 
-WRKSRC=	${WRKDIR}/minidlna-1.0.25
-MAKE_FILE=	BSDmakefile
-EGDIR=		${PREFIX}/share/examples/minidlna
+WRKSRC=	${WRKDIR}/${DISTNAME}
 
-SUBST_CLASSES+=	confdir
-SUBST_STAGE.confdir= pre-build
-SUBST_FILES.confdir= minidlna.c
-SUBST_VARS.confdir= PKG_SYSCONFDIR
+GNU_CONFIGURE=	yes
+USE_LIBTOOL=		yes
+USE_TOOLS+=			pkg-config
+USE_LANGUAGES=	c c++
 
+LDFLAGS+=					-lsendfile
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
+EGDIR=			${PREFIX}/share/examples/minidlna
 CONF_FILES=	${EGDIR}/minidlna.conf \
 		${PKG_SYSCONFDIR}/minidlna.conf
-RCD_SCRIPTS=	minidlna
-
 INSTALLATION_DIRS=	sbin share/examples/minidlna
 
-post-patch:
-	${CP} \
-	${FILESDIR}/BSDmakefile \
-	${FILESDIR}/config.h \
-	${FILESDIR}/getifaddr.c \
-	${WRKSRC}
+RCD_SCRIPTS=	minidlna
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/minidlna ${DESTDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/minidlnad ${DESTDIR}${PREFIX}/sbin/minidlna
 	${INSTALL_DATA} ${WRKSRC}/minidlna.conf ${DESTDIR}${EGDIR}
 
 .include "../../multimedia/ffmpeg/buildlink3.mk"

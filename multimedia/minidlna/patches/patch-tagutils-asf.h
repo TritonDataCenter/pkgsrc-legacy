@@ -2,10 +2,10 @@ $NetBSD$
 
 Fix endian.h include for BSD and other systems
 
---- image_utils.c.orig	2012-07-10 21:12:10.000000000 +0000
-+++ image_utils.c
-@@ -35,7 +35,9 @@
- #include <jpeglib.h>
+--- tagutils/tagutils-asf.h.orig	2011-09-16 23:39:58.000000000 +0000
++++ tagutils/tagutils-asf.h
+@@ -25,7 +25,9 @@
+ 
  #ifdef HAVE_MACHINE_ENDIAN_H
  #include <machine/endian.h>
 -#else

@@ -1,13 +1,17 @@
-$NetBSD: patch-upnpglobalvars.c,v 1.1 2012/10/15 22:48:02 drochner Exp $
+$NetBSD$
 
---- upnpglobalvars.c.orig	2012-10-15 19:22:17.000000000 +0000
+On Solaris limits.h is required for PATH_MAX / _MIN
+
+--- upnpglobalvars.c.orig	2013-10-20 16:01:13.721574238 +0000
 +++ upnpglobalvars.c
-@@ -48,7 +48,7 @@
-  */
- #include <sys/types.h>
+@@ -50,6 +50,10 @@
  #include <netinet/in.h>
--#include <linux/limits.h>
-+#include <limits.h>
+ #include <sys/param.h>
  
++#if defined(__sun)
++#include <limits.h>
++#endif
++
  #include "config.h"
  #include "upnpglobalvars.h"
+ 
