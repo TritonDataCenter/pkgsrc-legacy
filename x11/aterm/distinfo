@@ -1,9 +1,7 @@
 $NetBSD: distinfo,v 1.14 2012/09/29 18:00:38 asau Exp $
 
-SHA1 (aterm-1.0.0.tar.bz2) = 806fd20aec2851c5eea26d9e6a707985da3579a3
-RMD160 (aterm-1.0.0.tar.bz2) = b74f54b6aa6f1d4a094671507c30f627f074eb48
-Size (aterm-1.0.0.tar.bz2) = 248708 bytes
-SHA1 (patch-aa) = 3db1064f3998d1d901902c4309841e102db32fa4
-SHA1 (patch-ac) = 28c79343079680251a013ec3fe364b01f5a5ccac
-SHA1 (patch-ad) = 0c87ee69672e98189afa2cfdcdd9691a1571f354
-SHA1 (patch-ae) = f94dfb058d2b6e54e8deef96f6c8c429c0f64463
+SHA1 (aterm-1.0.1.tar.bz2) = a975753b415306a0734efc3773de8a86129bb54b
+RMD160 (aterm-1.0.1.tar.bz2) = 74c46af824c19d0c24c26178f0cb38c2d4e66e21
+Size (aterm-1.0.1.tar.bz2) = 276810 bytes
+SHA1 (patch-ac) = 2ab6b0acd4f311f4afc9e1f7f96537217470e45b
+SHA1 (patch-rxvt.h) = 90ac4f74031447c968cb394de4e45a6e55435808

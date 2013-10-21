@@ -1,0 +1,22 @@
+$NetBSD$
+
+Minix support via preprocessor macro _PATH_WTMPX
+
+--- src/rxvt.h.orig	2006-02-17 21:35:37.000000000 +0000
++++ src/rxvt.h
+@@ -647,11 +647,13 @@ typedef struct MwmHints {
+ #ifdef WTMP_SUPPORT
+ # ifdef HAVE_UTMPX_H		/* means we're on Solaris (or Irix?) */
+ #  undef WTMP_FILENAME
+-#  if  defined(WTMPX_FILE) || defined(_WTMPX_FILE)
++#  if  defined(WTMPX_FILE) || defined(_WTMPX_FILE) || defined(_PATH_WTMPX)
+ #    if defined(WTMPX_FILE)
+ #    	define WTMP_FILENAME	WTMPX_FILE
++#    elif defined(_WTMPX_FILE)
++#     define WTMP_FILENAME  _WTMPX_FILE
+ #    else
+-#    	define WTMP_FILENAME	_WTMPX_FILE
++#    	define WTMP_FILENAME  _PATH_WTMPX
+ #    endif
+ #    define update_wtmp		updwtmpx
+ #  else
