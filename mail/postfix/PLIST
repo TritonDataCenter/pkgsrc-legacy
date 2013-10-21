@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.26 2013/02/13 14:31:31 taca Exp $
+@comment $NetBSD$
 bin/mailq
 bin/newaliases
 libexec/postfix/anvil
@@ -185,7 +185,7 @@ share/examples/postfix/main.cf.default
 share/examples/postfix/makedefs.out
 share/examples/postfix/master.cf
 share/examples/postfix/relocated
-${PLIST.csasl}share/examples/postfix/smtpd.conf
 share/examples/postfix/transport
 share/examples/postfix/virtual
 share/examples/rc.d/postfix
+${PLIST.csasl}share/examples/postfix/smtpd.conf
