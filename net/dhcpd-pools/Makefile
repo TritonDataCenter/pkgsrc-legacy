@@ -19,6 +19,8 @@ BUILD_DEFS+=		VARBASE
 REPLACE_PERL=		contrib/snmptest.pl
 USE_TOOLS+=		perl:run
 
+LDFLAGS.SunOS+=	-lnsl
+
 SUBST_CLASSES+=		fix-name
 SUBST_STAGE.fix-name=	pre-configure
 SUBST_MESSAGE.fix-name=	Removing program_invocation_short_name.
