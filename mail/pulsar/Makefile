@@ -16,6 +16,9 @@ MAKE_JOBS_SAFE=		no
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	autoconf gmake
 
+CFLAGS.SunOS+=	-Du_int32_t=uint32_t
+LDFLAGS.SunOS+=	-lsocket -lnsl
+
 MANCOMPRESSED=	yes
 
 pre-configure:
