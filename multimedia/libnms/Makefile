@@ -14,6 +14,8 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config
 USE_LIBTOOL=	yes
 
+LDFLAGS.SunOS+=	-lsocket -lnsl
+
 PKGCONFIG_OVERRIDE+=	libnms.pc.in
 
 .include "../../mk/bsd.pkg.mk"
