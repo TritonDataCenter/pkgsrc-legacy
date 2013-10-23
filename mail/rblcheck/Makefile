@@ -19,6 +19,8 @@ DOCS=		README NEWS docs/rblcheck.ps
 
 AUTO_MKDIRS=	yes
 
+LDFLAGS.SunOS+=	-lnsl
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/rblcheck ${DESTDIR}${PREFIX}/bin
 	cd ${WRKSRC} &&						\
