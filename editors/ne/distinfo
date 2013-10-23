@@ -13,3 +13,4 @@ SHA1 (ne-1.31/NE.changes.spec) = 587a72694b34763b324bd694549f951250e3d309
 RMD160 (ne-1.31/NE.changes.spec) = a619a2d8a80054138cb97198fbb2d6e8f473a178
 Size (ne-1.31/NE.changes.spec) = 7380 bytes
 SHA1 (patch-aa) = 83fe227f538774e6268126c39bc31cdf188b15f1
+SHA1 (patch-sysunix.c) = 942bcfa3aa4be33b06d018d0ce3b546db99849f2
