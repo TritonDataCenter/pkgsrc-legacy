@@ -6,8 +6,8 @@ Debian bug report:
 http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677959
 
 --- src/metadata/ffmpeg_handler.cc.orig	2010-03-25 14:58:10.000000000 +0000
-+++ src/metadata/ffmpeg_handler.cc	2012-11-27 20:02:25.000000000 +0000
-@@ -89,47 +89,30 @@
++++ src/metadata/ffmpeg_handler.cc
+@@ -89,47 +89,30 @@ static void addFfmpegMetadataFields(Ref<
  
  	Ref<StringConverter> sc = StringConverter::m2i();
      
@@ -79,7 +79,7 @@ http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677959
  	}
  }
  
-@@ -178,7 +161,7 @@
+@@ -178,7 +161,7 @@ static void addFfmpegResourceFields(Ref<
  	for(i=0; i<pFormatCtx->nb_streams; i++) 
      {
  		AVStream *st = pFormatCtx->streams[i];
@@ -88,7 +88,7 @@ http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677959
          {
              if (st->codec->codec_tag > 0)
              {
-@@ -209,7 +192,7 @@
+@@ -209,7 +192,7 @@ static void addFfmpegResourceFields(Ref<
                  *y = st->codec->height;
  			}
  		} 
@@ -97,7 +97,7 @@ http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677959
          {
  			// Increase number of audiochannels
  			audioch++;
-@@ -251,7 +234,7 @@
+@@ -251,7 +234,7 @@ void FfmpegHandler::fillMetadata(Ref<Cds
      int x = 0;
      int y = 0;
  
@@ -106,7 +106,7 @@ http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677959
  	
  	// Suppress all log messages
  	av_log_set_callback(FfmpegNoOutputStub);
-@@ -259,15 +242,15 @@
+@@ -259,15 +242,15 @@ void FfmpegHandler::fillMetadata(Ref<Cds
  	// Register all formats and codecs
      av_register_all();
  
@@ -127,7 +127,7 @@ http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677959
          return; // Couldn't find stream information
      }   
  	// Add metadata using ffmpeg library calls
-@@ -276,7 +259,7 @@
+@@ -276,7 +259,7 @@ void FfmpegHandler::fillMetadata(Ref<Cds
  	addFfmpegResourceFields(item, pFormatCtx, &x, &y);
  	
      // Close the video file

@@ -24,6 +24,8 @@ PKG_USERS=			${MEDIATOMB_USER}:${MEDIATOMB_GROUP}
 PKG_GECOS.${MEDIATOMB_USER}=	MediaTomb Server
 PKG_HOME.${MEDIATOMB_USER}=	${VARBASE}/mediatomb
 
+LDFLAGS+=        -liconv
+
 PKG_SYSCONFSUBDIR=	mediatomb
 EGDIR=			${PREFIX}/share/examples/mediatomb
 CONF_FILES_PERMS+=	${EGDIR}/config.xml ${PKG_SYSCONFDIR}/config.xml \
@@ -57,6 +59,7 @@ post-install:
 
 .include "options.mk"
 
+.include "../../converters/libiconv/buildlink3.mk"
 .include "../../audio/taglib/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
