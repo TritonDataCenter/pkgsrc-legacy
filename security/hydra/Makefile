@@ -15,6 +15,8 @@ LICENSE=	gnu-agpl-v3
 USE_TOOLS+=	pkg-config gmake
 GNU_CONFIGURE=	YES
 
+LDFLAGS.SunOS+=	-lsocket -lnsl
+
 CONFIGURE_ENV+=	BUILDLINK_DIR=${BUILDLINK_DIR:Q}
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
