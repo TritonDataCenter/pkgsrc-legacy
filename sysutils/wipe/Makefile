@@ -15,4 +15,9 @@ PKG_INSTALLATION_TYPES=	overwrite pkgviews
 
 GNU_CONFIGURE=		yes
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "SunOS"
+MAKE_ENV+=		DEFINES="-Du_int32_t=uint32_t"
+.endif
+
 .include "../../mk/bsd.pkg.mk"
