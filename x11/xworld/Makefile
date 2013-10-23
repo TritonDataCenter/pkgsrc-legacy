@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2012/10/29 05:07:25 asau Exp $
+# $NetBSD: Makefile,v 1.25 2013/10/23 22:02:00 tm Exp $
 #
 
 DISTNAME=		xworld-2.0
@@ -16,6 +16,15 @@ CONFIG_SHELL=		${CSH}
 CONFIGURE_ENV+=		PREFIX=${PREFIX}
 CONFIGURE_ENV+=		LDLIBS=-lm\ ${LDFLAGS:Q}\ -lX11
 CONFIGURE_ENV+=		CAT=${CAT:Q} STRIP=strip INCLUDES="" MORELIBS=""
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OS_VARIANT} == "SmartOS"
+SUBST_CLASSES+=        smartos
+SUBST_STAGE.smartos=   pre-build
+SUBST_FILES.smartos=   Makefile
+SUBST_SED.smartos+= -e 's,/usr/ccs/bin/strip,/opt/local/bin/strip,g'
+.endif
 
 SUBST_CLASSES+=		x11
 SUBST_MESSAGE.x11=	Fixing x11 options.
