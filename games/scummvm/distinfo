@@ -4,3 +4,4 @@ SHA1 (scummvm-1.6.0.tar.bz2) = cb64b2be5c867259b4290e94542f27b00c2de79f
 RMD160 (scummvm-1.6.0.tar.bz2) = 503f9df623b7dbfa71466ed5c15bfa0c8c5d898d
 Size (scummvm-1.6.0.tar.bz2) = 18516277 bytes
 SHA1 (patch-aa) = dd038b5c60261919130bc670241fc305fb3d0d00
+SHA1 (patch-sdl-sys.h) = fa3fbf334ec7273b52fd4c5a5345366b596c24b2
