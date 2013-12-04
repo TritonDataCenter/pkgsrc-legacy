@@ -18,12 +18,13 @@ BUILD_DEFS+=	VARBASE
 
 USE_TOOLS+=	bash gmake
 CONFIG_SHELL=	${BASH}
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c99 c++
 USE_LIBTOOL=	yes
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
 
 ODS_USER?=	opendnssec
 ODS_GROUP?=	opendnssec
@@ -77,6 +78,7 @@ post-install:
 	${INSTALL} ${WRKSRC}/MIGRATION ${DESTDIR}${DOCDIR}
 
 #.include "../../devel/cunit/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../net/ldns/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
