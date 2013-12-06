@@ -20,6 +20,7 @@ SHA1 (patch-ba) = c27676c7110bf6ef2fcd448d68402b7bfd21b631
 SHA1 (patch-bb) = 050c6edc0a174e2496ef0b572002eca185bd38de
 SHA1 (patch-bc) = 8a08526c37e025a89a747fa2c7a48668fe797572
 SHA1 (patch-bd) = dc24c670cdf078f08c29318c5c5dc8efed398f59
+SHA1 (patch-lib-src_soundtouch_source_SoundTouch_FIRFilter.cpp) = 55d945c4ef586b129c90f255d1649102843a74f2
 SHA1 (patch-lib-src_soundtouch_source_SoundTouch_Makefile.in) = 882de67691e6b7b4b611ead0e1fe20ebafa57d40
 SHA1 (patch-lib_src_portmixer_px__unix__oss_px__unix__oss.c) = 4c78a5b39ea0fc1d022c8bfabd68a77989b33a54
 SHA1 (patch-src_AudioIO.cpp) = 79af6045ae0a9ff754ae0ea30d987f47363df18f
