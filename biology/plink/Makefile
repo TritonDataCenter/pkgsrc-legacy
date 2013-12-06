@@ -21,6 +21,11 @@ MAKE_FLAGS+=	LIBDL=${DL_LIBS:Q}
 LIB_LAPACK=	-L${LOCALBASE}/lib ${COMPILER_RPATH_FLAG}${LOCALBASE}/lib -llapack -lblas -lf2c
 MAKE_FLAGS+=	WITH_LAPACK=1 LIB_LAPACK=${LIB_LAPACK:Q}
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "SunOS"
+MAKE_ENV+=  LIB="-lsocket -lnsl"
+.endif
+
 INSTALLATION_DIRS=	bin
 
 do-install:
