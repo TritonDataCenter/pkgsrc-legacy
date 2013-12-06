@@ -19,6 +19,8 @@ PKGCONFIG_OVERRIDE+=	${WRKSRC}/libvisual.pc.in
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
 
+CFLAGS.SunOS+=	-Du_int8_t=uint8_t -Du_int16_t=uint16_t -Du_int32_t=uint32_t
+
 .include "../../mk/compiler.mk"
 
 .if !empty(CC_VERSION:Mgcc*)
