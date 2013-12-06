@@ -65,10 +65,19 @@ EXTRACT_ENV+=	HOME=${WRKDIR}/fake_home
 # new class sharing in Java 5+... -tvierling
 EXTRACT_ENV+=	UNPACK200_FLAGS=-Htrue
 
-FETCH_MESSAGE+=	" The file ${DISTNAME}${EXTRACT_SUFX} containing ${DOWNLOAD_NAME}"
-FETCH_MESSAGE+=	""
-FETCH_MESSAGE+=	" must be fetched into:"
-FETCH_MESSAGE+=	"	${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
+.if ${EMUL_OPSYS} == "solaris" && ${EMUL_ARCH} == "x86_64"
+FETCH_MESSAGE+= " The file ${DISTNAME:S/x64/i586/}${EXTRACT_SUFX} and ${DISTNAME}${EXTRACT_SUFX} containing ${DOWNLOAD_NAME}"
+FETCH_MESSAGE+= ""
+FETCH_MESSAGE+= " must be fetched into:"
+FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME:S/x64/i586/}${EXTRACT_SUFX}"
+FETCH_MESSAGE+= "       and ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
+.else
+FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing ${DOWNLOAD_NAME}"
+FETCH_MESSAGE+= ""
+FETCH_MESSAGE+= " must be fetched into:"
+FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
+.endif
+
 FETCH_MESSAGE+=	" from:"
 FETCH_MESSAGE+=	"	${DOWNLOAD}"
 FETCH_MESSAGE+=	"	or ${ARCHIVE}"
