@@ -19,6 +19,8 @@ RCD_SCRIPTS=	Geomyidae
 
 INSTALLATION_DIRS=	sbin ${PKGMANDIR}/man8 ${EGDIR} ${DOCDIR}
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/Geomyidae ${DESTDIR}${PREFIX}/sbin
 	${INSTALL_MAN} ${WRKSRC}/Geomyidae.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
