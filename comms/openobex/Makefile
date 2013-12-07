@@ -18,6 +18,8 @@ USE_TOOLS+=	cmake pkg-config
 
 PKGCONFIG_OVERRIDE=	openobex.pc.in
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 .include "../../mk/bsd.prefs.mk"
 
 EGDIR=		share/examples/openobex
