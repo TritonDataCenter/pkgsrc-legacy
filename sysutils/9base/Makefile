@@ -24,6 +24,10 @@ PKG_SHELL=		bin/rc
 # See http://developer.apple.com/library/mac/#qa/qa1118/_index.html
 .if ${OPSYS} == "Darwin"
 BUILDLINK_TRANSFORM+=	rm:-static
+.elif ${OPSYS} == "SunOS"
+BUILDLINK_TRANSFORM+=	rm:-static
+CFLAGS+=	-DPLAN9PORT
+LDFLAGS+=	-lsocket -lnsl
 .else
 LDFLAGS+= -static
 .endif
