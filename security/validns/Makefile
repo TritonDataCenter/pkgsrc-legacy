@@ -18,6 +18,11 @@ LICENSE=	2-clause-bsd
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "SunOS"
+MAKE_ENV+=	EXTRALIBS="-lsocket -lnsl"
+.endif
+
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM}
 
