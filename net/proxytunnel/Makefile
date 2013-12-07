@@ -23,6 +23,8 @@ SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
 SUBST_FILES.fix-paths=		proxytunnel.1
 SUBST_SED.fix-paths=		-e 's,/usr,${PREFIX},g'
 
+LDFLAGS.SunOS+=			-lsocket -lnsl
+
 do-install:
 	${INSTALL} ${WRKSRC}/proxytunnel ${DESTDIR}${PREFIX}/bin/
 	${INSTALL_MAN} ${WRKSRC}/proxytunnel.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/
