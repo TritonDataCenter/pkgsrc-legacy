@@ -35,6 +35,7 @@ pre-build:
 	Linux_i386) ${LN} -s ${WRKSRC}/src/vars_x86linux ${WRKSRC}/src/vars; break;;\
 	SunOS_sparc*) ${LN} -s ${WRKSRC}/src/vars_solaris ${WRKSRC}/src/vars; break;;\
 	SunOS_i386) ${LN} -s ${WRKSRC}/src/vars_x86solaris ${WRKSRC}/src/vars; break;;\
+	SunOS_x86_64) ${LN} -s ${WRKSRC}/src/vars_x86solaris ${WRKSRC}/src/vars; break;;\
 	Darwin*) ${LN} -s ${WRKSRC}/src/vars_mac ${WRKSRC}/src/vars; break;;	\
 	HPUX*) ${LN} -s ${WRKSRC}/src/vars_hp ${WRKSRC}/src/vars; break;;	\
 	*_i386) ${ECHO} "${OPSYS} on ${MACHINE_ARCH} is not officially supported, but ought to work..."; ${LN} -s ${WRKSRC}/src/vars_x86linux ${WRKSRC}/src/vars; break;;\
