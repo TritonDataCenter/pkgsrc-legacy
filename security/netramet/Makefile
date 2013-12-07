@@ -21,6 +21,8 @@ INSTALL_MAKE_FLAGS+=	prefix=${DESTDIR}${PREFIX}
 
 .include "../../net/libpcap/buildlink3.mk"
 
+CFLAGS.SunOS+=	-Du_int64_t=uint64_t
+
 post-patch:
 	for i in `${FIND} ${WRKSRC} -name Makefile.in -print`; do	\
 		${SED} "s,CFLAGS=,CFLAGS+=,g" $$i > $$i.done;		\
