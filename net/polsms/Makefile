@@ -16,6 +16,8 @@ USE_TOOLS+=	gmake
 
 INSTALLATION_DIRS=	bin share/sms/contrib share/sms/doc
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/sms ${DESTDIR}${PREFIX}/bin
 	${LN} -sf sms ${DESTDIR}${PREFIX}/bin/smsaddr
