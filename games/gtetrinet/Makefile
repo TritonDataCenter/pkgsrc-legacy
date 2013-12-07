@@ -29,6 +29,8 @@ CONFIGURE_ARGS+=	--enable-ipv6
 
 GCONF_SCHEMAS=		gtetrinet.schemas
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 .include "../../audio/esound/buildlink3.mk"
 .include "../../devel/GConf/schemas.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
