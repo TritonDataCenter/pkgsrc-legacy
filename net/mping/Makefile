@@ -13,6 +13,8 @@ USE_FEATURES+=		inet6
 
 INSTALLATION_DIRS=	sbin ${PKGMANDIR}/man8
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/mping ${DESTDIR}${PREFIX}/sbin/mping
 	${INSTALL_MAN} ${WRKSRC}/man/mping.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
