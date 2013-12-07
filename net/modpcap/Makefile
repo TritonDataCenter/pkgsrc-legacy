@@ -16,8 +16,10 @@ AUTO_MKDIRS=		yes
 
 WRKSRC=			${WRKDIR}
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 do-build:
-	cd ${WRKSRC} && ${CC} -I${PREFIX}/include modcap.c -lm -lpcap -o modcap
+	cd ${WRKSRC} && ${CC} -I${PREFIX}/include modcap.c -lm -lpcap ${LDFLAGS} -o modcap
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/modcap ${DESTDIR}${PREFIX}/bin/
