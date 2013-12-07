@@ -16,4 +16,6 @@ USE_TOOLS+=		gmake
 
 AUTO_MKDIRS=		yes
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 .include "../../mk/bsd.pkg.mk"
