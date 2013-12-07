@@ -19,6 +19,8 @@ USE_TOOLS+=	pkg-config gmake
 
 USE_NCURSES=	yes
 
+LDFLAGS.SunOS+=	-lsocket -lnsl
+
 .include "../../multimedia/gstreamer0.10/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../multimedia/gst-plugins0.10-base/buildlink3.mk"
