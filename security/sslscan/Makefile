@@ -13,6 +13,8 @@ LICENSE=	gnu-gpl-v3
 INSTALLATION_DIRS+=	bin
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
+LDFLAGS.SunOS+=	-lsocket -lnsl
+
 pre-install:
 	${RM} -f ${WRKSRC}/INSTALL
 
