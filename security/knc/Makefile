@@ -14,5 +14,7 @@ GNU_CONFIGURE=		YES
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
+LDFLAGS.SunOS+=		-lresolv -lsocket -lnsl
+
 .include "../../mk/krb5.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
