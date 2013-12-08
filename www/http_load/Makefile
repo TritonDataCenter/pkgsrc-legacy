@@ -13,5 +13,10 @@ LICENSE=	2-clause-bsd
 
 MAKE_ENV+=	SSLBASE=${SSLBASE:Q}
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "SunOS"
+MAKE_ENV+=	SYSV_LIBS="-lnsl -lsocket -lresolv"
+.endif
+
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
