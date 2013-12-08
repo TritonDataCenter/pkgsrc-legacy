@@ -13,4 +13,6 @@ INSTALL_MAKE_FLAGS+=	BINDIR=${DESTDIR}${PREFIX}/bin \
 			MANDIR=${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1
 
+CFLAGS.SunOS+=		-Du_int32_t=uint32_t
+
 .include "../../mk/bsd.pkg.mk"

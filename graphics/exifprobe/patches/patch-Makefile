@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- Makefile.orig	2005-07-25 22:15:49.000000000 +0000
++++ Makefile
+@@ -3,7 +3,7 @@
+ 
+ # Any compiler should do
+ CC=cc
+-CFLAGS=-DCOLOR -O 
++CFLAGS+=-DCOLOR -O 
+ 
+ # You probably don't need these
+ # CFLAGS=-DCOLOR -g -O -Dlint -Wall  -Wno-long-long 
