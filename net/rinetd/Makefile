@@ -27,8 +27,10 @@ SUBST_SED.paths+=	-e 's,@PREFIX@,${PREFIX},g'
 SUBST_SED.paths+=	-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g'
 SUBST_STAGE.paths=	post-patch
 
+LDFLAGS.SunOS +=	-lsocket -lnsl
+
 do-build:
-	cd ${WRKSRC} && env ${MAKE_ENV} cc ${CPPFLAGS} ${CFLAGS} -o rinetd *.c
+	cd ${WRKSRC} && env ${MAKE_ENV} cc ${CPPFLAGS} ${CFLAGS} ${LDFLAGS} -o rinetd *.c
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/rinetd ${DESTDIR}${PREFIX}/sbin/.
