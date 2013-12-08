@@ -17,7 +17,7 @@ USE_LANGUAGES=	c c++
 HAS_CONFIGURE=	yes
 BUILD_TARGET=	build
 
-LIBS.SunOS+=	-lsocket -lnsl
+LDFLAGS.SunOS+=	-lsocket -lnsl
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 share/doc/${PKGBASE}
 
