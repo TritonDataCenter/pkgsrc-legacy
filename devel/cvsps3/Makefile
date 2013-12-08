@@ -20,7 +20,7 @@ USE_TOOLS+=		gmake
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
 LIBS.SunOS+=		-lnsl -lsocket
-MAKE_ENV+=		LIBS=${LIBS:Q}
+MAKE_ENV+=		LDLIBS=${LIBS:Q}
 MAKE_ENV+=		prefix=${PREFIX}
 
 .include "../../devel/zlib/buildlink3.mk"
