@@ -15,11 +15,12 @@ DIST_SUBDIR=		${PKGNAME_NOREV}
 INSTALLATION_DIRS=	bin
 WRKSRC=			${WRKDIR}
 USE_TOOLS+=		lex
+LDFLAGS.SunOS+=		-lsocket -lnsl
 
 do-build:
 	cd ${WRKSRC} && \
 	${LEX} cvsclone.l && \
-	${CC} ${CFLAGS} lex.yy.c -o cvsclone
+	${CC} ${CFLAGS} lex.yy.c ${LDFLAGS} -o cvsclone
 	cd ${WRKSRC} && ${HEAD} -88 cvsclone.l > README.txt
 
 do-install:
