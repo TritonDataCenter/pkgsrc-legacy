@@ -11,6 +11,8 @@ MAINTAINER=	wiml@hhhh.org
 HOMEPAGE=	http://pyusb.berlios.de/
 COMMENT=	Python interface to USB via libusb
 
+CFLAGS.SunOS+=	-Du_int8_t=uint8_t -Du_int16_t=uint16_t -Du_int32_t=uint32_t
+
 .include "../../devel/libusb/buildlink3.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"
