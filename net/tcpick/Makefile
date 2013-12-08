@@ -11,5 +11,7 @@ COMMENT=	Simple tcp sniffer with tcpdump-style rules
 
 GNU_CONFIGURE=	YES
 
+CFLAGS.SunOS+=	-Du_int16_t=uint16_t -Du_int32_t=uint32_t
+
 .include "../../net/libpcap/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
