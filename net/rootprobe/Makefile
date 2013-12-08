@@ -16,6 +16,8 @@ WRKSRC=		${WRKDIR}/rootprobe
 
 INSTALLATION_DIRS=	bin
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/rootprobe ${DESTDIR}${PREFIX}/bin
 	(cd ${DESTDIR}${PREFIX}/bin; ${LN} rootprobe cctldprobe)
