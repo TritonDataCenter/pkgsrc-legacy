@@ -14,4 +14,6 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 CONFIGURE_ARGS+=	--with-html-dir=${PREFIX:Q}/share/doc/html
 
+CFLAGS.SunOS+=	-Du_int32_t=uint32_t
+
 .include "../../mk/bsd.pkg.mk"
