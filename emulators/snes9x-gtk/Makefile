@@ -18,6 +18,8 @@ GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	intltool msgfmt msgmerge perl pkg-config xgettext
 
+LDFLAGS.SunOS+=	-lsocket -lnsl
+
 .include "options.mk"
 
 .if ${MACHINE_ARCH} == "i386"
