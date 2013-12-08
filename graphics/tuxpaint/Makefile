@@ -34,6 +34,7 @@ INSTALL_MAKE_FLAGS+=	PKG_ROOT=${DESTDIR}
 MAKE_ENV+=		LIBS=${LIBS:M*:Q}
 LIBS+=			-liconv
 LIBS+=			-lpng
+LIBS.SunOS+=		-lsocket -lnsl
 
 post-install:
 	-${FIND} ${DESTDIR}${PREFIX}/share/doc/tuxpaint -name CVS -exec ${RM} -r {} \; 2>/dev/null
