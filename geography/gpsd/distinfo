@@ -4,3 +4,6 @@ SHA1 (gpsd-2.96.tar.gz) = a3674940e3325ccc1dc6d2890eb18d31a978425c
 RMD160 (gpsd-2.96.tar.gz) = cb37dc7811f8e7880a091fe7bec69a38efa4fda9
 Size (gpsd-2.96.tar.gz) = 1554607 bytes
 SHA1 (patch-aa) = b77bd7491ee890fc66f807cbfe4c6d62423d67d5
+SHA1 (patch-gpsd.h-tail) = 31d407e6d2086269dfebea9ebc82aa1efbfe8427
+SHA1 (patch-gpspipe.c) = 23d0e24ffa1d7c61228227ce35745740f0849117
+SHA1 (patch-serial.c) = a883c8208e27733226b61981e5404c0d5180fcea
