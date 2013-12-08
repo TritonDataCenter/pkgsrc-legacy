@@ -16,6 +16,8 @@ MAKE_ENV+=	MORE_CFLAGS=${CFLAGS:M*:Q}
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 share/examples/junkbuster
 
+LDFLAGS.SunOS+=		-lnsl -lsocket
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/junkbuster ${DESTDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/junkbuster.1 \
