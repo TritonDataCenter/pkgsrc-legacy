@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (pngquant-2.0.1-src.tar.bz2) = 0dea1d98d0149c0f1933d5243debe14421b00a93
+RMD160 (pngquant-2.0.1-src.tar.bz2) = 94295929e5b38a4d17aea235bef7aeca4306dadf
+Size (pngquant-2.0.1-src.tar.bz2) = 44827 bytes
+SHA1 (patch-Makefile) = 83c208de03e8d95ca8ff5b8bac0df3cac3154515
