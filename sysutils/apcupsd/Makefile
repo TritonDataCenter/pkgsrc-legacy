@@ -116,4 +116,5 @@ post-install:
 .endfor
 
 .include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../devel/libusb/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
