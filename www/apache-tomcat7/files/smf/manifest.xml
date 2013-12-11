@@ -11,7 +11,7 @@
       <service_fmri value="svc:/system/filesystem/local" />
     </dependency>
     <method_context working_directory="@TOMCAT_HOME@/logs">
-      <method_credential user="@TOMCAT_USER@" group="@TOMCAT_GROUP@" />
+      <method_credential user="@TOMCAT_USER@" group="@TOMCAT_GROUP@" privileges="basic,net_privaddr" />
       <method_environment>
         <envvar name="JAVA_HOME" value="@JAVA_HOME@" />
         <envvar name="CATALINA_HOME" value="@TOMCAT_HOME@" />
