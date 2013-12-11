@@ -14,6 +14,8 @@ APACHE_MODULE=		YES
 BUILD_TARGET=		apache-mod
 INSTALL_TARGET=		install-mods-shared
 
+CFLAGS.SunOS+=	-D__EXTENSIONS__
+
 post-patch:
 	${RM} ${WRKSRC}/build-outputs.mk
 	${CP} ${FILESDIR}/build-outputs.mk ${WRKSRC}/build-outputs.mk
