@@ -1,5 +1,6 @@
-@comment $NetBSD: PLIST,v 1.8 2012/04/08 20:21:52 wiz Exp $
+@comment $NetBSD: PLIST,v 1.9 2014/01/21 13:31:47 wiz Exp $
 bin/pymetar${PYVERSSUFFIX}
+man/man1/pymetar.1
 ${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/pymetar.py
 ${PYSITELIB}/pymetar.pyc
