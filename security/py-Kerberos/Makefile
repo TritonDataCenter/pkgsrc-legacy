@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2013/09/30 17:17:57 wiz Exp $
+# $NetBSD: Makefile,v 1.2 2014/01/25 10:30:19 wiz Exp $
 
 DISTNAME=	PyKerberos-1.1
 PKGNAME=	${DISTNAME:S/Py/${PYPKGPREFIX}-/}
@@ -11,6 +11,8 @@ COMMENT=	Python Kerberos implementation
 LICENSE=	apache-2.0
 
 EGG_NAME=	kerberos-1.0
+
+PYTHON_VERSIONS_INCOMPATIBLE=	33 # not yet supported as of 1.1
 
 .include "../../lang/python/distutils.mk"
 # only supports this Kerberos implementation
