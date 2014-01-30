@@ -4,8 +4,8 @@ Fix default PID file location in script.
 
 --- bin/couchdb.tpl.in.orig	2010-06-25 18:50:03.000000000 +0000
 +++ bin/couchdb.tpl.in
-@@ -22,7 +22,7 @@ INTERACTIVE=false
- KILL=false
+@@ -28,7 +28,7 @@ INTERACTIVE=false
+ PLUGINS_DIR=%locallibdir%/plugins
  LOCAL_CONFIG_DIR=%localconfdir%/local.d
  LOCAL_CONFIG_FILE=%localconfdir%/%localini%
 -PID_FILE=%localstatedir%/run/couchdb/couchdb.pid
