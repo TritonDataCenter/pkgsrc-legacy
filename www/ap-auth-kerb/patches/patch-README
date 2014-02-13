@@ -1,0 +1,22 @@
+$NetBSD$
+
+S4U2Proxy feature README changes
+--- README.orig	2008-11-26 16:51:05.000000000 +0000
++++ README
+@@ -122,4 +122,16 @@
+ credential cache that will be available for the request handler. The ticket
+ file will be removed after request is handled.
+
++Constrained Delegation
++----------------------
++S4U2Proxy, or constrained delegation, enables a service to use a client's
++ticket to itself to request another ticket for delegation. The KDC
++checks krbAllowedToDelegateTo to decide if it will issue a new ticket.
++If KrbConstrainedDelegation is enabled the server will use its own credentials
++to retrieve a delegated ticket for the user. For this to work the user must
++have a forwardable ticket (though the delegation flag need not be set).
++The server needs a valid credentials cache for this to work.
++
++The module itself will obtain and manage the necessary credentials.
++
+ $Id: README,v 1.12 2008/09/17 14:01:55 baalberith Exp $

@@ -10,7 +10,7 @@ HOMEPAGE=	http://modauthkerb.sourceforge.net/
 COMMENT=	Module to allow Apache authentication using Kerberos
 LICENSE=	modified-bsd
 
-PKG_APACHE_ACCEPTED=	apache22
+PKG_APACHE_ACCEPTED=	apache22 apache24
 
 CONFLICTS=	ap-auth-kerb-[0-9]*
 
@@ -28,6 +28,12 @@ INSTALLATION_DIRS+=	lib/httpd
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/src/.libs/mod_auth_kerb.so \
 	    ${DESTDIR}${PREFIX}/lib/httpd
+
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "SunOS"
+# native mit kerberos on SmartOS doesn't seem to work with this package
+PREFER.mit-krb5?=     pkgsrc
+.endif
 
 .include "../../mk/apache.mk"
 .include "../../mk/krb5.buildlink3.mk"
