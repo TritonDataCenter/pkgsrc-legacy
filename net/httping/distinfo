@@ -4,3 +4,4 @@ SHA1 (httping-2.3.3.tgz) = 6b9e77039346388e2b02dbb1d60f7422e7133488
 RMD160 (httping-2.3.3.tgz) = 204a9ddff58086434c1f5c608a0f5360747fb9bb
 Size (httping-2.3.3.tgz) = 54376 bytes
 SHA1 (patch-aa) = 72c327379b1cbe3cae7436e09ccee53f9277652d
+SHA1 (patch-main.cc) = 4641021cee9ce61642ff0d836aba151d1f0c8d1c
