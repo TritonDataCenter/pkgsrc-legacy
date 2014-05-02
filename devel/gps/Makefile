@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.32 2014/04/28 22:14:51 marino Exp $
+# $NetBSD: Makefile,v 1.34 2014/05/01 09:00:27 marino Exp $
 #
 
 DISTNAME=	gps-${GPS_VERSION}
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://downloads.dragonlace.net/src/
 DISTFILES=	gps-5.2.1-1-src.tgz
@@ -12,14 +12,19 @@ HOMEPAGE=	http://www.adacore.com/home/products/gnatpro/toolsuite/gps/
 COMMENT=	GNAT Programming Studio - IDE for Ada and many other languages
 LICENSE=	gnu-gpl-v2
 
+# NetBSD 6.1 binutils is too old and devel/binutils won't build lang/gcc-aux
+# Disable on all NetBSD platforms except 6.99 until this is fixed
+NOT_FOR_PLATFORM=	NetBSD-[56].[012]*-*
+
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake sed perl awk pkg-config
 
 GPS_VERSION=		5.2.1
 USE_LANGUAGES=		c ada c++
 MY_CONFIGURE_ENV+=	ADA_PROJECT_PATH=${APP}
-MY_MAKE_ENV+=		PROCESSORS=${MAKE_JOBS} \
-			ADA_PROJECT_PATH=${APP}
+MY_MAKE_ENV+=		PROCESSORS=${MAKE_JOBS:U1:Q} \
+			ADA_PROJECT_PATH=${APP} \
+			PATH=${PREFIX}/gcc-aux/bin:${PATH}
 MAKE_ARGS=		Build=Production
 APP=			${PREFIX}/lib/gnat
 WRKSRC=			${WRKDIR}/gps-release-ide-${GPS_VERSION}-src
