@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.29 2014/04/30 15:07:17 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.32 2014/05/05 20:47:14 ryoon Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -11,9 +11,15 @@ USE_LANGUAGES+=		c99 c++
 UNLIMIT_RESOURCES+=	datasize
 
 .include "../../mk/bsd.prefs.mk"
+# tar(1) of OpenBSD 5.5 has no --exclude command line option.
+.if ${OPSYS} == "OpenBSD"
+TOOLS_PLATFORM.tar=	${TOOLS_PREFIX.bsdtar}/bin/bsdtar
+USE_TOOLS+=		bsdtar
+.endif
 # gcc45-4.5.3 of lang/gcc45 does not generate proper binary,
-# but gcc 4.5.4 of NetBSD 7 generates working binary.
-.if !empty(MACHINE_PLATFORM:MNetBSD-5.*)
+# but gcc 4.5.4 of NetBSD 6.99 generates working binary.
+# gcc45 has no OpenBSD support, and gcc46 has it.
+.if !empty(MACHINE_PLATFORM:MNetBSD-5.*) || !empty(MACHINE_PLATFORM:MOpenBSD*)
 GCC_REQD+=		4.6
 .  if ${MACHINE_ARCH} == "i386"
 # Fix for PR pkg/48152.
@@ -138,8 +144,7 @@ PLIST.throwwrapper=	yes
 PLIST.sps=	yes
 .endif
 
-.if !empty(MACHINE_PLATFORM:MLinux-*-arm*) || ${OPSYS} == "DragonFly" \
-    || ${OPSYS} == "FreeBSD" || ${OPSYS} == "NetBSD" || ${OPSYS} == "OpenBSD"
+.if !empty(MACHINE_PLATFORM:MLinux-*-arm*)
 PLIST.tremor=	yes
 .else
 PLIST.vorbis=	yes
@@ -174,20 +179,28 @@ CONFIGURE_ENV+=	ac_cv_thread_keyword=no
 PREFER.bzip2?=	pkgsrc
 .endif
 
+.if ${OPSYS} == "OpenBSD"
+PLIST_SUBST+=	DLL_SUFFIX=".so.1.0"
+.elif ${OPSYS} == "Darwin"
+PLIST_SUBST+=	DLL_SUFFIX=".dylib"
+.else
+PLIST_SUBST+=	DLL_SUFFIX=".so"
+.endif
+
 .include "../../archivers/bzip2/buildlink3.mk"
 #.include "../../audio/libopus/buildlink3.mk"
 #.include "../../audio/tremor/buildlink3.mk"
 #.include "../../audio/libvorbis/buildlink3.mk"
-BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.8.0.2
+BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.8.2
 CONFIGURE_ENV+=	ac_cv_sqlite_secure_delete=yes	# c.f. patches/patch-al
 .include "../../databases/sqlite3/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/libffi/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.10.2
+BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.10.3
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nss+=	nss>=3.15.4
+BUILDLINK_API_DEPENDS.nss+=	nss>=3.16
 .include "../../devel/nss/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
@@ -205,3 +218,5 @@ BUILDLINK_API_DEPENDS.gtk2+=	gtk2+>=2.18.3nb1
 .include "../../multimedia/gstreamer0.10/buildlink3.mk"
 .include "../../multimedia/gst-plugins0.10-base/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
+BUILDLINK_API_DEPENDS.pixman+= pixman>=0.25.2
+.include "../../x11/pixman/buildlink3.mk"

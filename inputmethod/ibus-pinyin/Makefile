@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.23 2014/04/09 07:27:09 obache Exp $
+# $NetBSD: Makefile,v 1.26 2014/05/03 13:14:38 alnsn Exp $
 #
 
 DISTNAME=	ibus-pinyin-1.5.0
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	inputmethod chinese
 MASTER_SITES=	http://ibus.googlecode.com/files/
 
@@ -17,11 +17,6 @@ USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		pkg-config gmake intltool msgfmt
 
-SUBST_CLASSES+=		epython
-SUBST_STAGE.epython=	pre-configure
-SUBST_FILES.epython=	setup/ibus-setup-pinyin.in
-SUBST_SED.epython=	-e 's;exec python;exec ${PYTHONBIN};g'
-
 CONFIGURE_ARGS+=	--localedir=${PREFIX}/${PKGLOCALEDIR}/locale
 
 .include "options.mk"
@@ -35,10 +30,6 @@ CONFIGURE_ARGS+=	--disable-boost
 CONFIGURE_ARGS+=	--enable-boost
 CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-headers}
 .include "../../devel/boost-headers/buildlink3.mk"
-SUBST_CLASSES+=		shared_ptr
-SUBST_STAGE.shared_ptr=	post-configure
-SUBST_FILES.shared_ptr=	src/*.h
-SUBST_SED.shared_ptr=	-e 's,std::shared_ptr,boost::shared_ptr,g'
 .endif
 
 .include "../../inputmethod/ibus/bad-env-usage.mk"
