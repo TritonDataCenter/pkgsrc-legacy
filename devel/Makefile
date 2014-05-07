@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1890 2014/04/29 19:11:28 wiz Exp $
+# $NetBSD: Makefile,v 1.1892 2014/05/04 12:40:20 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -467,6 +467,7 @@ SUBDIR+=	log4cxx
 SUBDIR+=	log4shib
 SUBDIR+=	lokalize
 SUBDIR+=	ltsa
+SUBDIR+=	lua-BitOp
 SUBDIR+=	lua-alt-getopt
 SUBDIR+=	lua-filesystem
 SUBDIR+=	lua-gi
@@ -479,7 +480,6 @@ SUBDIR+=	lua-mode
 SUBDIR+=	lua-penlight
 SUBDIR+=	lua-posix
 SUBDIR+=	lua-stdlib
-SUBDIR+=	lua-stdlib-doc
 SUBDIR+=	lutok
 SUBDIR+=	lwp
 SUBDIR+=	m17n-lib
