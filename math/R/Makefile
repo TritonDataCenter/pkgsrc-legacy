@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.147 2014/03/14 20:15:38 markd Exp $
+# $NetBSD: Makefile,v 1.149 2014/05/05 00:48:07 ryoon Exp $
 
-DISTNAME=		R-3.0.3
+DISTNAME=		R-3.1.0
+PKGREVISION=		1
 CATEGORIES=		math
 MASTER_SITES=		${MASTER_SITE_R_CRAN:=base/R-3/}
 
@@ -22,7 +23,6 @@ INSTALL_TARGET=		install install-info
 TEST_TARGET=		check
 USE_TOOLS+=		gmake gzip:run makeinfo perl:run sed unzip:run xmkmf
 USE_TOOLS+=		pkg-config
-USE_GNU_ICONV=		yes		# latin1 support, iconvlist
 USE_LANGUAGES=		c c++ fortran
 USE_LIBTOOL=		yes
 TEXINFO_REQD=		4.7
@@ -46,6 +46,10 @@ CONFIGURE_ARGS+=	--with-system-xz
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD"
 CONFIGURE_ARGS+=	--enable-long-double=no
+.endif
+
+.if ${OPSYS} != "Linux"
+USE_GNU_ICONV=		yes		# latin1 support, iconvlist
 .endif
 
 # Disable Mac OS specific support used by R.app
