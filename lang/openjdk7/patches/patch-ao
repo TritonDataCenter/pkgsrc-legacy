@@ -1,12 +1,12 @@
-$NetBSD: patch-ao,v 1.4 2013/06/23 17:39:43 jperkin Exp $
+$NetBSD$
 
 Support rhino.
 
 Disable SunOS multiarch.
 
---- jdk/make/common/Release.gmk.orig	2013-06-21 13:12:13.781215177 +0000
+--- jdk/make/common/Release.gmk.orig	2014-01-25 07:16:27.000000000 +0000
 +++ jdk/make/common/Release.gmk
-@@ -67,7 +67,7 @@ EXPORTED_PRIVATE_PKGS = com.sun.servicet
+@@ -66,7 +66,7 @@ EXPORTED_PRIVATE_PKGS = com.oracle.net \
  # 64-bit solaris has a few special cases. We define the variable
  # SOLARIS64 for use in this Makefile to easily test those cases
  ifeq ($(PLATFORM), solaris)
@@ -15,7 +15,7 @@ Disable SunOS multiarch.
      SOLARIS64 = true
      IMAGE_BINDIR = bin/$(ARCH)
    endif
-@@ -227,7 +227,7 @@ endif
+@@ -229,7 +229,7 @@ endif
  INITIAL_IMAGE_JRE=initial-image-jre
  INITIAL_IMAGE_JDK=initial-image-jdk
  ifeq ($(PLATFORM), solaris)
@@ -24,7 +24,16 @@ Disable SunOS multiarch.
      INITIAL_IMAGE_JRE=initial-image-jre-sol64
      INITIAL_IMAGE_JDK=initial-image-jdk-sol64
    endif
-@@ -842,6 +842,7 @@ initial-image-jre:: initial-image-jre-se
+@@ -818,7 +818,7 @@ initial-image-jre-sol64:: initial-image-
+ # drive names like C:
+ initial-image-jre:: initial-image-jre-setup \
+ 		    $(JRE_DOCFILES) \
+-		    $(RT_JAR) $(RESOURCES_JAR) $(JSSE_JAR) $(JFR_JAR) \
++		    $(RHINO_JAR) $(RT_JAR) $(RESOURCES_JAR) $(JSSE_JAR) $(JFR_JAR) \
+ 		    $(BUILDMETAINDEX_JARFILE)
+ 	@# Copy in bin directory
+ 	$(CD) $(OUTPUTDIR) && $(FIND) bin -depth | $(CPIO) -pdum $(JRE_IMAGE_DIR)
+@@ -846,6 +846,7 @@ initial-image-jre:: initial-image-jre-se
  	$(CP) $(RT_JAR) $(JRE_IMAGE_DIR)/lib/rt.jar
  	$(CP) $(RESOURCES_JAR) $(JRE_IMAGE_DIR)/lib/resources.jar
  	$(CP) $(JSSE_JAR) $(JRE_IMAGE_DIR)/lib/jsse.jar
@@ -32,7 +41,7 @@ Disable SunOS multiarch.
  ifneq ($(JFR_JAR),)
  	$(CP) $(JFR_JAR) $(JRE_IMAGE_DIR)/lib/jfr.jar
  endif
-@@ -1170,7 +1171,8 @@ initial-image-jdk:: initial-image-jdk-se
+@@ -1175,7 +1176,8 @@ initial-image-jdk:: initial-image-jdk-se
  	@#
  	@# Swing BeanInfo generation
  	@#
