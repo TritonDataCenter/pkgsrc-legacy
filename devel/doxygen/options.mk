@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.8 2013/11/20 04:50:47 dsainty Exp $
+# $NetBSD: options.mk,v 1.10 2014/05/12 03:10:57 minskim Exp $
 #
 PKG_OPTIONS_VAR=	PKG_OPTIONS.doxygen
 PKG_SUPPORTED_OPTIONS=	latex
@@ -20,6 +20,7 @@ BUILD_DEPENDS+=	tex-epsf-[0-9]*:../../print/tex-epsf
 DEPENDS+=	dvipsk-[0-9]*:../../print/dvipsk
 DEPENDS+=	makeindexk-[0-9]*:../../textproc/makeindexk
 DEPENDS+=	tex-a4wide>=2010nb1:../../print/tex-a4wide
+DEPENDS+=	tex-cm-super-[0-9]*:../../fonts/tex-cm-super
 DEPENDS+=	tex-ec-[0-9]*:../../fonts/tex-ec
 DEPENDS+=	tex-epstopdf-[0-9]*:../../graphics/tex-epstopdf
 DEPENDS+=	tex-latex-bin-[0-9]*:../../print/tex-latex-bin
@@ -45,6 +46,7 @@ DEPENDS+=	tex-pspicture-[0-9]*:../../print/tex-pspicture
 DEPENDS+=	tex-sectsty-[0-9]*:../../print/tex-sectsty
 DEPENDS+=	tex-tocloft-[0-9]*:../../print/tex-tocloft
 DEPENDS+=	tex-tools-[0-9]*:../../print/tex-tools
+DEPENDS+=	tex-wasysym-[0-9]*:../../fonts/tex-wasysym
 DEPENDS+=	tex-xcolor-[0-9]*:../../print/tex-xcolor
 DEPENDS+=	tex-xtab-[0-9]*:../../print/tex-xtab
 

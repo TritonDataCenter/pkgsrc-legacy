@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.3 2014/01/25 10:30:28 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2014/05/09 11:38:27 joerg Exp $
 
-DISTNAME=	Django-1.4.10
+DISTNAME=	Django-1.4.12
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	www python
 MASTER_SITES=	http://www.djangoproject.com/m/releases/1.4/
@@ -20,7 +20,7 @@ REPLACE_PYTHON+=	${WRKSRC}/django/contrib/admin/static/admin/js/*.py
 REPLACE_PYTHON+=	${WRKSRC}/django/conf/project_template/*.py
 
 PYTHON_VERSIONED_DEPENDENCIES=	flup
-PYTHON_VERSIONS_INCOMPATIBLE=	33 # use py-django if you want python-3.x support
+PYTHON_VERSIONS_INCOMPATIBLE=	33 34 # use py-django if you want python-3.x support
 
 .include "options.mk"
 

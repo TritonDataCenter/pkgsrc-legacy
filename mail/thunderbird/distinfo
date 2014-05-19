@@ -1,12 +1,12 @@
-$NetBSD: distinfo,v 1.138 2014/03/21 12:37:58 wiz Exp $
+$NetBSD: distinfo,v 1.142 2014/05/18 21:28:28 joerg Exp $
 
 SHA1 (enigmail-1.6.tar.gz) = 51a7eb7d86ce24d8199f741a0079f0d56ecd6368
 RMD160 (enigmail-1.6.tar.gz) = a854bb37a6a7f298f6cc268110dcb21d00909fa4
 Size (enigmail-1.6.tar.gz) = 1231111 bytes
-SHA1 (thunderbird-24.4.0.source.tar.bz2) = d6a0c06e496ca5154eefc3f915d11ba653bd6832
-RMD160 (thunderbird-24.4.0.source.tar.bz2) = b114045f0afb61969e3825bd9cf5967f598aef9e
-Size (thunderbird-24.4.0.source.tar.bz2) = 140040804 bytes
-SHA1 (patch-aa) = 0ed482fc1d015afcb4813d74ac602acbe875aa6e
+SHA1 (thunderbird-24.5.0.source.tar.bz2) = d77c91c341398bb6506a588e53e0f8973f361811
+RMD160 (thunderbird-24.5.0.source.tar.bz2) = 4735b2a8ce1e64ea6af06d71bcd7f87317b37c80
+Size (thunderbird-24.5.0.source.tar.bz2) = 140048545 bytes
+SHA1 (patch-aa) = bd980f50da7fb78499a4a7689a3278743b0e72c4
 SHA1 (patch-ak) = b47277baa1137a7610445b7c4dd147b331d5c5e6
 SHA1 (patch-al) = 9970e89e92ff8b120119b560cb661eabd3a387de
 SHA1 (patch-ao) = 127168a20fde73fd277de8f0c1ab8020b512723e
@@ -46,6 +46,9 @@ SHA1 (patch-mozilla_config_stl__wrappers_ostream) = 67559c5ab17088680b86dea6b081
 SHA1 (patch-mozilla_config_system-headers) = 26f0b0471fcd60a834bdbbdb44093b166a7755e7
 SHA1 (patch-mozilla_config_system__wrappers_unwind.h) = 32d4ab3fbf80bf19783dab7c4a875a7262f419cf
 SHA1 (patch-mozilla_content_media_gstreamer_GStreamerFormatHelper.cpp) = 0e0f18e19b54e42814207dfdfeb1ea6cacc656d3
+SHA1 (patch-mozilla_content_svg_content_src_SVGComponentTransferFunctionElement.h) = 2ecd1de12b1d1ce885c5ca0bf0e1d7ecdfb9a514
+SHA1 (patch-mozilla_content_svg_content_src_nsSVGFilters.cpp) = 5a75926b80154dadf676e67248b6256c665001fb
+SHA1 (patch-mozilla_content_svg_content_src_nsSVGFilters.h) = a079f72aae20ce6c247c1fa50638bbedde05626e
 SHA1 (patch-mozilla_dom_plugins_ipc_PluginModuleChild.cpp) = b0b42b8790ea22a075e2de711e1881c050ff4c1f
 SHA1 (patch-mozilla_dom_plugins_ipc_PluginModuleChild.h) = ed5bcf926bce86ca73187ac13181c02e2352cc68
 SHA1 (patch-mozilla_extensions_auth_nsAuthGSSAPI.cpp) = 3b997d600f9bc4b537b001fb2efd9eff951d9bae

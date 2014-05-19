@@ -1,8 +1,8 @@
-$NetBSD: patch-Makefile.org,v 1.1 2014/04/02 12:11:35 he Exp $
+$NetBSD: patch-Makefile.org,v 1.2 2014/05/13 02:23:11 rodent Exp $
 
 Adjust build procedure.
 
---- Makefile.org.orig	2013-02-11 15:26:04.000000000 +0000
+--- Makefile.org.orig	Mon Mar 17 16:14:20 2014
 +++ Makefile.org
 @@ -28,6 +28,7 @@ INSTALLTOP=/usr/local/ssl
  

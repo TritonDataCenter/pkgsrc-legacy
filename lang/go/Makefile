@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2014/03/03 15:41:12 bsiegert Exp $
+# $NetBSD: Makefile,v 1.8 2014/05/16 11:53:10 wiz Exp $
 
 VERSION=	1.2.1
+PKGREVISION=	1
 DISTNAME=	go${VERSION}.src
 PKGNAME=	go-${VERSION}
 CATEGORIES=	lang
@@ -91,6 +92,7 @@ do-build:
 do-install:
 	cd ${WRKSRC} && rm -f .hgignore .hgtags
 	cd ${WRKDIR} && pax -rw go ${DESTDIR}${PREFIX}
+	${RM} -f ${DESTDIR}${PREFIX}/go/src/cmd/ld/elf.c.orig
 .for cmd in go gofmt
 	cd ${DESTDIR}${PREFIX}/bin && ln -sf ../go/bin/${cmd} ${cmd}
 .endfor

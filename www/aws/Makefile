@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.16 2014/04/30 16:30:33 marino Exp $
+# $NetBSD: Makefile,v 1.19 2014/05/17 16:10:49 wiz Exp $
 #
 
 DISTNAME=	aws-${AWS_VERSION}
-PKGREVISION=	4
+PKGREVISION=	6
 CATEGORIES=	www
 MASTER_SITES=	http://downloads.dragonlace.net/src/
 EXTRACT_SUFX=	.tar.bz2
@@ -27,7 +27,8 @@ MY_MAKE_ENV+=		ADA_PROJECT_PATH=${PREFIX}/lib/gnat
 MY_MAKE_ENV+=		AWK=awk
 MY_MAKE_ENV+=		PATH=${PREFIX}/gcc-aux/bin:${PATH}
 MY_CONF_ENV+=		PATH=${PREFIX}/gcc-aux/bin:${PATH}
-CONFIGURE_ARGS+=	LPATH=${PREFIX}/lib ZPATH=/usr/lib
+CONFIGURE_ARGS+=	LPATH=${BUILDLINK_PREFIX.openssl}/lib
+CONFIGURE_ARGS+=	ZPATH=${BUILDLINK_PREFIX.zlib}/lib
 
 # Link options were added for the aws library
 # "-R" option disables all rpaths except adalib and compiler libs.  This is
@@ -39,9 +40,11 @@ SUBST_CLASSES+= 	rpath
 SUBST_STAGE.rpath=	pre-configure
 SUBST_MESSAGE.rpath=	Adjust rpaths of shared libraries
 SUBST_FILES.rpath=	src/src.gpr include/include.gpr \
-			demos/test_ldap/test_ldap.gpr
+			demos/test_ldap/test_ldap.gpr tools/tools.gpr
 SUBST_SED.rpath=	-e "s,@ADDITIONAL_RPATH@,${ADDITIONAL_RPATH}," \
-			-e "s,@PREFIX@,${PREFIX},g"
+			-e "s,@PREFIX@,${PREFIX},g" \
+			-e "s,@RFLAG@,${LINKER_RPATH_FLAG},g" \
+			-e "s,@SSL_RPATH@,${BUILDLINK_PREFIX.openssl}/lib,g"
 ADDITIONAL_RPATH=	${PREFIX}/lib:${PREFIX}/lib/aws/relocatable
 
 GENERATE_PLIST=  cd ${DESTDIR}${PREFIX};
@@ -61,7 +64,6 @@ do-test: install
 
 do-install:
 	cd ${WRKSRC} && ${SETENV} ${INSTALL_ENV} ${GMAKE} install
-	@cd ${DESTDIR}/${PREFIX} && ${FIND} * -type d -empty -exec rmdir {} \;
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/pyversion.mk"
