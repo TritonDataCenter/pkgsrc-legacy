@@ -1,4 +1,4 @@
-# $NetBSD: Haiku.mk,v 1.9 2013/11/23 07:50:51 obache Exp $
+# $NetBSD: Haiku.mk,v 1.12 2014/05/18 10:13:59 obache Exp $
 #
 # Variable definitions for the Haiku operating system.
 
@@ -18,7 +18,6 @@ CPP_PRECOMP_FLAGS?=	# unset
 DEF_UMASK?=		022
 DEFAULT_SERIAL_DEVICE?=	/dev/tty
 EXPORT_SYMBOLS_LDFLAGS?=	# Don't add symbols to the dynamic symbol table
-#GROUPADD?=		/bin/groupadd
 MOTIF_TYPE_DEFAULT?=	motif	# default 2.0 compatible libs type
 NOLOGIN?=		/bin/false
 PKG_TOOLS_BIN?=		${LOCALBASE}/sbin
@@ -26,16 +25,26 @@ ROOT_CMD?=		${SU} - root -c
 ROOT_GROUP?=		root
 ROOT_USER?=		user
 SERIAL_DEVICES?=	/dev/tty
-ULIMIT_CMD_datasize?=	ulimit -d `ulimit -H -d`
-ULIMIT_CMD_stacksize?=	ulimit -s `ulimit -H -s`
-ULIMIT_CMD_memorysize?=	ulimit -m `ulimit -H -m`
+ULIMIT_CMD_datasize?=	:
+ULIMIT_CMD_stacksize?=	:
+ULIMIT_CMD_memorysize?=	:
+.if exists(/bin/groupadd)
 USERADD?=		/bin/useradd
+GROUPADD?=		/bin/groupadd
+.endif
 
+.if exists(/boot/system/develop)
+_OPSYS_SYSTEM_RPATH?=	/boot/system/lib
+_OPSYS_LIB_DIRS?=	/boot/system/develop/lib /boot/system/lib
+_OPSYS_INCLUDE_DIRS?=	/boot/system/develop/headers \
+			/boot/system/develop/headers/posix
+.else
 _OPSYS_SYSTEM_RPATH?=	/boot/common/lib:/boot/system/lib
 _OPSYS_LIB_DIRS?=	/boot/common/lib /boot/system/lib
 _OPSYS_INCLUDE_DIRS?=	/boot/common/include \
 			/boot/develop/headers/posix \
 			/boot/develop/headers/3rdparty
+.endif
 
 _OPSYS_HAS_INET6=	yes	# IPv6 is standard
 _OPSYS_HAS_JAVA=	no	# Java is not standard

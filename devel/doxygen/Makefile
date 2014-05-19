@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.111 2014/04/25 08:32:22 wiz Exp $
+# $NetBSD: Makefile,v 1.114 2014/05/12 03:10:57 minskim Exp $
 
 DISTNAME=	doxygen-1.8.7.src
 PKGNAME=	${DISTNAME:S/.src//}
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/ \
 		http://ftp.stack.nl/pub/users/dimitri/
@@ -10,8 +11,6 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.doxygen.org/
 COMMENT=	Documentation system for C++, Java, IDL and C
 LICENSE=	gnu-gpl-v2
-
-DEPENDS+=	tex-wasysym-[0-9]*:../../fonts/tex-wasysym
 
 WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
 UNLIMIT_RESOURCES+=	datasize
@@ -32,7 +31,7 @@ MAKE_FLAGS+=		MAN1DIR=${PKGMANDIR}/man1
 
 REPLACE_PERL=		tmake/bin/tmake
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 # not yet ported as of 1.8.6
+PYTHON_VERSIONS_INCOMPATIBLE=	33 34 # not yet ported as of 1.8.6
 
 # Case Insensitive or Case Sensitive File System
 PLIST_VARS+=		ci cs

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.426 2014/04/25 09:17:14 jperkin Exp $
+# $NetBSD: Makefile,v 1.428 2014/05/15 05:35:43 richard Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -179,6 +179,7 @@ SUBDIR+=	m17n-contrib
 SUBDIR+=	m17n-db
 SUBDIR+=	m17n-docs
 SUBDIR+=	marble
+SUBDIR+=	mbuffer
 SUBDIR+=	mirmon
 SUBDIR+=	mkcue
 SUBDIR+=	mmv
@@ -233,6 +234,7 @@ SUBDIR+=	py-carddav
 SUBDIR+=	py-stdnum
 SUBDIR+=	py-trytond-company
 SUBDIR+=	py-trytond-party
+SUBDIR+=	py-trytond-party-siret
 SUBDIR+=	py-trytond-product
 SUBDIR+=	py-trytond-stock
 SUBDIR+=	py-trytond-stock-lot

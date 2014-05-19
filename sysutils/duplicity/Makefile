@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.26 2014/01/25 10:30:21 wiz Exp $
+# $NetBSD: Makefile,v 1.28 2014/05/12 20:39:33 riz Exp $
 
-DISTNAME=		duplicity-0.6.22
+DISTNAME=		duplicity-0.6.24
 CATEGORIES=		sysutils net
 MASTER_SITES=		http://code.launchpad.net/duplicity/0.6-series/${PKGVERSION_NOREV}/+download/
 
@@ -13,6 +13,7 @@ USE_PKGLOCALEDIR=	yes
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.duplicity
 PKG_SUPPORTED_OPTIONS=	gnupg2
+DEPENDS+=	${PYPKGPREFIX}-lockfile>=0.9.1:../../devel/py-lockfile
 .include "../../mk/bsd.options.mk"
 .if !empty(PKG_OPTIONS:Mgnupg2)
 DEPENDS+=	gnupg2-[0-9]*:../../security/gnupg2
@@ -23,7 +24,7 @@ GPGPATH=	${LOCALBASE}/bin/gpg
 .endif
 
 REPLACE_PYTHON+=	bin/*
-PYTHON_VERSIONS_INCOMPATIBLE=	33 # not yet ported as of 0.6.22
+PYTHON_VERSIONS_INCOMPATIBLE=	33 34 # not yet ported as of 0.6.22
 
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-configure
@@ -43,6 +44,6 @@ post-extract:
 
 BUILDLINK_API_DEPENDS.librsync+=	librsync>=0.9.6
 .include "../../devel/librsync/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../lang/python/egg.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"

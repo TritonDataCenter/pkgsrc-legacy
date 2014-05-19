@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.507 2014/05/03 02:27:57 rodent Exp $
+# $NetBSD: Makefile,v 1.514 2014/05/18 13:17:30 wiz Exp $
 #
 
 COMMENT=	Security tools
@@ -13,6 +13,7 @@ SUBDIR+=	MyPasswordSafe
 SUBDIR+=	PACK
 SUBDIR+=	PAM
 SUBDIR+=	PortableSigner
+SUBDIR+=	TweetNaCl
 SUBDIR+=	aide
 SUBDIR+=	aide06
 SUBDIR+=	amap
@@ -215,6 +216,7 @@ SUBDIR+=	p5-Authen-TacacsPlus
 SUBDIR+=	p5-BSD-arc4random
 SUBDIR+=	p5-Bytes-Random-Secure
 SUBDIR+=	p5-Crypt-Blowfish
+SUBDIR+=	p5-Crypt-Blowfish_PP
 SUBDIR+=	p5-Crypt-CAST5_PP
 SUBDIR+=	p5-Crypt-CBC
 SUBDIR+=	p5-Crypt-CipherSaber
@@ -345,6 +347,7 @@ SUBDIR+=	py-cryptkit
 SUBDIR+=	py-crypto
 SUBDIR+=	py-cryptography
 SUBDIR+=	py-cryptopp
+SUBDIR+=	py-cybox
 SUBDIR+=	py-denyhosts
 SUBDIR+=	py-ecdsa
 SUBDIR+=	py-ezPyCrypto
@@ -353,15 +356,19 @@ SUBDIR+=	py-hsm
 SUBDIR+=	py-itsdangerous
 SUBDIR+=	py-keyring
 SUBDIR+=	py-lasso
+SUBDIR+=	py-libtaxii
 SUBDIR+=	py-m2crypto
 SUBDIR+=	py-mcrypt
 SUBDIR+=	py-oauth
 SUBDIR+=	py-oauth2
+SUBDIR+=	py-oauthlib
 SUBDIR+=	py-openid
 SUBDIR+=	py-paramiko
 SUBDIR+=	py-passlib
 SUBDIR+=	py-prewikka
+SUBDIR+=	py-requests-oauthlib
 SUBDIR+=	py-smbpasswd
+SUBDIR+=	py-stix
 SUBDIR+=	py-tlslite
 SUBDIR+=	py-xmlsec
 SUBDIR+=	pyca

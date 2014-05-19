@@ -1,4 +1,4 @@
-<!-- $NetBSD: components.xml,v 1.44 2012/10/17 16:16:32 abs Exp $ -->
+<!-- $NetBSD: components.xml,v 1.47 2014/05/09 09:58:52 wiz Exp $ -->
 
 <chapter id="components"> <?dbhtml filename="components.html"?>
 <title>Package components - files, directories and contents</title>
@@ -30,9 +30,10 @@ sections.</para>
     website.</para></listitem>
 
     <listitem><para><varname>PKGNAME</varname> is the name of the
-    package, as used by pkgsrc. You only need to provide it if
+    package, as used by pkgsrc. You need to provide it if
     <varname>DISTNAME</varname> (which is the default) is not a good
-    name for the package in pkgsrc.  Usually it is the pkgsrc
+    name for the package in pkgsrc or <varname>DISTNAME</varname> is not
+    provided (no distribution file is required).  Usually it is the pkgsrc
     directory name together with the version number. It must match the
     regular expression
     <varname>^[A-Za-z0-9][A-Za-z0-9-_.+]*$</varname>, that is, it
@@ -608,9 +609,21 @@ MESSAGE_SUBST+=  SOMEVAR="somevalue"
 	  </listitem>
 	</varlistentry>
 
-	<varlistentry><term><filename>ALTERNATIVES</filename></term>
-	<listitem><para>FIXME: There is no documentation on the
-	alternatives framework.</para></listitem></varlistentry>
+	<varlistentry>
+	  <term><filename>ALTERNATIVES</filename></term>
+
+	  <listitem>
+	    <para>This file is used by the alternatives framework.
+	    It creates, configures, and destroys generic wrappers used to
+	    run programs with similar interfaces.
+	    See pkg_alternatives(8) from pkgtools/pkg_alternatives
+            for more information.</para>
+
+	    <para>Each line of the file contains two filenames, first
+	    the wrapper and then the alternative provided by the package.
+	    Both paths are relative to <varname>PREFIX</varname>.</para>
+	  </listitem>
+	</varlistentry>
 
       </variablelist>
 
