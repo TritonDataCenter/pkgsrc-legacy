@@ -1,4 +1,4 @@
-$NetBSD: patch-ab,v 1.78 2014/03/08 19:57:25 joerg Exp $
+$NetBSD: patch-ab,v 1.80 2014/05/10 15:32:08 joerg Exp $
 
 --- configure.orig	2014-03-06 15:38:07.000000000 +0000
 +++ configure

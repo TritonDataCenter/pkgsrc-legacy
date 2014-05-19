@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.44 2014/05/05 21:16:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.47 2014/05/16 18:57:03 tron Exp $
 
 DISTNAME=	libvpx_1.3.0.orig
 PKGNAME=	${DISTNAME:S/_/-/:S/.orig//}
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_DEBIAN:=pool/main/libv/libvpx/}
 EXTRACT_SUFX=	.tar.bz2
@@ -10,15 +11,6 @@ MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/webm/
 COMMENT=	On2 VP8 library from Google
 LICENSE=	modified-bsd
-
-# PR pkg/48508: GCC 4.4 or later is required to compile ssse3 code.
-# And It seems that gcc 4.4 and 4.5 do not support OpenBSD/amd64 at least.
-.include "../../mk/bsd.prefs.mk"
-.if !empty(MACHINE_PLATFORM:MOpenBSD-*-amd64)
-GCC_REQD+=	4.6
-.else
-GCC_REQD+=	4.4
-.endif
 
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.3 2014/04/21 22:07:04 wiedi Exp $
+# $NetBSD: Makefile,v 1.5 2014/05/14 14:00:42 jperkin Exp $
 
 DISTNAME=	spiped-1.3.1
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	net security
 MASTER_SITES=	http://www.tarsnap.com/spiped/
 EXTRACT_SUFX=	.tgz
@@ -22,6 +22,12 @@ MAKE_ENV+=	LDADD_EXTRA="-lsocket -lnsl"
 .endif
 
 INSTALLATION_DIRS=	share/doc/spiped ${PKGMANDIR}/man1
+
+SMF_METHODS=	spiped
+.if ${INIT_SYSTEM} == "smf"
+MESSAGE_SRC+=	MESSAGE.smf
+MESSAGE_SUBST+=	PKG_SYSCONFDIR=${PKG_SYSCONFDIR:Q}
+.endif
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/spiped

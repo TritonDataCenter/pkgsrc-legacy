@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.19 2014/03/29 09:05:51 prlw1 Exp $
+# $NetBSD: Makefile,v 1.21 2014/05/14 12:43:39 gdt Exp $
 
 VERSION=	4.2.4
 VERSION_IPXE=	1.0.0
@@ -26,7 +26,7 @@ BUILD_DEPENDS+= acpica-utils-[0-9]*:../../sysutils/acpica-utils
 DEPENDS+=		${PYPKGPREFIX}-curses>=0nb4:../../devel/py-curses
 DEPENDS+=		${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 # py-xml
+PYTHON_VERSIONS_INCOMPATIBLE=	33 34 # py-xml
 
 PKG_SYSCONFSUBDIR=	xen
 
@@ -196,7 +196,7 @@ CONF_FILES_PERMS+=	${EGDIR}/scripts/${s} ${PKG_SYSCONFDIR}/scripts/${s} \
 pre-build:
 	rm -f ${WRKSRC}/check/check_x11_devel
 .for s in ${BLKTAP_FILES}
-	${CP} ${FILESDIR}/${s} ${WRKSRC}/blktap/drivers/
+	${CP} -f ${FILESDIR}/${s} ${WRKSRC}/blktap/drivers/
 .endfor
 	${SED} -e "s,@XENDCONFDIR@,${PKG_SYSCONFDIR},g" \
 		${XENTOP}/docs/man/xl.pod.1 |\

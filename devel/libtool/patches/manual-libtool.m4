@@ -1,4 +1,4 @@
-$NetBSD: manual-libtool.m4,v 1.38 2014/03/08 19:57:25 joerg Exp $
+$NetBSD: manual-libtool.m4,v 1.40 2014/05/10 15:32:08 joerg Exp $
 
 --- libltdl/m4/libtool.m4.orig	2011-10-17 10:17:05.000000000 +0000
 +++ libltdl/m4/libtool.m4

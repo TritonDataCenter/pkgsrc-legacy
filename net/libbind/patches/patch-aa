@@ -1,19 +1,18 @@
-$NetBSD: patch-aa,v 1.2 2010/12/31 14:36:07 obache Exp $
+$NetBSD: patch-aa,v 1.4 2014/05/11 10:16:40 obache Exp $
+
+* regen with pkgsrc patches
 
 --- configure.orig	2009-03-05 01:37:31.000000000 +0000
 +++ configure
-@@ -25135,9 +25135,9 @@ case $use_libtool in
- 		O=lo
- 		A=la
- 		LIBTOOL_MKDEP_SED='s;\.o;\.lo;'
--		LIBTOOL_MODE_COMPILE='--mode=compile'
-+		LIBTOOL_MODE_COMPILE='--mode=compile --tag=CC'
- 		LIBTOOL_MODE_INSTALL='--mode=install'
--		LIBTOOL_MODE_LINK='--mode=link'
-+		LIBTOOL_MODE_LINK='--mode=link --tag=CC'
- 		;;
- 	*)
- 		O=o
+@@ -21891,7 +21891,7 @@ then
+ 		# currently work with bind9, but can be chosen with
+ 		# the --with-ptl2 option for those who wish to
+ 		# experiment with it.
+-		CC="gcc"
++		# CC="gcc"
+ 		{ echo "$as_me:$LINENO: checking which NetBSD thread library to use" >&5
+ echo $ECHO_N "checking which NetBSD thread library to use... $ECHO_C" >&6; }
+ 
 @@ -25928,7 +25928,7 @@ case "$host" in
  			PORT_NONBLOCK="#define PORT_NONBLOCK O_NDELAY"
  			PORT_DIR="port/cygwin";;
@@ -23,3 +22,120 @@ $NetBSD: patch-aa,v 1.2 2010/12/31 14:36:07 obache Exp $
  	*-osf*)		PORT_DIR="port/decunix";;
  	*-freebsd*)	PORT_DIR="port/freebsd";;
  	*-hpux9*)	PORT_DIR="port/hpux9";;
+@@ -32049,6 +32049,56 @@ else
+   echo "$as_me: failed program was:" >&5
+ sed 's/^/| /' conftest.$ac_ext >&5
+ 
++	cat >conftest.$ac_ext <<_ACEOF
++/* confdefs.h.  */
++_ACEOF
++cat confdefs.h >>conftest.$ac_ext
++cat >>conftest.$ac_ext <<_ACEOF
++/* end confdefs.h.  */
++
++#undef _REENTRANT
++#define _REENTRANT
++#undef __USE_MISC
++#define __USE_MISC
++#include <netdb.h>
++void setprotoent_r (int, struct protoent_data *);
++
++int
++main ()
++{
++
++  ;
++  return 0;
++}
++_ACEOF
++rm -f conftest.$ac_objext
++if { (ac_try="$ac_compile"
++case "(($ac_try" in
++  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
++  *) ac_try_echo=$ac_try;;
++esac
++eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
++  (eval "$ac_compile") 2>conftest.er1
++  ac_status=$?
++  grep -v '^ *+' conftest.er1 >conftest.err
++  rm -f conftest.er1
++  cat conftest.err >&5
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); } && {
++	 test -z "$ac_c_werror_flag" ||
++	 test ! -s conftest.err
++       } && test -s conftest.$ac_objext; then
++  PROTO_R_SET_RESULT="#undef PROTO_R_SET_RESULT"
++PROTO_R_SET_RETURN="#define PROTO_R_SET_RETURN void"
++
++else
++  echo "$as_me: failed program was:" >&5
++sed 's/^/| /' conftest.$ac_ext >&5
++
++
++fi
++
++rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+ 
+ fi
+ 
+@@ -33647,6 +33697,59 @@ else
+   echo "$as_me: failed program was:" >&5
+ sed 's/^/| /' conftest.$ac_ext >&5
+ 
++	cat >conftest.$ac_ext <<_ACEOF
++/* confdefs.h.  */
++_ACEOF
++cat confdefs.h >>conftest.$ac_ext
++cat >>conftest.$ac_ext <<_ACEOF
++/* end confdefs.h.  */
++
++#undef _REENTRANT
++#define _REENTRANT
++#undef __USE_MISC
++#define __USE_MISC
++#include <netdb.h>
++void setservent_r(int, struct servent_data *);
++
++
++int
++main ()
++{
++
++  ;
++  return 0;
++}
++_ACEOF
++rm -f conftest.$ac_objext
++if { (ac_try="$ac_compile"
++case "(($ac_try" in
++  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
++  *) ac_try_echo=$ac_try;;
++esac
++eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
++  (eval "$ac_compile") 2>conftest.er1
++  ac_status=$?
++  grep -v '^ *+' conftest.er1 >conftest.err
++  rm -f conftest.er1
++  cat conftest.err >&5
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); } && {
++	 test -z "$ac_c_werror_flag" ||
++	 test ! -s conftest.err
++       } && test -s conftest.$ac_objext; then
++
++SERV_R_SET_RESULT="#undef SERV_R_SET_RESULT"
++SERV_R_SET_RETURN="#define SERV_R_SET_RETURN void"
++
++
++else
++  echo "$as_me: failed program was:" >&5
++sed 's/^/| /' conftest.$ac_ext >&5
++
++
++fi
++
++rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+ 
+ fi
+ 
