@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.5 2014/04/19 01:18:23 asau Exp $
+# $NetBSD: Makefile,v 1.7 2014/05/17 16:10:44 wiz Exp $
 #
 # any of ~* is fine, they are the same and just there for Ubuntu
 # so moneyguru's built for all releases
 DISTNAME=	2.7.1
 PKGNAME=	moneyguru-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	finance
 MASTER_SITES=	https://github.com/hsoft/moneyguru/archive/
 
@@ -27,6 +28,7 @@ USE_TOOLS=	pax
 
 PYTHON_VERSIONS_INCOMPATIBLE=	26 27 # 3.x only
 PY_PATCHPLIST=		yes
+PLIST_SUBST+=		PYVERSSUFFIX=${PYVERSSUFFIX}
 REPLACE_PYTHON+=	cocoa/waf
 REPLACE_PYTHON+=	cocoa/wscript
 REPLACE_PYTHON+=	psmtabbarcontrol/waf

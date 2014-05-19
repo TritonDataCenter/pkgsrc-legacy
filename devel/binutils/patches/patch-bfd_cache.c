@@ -1,4 +1,4 @@
-$NetBSD: patch-bfd_cache.c,v 1.1 2014/01/08 21:04:15 jperkin Exp $
+$NetBSD: patch-bfd_cache.c,v 1.2 2014/05/12 13:17:01 jperkin Exp $
 
 Fix sign-compare on SunOS.
 Handle 256 file descriptor limit in 32-bit SunOS environment.

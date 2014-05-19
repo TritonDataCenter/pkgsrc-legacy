@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.21 2014/01/25 09:15:37 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2014/05/15 14:41:57 adam Exp $
 
 .include "../../multimedia/ming/Makefile.common"
 
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=		2
+PKGREVISION=		3
 CATEGORIES=		multimedia
 
 MAINTAINER=		obache@NetBSD.org
@@ -15,7 +15,7 @@ PY_PATCHPLIST=		yes
 PYSETUPSUBDIR=		py_ext
 EGG_NAME=		${DISTNAME:S/ming/mingc/}
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33
+PYTHON_VERSIONS_INCOMPATIBLE=	33 34
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"

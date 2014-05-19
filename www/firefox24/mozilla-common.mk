@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.7 2014/04/19 23:21:42 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.9 2014/05/09 07:37:24 wiz Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -92,7 +92,7 @@ CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}/js/ctypes/libffi/config.sub
 
 PYTHON_VERSIONS_ACCEPTED=	27
 PYTHON_FOR_BUILD_ONLY=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	33 # py-sqlite2
+PYTHON_VERSIONS_INCOMPATIBLE=	33 34 # py-sqlite2
 .include "../../lang/python/application.mk"
 CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
 
@@ -122,8 +122,7 @@ PLIST.throwwrapper=	yes
 PLIST.sps=	yes
 .endif
 
-.if !empty(MACHINE_PLATFORM:MLinux-*-arm*) || ${OPSYS} == "DragonFly" \
-    || ${OPSYS} == "FreeBSD" || ${OPSYS} == "NetBSD" || ${OPSYS} == "OpenBSD"
+.if !empty(MACHINE_PLATFORM:MLinux-*-arm*)
 PLIST.tremor=	yes
 .else
 PLIST.vorbis=	yes

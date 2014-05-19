@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2014/01/09 09:35:29 jperkin Exp $
+# $NetBSD: Makefile,v 1.12 2014/05/13 18:54:02 ryoon Exp $
 
 DISTNAME=	libwps-0.2.4
 CATEGORIES=	converters
