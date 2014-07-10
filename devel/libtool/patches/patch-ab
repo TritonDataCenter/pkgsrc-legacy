@@ -460,9 +460,9 @@ $NetBSD: patch-ab,v 1.85 2016/03/10 12:43:48 tnn Exp $
 -	        # linking a shared library.
 -	        output_verbose_link_cmd='$CC -G $CFLAGS -v conftest.$objext 2>&1 | $GREP -v "^Configured with:" | $GREP "\-L"'
 -	      fi
-+	      archive_cmds_CXX='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags ${wl}-h $wl$soname -o $lib'
++	      archive_cmds_CXX='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags ${wl}-h $wl$soname -o $lib'
 +	      archive_expsym_cmds_CXX='echo "{ global:" > $lib.exp~cat $export_symbols | $SED -e "s/\(.*\)/\1;/" >> $lib.exp~echo "local: *; };" >> $lib.exp~
-+		$CC -shared $pic_flag ${wl}-M $wl$lib.exp $wl-h $wl$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags~$RM $lib.exp'
++		$CC -shared $pic_flag ${wl}-M $wl$lib.exp $wl-h $wl$soname -o $lib $libobjs $deplibs $compiler_flags~$RM $lib.exp'
 +
 +	      # Commands to make compiler produce verbose output that lists
 +	      # what "hidden" libraries, object files and flags are used when
