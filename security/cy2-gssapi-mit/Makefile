@@ -5,7 +5,7 @@ PKGREVISION=	2
 COMMENT=	Cyrus SASL GSSAPI authentication plugin (MIT)
 SASL_PLUGIN=	yes
 
-CONFLICTS=	cyrus-sasl<=2.1.19nb1
+CONFLICTS=	cyrus-sasl<=2.1.19nb1 heimdal cy2-gssapi-heimdal
 
 .include "../../security/cyrus-sasl/Makefile.common"
 
@@ -16,6 +16,8 @@ CONFIGURE_ARGS+=	--with-gss_impl=mit
 BUILD_DIRS=	plugins
 BUILD_TARGET=	libgssapiv2.la
 
+KRB5_ACCEPTED= 	mit-krb5
+KRB5_DEFAULT= 	mit-krb5
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"
 
