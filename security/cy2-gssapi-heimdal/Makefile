@@ -17,6 +17,7 @@ BUILD_DIRS=	plugins
 BUILD_TARGET=	libgssapiv2.la
 KRB5_DEFAULT=	heimdal
 KRB5_ACCEPTED=	heimdal
+KRB5_TYPE=	heimdal
 
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"

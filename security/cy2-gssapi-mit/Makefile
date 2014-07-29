@@ -18,6 +18,8 @@ BUILD_TARGET=	libgssapiv2.la
 
 KRB5_ACCEPTED= 	mit-krb5
 KRB5_DEFAULT= 	mit-krb5
+KRB5_TYPE=	mit-krb5
+
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"
 
