@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<!--
+
+NOTE:  This service manifest is not editable; its contents will
+be overwritten by package or patch operations, including
+operating system upgrade.  Make customizations in a different
+file.
+-->
+
+<service_bundle type='manifest' name='@SMF_NAME@'>
+
+  <service
+      name='@SMF_PREFIX@/@SMF_NAME@'
+      type='service'
+      version='1'>
+    <create_default_instance  enabled="false" />
+    <dependency
+        name='milestone-network'
+        grouping='require_all'
+        restart_on='error'
+        type='service'>
+      <service_fmri value='svc:/milestone/network' />
+    </dependency>
+    <dependency
+        name='config_file'
+        grouping='require_all'
+        restart_on='restart'
+        type='path'>
+      <service_fmri value='file://localhost/@PREFIX@/etc/openldap/slapd.conf' />
+    </dependency>
+
+    <method_context>
+      <method_credential user='@SLAPD_USER@' group='@LDAP_GROUP@' privileges='basic,net_privaddr' />
+    </method_context>
+
+    <exec_method
+        type='method'
+        name='start'
+        exec='@PREFIX@/libexec/slapd -h &quot; %{config/urls} &quot;'
+        timeout_seconds='60' />
+
+    <exec_method
+        type='method'
+        name='stop'
+        exec=':kill'
+        timeout_seconds='60' />
+    <property_group name='config' type='application'>
+      <propval name='urls'
+               type='astring'
+               value='ldap:///' />
+    </property_group>
+
+    <stability value='Evolving' />
+    <template>
+      <common_name>
+	    <loctext xml:lang="C">
+	      OpenLDAP Server
+	    </loctext>
+      </common_name>
+    </template>
+  </service>
+</service_bundle>

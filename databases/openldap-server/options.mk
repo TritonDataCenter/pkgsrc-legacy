@@ -114,3 +114,8 @@ CONFIGURE_ARGS+=	--enable-slapi
 PLIST.slapi=		yes
 .include "../../devel/libltdl/buildlink3.mk"
 .endif
+
+###
+### Set up support for smf(5)
+###
+SMF_NAME=		openldap
