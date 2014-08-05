@@ -1,0 +1,221 @@
+$NetBSD$
+
+Incorporate changes to support git backed from rancid-discuss maling list
+
+--- ../rancid-3.1.dist/bin/rancid-cvs.in	2014-05-19 20:52:41.000000000 +0000
++++ bin/rancid-cvs.in
+@@ -58,20 +58,20 @@ pr_usage() {
+ # -V print version string
+ if [ $# -ge 1 ] ; then
+     while [ 1 ] ; do
+-	case $1 in
+-	-V)
+-	    echo "@PACKAGE@ @VERSION@"
+-	    exit 0
+-	    ;;
+-	-*)
+-	    echo "unknown option: $1" >&2
+-	    pr_usage
+-	    exit 1
+-	    ;;
+-	*)
+-	    break;
+-	    ;;
+-	esac
++		case $1 in
++			-V)
++				echo "@PACKAGE@ @VERSION@"
++				exit 0
++				;;
++			-*)
++				echo "unknown option: $1" >&2
++				pr_usage
++				exit 1
++				;;
++			*)
++				break;
++				;;
++		esac
+     done
+ fi
+ 
+@@ -87,32 +87,80 @@ cd $BASEDIR
+ 
+ # RCS system
+ RCSSYS=${RCSSYS:=cvs};
+-if [ $RCSSYS != "cvs" -a $RCSSYS != "svn" ] ; then
+-    echo "$RCSSYS is not a valid value for RCSSYS."
+-    exit 1
+-fi
++case $RCSSYS in
++    cvs | svn )
++		# we're good
++		;;
++    git )
++		# force $CVSROOT
++		CVSROOT=$BASEDIR/.git
++		;;
++    * )
++		echo "$RCSSYS is not a valid value for RCSSYS."
++		exit 1
++		;;
++esac
+ 
+ # Top level CVS stuff
+ if [ $RCSSYS = cvs ]; then
+-    if [ ! -d $CVSROOT ]; then
+-	cvs -d $CVSROOT init
+-    fi
+-else
+-    if echo "$CVSROOT" | grep -q "://"; then
+-	# do nothing because CVSROOT is some sort of a URL
+-	# also assume the repository has already been provisioned
+-	:
+-    else
+-	if ! svn ls "file://$CVSROOT" >/dev/null 2>&1; then
+-	    svnadmin create $CVSROOT @SVN_FSTYPE@
+-	fi
+-	CVSROOT="file://$CVSROOT"
+-    fi
++    case $RCSSYS in
++		cvs )
++			cvs -d $CVSROOT init
++			;;
++		svn )
++			svnadmin create $CVSROOT
++			;;
++		git )
++			# git does not use $CVSROOT, instead configs are stored in $BASEDIR
++			(
++				flock -x 200
++				git init
++				rm -f .gitignore
++				echo "/logs" >> .gitignore
++				echo "/.lockfile" >> .gitignore
++				echo "*~" >> .gitignore
++				echo ".#*" >> .gitignore
++				echo ".cvsignore" >> .gitignore
++				echo "*.new" >> .gitignore
++				git add .gitignore
++				git commit -m "Initializing repository."
++			) 200>$BASEDIR/.lockfile
++    esac
++
+ fi
+ 
+ # Log dir
+ if [ ! -d logs ]; then
+     mkdir logs
++    case $RCSSYS in
++        cvs )
++            cvs import -m "$GROUP" $GROUP new rancid
++            cd $BASEDIR
++            cvs checkout $GROUP
++            ;;
++        svn )
++            svn import -m "$GROUP" . file://$CVSROOT/$GROUP
++            cd $BASEDIR
++            svn checkout file://$CVSROOT/$GROUP $GROUP
++            ;;
++        git )
++            cd $BASEDIR
++            echo "$GROUP/routers.all" >> .gitignore
++            echo "$GROUP/routers.down" >> .gitignore
++            echo "$GROUP/routers.up" >> .gitignore
++            echo "$GROUP/routers.mail" >> .gitignore
++            echo "$GROUP/routers.added" >> .gitignore
++            echo "$GROUP/routers.deleted" >> .gitignore
++            echo "$GROUP/routers.single" >> .gitignore
++            echo "$GROUP/routers.up.missed" >> .gitignore
++            echo "$GROUP/routers.failed" >> .gitignore
++            (
++                flock -x 200
++                git add .gitignore
++                git commit -m "Update .gitignore"
++            ) 200>$BASEDIR/.lockfile
++            ;;
++    esac
+ fi
+ 
+ # Which groups to do
+@@ -130,40 +178,58 @@ do
+ 
+     # Directory for the group and the configs
+     if [ ! -d $DIR ]; then
+-	mkdir -p $DIR
+-	cd $DIR
+-	if [ $RCSSYS = cvs ]; then
+-	    cvs import -m "$GROUP" $GROUP new rancid
+-	    cd $BASEDIR
+-	    cvs checkout $GROUP
+-	else
+-	    svn import -m "$GROUP" . $CVSROOT/$GROUP
+-	    cd $BASEDIR
+-	    svn checkout $CVSROOT/$GROUP $GROUP
+-	    cd $DIR
+-	    svn update
+-	fi
++		mkdir -p $DIR
++		cd $DIR
++		if [ $RCSSYS = cvs ]; then
++			cvs import -m "$GROUP" $GROUP new rancid
++			cd $BASEDIR
++			cvs checkout $GROUP
++		else
++			svn import -m "$GROUP" . $CVSROOT/$GROUP
++			cd $BASEDIR
++			svn checkout $CVSROOT/$GROUP $GROUP
++			cd $DIR
++			svn update
++		fi
+     fi
+     cd $DIR
+     if [ ! -d configs ]; then
+-	mkdir configs
+-	$RCSSYS add configs
+-	$RCSSYS commit -m 'new' configs
++		mkdir configs
++		case $RCSSYS in
++			cvs | svn )
++				$RCSSYS add configs
++				$RCSSYS commit -m 'new' configs
++				;;
++			git )
++				# nothing to be done here
++				;;
++		esac
+     fi
+ 
+     # main files
+     if [ ! -f routers.all ]; then
+-	touch routers.all
++		touch routers.all
+     fi
+     if [ ! -f routers.down ]; then
+-	touch routers.down
++		touch routers.down
+     fi
+     if [ ! -f routers.up ]; then
+-	touch routers.up
++		touch routers.up
+     fi
+     if [ ! -f router.db ]; then
+-	touch router.db
+-	$RCSSYS add router.db
+-	$RCSSYS commit -m 'new' router.db
++		touch router.db
++		case $RCSSYS in
++			cvs | svn )
++				$RCSSYS add router.db
++				$RCSSYS commit -m 'new' router.db
++				;;
++			git )
++				(
++					flock -x 200
++					git add router.db
++					git commit -m "Initializing $GROUP"
++				) 200>$BASEDIR/.lockfile
++				;;
++		esac
+     fi
+ done

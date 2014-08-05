@@ -1,0 +1,19 @@
+$NetBSD$
+
+Incorporate changes to support git backed from rancid-discuss maling list
+
+--- ../rancid-3.1.dist/etc/rancid.conf.sample.in	2014-05-19 20:52:44.000000000 +0000
++++ etc/rancid.conf.sample.in
+@@ -51,9 +51,9 @@ CVSROOT=$BASEDIR/CVS; export CVSROOT
+ # Location of log files produced by rancid-run(1).
+ LOGDIR=$BASEDIR/logs; export LOGDIR
+ #
+-# Select which RCS system to use, "cvs" (default) or "svn".  Do not change
+-# this after CVSROOT has been created with rancid-cvs.  Changing between these
+-# requires manual conversions.
++# Select which RCS system to use, "cvs" (default), "svn" or "git".  Do
++# not change this after CVSROOT has been created with rancid-cvs.
++# Changing between these requires manual conversions.
+ RCSSYS=@RCSSYS@; export RCSSYS
+ #
+ # if ACLSORT is NO, access-lists will NOT be sorted.
