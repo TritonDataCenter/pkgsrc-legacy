@@ -15,6 +15,8 @@ HOMEPAGE=			http://mirbsd.de/mksh
 COMMENT=			MirBSD Korn Shell
 LICENSE=			miros
 
+USE_GCC_RUNTIME=		yes
+
 WRKSRC=				${WRKDIR}/mksh
 WRKBUILD?=			${WRKSRC}
 
