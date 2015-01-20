@@ -2,7 +2,7 @@
 #
 
 DISTNAME=	quagga-0.99.22.3
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	http://download.savannah.gnu.org/releases/quagga/
 
@@ -22,6 +22,7 @@ CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
 CONFIGURE_ARGS+=	--enable-exampledir=${PREFIX}/share/examples/quagga
 #CONFIGURE_ARGS+=	--enable-pkgsrcrcdir=${PREFIX}/${RCD_SCRIPTS_EXAMPLEDIR}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/run/zebra
+CONFIGURE_ARGS+=	--disable-capabilities
 
 CONFLICTS+=		zebra-[0-9]*
 
