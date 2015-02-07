@@ -9,7 +9,10 @@ MASTER_SITES=	ftp://ftp.kermitproject.org/kermit/archives/
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.kermitproject.org/
 COMMENT=	Network and serial communication, file transfer, and scripting utility
-LICENSE=	kermit-license
+
+# UNIX C-Kermit 9.0 has been released with the Revised 3-Clause BSD License.
+# http://www.columbia.edu/kermit/licensing.html
+LICENSE= modified-bsd
 
 .include "../../mk/bsd.prefs.mk"
 

@@ -22,9 +22,9 @@ SPECIAL_PERMS+=		bin/kermit ${UUCP_USER} ${UUCP_GROUP} 4555
 ### SOCKS firewall support.
 ###
 .if !empty(PKG_OPTIONS:Msocks4)
-KFLAGS+=	-DSOCKS
-LIBS+=		-L${BUILDLINK_PREFIX.socks4}/lib -lsocks4
-.include "../../net/socks4/buildlink3.mk"
+KFLAGS+=	-DSOCKS -DCK_SOCKS
+LIBS+=		-L${BUILDLINK_PREFIX.dante}/lib -lsocks
+.include "../../net/dante/buildlink3.mk"
 .elif !empty(PKG_OPTIONS:Msocks5)
 KFLAGS+=	-DSOCKS -DCK_SOCKS5
 LIBS+=		-L${BUILDLINK_PREFIX.socks5}/lib -lsocks5
