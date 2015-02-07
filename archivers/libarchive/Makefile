@@ -12,6 +12,7 @@ HOMEPAGE=	http://www.libarchive.org/
 COMMENT=	Library to read/create different archive formats
 
 GNU_CONFIGURE=	yes
+TEST_TARGET=	check
 USE_LIBTOOL=	yes
 
 CONFIGURE_ARGS+=	--disable-bsdtar --without-expat --without-xml2 \
