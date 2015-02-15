@@ -796,6 +796,7 @@ xtest			Use XTEST Extension Library.
 xvid			Enable usage of XVid codecs.
 xvideo			Enable X-Video Motion Compensation library support.
 zenmap			Enable nmap GUI frontend.
+zfsacl			Enable ZFS ACL support and shared library creation
 ziplinks		Compress data before transmitting it between servers.
 zlib			Enable support for zlib compression.
 zrtp			Enable ZRTP support.
