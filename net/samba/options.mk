@@ -8,7 +8,7 @@
 #   Domain Controller			ldap winbind
 #
 PKG_OPTIONS_VAR=	PKG_OPTIONS.samba
-PKG_SUPPORTED_OPTIONS=	ads cups fam ldap pam winbind
+PKG_SUPPORTED_OPTIONS=	ads cups fam ldap pam winbind zfsacl
 PKG_SUGGESTED_OPTIONS=	ldap pam winbind
 
 .include "../../mk/bsd.fast.prefs.mk"
@@ -25,6 +25,7 @@ PKG_SUGGESTED_OPTIONS+=	ads
 .include "../../mk/bsd.options.mk"
 
 SAMBA_STATIC_MODULES:=	# empty
+SAMBA_SHARED_MODULES:=	# empty
 
 ###
 ### Allow Samba to join as a member server of an Active Directory domain.
@@ -36,6 +37,13 @@ PKG_OPTIONS+=		ldap
 .  endif
 CONFIGURE_ARGS+=	--with-ads
 CONFIGURE_ARGS+=	--with-krb5=${KRB5BASE}
+
+###
+### Ensure that the zfsacl shared library is generated
+###
+.if !empty(PKG_OPTIONS:Mzfsacl)
+SAMBA_SHARED_MODULES:=	${SAMBA_SHARED_MODULES},vfs_zfsacl
+.  endif
 
 # Avoid build failures with recent version of Heimdal under NetBSD.
 .  if ${OPSYS} == "NetBSD"
@@ -192,4 +200,11 @@ PLIST_SUBST+=		NSS_WINS="no NSS WINS module"
 ###
 .if !empty(SAMBA_STATIC_MODULES)
 CONFIGURE_ARGS+=	--with-static-modules=${SAMBA_STATIC_MODULES:S/^,//}
+.endif
+
+###
+### Add the optionsl shared modules to the configuration
+###
+.if !empty(SAMBA_SHARED_MODULES)
+CONFIGURE_ARGS+=	--with-shared-modules=${SAMBA_SHARED_MODULES:S/^,//}
 .endif

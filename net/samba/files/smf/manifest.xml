@@ -37,6 +37,20 @@
 		</template>
 	</instance>
 
+	<instance name='winbindd' enabled='false'>
+		<exec_method name='start'   type='method' exec='@PREFIX@/sbin/winbindd -D' timeout_seconds='0'/>
+		<exec_method name='stop'    type='method' exec=':kill'      timeout_seconds='30'/>
+		<exec_method name='refresh' type='method' exec=':kill -HUP' timeout_seconds='0'/>
+		<template>
+			<common_name>
+				<loctext xml:lang='C'>Samba Name Service Switch daemon for resolving names from NT servers</loctext>
+			</common_name>
+			<documentation>
+				<manpage title='winbindd' section='8' manpath='man'/>
+			</documentation>
+		</template>
+	</instance>
+
 	<stability value='Unstable'/>
 </service>
 </service_bundle>
