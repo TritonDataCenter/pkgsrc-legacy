@@ -75,6 +75,7 @@ lib/samba/vfs/full_audit.${LIBEXT}
 lib/samba/vfs/linux_xfs_sgid.${LIBEXT}
 lib/samba/vfs/netatalk.${LIBEXT}
 ${PLIST.fam}lib/samba/vfs/notify_fam.${LIBEXT}
+${PLIST.zfsacl}lib/samba/vfs/zfsacl.${LIBEXT}
 lib/samba/vfs/preopen.${LIBEXT}
 lib/samba/vfs/readahead.${LIBEXT}
 lib/samba/vfs/readonly.${LIBEXT}

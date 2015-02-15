@@ -41,8 +41,10 @@ CONFIGURE_ARGS+=	--with-krb5=${KRB5BASE}
 ###
 ### Ensure that the zfsacl shared library is generated
 ###
+PLIST_VARS+=		zfsacl
 .if !empty(PKG_OPTIONS:Mzfsacl)
 SAMBA_SHARED_MODULES:=	${SAMBA_SHARED_MODULES},vfs_zfsacl
+PLIST.zfsacl=		yes
 .  endif
 
 # Avoid build failures with recent version of Heimdal under NetBSD.
