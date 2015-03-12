@@ -1,5 +1,7 @@
 $NetBSD: patch-ao,v 1.2 2011/04/14 19:34:09 asau Exp $
 
+Adds define for MAP_ANONYOUS.
+
 --- erts/emulator/hipe/hipe_sparc.c.orig	2010-06-24 07:26:50.000000000 +0300
 +++ erts/emulator/hipe/hipe_sparc.c	2010-06-24 07:27:25.000000000 +0300
 @@ -130,6 +130,10 @@

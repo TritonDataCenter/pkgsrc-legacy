@@ -12,13 +12,14 @@ PKG_SUGGESTED_OPTIONS=	# empty
 ###
 .if (${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64") &&	\
     (${OPSYS} == "FreeBSD" || ${OPSYS} == "Linux" ||			\
-     ${OPSYS} == "NetBSD"  || ${OPSYS} == "OpenBSD")
+     ${OPSYS} == "NetBSD"  || ${OPSYS} == "OpenBSD" )
 PKG_SUGGESTED_OPTIONS+=	erlang-hipe
 .endif
 
 .if ${OPSYS} == "SunOS" || ${OPSYS} == "Darwin" || ${OPSYS} == "FreeBSD" || \
     ${OPSYS} == "Linux"
 PKG_SUPPORTED_OPTIONS+=	dtrace
+PKG_SUGGESTED_OPTIONS+= dtrace
 .endif
 
 .include "../../mk/bsd.options.mk"

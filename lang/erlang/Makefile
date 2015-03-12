@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.62.6.1 2015/02/11 22:06:23 tron Exp $
 
 DISTNAME=		otp_src_${DIST_VERSION_MAJOR}${DIST_VERSION_MINOR:D-${DIST_VERSION_MINOR}}
-PKGREVISION=		3
+#PKGREVISION=		3
 PKGNAME=		erlang-${ERLANG_VERSION}
 CATEGORIES=		lang
 MASTER_SITES=		http://www.erlang.org/download/

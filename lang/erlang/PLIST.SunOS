@@ -5,3 +5,4 @@ lib/erlang/lib/os_mon-${VERSION.os_mon}/priv/bin/mod_syslog
 lib/erlang/lib/os_mon-${VERSION.os_mon}/src/cpu_sup.c
 lib/erlang/lib/os_mon-${VERSION.os_mon}/src/ferrule.c
 lib/erlang/lib/os_mon-${VERSION.os_mon}/src/mod_syslog.c
+lib/svc/manifest/epmd.xml
