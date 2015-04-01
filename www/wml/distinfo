@@ -16,6 +16,7 @@ SHA1 (patch-ak) = 3b81025819f259d7ebb185de4d4890c9892aba87
 SHA1 (patch-al) = 9bdf732aad8520b89bc5925ae6eb0e2cce937f6b
 SHA1 (patch-am) = 5e597fed00ee56fbaf54d6725e36f9c9e5292c0e
 SHA1 (patch-wml__aux_freetable_freetable.src) = 938f2b380147476a8e959e15ccf6e2887191448d
+SHA1 (patch-wml__backend_p2__mp4h_configure) = c13341a29edfae929bf930ae7b8ed337b5c04d4b
 SHA1 (patch-wml__backend_p2__mp4h_doc_mp4h.mp4h) = 3ab650e57012ad85f89156fdd639df0c695c21af
 SHA1 (patch-wml__backend_p3__eperl_eperl__perl5.c) = e80878ccdd6d58efa42b987b3951897c1c8df32b
 SHA1 (patch-wml__backend_p3__eperl_eperl__perl5.h) = 0e4534ce4171472b5c26eb9def7dfa4067bc6fe8

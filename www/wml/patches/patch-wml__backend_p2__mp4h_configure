@@ -1,0 +1,19 @@
+$NetBSD$
+
+This ensures the current shell is in posix compatibility mode. Modern
+versions of autoconf can do this now, but this configure script has
+not been regenerated in a long time...
+
+--- wml_backend/p2_mp4h/configure.orig	2006-08-19 06:09:49.000000000 +0000
++++ wml_backend/p2_mp4h/configure
+@@ -16,8 +16,8 @@ if test -n "${ZSH_VERSION+set}" && (emul
+   # Zsh 3.x and 4.x performs word splitting on ${1+"$@"}, which
+   # is contrary to our usage.  Disable this feature.
+   alias -g '${1+"$@"}'='"$@"'
+-elif test -n "${BASH_VERSION+set}" && (set -o posix) >/dev/null 2>&1; then
+-  set -o posix
++else
++  case `(set -o) 2>/dev/null` in *posix*) set -o posix;; esac
+ fi
+ DUALCASE=1; export DUALCASE # for MKS sh
+ 
