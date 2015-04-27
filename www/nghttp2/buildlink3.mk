@@ -1,0 +1,13 @@
+# $NetBSD$
+
+BUILDLINK_TREE+=	nghttp2
+
+.if !defined(NGHTTP2_BUILDLINK3_MK)
+NGHTTP2_BUILDLINK3_MK:=
+
+BUILDLINK_API_DEPENDS.nghttp2+=	nghttp2>=0.7.12
+BUILDLINK_ABI_DEPENDS.nghttp2+=	nghttp2>=0.7.12
+BUILDLINK_PKGSRCDIR.nghttp2?=	../../www/nghttp2
+.endif # NGHTTP2_BUILDLINK3_MK
+
+BUILDLINK_TREE+=	-nghttp2

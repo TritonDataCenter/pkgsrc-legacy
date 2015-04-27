@@ -1,0 +1,11 @@
+@comment $NetBSD$
+include/nghttp2/nghttp2.h
+include/nghttp2/nghttp2ver.h
+lib/libnghttp2.la
+lib/pkgconfig/libnghttp2.pc
+man/man1/h2load.1
+man/man1/nghttp.1
+man/man1/nghttpd.1
+man/man1/nghttpx.1
+share/doc/nghttp2/README.rst
+share/nghttp2/fetch-ocsp-response

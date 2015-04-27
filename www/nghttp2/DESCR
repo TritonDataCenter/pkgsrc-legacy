@@ -1,0 +1,1 @@
+nghttp2 is an implementation of HTTP/2 in C. HTTP/2 and HPACK has been approved by IETF, we are now waiting for their publication as RFCs. Check out http://datatracker.ietf.org/doc/draft-ietf-httpbis-http2/ to track its progress.
