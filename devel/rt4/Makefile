@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.16 2015/03/01 21:25:17 ryoon Exp $
+# $NetBSD: Makefile,v 1.19 2015/05/18 13:35:30 manu Exp $
 
-DISTNAME=	rt-4.2.10
+DISTNAME=	rt-4.2.11
 PKGNAME=	${DISTNAME:S/rt/rt4/}
 CATEGORIES=	devel
-MASTER_SITES=	http://download.bestpractical.com/pub/rt/release/
+MASTER_SITES=	https://download.bestpractical.com/pub/rt/release/
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	http://www.bestpractical.com/rt/
@@ -181,7 +181,6 @@ USE_PKGLOCALEDIR=	yes
 
 CONFIGURE_ARGS+=	--enable-layout=pkgsrc
 CONFIGURE_ARGS+=	--with-db-type=${RT_DB_TYPE}
-CONFIGURE_ARGS+=	--with-my-user-group
 
 RT_CONFIG_FILES=	RT_Config.pm RT_SiteConfig.pm
 
@@ -204,5 +203,9 @@ OWN_DIRS_PERMS+=	${RT_VAR_DIR}/session_data	${APACHE_USER}	${APACHE_GROUP}	0770
 
 REPLACE_PERL+=		etc/upgrade/shrink_cgm_table.pl etc/upgrade/shrink_transactions_table.pl
 REPLACE_PERL+=		etc/upgrade/time-worked-history.pl etc/upgrade/upgrade-mysql-schema.pl
+
+INSTALL_MAKE_FLAGS+=	BIN_OWNER=${ROOT_USER:Q} LIBS_OWNER=${ROOT_USER:Q} \
+			LIBS_GROUP=${ROOT_GROUP:Q} RTGROUP=${ROOT_GROUP:Q} \
+			WEB_USER=${ROOT_USER:Q} WEB_GROUP=${ROOT_GROUP:Q}
 
 .include "../../mk/bsd.pkg.mk"
