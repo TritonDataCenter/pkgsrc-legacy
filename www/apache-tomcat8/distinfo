@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.2 2015/05/13 13:02:09 ryoon Exp $
+
+SHA1 (apache-tomcat-8.0.22.tar.gz) = 4ecc560bfaedfba702e3fa1e6ee497c099c38686
+RMD160 (apache-tomcat-8.0.22.tar.gz) = 3213375a9d67d2771991b5f1950bb934969656e1
+Size (apache-tomcat-8.0.22.tar.gz) = 9062183 bytes
