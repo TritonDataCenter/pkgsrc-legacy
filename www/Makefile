@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1105 2015/04/24 10:54:55 adam Exp $
+# $NetBSD: Makefile,v 1.1108 2015/05/07 10:29:43 wiz Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -49,6 +49,7 @@ SUBDIR+=	apache-roller
 SUBDIR+=	apache-tomcat55
 SUBDIR+=	apache-tomcat6
 SUBDIR+=	apache-tomcat7
+SUBDIR+=	apache-tomcat8
 SUBDIR+=	apache22
 SUBDIR+=	apache24
 SUBDIR+=	apachetop
@@ -203,6 +204,7 @@ SUBDIR+=	opera
 SUBDIR+=	opera-acroread7
 SUBDIR+=	opera-plugins
 SUBDIR+=	p5-Alien-GvaScript
+SUBDIR+=	p5-Any-URI-Escape
 SUBDIR+=	p5-AnyEvent-HTTP
 SUBDIR+=	p5-AnyEvent-HTTPD
 SUBDIR+=	p5-AnyEvent-ReverseHTTP
@@ -384,6 +386,7 @@ SUBDIR+=	p5-HTTP-Server-Simple-Static
 SUBDIR+=	p5-HTTP-Tiny
 SUBDIR+=	p5-HTTPD-User-Manage
 SUBDIR+=	p5-Handel
+SUBDIR+=	p5-Hijk
 SUBDIR+=	p5-I18N-AcceptLanguage
 SUBDIR+=	p5-JSON-RPC
 SUBDIR+=	p5-JavaScript-Value-Escape
@@ -503,6 +506,7 @@ SUBDIR+=	p5-WWW-CSRF
 SUBDIR+=	p5-WWW-Curl
 SUBDIR+=	p5-WWW-Facebook-API
 SUBDIR+=	p5-WWW-Mechanize
+SUBDIR+=	p5-WWW-Mechanize-Cached
 SUBDIR+=	p5-WWW-Mechanize-GZip
 SUBDIR+=	p5-WWW-Mechanize-Timed
 SUBDIR+=	p5-WWW-Pastebin-PastebinCom-Create

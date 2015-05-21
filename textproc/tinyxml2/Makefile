@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.2 2015/03/15 09:52:42 nros Exp $
+# $NetBSD: Makefile,v 1.4 2015/05/11 14:29:30 mef Exp $
 
 DISTNAME=	tinyxml2-2.2.0
 CATEGORIES=	textproc
-MASTER_SITES=	-https://github.com/leethomason/tinyxml2/archive/${PKGVERSION}.tar.gz
+MASTER_SITES=	${MASTER_SITE_GITHUB:=leethomason/}
 EXTRACT_USING=	bsdtar
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
