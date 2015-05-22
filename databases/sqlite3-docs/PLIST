@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.39 2015/04/11 12:42:06 adam Exp $
+@comment $NetBSD: PLIST,v 1.42 2015/05/21 10:38:53 adam Exp $
 share/doc/sqlite3/34to35.html
 share/doc/sqlite3/35to36.html
 share/doc/sqlite3/about.html
@@ -194,6 +194,7 @@ share/doc/sqlite3/custombuild.html
 share/doc/sqlite3/cvstrac.css
 share/doc/sqlite3/datatype3.html
 share/doc/sqlite3/datatypes.html
+share/doc/sqlite3/dbstat.html
 share/doc/sqlite3/dev.html
 share/doc/sqlite3/different.html
 share/doc/sqlite3/doc_backlink_crossref.html
@@ -305,6 +306,7 @@ share/doc/sqlite3/images/foreignlogos/apple.gif
 share/doc/sqlite3/images/foreignlogos/bentley.gif
 share/doc/sqlite3/images/foreignlogos/bentley.jpg
 share/doc/sqlite3/images/foreignlogos/bloomberg.gif
+share/doc/sqlite3/images/foreignlogos/bosch_logo1.gif
 share/doc/sqlite3/images/foreignlogos/dropbox.gif
 share/doc/sqlite3/images/foreignlogos/firefox.gif
 share/doc/sqlite3/images/foreignlogos/flame.gif
@@ -626,6 +628,9 @@ share/doc/sqlite3/releaselog/3_8_0.html
 share/doc/sqlite3/releaselog/3_8_0_1.html
 share/doc/sqlite3/releaselog/3_8_0_2.html
 share/doc/sqlite3/releaselog/3_8_1.html
+share/doc/sqlite3/releaselog/3_8_10.html
+share/doc/sqlite3/releaselog/3_8_10_1.html
+share/doc/sqlite3/releaselog/3_8_10_2.html
 share/doc/sqlite3/releaselog/3_8_2.html
 share/doc/sqlite3/releaselog/3_8_3.html
 share/doc/sqlite3/releaselog/3_8_3_1.html
@@ -662,6 +667,7 @@ share/doc/sqlite3/shortnames.html
 share/doc/sqlite3/sitemap.html
 share/doc/sqlite3/speed.html
 share/doc/sqlite3/spellfix1.html
+share/doc/sqlite3/sqldiff.html
 share/doc/sqlite3/sqlite.html
 share/doc/sqlite3/support.html
 share/doc/sqlite3/syntax.html
@@ -730,6 +736,7 @@ share/doc/sqlite3/tempfiles.html
 share/doc/sqlite3/testing.html
 share/doc/sqlite3/th3.html
 share/doc/sqlite3/threadsafe.html
+share/doc/sqlite3/toc.db
 share/doc/sqlite3/transactional.html
 share/doc/sqlite3/unlock_notify.html
 share/doc/sqlite3/uri.html

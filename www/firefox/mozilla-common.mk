@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.53 2015/04/12 09:02:39 martin Exp $
+# $NetBSD: mozilla-common.mk,v 1.56 2015/05/16 20:08:36 tsutsui Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -21,7 +21,7 @@ TOOLS_PLATFORM.tar=	${TOOLS_PREFIX.bsdtar}/bin/bsdtar
 USE_TOOLS+=		bsdtar
 .endif
 # GCC 4.6 is required to support nullptr.
-GCC_REQD+=		4.6
+GCC_REQD+=		4.8
 .if ${MACHINE_ARCH} == "i386"
 # Fix for PR pkg/48152.
 CPPFLAGS+=		-march=i486
@@ -212,7 +212,7 @@ PLIST_SUBST+=	DLL_SUFFIX=".so"
 #.include "../../audio/libopus/buildlink3.mk"
 #.include "../../audio/tremor/buildlink3.mk"
 #.include "../../audio/libvorbis/buildlink3.mk"
-BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.8.7.4
+BUILDLINK_API_DEPENDS.sqlite3+=	sqlite3>=3.8.9
 CONFIGURE_ENV+=	ac_cv_sqlite_secure_delete=yes	# c.f. patches/patch-al
 .include "../../databases/sqlite3/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
@@ -221,7 +221,7 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
 BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.10.8
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nss+=	nss>=3.17.4
+BUILDLINK_API_DEPENDS.nss+=	nss>=3.18.1
 .include "../../devel/nss/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"

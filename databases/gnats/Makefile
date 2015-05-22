@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.39 2015/04/24 06:45:28 spz Exp $
+# $NetBSD: Makefile,v 1.41 2015/04/29 21:21:22 tron Exp $
 
 DISTNAME=	gnats-4.2.0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GNU:=gnats/}
-PKGREVISION=	1
+PKGREVISION=	2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.gnu.org/software/gnats/
@@ -15,6 +15,7 @@ USE_TOOLS+=		gm4 gmake makeinfo bison
 TEXINFO_REQD+=		4.6
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
+MAKE_JOBS_SAFE=		no
 
 BUILD_DEFS+=		VARBASE
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
@@ -72,6 +73,11 @@ CONF_FILES_PERMS+=	${EGDIR}/gnatsd.host_access  ${GNATS_HOST_FILE}	\
 CONF_FILES_PERMS+=	${EGDIR}/databases ${GNATS_DB_FILE}		\
 			${GNATS_USER} ${GNATS_GROUP} 0600
 CONF_FILES+=		${EGDIR}/send-pr.conf ${PKG_SYSCONFDIR}/send-pr.conf
+
+SPECIAL_PERMS+=		${PREFIX}/libexec/gnats/gen-index \
+			${GNATS_USER} ${GNATS_GROUP} 4555
+SPECIAL_PERMS+=		${PREFIX}/libexec/gnats/pr-edit \
+			${GNATS_USER} ${GNATS_GROUP} 4555
 
 MESSAGE_SUBST+=		PREFIX=${PREFIX:Q}
 MESSAGE_SUBST+=		GNATS_USER=${GNATS_USER:Q}

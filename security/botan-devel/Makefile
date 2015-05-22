@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.7 2015/04/17 15:52:57 adam Exp $
+# $NetBSD: Makefile,v 1.9 2015/05/20 21:57:10 joerg Exp $
 
-DISTNAME=	Botan-1.11.8
+DISTNAME=	Botan-1.11.16
 PKGNAME=	${DISTNAME:tl}
-PKGREVISION=	4
 CATEGORIES=	security
-MASTER_SITES=	http://files.randombit.net/botan/
-EXTRACT_SUFX=	.tbz
+MASTER_SITES=	http://botan.randombit.net/releases/
+EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://botan.randombit.net/
@@ -19,7 +18,9 @@ PYTHON_FOR_BUILD_ONLY=	yes
 
 CONFIG_SHELL=		${PYTHONBIN}
 CONFIGURE_SCRIPT=	./configure.py
-CONFIGURE_ARGS+=	--prefix=${PREFIX} --with-zlib --with-boost
+CONFIGURE_ARGS+=	--prefix=${PREFIX} --with-zlib --with-boost --destdir=${DESTDIR}${PREFIX}
+
+REPLACE_PYTHON+=	*.py src/scripts/*.py
 
 .include "../../mk/compiler.mk"
 .if !empty(PKGSRC_COMPILER:Mclang)
@@ -29,6 +30,8 @@ CONFIGURE_ARGS+=	--cc-bin=${CXX} --cc=clang
 MAKE_FLAGS+=	LIB_OPT=${CXXFLAGS:Q}
 
 USE_TOOLS+=	gmake
+
+PY_PATCHPLIST=	yes
 
 PLIST_VARS+=	x86 x86_64
 
@@ -42,4 +45,5 @@ PLIST.x86=	yes
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../lang/python/application.mk"
+.include "../../lang/python/extension.mk"
 .include "../../mk/bsd.pkg.mk"

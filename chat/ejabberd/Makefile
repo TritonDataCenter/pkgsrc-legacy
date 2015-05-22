@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.52 2015/04/26 11:52:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.54 2015/05/04 14:40:38 fhajny Exp $
 
-DISTNAME=	ejabberd-15.03
+DISTNAME=	ejabberd-15.04
 PKGREVISION=	1
 CATEGORIES=	chat
 MASTER_SITES=	http://www.process-one.net/downloads/ejabberd/${PKGVERSION_NOREV}/
@@ -20,7 +20,7 @@ CONFLICTS+=		jabberd-[0-9]*
 GNU_CONFIGURE=		yes
 USE_GCC_RUNTIME=	yes
 USE_LANGUAGES=		c c++
-USE_TOOLS+=		gmake patch
+USE_TOOLS+=		bash:run gmake patch
 
 CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ARGS+=	--enable-iconv
@@ -43,6 +43,7 @@ BUILD_DEFS+=		VARBASE
 PKG_SYSCONFSUBDIR=	ejabberd
 
 .include "../../mk/bsd.prefs.mk"
+.include "options.mk"
 
 EJABBERD_USER?=		ejabberd
 EJABBERD_GROUP?=	ejabberd
@@ -54,13 +55,9 @@ OWN_DIRS_PERMS+=	${EJABBERD_PIDDIR} ${EJABBERD_USER} ${EJABBERD_GROUP} 0770
 OWN_DIRS_PERMS+=	${EJABBERD_LOGDIR} ${EJABBERD_USER} ${EJABBERD_GROUP} 0770
 OWN_DIRS_PERMS+=	${EJABBERD_DB} ${EJABBERD_USER} ${EJABBERD_GROUP} 0770
 
-FILES_SUBST+=		DISTNAME=${DISTNAME}
 FILES_SUBST+=		EJABBERD_USER=${EJABBERD_USER}
 FILES_SUBST+=		EJABBERD_GROUP=${EJABBERD_GROUP}
 FILES_SUBST+=		EJABBERD_DB=${EJABBERD_DB}
-
-PLIST_SUBST+=		DISTNAME=${DISTNAME}
-PLIST_SUBST+=		EJABBERD_EXDIR=${EJABBERD_EXDIR}
 
 PKG_GROUPS+=		${EJABBERD_GROUP}
 PKG_USERS+=		${EJABBERD_USER}:${EJABBERD_GROUP}
@@ -81,7 +78,8 @@ CONF_FILES_PERMS+=	${EGDIR}/inetrc ${PKG_SYSCONFDIR}/inetrc \
 			${ROOT_USER} ${EJABBERD_GROUP} 0640
 SPECIAL_PERMS+=		sbin/ejabberdctl ${ROOT_USER} ${EJABBERD_GROUP} 0750
 
-REPLACE_SH=		ejabberdctl.template tools/captcha.sh
+REPLACE_BASH=		ejabberdctl.template tools/captcha.sh \
+			tools/joincluster tools/leavecluster
 
 SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Localizing paths

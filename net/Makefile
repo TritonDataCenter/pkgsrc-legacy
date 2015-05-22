@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1066 2015/03/25 20:12:03 ryoon Exp $
+# $NetBSD: Makefile,v 1.1070 2015/05/16 03:09:29 ryoon Exp $
 #
 
 COMMENT=	Networking tools
@@ -145,6 +145,7 @@ SUBDIR+=	freerdp
 SUBDIR+=	ftplibpp
 SUBDIR+=	ftpproxy
 SUBDIR+=	gated
+SUBDIR+=	gcloud-golang-metadata
 SUBDIR+=	get-flash-videos
 SUBDIR+=	get_iplayer
 SUBDIR+=	gethost
@@ -305,6 +306,7 @@ SUBDIR+=	mimms
 SUBDIR+=	miniupnpd
 SUBDIR+=	miredo
 SUBDIR+=	mirror
+SUBDIR+=	miruo
 SUBDIR+=	mitmproxy
 SUBDIR+=	mldonkey
 SUBDIR+=	mldonkey-gui
@@ -497,6 +499,7 @@ SUBDIR+=	p5-SNMP_Session
 SUBDIR+=	p5-SOAP-Lite
 SUBDIR+=	p5-Socket6
 SUBDIR+=	p5-Test-DNS
+SUBDIR+=	p5-Test-RequiresInternet
 SUBDIR+=	p5-Test-TCP
 SUBDIR+=	p5-Umph-Prompt
 SUBDIR+=	p5-WebService-Google-Reader
@@ -654,6 +657,7 @@ SUBDIR+=	ruby-twitter
 SUBDIR+=	ruby-twitter-stream
 SUBDIR+=	ruby-userstream
 SUBDIR+=	samba
+SUBDIR+=	samba4
 SUBDIR+=	scamper
 SUBDIR+=	scapy
 SUBDIR+=	scdp

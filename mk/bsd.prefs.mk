@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.363 2015/04/27 10:33:49 tnn Exp $
+# $NetBSD: bsd.prefs.mk,v 1.364 2015/04/29 14:23:23 jperkin Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -801,7 +801,9 @@ _BUILD_DEFS+=		INIT_SYSTEM
 
 # Enable cwrappers if requested unless we're building the wrappers themselves.
 .if ${USE_CWRAPPERS:tl} != "no" && empty(PKGPATH:Mpkgtools/cwrappers)
-_USE_CWRAPPERS=		# defined
+_USE_CWRAPPERS=		yes
+.else
+_USE_CWRAPPERS=		no
 .endif
 
 # Wrapper framework definitions
