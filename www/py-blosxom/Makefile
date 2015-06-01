@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.16 2014/12/31 13:57:30 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2015/05/22 14:23:41 hauke Exp $
 
 PYBLOXSOMVERS=	1.5.3
 DISTNAME=	pyblosxom-${PYBLOXSOMVERS}
 PKGNAME=	${PYPKGPREFIX}-blosxom-${PYBLOXSOMVERS}
-#PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://pyblosxom.github.com/download/
 
@@ -21,11 +21,17 @@ DOC_SUBDIR=     share/doc/pyblosxom
 DOCDIR=         ${PREFIX}/${DOC_SUBDIR}
 DOCFILES=       AUTHORS INSTALL LICENSE README.rst UPGRADE WHATSNEW
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-docutils>=0.12:../../textproc/py-docutils
+
 INSTALLATION_DIRS=	${DOC_SUBDIR}
 
 REPLACE_PYTHON=		Pyblosxom/data/pyblosxom.cgi
 
 PYTHON_VERSIONS_INCOMPATIBLE=	33 34
+
+pre-configure:
+	cd ${WRKSRC} && ${FIND} Pyblosxom -type f -name '*.orig' \
+		-exec ${RM} -f \{\} \;
 
 # There is a set of manual files in docs/source that could be
 # converted to HTML or PDF, and installed
