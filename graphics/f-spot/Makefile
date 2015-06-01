@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.68 2015/04/25 14:23:09 tnn Exp $
+# $NetBSD: Makefile,v 1.71 2015/05/24 06:50:14 kefren Exp $
 #
 
 DISTNAME=	f-spot-0.8.2
-PKGREVISION=	28
+PKGREVISION=	31
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/f-spot/0.8/}
 EXTRACT_SUFX=	.tar.bz2
@@ -39,6 +39,12 @@ SUBST_FILES.fix-x11+=		build/DllMapVerifier.cs
 SUBST_FILES.fix-x11+=		lib/Hyena/build/DllMapVerifier.cs
 SUBST_SED.fix-x11=		-e 's,libX11.so.6,${X11BASE}/lib/libX11.so,'
 
+SUBST_CLASSES+=		fix-mcs
+SUBST_STAGE.fix-mcs=	post-patch
+SUBST_MESSAGE.fix-mcs=	Fix compiler name
+SUBST_FILES.fix-mcs=	configure
+SUBST_SED.fix-mcs=	-e 's,gmcs,mcs,'
+
 GCONF_SCHEMAS=	f-spot.schemas
 
 .include "../../devel/GConf/schemas.mk"
@@ -49,9 +55,10 @@ GCONF_SCHEMAS=	f-spot.schemas
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
+.include "../../graphics/flickrnet/buildlink3.mk"
 .include "../../graphics/lcms/buildlink3.mk"
 .include "../../graphics/libexif/buildlink3.mk"
-.include "../../lang/mono2/buildlink3.mk"
+.include "../../lang/mono/buildlink3.mk"
 .include "../../devel/mono-addins/buildlink3.mk"
 .include "../../textproc/gnome-doc-utils/buildlink3.mk"
 .include "../../mk/omf-scrollkeeper.mk"

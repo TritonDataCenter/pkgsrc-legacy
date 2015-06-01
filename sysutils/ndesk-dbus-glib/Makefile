@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.18 2015/04/06 08:17:17 adam Exp $
+# $NetBSD: Makefile,v 1.20 2015/05/23 06:44:58 kefren Exp $
 
 DISTNAME=	ndesk-dbus-glib-0.4.1
-PKGREVISION=	15
+PKGREVISION=	16
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.ndesk.org/archive/ndesk-dbus/
 
@@ -14,7 +14,13 @@ USE_TOOLS+=	pkg-config gmake
 
 PKGCONFIG_OVERRIDE+=	ndesk-dbus-glib-1.0.pc.in
 
+SUBST_CLASSES+=		fix-mcs
+SUBST_STAGE.fix-mcs=	post-patch
+SUBST_MESSAGE.fix-mcs=	Fix compiler name
+SUBST_FILES.fix-mcs=	configure
+SUBST_SED.fix-mcs=	-e 's,gmcs,mcs,'
+
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../lang/mono2/buildlink3.mk"
+.include "../../lang/mono/buildlink3.mk"
 .include "../../sysutils/ndesk-dbus/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

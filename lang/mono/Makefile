@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.156 2015/05/21 20:03:23 kefren Exp $
+# $NetBSD: Makefile,v 1.160 2015/05/26 12:19:46 jperkin Exp $
 
 DISTNAME=	mono-4.0.1
+PKGREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	http://download.mono-project.com/sources/mono/
 EXTRACT_SUFX=	.tar.bz2
@@ -10,14 +11,13 @@ HOMEPAGE=	http://www.mono-project.com/
 COMMENT=	Open source implementation of the .NET Development Framework
 LICENSE=	mit AND gnu-gpl-v2 AND gnu-lgpl-v2 AND apache-2.0
 
-MAKE_JOBS_SAFE=	yes
 BUILD_DEPENDS+=	p5-XML-Parser-[0-9]*:../../textproc/p5-XML-Parser
 CONFLICTS=	pnet-[0-9]* mcsim-[0-9]* lc-[0-9]*
 ALL_ENV+=	MONO_SHARED_DIR=${WRKDIR:Q} PLATFORM=
 
 USE_TOOLS+=	bash:run bison gmake gtar msgfmt perl:run pkg-config
 USE_LIBTOOL=	yes
-USE_LANGUAGES+=	c c++
+USE_LANGUAGES+=	c c99 c++
 EXTRACT_USING=	gtar
 
 GNU_CONFIGURE=		yes
@@ -137,6 +137,7 @@ PLIST_VARS=	monodoc
 .include "../../mk/bsd.prefs.mk"
 
 .if ${OPSYS} == "SunOS"
+CFLAGS+=		-D_XOPEN_SOURCE=600
 CONFIGURE_ARGS+=	--with-mcs-docs=no
 CONFIGURE_ENV+=		ac_cv_func_getdomainname=no
 CONFIGURE_ENV+=		ac_cv_func_setdomainname=no
@@ -153,6 +154,12 @@ CONFIGURE_ARGS+=	--with-mcs-docs=no
 CONFIGURE_ARGS+=	--disable-parallel-mark
 .else
 PLIST.monodoc=		yes
+.endif
+
+.if ${MACHINE_ARCH:M*i[34]86*}
+# for gcc byte atomic builtins
+GNU_ARCH.i386=		i586
+CFLAGS+=		-march=i586
 .endif
 
 post-install:

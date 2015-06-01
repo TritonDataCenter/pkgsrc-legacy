@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.7 2014/03/12 10:42:42 wiz Exp $
+@comment $NetBSD: PLIST,v 1.8 2015/05/27 15:02:58 dholland Exp $
 bin/2to3-${PY_VER_SUFFIX}
 bin/pydoc${PY_VER_SUFFIX}
 bin/python${PY_VER_SUFFIX}
@@ -1649,7 +1649,8 @@ lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/fcntl.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/grp.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/math.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/mmap.so
-lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/nis.so
+${PLIST.nis}lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/nis.so
+${PLIST.no-nis}lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/nis_failed.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/parser.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/resource.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/select.so

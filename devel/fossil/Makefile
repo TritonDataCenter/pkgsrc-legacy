@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.32 2015/03/15 07:54:35 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2015/05/29 14:15:34 ryoon Exp $
 
-DISTNAME=	fossil-src-1.32
+DISTNAME=	fossil-src-1.33
 PKGNAME=	${DISTNAME:S/-src//}
 CATEGORIES=	devel scm
 MASTER_SITES=	http://www.fossil-scm.org/download/
@@ -10,10 +10,8 @@ HOMEPAGE=	http://www.fossil-scm.org/
 COMMENT=	High-reliability, distributed software configuration management
 LICENSE=	2-clause-bsd
 
-WRKSRC=	${WRKDIR}/${PKGNAME_NOREV}
-
-USE_MULTIARCH=	bin
 HAS_CONFIGURE=	yes
+USE_MULTIARCH=	bin
 
 INSTALLATION_DIRS+=	bin${BINARCHSUFFIX}
 
