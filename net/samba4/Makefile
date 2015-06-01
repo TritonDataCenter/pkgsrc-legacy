@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2015/05/17 15:47:01 ryoon Exp $
+# $NetBSD: Makefile,v 1.7 2015/05/26 15:17:56 jperkin Exp $
 
 DISTNAME=	samba-${VERSION}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	http://download.samba.org/pub/samba/
 
@@ -14,6 +14,8 @@ DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 VERSION=	4.2.1
 CONFLICTS+=	ja-samba-[0-9]* pam-smbpass-[0-9]* tdb-[0-9]* winbind-[0-9]*
+
+BUILD_DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 BUILD_DEFS+=		VARBASE
 
@@ -89,15 +91,20 @@ CONFIGURE_ARGS+=	--enable-gnutls
 CONFIGURE_ARGS+=	--with-system-mitkrb5
 CONFIGURE_ARGS+=	--abi-check-disable
 #CONFIGURE_ARGS+=	--bundled-libraries=!crypto,ldb,ntdb,talloc,tdb,tevent
-.if defined(MAKE_JOBS_SAFE) && !empty(MAKE_JOBS_SAFE:M[nN][oO])
-CONFIGURE_ARGS+=	--jobs=1
-.else
+.if defined(MAKE_JOBS) && !empty(MAKE_JOBS) && !(defined(MAKE_JOBS_SAFE) && !empty(MAKE_JOBS_SAFE:M[nN][oO]))
 CONFIGURE_ARGS+=	--jobs=${MAKE_JOBS}
+.else
+CONFIGURE_ARGS+=	--jobs=1
 .endif
 
 # for winbind option build.
+.if ${OPSYS} != "SunOS"
 LDFLAGS+=		-Wl,--allow-shlib-undefined
+.endif
+LDFLAGS+=		${BUILDLINK_LDADD.gettext}
 LDFLAGS+=		${COMPILER_RPATH_FLAG}${SMB_PRIVATELIB}
+
+CFLAGS.SunOS+=		-DHAVE_SOLARIS_GETGRENT_R
 
 .include "options.mk"
 
@@ -148,6 +155,10 @@ SUBST_FILES.logpath=	examples/smb.conf.default
 SUBST_STAGE.logpath=	pre-configure
 SUBST_SED.logpath+=	-e 's,/usr/local/samba/var/log.%m,${SMB_LOGFILEBASE}/log.%m,g'
 
+.if ${INIT_SYSTEM} == "rc.d"
+MESSAGE_SRC=		${PKGDIR}/MESSAGE.rcd
+.endif
+
 post-extract:
 	${CP} ${FILESDIR}/adduser.sh ${FILESDIR}/deluser.sh ${WRKDIR}
 
@@ -187,5 +198,6 @@ PY_PATCHPLIST=	yes
 .include "../../devel/readline/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
+BUILDLINK_API_DEPENDS.mit-krb5+=	mit-krb5>=1.9.0
 .include "../../security/mit-krb5/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

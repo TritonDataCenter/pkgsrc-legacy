@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1070 2015/05/16 03:09:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.1072 2015/05/30 02:09:54 wen Exp $
 #
 
 COMMENT=	Networking tools
@@ -413,6 +413,7 @@ SUBDIR+=	p5-FusionInventory-Agent-Task-Network
 SUBDIR+=	p5-Geo-IP
 SUBDIR+=	p5-Geo-IPfree
 SUBDIR+=	p5-IO-Interface
+SUBDIR+=	p5-IO-SessionData
 SUBDIR+=	p5-IO-Socket-INET6
 SUBDIR+=	p5-IO-Socket-Multicast
 SUBDIR+=	p5-IP-Country
@@ -577,6 +578,7 @@ SUBDIR+=	py-foolscap
 SUBDIR+=	py-gevent
 SUBDIR+=	py-google
 SUBDIR+=	py-hatop
+SUBDIR+=	py-ipaddress
 SUBDIR+=	py-irclib
 SUBDIR+=	py-junos-eznc
 SUBDIR+=	py-kenosis

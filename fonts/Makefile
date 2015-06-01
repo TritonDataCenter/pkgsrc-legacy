@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.283 2015/05/17 21:49:36 joerg Exp $
+# $NetBSD: Makefile,v 1.285 2015/05/31 03:10:02 markd Exp $
 #
 
 COMMENT=	Fonts
@@ -209,7 +209,6 @@ SUBDIR+=	tex-ae-doc
 SUBDIR+=	tex-aecc
 SUBDIR+=	tex-aecc-doc
 SUBDIR+=	tex-afm2pl
-SUBDIR+=	tex-afm2pl-doc
 SUBDIR+=	tex-alegreya
 SUBDIR+=	tex-alegreya-doc
 SUBDIR+=	tex-allrunes
@@ -224,6 +223,8 @@ SUBDIR+=	tex-antiqua
 SUBDIR+=	tex-antiqua-doc
 SUBDIR+=	tex-antt
 SUBDIR+=	tex-antt-doc
+SUBDIR+=	tex-aramaic-serto
+SUBDIR+=	tex-aramaic-serto-doc
 SUBDIR+=	tex-archaic
 SUBDIR+=	tex-archaic-doc
 SUBDIR+=	tex-arev
@@ -314,6 +315,8 @@ SUBDIR+=	tex-cherokee
 SUBDIR+=	tex-cherokee-doc
 SUBDIR+=	tex-cinzel
 SUBDIR+=	tex-cinzel-doc
+SUBDIR+=	tex-cjhebrew
+SUBDIR+=	tex-cjhebrew-doc
 SUBDIR+=	tex-clearsans
 SUBDIR+=	tex-clearsans-doc
 SUBDIR+=	tex-cm
