@@ -21,7 +21,6 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
 CONFIGURE_ARGS+=	--with-ca-path=${SSLCERTS}
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
-CONFIGURE_ARGS+=	--with-nghttp2=${BUILDLINK_PREFIX.nghttp2}
 PKGCONFIG_OVERRIDE=	libcurl.pc.in
 
 INSTALLATION_DIRS=	share/doc/curl
@@ -46,5 +45,4 @@ post-install:
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
-.include "../../www/nghttp2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

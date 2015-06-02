@@ -1,7 +1,7 @@
 # $NetBSD: options.mk,v 1.12 2015/01/08 19:23:53 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.curl
-PKG_SUPPORTED_OPTIONS=	inet6 libssh2 gssapi ldap rtmp libidn
+PKG_SUPPORTED_OPTIONS=	inet6 libssh2 gssapi ldap rtmp libidn http2
 PKG_SUGGESTED_OPTIONS=	inet6 libidn
 
 .include "../../mk/bsd.prefs.mk"
@@ -54,3 +54,11 @@ CONFIGURE_ARGS+=	--with-libidn
 .else
 CONFIGURE_ARGS+=	--without-libidn
 .endif
+
+.if !empty(PKG_OPTIONS:Mhttp2)
+.include "../../www/nghttp2/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-nghttp2=${BUILDLINK_PREFIX.nghttp2}
+.else
+CONFIGURE_ARGS+=	--without-nghttp2
+.endif
+
