@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.93 2015/04/25 11:47:03 tnn Exp $
+# $NetBSD: Makefile,v 1.96 2015/06/29 11:12:45 wiz Exp $
 
-DISTNAME=	xorg-server-1.17.1
+DISTNAME=	xorg-server-1.17.2
 PKGNAME=	modular-${DISTNAME}
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG:=xserver/}
@@ -134,7 +134,7 @@ CONFIGURE_ENV+=		ac_cv_path_RAWCPP="${PREFIX}/bin/tradcpp -Uunix"
 
 .include "options.mk"
 
-.if !empty(OPSYS:M*BSD)
+.if ${OPSYS} == "NetBSD" || ${OPSYS} == "OpenBSD" || ${OPSYS} == "Bitrig" || ${OPSYS} == "MirBSD"
 CONFIGURE_ARGS+=	--with-sha1=libc
 .else
 .include "../../security/nettle/buildlink3.mk"

@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.98 2015/03/24 21:43:52 bsiegert Exp $
+$NetBSD: distinfo,v 1.100 2015/06/29 21:06:14 markd Exp $
 
 SHA1 (qt-everywhere-opensource-src-4.8.6.tar.gz) = ddf9c20ca8309a116e0466c42984238009525da6
 RMD160 (qt-everywhere-opensource-src-4.8.6.tar.gz) = 0220d4e76ac761c9ecfb8ddab6f2c1dc6ad70c33
@@ -20,7 +20,7 @@ SHA1 (patch-am) = 018a5982834737ca8ceb6460dc696b6e3a70ec54
 SHA1 (patch-an) = 8aa6ceffb9acab4771d22b3184a1360227a81409
 SHA1 (patch-ao) = a63839ae22e0bf13ff40f5377df2bc36ca052d91
 SHA1 (patch-ap) = 86a2f5cce47607c8c453c63c6213d5efb48c8569
-SHA1 (patch-aq) = d2818f69e89a2d0531df57daabd255ddeef0acb9
+SHA1 (patch-aq) = 44dcc5b8445776ddd5dd9ee4580ab6ed4e51bd74
 SHA1 (patch-ar) = ba839210b42532b1797604722442841e43acbae1
 SHA1 (patch-as) = b0962c535fc2e8da08bb78b9ebcb5cd678565058
 SHA1 (patch-au) = 397a18f84299026e21aee0079784f56698fc9c6b
@@ -69,6 +69,7 @@ SHA1 (patch-src_3rdparty_webkit_Source_WebCore_platform_graphics_filters_arm_FEL
 SHA1 (patch-src_3rdparty_webkit_Source_WebCore_platform_qt_PlatformKeyboardEventQt.cpp) = b28cf71983f8e71b82b1c634a10b3898ca13ede5
 SHA1 (patch-src_corelib_io_io.pri) = cde98927b524c92fae1e053c2359e77bde2c240a
 SHA1 (patch-src_corelib_io_qfilesystemwatcher.cpp) = bb16b95d20286b1aa069dc25843d7e0067cc0268
+SHA1 (patch-src_corelib_thread_qthread__unix.cpp) = 1d2104fb43f6789729b5bb88191fa5fa4d4184b1
 SHA1 (patch-src_gui_image_qbmphandler.cpp) = efe717ee805f808dc8a1ce7c56b3872bc3d75f69
 SHA1 (patch-src_gui_kernel_qcocoaapplicationdelegate__mac.mm) = 0caa9b006b3ffee4ab747fca9fd224c7c49211c9
 SHA1 (patch-src_network_ssl_qsslsocket__openssl__symbols.cpp) = 3ad682b86d2e9bd2b282caa298508dc3e9dd8566

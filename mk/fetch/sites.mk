@@ -1,4 +1,4 @@
-# $NetBSD: sites.mk,v 1.128 2015/05/16 20:02:21 tsutsui Exp $
+# $NetBSD: sites.mk,v 1.131 2015/07/01 00:45:35 rodent Exp $
 #
 # This Makefile fragment defines read-only MASTER_SITE_* variables
 # representing some well-known master distribution sites for software.
@@ -89,10 +89,10 @@ MASTER_SITE_KDE+=	\
 MASTER_SITE_SOURCEFORGE+=	\
 	http://downloads.sourceforge.net/sourceforge/
 
-MASTER_SITE_SOURCEFORGE_JP+=	\
+MASTER_SITE_OSDN+=	\
 	http://jaist.dl.sourceforge.jp/ \
 	http://iij.dl.sourceforge.jp/ \
-	http://osdn.dl.sourceforge.jp/
+	http://osdn.dl.osdn.jp/
 
 
 MASTER_SITE_SUSE+=	\
@@ -318,7 +318,10 @@ MASTER_SITE_OPENBSD+= \
 	ftp://ftp.jaist.ac.jp/pub/OpenBSD/
 
 MASTER_SITE_RUBYGEMS+= \
-	http://rubygems.org/downloads/ \
+	http://rubygems.org/downloads/
+
+MASTER_SITE_PYPI+= \
+	https://pypi.python.org/packages/source/
 
 MASTER_SITE_HASKELL_HACKAGE+=	\
 	http://hackage.haskell.org/package/

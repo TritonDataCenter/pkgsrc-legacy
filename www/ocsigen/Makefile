@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.15 2015/02/11 13:45:02 jaapb Exp $
+# $NetBSD: Makefile,v 1.17 2015/06/30 11:53:00 jaapb Exp $
 #
 
 VERSION=	2.5
 PKGNAME=	ocsigen-${VERSION}
+PKGREVISION=	1
 DISTNAME=	${VERSION}
 DIST_SUBDIR=	ocsigenserver
 CATEGORIES=	www
@@ -12,6 +13,10 @@ MAINTAINER=	jaapb@NetBSD.org
 HOMEPAGE=	http://www.ocsigen.org/
 COMMENT=	Web programming framework for OCaml
 LICENSE=	gnu-lgpl-v2.1
+
+# ln: ./ocsipersist.mli: File exists
+# Makefile:42: recipe for target 'ocsipersist.mli' failed
+MAKE_JOBS_SAFE=	no
 
 DEPENDS+=     ocaml-react-[0-9]*:../../devel/ocaml-react
 DEPENDS+=     ocaml-text-[0-9]*:../../textproc/ocaml-text

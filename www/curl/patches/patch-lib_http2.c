@@ -1,4 +1,4 @@
-$NetBSD: patch-lib_http2.c,v 1.1 2015/06/03 12:00:06 fhajny Exp $
+$NetBSD: patch-lib_http2.c,v 1.3 2015/06/30 23:00:21 spz Exp $
 
 Update compatibility for nghttp2 1.0. This patch should become obsolete
 with curl-7.43.

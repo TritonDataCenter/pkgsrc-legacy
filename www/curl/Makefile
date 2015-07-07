@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.150 2015/06/12 10:51:49 wiz Exp $
+# $NetBSD: Makefile,v 1.152 2015/06/30 23:00:21 spz Exp $
 
 DISTNAME=	curl-7.42.1
 PKGREVISION=	2

@@ -1,4 +1,4 @@
-$NetBSD: patch-aa,v 1.30 2015/04/22 14:35:21 jperkin Exp $
+$NetBSD: patch-aa,v 1.32 2015/06/30 23:00:21 spz Exp $
 
 builtin krb5-config in platforms such as solaris do not support
 the gssapi option, and need an explicit -lgss

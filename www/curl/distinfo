@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.105 2015/06/03 12:00:06 fhajny Exp $
+$NetBSD: distinfo,v 1.107 2015/06/30 23:00:21 spz Exp $
 
 SHA1 (curl-7.42.1.tar.bz2) = f65708915875b8cb35edb51d8dd31440dc02fbd3
 RMD160 (curl-7.42.1.tar.bz2) = 76d5b23fae60356342e2bac2e4c706ed544d4adf

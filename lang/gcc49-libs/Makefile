@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2014/11/28 11:47:01 bsiegert Exp $
+# $NetBSD: Makefile,v 1.4 2015/07/01 13:40:02 wiz Exp $
 
 GCC_PKGNAME=	gcc49
 .include	"../../lang/${GCC_PKGNAME}/version.mk"
@@ -8,8 +8,8 @@ PKGNAME=	${GCC_PKGNAME}-libs-${GCC49_DIST_VERSION}
 
 ## The PKGREVISION of this package needs to be at least 1 more than the
 ## PKGREVISION of the lang/gcc49 package so that with the dependence pattern
-## '{gcc49,gcc49-libs}>=4.9.*' pkg_all will choose gcc49-libs over gcc49.
-PKGREVISION=	2
+## '{gcc49,gcc49-libs}>=4.9.*' pkg_add will choose gcc49-libs over gcc49.
+PKGREVISION=	1
 
 CATEGORIES=	lang
 MASTER_SITES=	# empty
@@ -22,7 +22,8 @@ LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
 
 USE_TOOLS+=	pax
 
-NO_BUILD=		yes
+NO_BUILD=	yes
+CHECK_SHLIBS=	no
 
 ## Depend on exactly ${GCC49_DIST_VERSION}.
 BUILD_DEPENDS+=		${GCC_PKGNAME}-${GCC49_DIST_VERSION}{,nb[0-9]*}:../../lang/gcc49

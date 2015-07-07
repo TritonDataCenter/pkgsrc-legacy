@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.12 2015/04/30 03:27:20 taca Exp $
+# $NetBSD: Makefile,v 1.14 2015/06/23 14:04:03 taca Exp $
 #
 
 DISTNAME=	${RUBY_DISTNAME}
 PKGNAME=	${RUBY_PKGPREFIX}-base-${RUBY_VERSION_FULL}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	lang ruby
 MASTER_SITES=	${MASTER_SITE_RUBY}
 
@@ -31,6 +31,11 @@ CONFIGURE_ENV+=		INSTALL="${INSTALL} ${COPY}" \
 			INSTALL_DATA= INSTALL_PROGRAM= INSTALL_SCRIPT=
 
 .include "../../mk/compiler.mk"
+
+# /usr/bin/dtrace is not DTrace.
+.if ${OPSYS} == "Linux" && exists(/usr/bin/dtrace)
+CONFIGURE_ARGS+=	--disable-dtrace
+.endif
 
 .if !empty(PKGSRC_COMPILER:Msunpro)
 LIBS.SunOS+=	-B static -lsunmath -B dynamic -lm
