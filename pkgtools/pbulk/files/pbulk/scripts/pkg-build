@@ -172,7 +172,7 @@ ${pkg_up_to_date_script} ${pkgname} ${dependencies} && exit 0
 for file in group passwd shadow user_attr; do
 	if [ -f ${loc}/${file} ]; then
 		cp -p ${loc}/${file} /etc/${file}
-	else
+	elif [ -f /etc/${file} ]; then
 		cp -p /etc/${file} ${loc}/${file}
 	fi
 done
