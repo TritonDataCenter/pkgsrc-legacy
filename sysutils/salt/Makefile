@@ -36,6 +36,7 @@ PYSETUPINSTALLARGS+=	--salt-pidfile-dir=${VARBASE}/run
 REPLACE_PYTHON=	*.py */*.py */*/*.py
 
 RCD_SCRIPTS+=		salt_master salt_minion
+SMF_INSTANCES+=		master minion
 FILES_SUBST+=		PYTHON=${PYTHONBIN:Q}
 
 PKG_SYSCONFSUBDIR=	salt
