@@ -65,8 +65,33 @@ cleanup() {
 	exit 1
 }
 
+delete_xcrun_cache() {
+	local xcrun_bin xcrun_db_tmp
+	if [ -z ${xcrun_db+x} ]; then
+		xcrun_db=''
+		xcrun_bin=`which xcrun`
+		[ $? -eq 0 ] || return
+		[ -n "$xcrun_bin" ] || return
+		xcrun_db_tmp=`{ "$xcrun_bin" -v true 2>&1; } | \
+		    grep ' xcrun_db = .*' | head -n 1`
+		xcrun_db_tmp=${xcrun_db_tmp#*"'"}
+		xcrun_db_tmp=${xcrun_db_tmp%"'"}
+		[ "X${xcrun_db_tmp##*/}" = Xxcrun_db ] || return
+		xcrun_db="$xcrun_db_tmp"
+	fi
+	[ -n "$xcrun_db" ] && rm -f "$xcrun_db"
+}
+
+pre_run_su() {
+	# On OS X, if the privileged user's xcrun cache file exists, delete
+	# it because the xcrun invoked as the unprivileged user via su may
+	# try to replace it and fail because it does not have appropriate
+	# permissions.
+	delete_xcrun_cache
+}
+
 run_direct() { "$@"; }
-run_su() { su ${unprivileged_user} -c '"$@"' make "$@"; }
+run_su() { pre_run_su; su ${unprivileged_user} -c '"$@"' make "$@"; }
 
 run_make() {
 	local run_cmd
