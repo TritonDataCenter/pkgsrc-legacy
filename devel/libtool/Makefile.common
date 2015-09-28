@@ -70,6 +70,11 @@ CONFIGURE_ENV+=		lt_cv_path_NM="nm -B"
 CONFIGURE_ENV+=		lt_cv_path_NM=${NM:Q}
 .endif
 
+# Use the correct library search path rather than hardcoding whatever random
+# paths are printed out by GCC -print-search-dirs.
+#
+CONFIGURE_ENV+=		lt_cv_sys_lib_search_path_spec=${COMPILER_LIB_DIRS:Q}
+
 # SunOS ships a /bin/print command which is picked up by libtool and used as
 # the default $ECHO, however we use bash which does not have a 'print' builtin
 # so we end up having to fork for each invocation.  Avoid this by creating a
