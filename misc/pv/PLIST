@@ -1,0 +1,7 @@
+@comment $NetBSD$
+bin/pv
+man/man1/pv.1
+share/locale/de/LC_MESSAGES/pv.mo
+share/locale/fr/LC_MESSAGES/pv.mo
+share/locale/pl/LC_MESSAGES/pv.mo
+share/locale/pt/LC_MESSAGES/pv.mo

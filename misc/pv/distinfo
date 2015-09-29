@@ -1,0 +1,6 @@
+$NetBSD$
+
+SHA1 (pv-1.6.0.tar.bz2) = 748280662bdc318c876cc9e759b52050c76f81ee
+RMD160 (pv-1.6.0.tar.bz2) = c1271f71df99db9e8b9df3f491bd2d18ebab4b68
+Size (pv-1.6.0.tar.bz2) = 107723 bytes
+SHA1 (patch-autoconf_header.in) = 316e8d6c77c2ad033effec6eca1eb908172f02f0
