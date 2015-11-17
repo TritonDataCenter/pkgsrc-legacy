@@ -127,12 +127,6 @@ function checkshlib(DSO, needed, rpath, found, dso_rpath, got_rpath, nrpath) {
 		    substr(rpath[p], 1, length(wrkdir) + 1) == wrkdir "/") {
 			print DSO ": rpath relative to WRKDIR"
 		}
-		for (e = 1; e <= nedirs; e++) {
-			if (rpath[p] == edirs[e] ||
-			    substr(rpath[p], 1, length(edirs[e]) + 1) == edirs[e] "/") {
-				print DSO ": rpath " rpath[p] " relative to CHECK_WRKREF_EXTRA_DIRS directory " edirs[e]
-			}
-		}
 	}
 	for (lib in needed) {
 		found = 0
@@ -143,6 +137,12 @@ function checkshlib(DSO, needed, rpath, found, dso_rpath, got_rpath, nrpath) {
 			}
 			if (!libcache[libfile]) {
 				check_pkg(rpath[p] "/" lib)
+				for (e = 1; e <= nedirs; e++) {
+					if (rpath[p] == edirs[e] ||
+					    substr(rpath[p], 1, length(edirs[e]) + 1) == edirs[e] "/") {
+						print DSO ": rpath " rpath[p] " relative to CHECK_WRKREF_EXTRA_DIRS directory " edirs[e]
+					}
+				}
 				found = 1
 				break
 			}
