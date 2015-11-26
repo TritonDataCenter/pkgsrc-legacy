@@ -1,9 +1,9 @@
 $NetBSD: distinfo,v 1.18 2015/11/07 22:52:54 dholland Exp $
 
-SHA1 (Unreal3.2.10.4.tar.gz) = fa2b828b98afeab8677cb04aed9a634f7e43c386
-RMD160 (Unreal3.2.10.4.tar.gz) = 07c4854a59432dfa8a2ef16c5c9517e08b20cb6b
-SHA512 (Unreal3.2.10.4.tar.gz) = eeecefe79cadf3efa1b9379d4b675c0b86a2dd91e703f9e4b3998331f56b923d3719c67482f464f9b1699f801e0a83d677ada642ea7037c52a9d5db63abe6a5c
-Size (Unreal3.2.10.4.tar.gz) = 3540227 bytes
+SHA1 (Unreal3.2.10.5.tar.gz) = 3a8823e79c8c89ac8339e105c6c0b6a2a76f6097
+RMD160 (Unreal3.2.10.5.tar.gz) = 4acf7edbadeca5679a22a09d16e08873f1e61e8b
+SHA512 (Unreal3.2.10.5.tar.gz) = 98c71a958f3b620ff4c9d83279c508e13bdd76cc9d191ac021c4ef57eaf6a549345c0b2c1f8c550f29c2d79f8f257a176ae73e73dcbab839715462aa4b80565e
+Size (Unreal3.2.10.5.tar.gz) = 3538121 bytes
 SHA1 (patch-ab) = b66ae1990e25479abe9087a9308a2185692fcba2
 SHA1 (patch-ac) = 7b2909bc4c9676440d752675a42115c3b3fc3a1c
 SHA1 (patch-ae) = ec6baaa921a9ee9cf8e494da4185b22697299545

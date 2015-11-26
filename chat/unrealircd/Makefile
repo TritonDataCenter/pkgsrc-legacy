@@ -1,6 +1,6 @@
 # $NetBSD: Makefile,v 1.43 2015/11/07 22:52:04 dholland Exp $
 
-DISTNAME=	Unreal3.2.10.4
+DISTNAME=	Unreal3.2.10.5
 PKGNAME=	${DISTNAME:tl:S/l/lircd-/1}
 PKGREVISION=	1
 CATEGORIES=	chat
