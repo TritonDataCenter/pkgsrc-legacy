@@ -11,7 +11,7 @@
       <service_fmri value='svc:/system/filesystem/local:default' />
     </dependency>
     <method_context>
-      <method_credential user='uircd' group='uircd' />
+      <method_credential user='@UIRCD_USER@' group='@UIRCD_GROUP@' />
     </method_context>
     <exec_method type="method" name="start" exec="@PREFIX@/sbin/ircd -f %{config_file} -F" timeout_seconds="60" />
     <exec_method type="method" name="stop" exec=":kill" timeout_seconds="60" />
