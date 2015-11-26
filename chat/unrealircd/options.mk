@@ -17,7 +17,7 @@ PKG_SUGGESTED_OPTIONS=	unrealircd-showlistmodes unrealircd-prefixaq
 ###
 .if !empty(PKG_OPTIONS:Minet6)
 CONFIGURE_ARGS+=	--enable-inet6
-MESSAGE_SRC+=		MESSAGE_SRC.inet6
+MESSAGE_SRC+=		MESSAGE.inet6
 .else
 CONFIGURE_ARGS+=	--disable-inet6
 CONFIGURE_ENV+=		ac_cv_ip6=no
@@ -43,7 +43,7 @@ CONFIGURE_ARGS+=	--enable-nospoof
 ### server <-> server with zlib.
 ###
 .if !empty(PKG_OPTIONS:Munrealircd-ziplinks)
-CONFIGURE_ARGS+=		--enable-ziplinks
+CONFIGURE_ARGS+=		--enable-ziplinks=${BUILDLINK_PREFIX.zlib}
 .	include "../../devel/zlib/buildlink3.mk"
 .endif
 
