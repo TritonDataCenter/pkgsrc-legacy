@@ -345,13 +345,11 @@ loop:
 	if (ret > 0) {
 		iter = poll_list;
 		for (ev = LIST_FIRST(&all_events);
-		    iter < last_iter && ev && (next = LIST_NEXT(ev, ev_link), 1);
+		    ret && iter < last_iter && ev && (next = LIST_NEXT(ev, ev_link), 1);
 		    ev = next, ++iter) {
 			if (iter->revents) {
-				if (!ev->ev_persistent) {
-					--active_events;
-					LIST_REMOVE(ev, ev_link);
-				}
+				if (!ev->ev_persistent)
+					event_del(ev);
 				(*ev->ev_handler)(ev->ev_fd, ev->ev_arg);
 				--ret;
 			}
