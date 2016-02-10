@@ -1,0 +1,17 @@
+$NetBSD$
+
+--- configure.orig	2015-07-01 19:49:35.000000000 +0000
++++ configure
+@@ -15901,11 +15901,7 @@ $as_echo "#define DARWIN 1" >>confdefs.h
+ $as_echo "#define SUPPORT_GEXEC 0" >>confdefs.h
+ 
+ 		CFLAGS="$CFLAGS -D__EXTENSIONS__ -DHAVE_STRERROR"
+-		if test x"$ac_cv_prog_cc_c99" = x -o x"$ac_cv_prog_cc_c99" = xno; then
+-		   CFLAGS="$CFLAGS -D_POSIX_C_SOURCE=199506L"
+-		else
+-		   CFLAGS="$CFLAGS -D_POSIX_C_SOURCE=200112L"
+-		fi
++		CFLAGS="$CFLAGS -D_POSIX_C_SOURCE=200112L -std=c11"
+ 		if test x"$ac_cv_c_compiler_gnu" != xyes; then
+ 		   LIBS="-lm $LIBS"
+ 		fi
