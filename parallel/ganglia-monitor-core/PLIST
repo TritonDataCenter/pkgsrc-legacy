@@ -1,7 +1,6 @@
 @comment $NetBSD: PLIST,v 1.6 2014/03/11 14:05:12 jperkin Exp $
 bin/ganglia-config
 bin/gmetric
-bin/gstat
 include/ganglia.h
 include/ganglia_gexec.h
 include/gm_metric.h
@@ -22,7 +21,6 @@ lib/libganglia.la
 man/man1/gmetad.1
 man/man1/gmetric.1
 man/man1/gmond.1
-man/man1/gstat.1
 man/man5/gmond.conf.5
 sbin/gmetad
 sbin/gmond
