@@ -9,7 +9,7 @@ BUILDLINK_API_DEPENDS.postgresql-postgis+=	postgresql${PGSQL_VERSION}-postgis>=1
 BUILDLINK_ABI_DEPENDS.postgresql-postgis?=	postgresql${PGSQL_VERSION}-postgis>=2.1.4nb2
 BUILDLINK_PKGSRCDIR.postgresql-postgis?=	../../databases/postgresql-postgis2
 
-PGSQL_VERSIONS_ACCEPTED=	94 93 92 91
+PGSQL_VERSIONS_ACCEPTED=	95 94 93 92 91
 
 .include "../../geography/geos/buildlink3.mk"
 .include "../../geography/proj/buildlink3.mk"
