@@ -1,0 +1,4 @@
+The proplib library provides an abstract interface for creating and
+manipulating property lists in C. Property lists have object types for boolean
+values, opaque data, numbers, and strings. Structure is provided by the array
+and dictionary collection types.
