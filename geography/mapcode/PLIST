@@ -1,0 +1,4 @@
+@comment $NetBSD$
+bin/mapcode
+include/mapcode.h
+lib/libmapcode.so
