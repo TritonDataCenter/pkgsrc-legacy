@@ -1,0 +1,12 @@
+@comment $NetBSD$
+bin/records
+${PYSITELIB}/records-0.4.3-py2.7.egg-info/PKG-INFO
+${PYSITELIB}/records-0.4.3-py2.7.egg-info/SOURCES.txt
+${PYSITELIB}/records-0.4.3-py2.7.egg-info/dependency_links.txt
+${PYSITELIB}/records-0.4.3-py2.7.egg-info/entry_points.txt
+${PYSITELIB}/records-0.4.3-py2.7.egg-info/not-zip-safe
+${PYSITELIB}/records-0.4.3-py2.7.egg-info/requires.txt
+${PYSITELIB}/records-0.4.3-py2.7.egg-info/top_level.txt
+${PYSITELIB}/records.py
+${PYSITELIB}/records.pyc
+${PYSITELIB}/records.pyo
