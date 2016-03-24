@@ -130,6 +130,10 @@ SUBST_VARS.sslbase=	SSLBASE
 
 CHECK_INTERPRETER_SKIP=	lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc
 
+# Harmless PKG_CONFIG_LIBDIR references to BUILDLINK_DIR
+CHECK_WRKREF_SKIP+=	lib/python3.5/_sysconfigdata.py
+CHECK_WRKREF_SKIP+=	lib/python3.5/config-3.5/Makefile
+
 .if ${OPSYS} == "HPUX"
 post-install:
 	${LN} -fs ${DESTDIR}${PREFIX}/lib/libpython3.5.sl \
