@@ -2,6 +2,7 @@
 
 PKGNAME=	${DISTNAME:S/_/-/}
 DISTNAME=	pam_radius-1.4.0
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.freeradius.org/pub/freeradius/
 
