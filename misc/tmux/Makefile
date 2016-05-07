@@ -1,11 +1,11 @@
 # $NetBSD: Makefile,v 1.34 2016/03/05 11:28:58 jperkin Exp $
 
-DISTNAME=	tmux-2.1
+DISTNAME=	tmux-2.2
 PKGREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=tmux/}
 GITHUB_PROJECT=	tmux
-GITHUB_TAG=	2.1
+GITHUB_TAG=	2.2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://tmux.github.io/
