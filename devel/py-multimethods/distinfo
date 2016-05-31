@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.1 2015/03/17 16:56:35 realzhtw Exp $
+
+SHA1 (multimethods-1.0.0.tar.gz) = 19fe83576c03b3ffc4260491b0a7f02e32a92197
+RMD160 (multimethods-1.0.0.tar.gz) = afcc73de56512a8181b08b49f88b4eabe880015d
+Size (multimethods-1.0.0.tar.gz) = 3065 bytes
