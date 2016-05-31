@@ -1,0 +1,4 @@
+Chez Scheme is a Scheme implementation by R. Kent Dybvig, first released in
+1985, which uses incremental native-code compilation to produce native binaries
+for the PowerPC, SPARC, IA-32, and x86-64 processor architectures. Chez Scheme
+supports R6RS[1] since version 7.9.1.
