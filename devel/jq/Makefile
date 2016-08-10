@@ -18,6 +18,6 @@ USE_TOOLS+=	bison flex gmake
 
 GNU_CONFIGURE=	yes
 
-CFLAGS.SunOS+=	-D_XPG6
+CFLAGS.SunOS+=	-D_XPG6 -D__EXTENSIONS__
 
 .include "../../mk/bsd.pkg.mk"
