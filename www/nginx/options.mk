@@ -6,6 +6,7 @@ PKG_SUPPORTED_OPTIONS=	dav flv gtools inet6 luajit mail-proxy memcache naxsi \
 			debug status nginx-autodetect-cflags echo \
 			set-misc headers-more array-var encrypted-session \
 			form-input perl gzip v2
+PKG_SUPPORTED_OPTIONS+=	passenger
 
 PKG_SUGGESTED_OPTIONS=	inet6 pcre ssl
 
@@ -202,6 +203,24 @@ CONFIGURE_ARGS+=	--with-http_image_filter_module
 
 .if !empty(PKG_OPTIONS:Mstatus)
 CONFIGURE_ARGS+=	--with-http_stub_status_module
+.endif
+
+.if !empty(PKG_OPTIONS:Mpassenger)
+PKGNAME=		${DISTNAME:S/nginx/nginx-passenger/}
+
+DEPENDS+=		${RUBY_PKGPREFIX}-passenger-[0-9]*:../../wip/ruby-passenger
+
+CONFIGURE_ARGS+=	--add-module=${WRKDIR}/passenger/ext/nginx
+
+MESSAGE_SRC=		MESSAGE
+MESSAGE_SRC+=		MESSAGE.passenger
+
+.include "../../wip/ruby-passenger/inplace.mk"
+
+pre-configure: build-passenger-files
+
+build-passenger-files:
+	cd ${WRKDIR}/passenger/build && ${RAKE} nginx:clean nginx
 .endif
 
 .if !empty(PKG_OPTIONS:Mperl)

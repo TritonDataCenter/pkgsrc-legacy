@@ -33,6 +33,8 @@ LICENSE=	original-bsd # CMU version
 DISTINFO_FILE=		${.CURDIR}/../cyrus-sasl/distinfo
 PATCHDIR=		${.CURDIR}/../cyrus-sasl/patches
 
+PKG_SYSCONFSUBDIR=	sasl2
+
 .include "../../mk/bsd.prefs.mk"
 
 .if defined(SASL_PLUGIN) && !empty(SASL_PLUGIN:M[yY][eE][sS])
@@ -53,6 +55,7 @@ MULTIARCH_DIRS.lib=	# manually defined in PLIST
 DOCDIR=			${PREFIX}/share/doc/cyrus-sasl
 PLUGINDIR=		${PREFIX}/lib/sasl2
 
+CONFIGURE_ARGS+=	--with-configdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-plugindir=${PLUGINDIR:Q}
 CONFIGURE_ARGS+=	--disable-java
 

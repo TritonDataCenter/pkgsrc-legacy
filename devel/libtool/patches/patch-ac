@@ -1,6 +1,12 @@
 $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
 
---- libltdl/config/ltmain.sh.orig	Mon Oct 17 10:19:11 2011
+Add passthrough support for -fstack-protector*
+http://permalink.gmane.org/gmane.comp.gnu.libtool.bugs/7341
+
+Disable the opt_duplicate_compiler_generated_deps optimisation
+for solaris2 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
+
+--- libltdl/config/ltmain.sh.orig	2011-10-17 10:19:35.000000000 +0000
 +++ libltdl/config/ltmain.sh
 @@ -133,8 +133,9 @@ $lt_unset CDPATH
  # function.
@@ -14,7 +20,34 @@ $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
  : ${CP="cp -f"}
  test "${ECHO+set}" = set || ECHO=${as_echo-'printf %s\n'}
  : ${MAKE="make"}
-@@ -6899,7 +6900,11 @@ func_mode_link ()
+@@ -1180,7 +1181,9 @@ func_enable_tag "$optarg"
+   test "$opt_debug" = : || func_append preserve_args " --debug"
+ 
+   case $host in
+-    *cygwin* | *mingw* | *pw32* | *cegcc*)
++    # Solaris2 added to fix http://debbugs.gnu.org/cgi/bugreport.cgi?bug=1645
++    # see also: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
++    *cygwin* | *mingw* | *pw32* | *cegcc* | *solaris2*)
+       # don't eliminate duplications in $postdeps and $predeps
+       opt_duplicate_compiler_generated_deps=:
+       ;;
+@@ -5847,13 +5850,14 @@ func_mode_link ()
+       # -m*, -t[45]*, -txscale* architecture-specific flags for GCC
+       # -F/path              path to uninstalled frameworks, gcc on darwin
+       # -p, -pg, --coverage, -fprofile-*  profiling flags for GCC
++      # -fstack-protector*   stack protector flags for GCC
+       # @file                GCC response files
+       # -tp=*                Portland pgcc target processor selection
+       # --sysroot=*          for sysroot support
+       # -O*, -flto*, -fwhopr*, -fuse-linker-plugin GCC link-time optimization
+       -64|-mips[0-9]|-r[0-9][0-9]*|-xarch=*|-xtarget=*|+DA*|+DD*|-q*|-m*| \
+       -t[45]*|-txscale*|-p|-pg|--coverage|-fprofile-*|-F*|@*|-tp=*|--sysroot=*| \
+-      -O*|-flto*|-fwhopr*|-fuse-linker-plugin)
++      -O*|-flto*|-fwhopr*|-fuse-linker-plugin|-fstack-protector*)
+         func_quote_for_eval "$arg"
+ 	arg="$func_quote_for_eval_result"
+         func_append compile_command " $arg"
+@@ -6899,7 +6903,11 @@ func_mode_link ()
  	    # Finalize command for both is simple: just hardcode it.
  	    if test "$hardcode_direct" = yes &&
  	       test "$hardcode_direct_absolute" = no; then
@@ -27,7 +60,7 @@ $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
  	    elif test "$hardcode_minus_L" = yes; then
  	      add_dir="-L$libdir"
  	      add="-l$name"
-@@ -7391,6 +7396,7 @@ func_mode_link ()
+@@ -7391,6 +7399,7 @@ func_mode_link ()
  	# Calculate the version variables.
  	major=
  	versuffix=
@@ -35,7 +68,7 @@ $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
  	verstring=
  	case $version_type in
  	none) ;;
-@@ -7451,6 +7457,7 @@ func_mode_link ()
+@@ -7451,6 +7460,7 @@ func_mode_link ()
  	  func_arith $current - $age
  	  major=.$func_arith_result
  	  versuffix="$major.$age.$revision"
@@ -43,7 +76,7 @@ $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
  	  ;;
  
  	osf)
-@@ -7511,8 +7518,10 @@ func_mode_link ()
+@@ -7511,8 +7521,10 @@ func_mode_link ()
  	  esac
  	  if test "$need_version" = no; then
  	    versuffix=
@@ -54,7 +87,7 @@ $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
  	  fi
  	fi
  
-@@ -7520,6 +7529,7 @@ func_mode_link ()
+@@ -7520,6 +7532,7 @@ func_mode_link ()
  	if test "$avoid_version" = yes && test "$need_version" = no; then
  	  major=
  	  versuffix=
@@ -62,7 +95,7 @@ $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
  	  verstring=""
  	fi
  
-@@ -7630,7 +7640,7 @@ func_mode_link ()
+@@ -7630,7 +7643,7 @@ func_mode_link ()
  	  *-*-netbsd*)
  	    # Don't link with libc until the a.out ld.so is fixed.
  	    ;;
@@ -71,7 +104,7 @@ $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
  	    # Do not include libc due to us having libc/libc_r.
  	    ;;
  	  *-*-sco3.2v5* | *-*-sco5v6*)
-@@ -7653,12 +7663,14 @@ func_mode_link ()
+@@ -7653,12 +7666,14 @@ func_mode_link ()
  	libname_save=$libname
  	release_save=$release
  	versuffix_save=$versuffix
@@ -86,7 +119,7 @@ $NetBSD: patch-ac,v 1.35 2015/07/18 16:50:51 joerg Exp $
  	major=""
  	newdeplibs=
  	droppeddeps=no
-@@ -7935,6 +7947,7 @@ EOF
+@@ -7935,6 +7950,7 @@ EOF
  	  ;;
  	esac
  	versuffix=$versuffix_save

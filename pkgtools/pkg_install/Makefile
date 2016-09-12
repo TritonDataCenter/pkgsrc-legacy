@@ -215,7 +215,7 @@ pre-configure:
 		--disable-dependency-tracking --without-expat		\
 		--disable-maintainer-mode \
 		--without-iconv --without-lzo2 --without-nettle		\
-		--without-xml2	\
+		--without-lzmadec --without-lzma --without-xml2		\
 		${LIBARCHIVE_CONFIGURE_ARGS}
 	cd ${WRKDIR}/libarchive && ${BUILD_MAKE_CMD}
 .endif

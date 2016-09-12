@@ -418,3 +418,4 @@ share/doc/bind9/arm/man.rndc-confgen.html
 share/doc/bind9/arm/man.rndc.conf.html
 share/doc/bind9/arm/man.rndc.html
 share/doc/bind9/arm/notes.html
+share/examples/bind9/named.conf

@@ -135,6 +135,10 @@ SUBST_VARS.sslbase=	SSLBASE
 
 CHECK_INTERPRETER_SKIP=	lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc
 
+# Harmless PKG_CONFIG_LIBDIR references to BUILDLINK_DIR
+CHECK_WRKREF_SKIP+=	lib/python3.4/_sysconfigdata.py
+CHECK_WRKREF_SKIP+=	lib/python3.4/config-3.4/Makefile
+
 SUBST_CLASSES+=		vars
 SUBST_MESSAGE.vars=	Substituting multiarch vars.
 SUBST_STAGE.vars=	pre-configure

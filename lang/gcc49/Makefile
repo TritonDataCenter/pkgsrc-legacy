@@ -42,6 +42,9 @@ INFO_FILES=		yes
 UNLIMIT_RESOURCES+=	datasize
 UNLIMIT_RESOURCES+=	stacksize
 
+FILES_SUBST+=		GCC49_DIST_VERSION=${GCC49_DIST_VERSION}
+FILES_SUBST+=		MACHINE_GNU_PLATFORM=${MACHINE_GNU_PLATFORM}
+
 SUBST_CLASSES+=		vars
 SUBST_STAGE.vars=	pre-configure
 SUBST_FILES.vars=	gcc/Makefile.in
@@ -87,7 +90,7 @@ CONFIGURE_ARGS+=        --enable-libssp
 CONFIGURE_ARGS+=	--enable-languages=${LANGS:Q}
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--enable-long-long
-CONFIGURE_ARGS+=	--with-local-prefix=${GCC_PREFIX:Q}
+CONFIGURE_ARGS+=	--with-local-prefix=${LOCALBASE:Q}
 CONFIGURE_ARGS+=	--enable-threads=posix
 CONFIGURE_ARGS+=	--with-boot-ldflags=${BOOT_LDFLAGS:Q}
 

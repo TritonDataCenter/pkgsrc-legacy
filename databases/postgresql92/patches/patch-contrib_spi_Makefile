@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- contrib/spi/Makefile.orig	2014-07-21 19:16:01.000000000 +0000
++++ contrib/spi/Makefile
+@@ -8,7 +8,7 @@ DOCS = $(addsuffix .example, $(MODULES))
+ # comment out if you want a quieter refint package for other uses
+ PG_CPPFLAGS = -DREFINT_VERBOSE
+ 
+-LDFLAGS_SL += -L$(top_builddir)/src/port -lpgport
++LDFLAGS_SL += $(PREFIX)/lib/libpgport.a
+ 
+ ifdef USE_PGXS
+ PG_CONFIG = pg_config
