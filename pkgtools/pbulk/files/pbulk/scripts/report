@@ -30,7 +30,7 @@
 # OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
-. @PBULK_CONFIG@
+. ${PBULK_CONF:-@PBULK_CONFIG@}
 
 set -e
 
@@ -42,7 +42,7 @@ fi
 
 echo "Build reports..."
 ${report_script} ${loc}
-${bzip2} -zc ${loc}/report > ${loc}/report.bz2
+${xz} -zc ${loc}/report > ${loc}/report.xz
 ${report_html_script} ${loc} ${bulklog}
 ${report_txt_script} ${loc}
 
@@ -79,11 +79,11 @@ cat ${loc}/report.txt | ${mail} -s "${report_subject_prefix} ${platform} ${build
 cd ${bulklog}
 echo "Uploading report..."
 {
-	echo "meta/report.bz2"
 	echo "meta/report.txt"
 	echo "meta/report.html"
 	echo "meta/report.dot"
 	echo "meta/report.svg"
+	echo "meta/report.xz"
 	echo "meta/status"
 	while read pkg; do
 		echo "${pkg}/pre-clean.log"
@@ -107,4 +107,23 @@ echo "Uploading report..."
 		[ -f "$file" ] && echo "+ $file"
 	done
 	echo "- *"
-} | ${rsync} --exclude-from=- ${report_rsync_args} . ${report_rsync_target}/${build_start_dir}
+} | {
+	if [ -n "${report_manta_target}" ]; then
+		# Variables sourced from pbulk.conf
+		export MANTA_USER MANTA_KEY_ID MANTA_URL
+		PATH=$MANTA_PATH:$PATH
+		# Output directory only needs to not exist or be empty.
+		tmpdir="/var/tmp/pbulk-rsync-$$"
+		mtarfile="/${MANTA_USER}/stor/${report_subject_prefix}-${build_start_dir}.tar.gz"
+		mdir="${report_manta_target}/${build_start_dir}"
+		${rsync} -rn --exclude-from=- --out-format='%n' . ${tmpdir} \
+		    | grep -v '/$' | @TAR@ -cz -T - 2>/dev/null \
+		    | mput -q ${mtarfile}
+		echo ${mtarfile} \
+		    | mjob create -qo -m gzcat \
+			-m "muntar -f \$MANTA_INPUT_FILE ${mdir}"
+		mrm ${mtarfile}
+	else
+		${rsync} --exclude-from=- ${report_rsync_args} . ${report_rsync_target}/${build_start_dir}
+	fi
+}

@@ -1,7 +1,7 @@
 #!@SH@
 # $NetBSD: scan-client-start,v 1.4 2015/06/07 22:49:04 joerg Exp $
 
-. @PBULK_CONFIG@
+. ${PBULK_CONF:-@PBULK_CONFIG@}
 
 set -e
 
@@ -17,14 +17,42 @@ else
 	extra_pscan_args=""
 fi
 
-for client in ${scan_clients}; do
-	case ${client} in 
-	*:*)
-		port="-p ${client##*:}"
-		client=${client%%:*}
-		;;
-	*)
-		;;
-	esac
-	ssh $port $client "${pscan_prepare} && ${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc}" &
-done
+# Start scan processes inside chroots.  We assume that the chroots were
+# created successfully.
+if [ -n "${chroot_create}" -a "${chroot_dir}" ]; then
+	if [ -n "${scan_clients}" ]; then
+		for client in ${scan_clients}; do
+			case ${client} in
+			*:*)
+				port="-p ${client##*:}"
+				client=${client%%:*}
+				;;
+			*)
+				;;
+			esac
+			ssh $port $client "for dir in ${chroot_dir}-scan*; do
+				PBULK_CONF=${PBULK_CONF} /usr/sbin/chroot \${dir} @SH@ -c \"${pscan_prepare} && ${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc}\" &
+			done" &
+		done
+	else
+		for dir in ${chroot_dir}-scan*; do
+			PBULK_CONF=${PBULK_CONF} /usr/sbin/chroot ${dir} @SH@ -c "${pscan_prepare} && ${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc}" &
+		done
+	fi
+else
+	if [ -n "${scan_clients}" ]; then
+		for client in ${scan_clients}; do
+			case ${client} in
+			*:*)
+				port="-p ${client##*:}"
+				client=${client%%:*}
+				;;
+			*)
+				;;
+			esac
+			ssh $port $client "PBULK_CONF=${PBULK_CONF} ${pscan_prepare} && PBULK_CONF=${PBULK_CONF} ${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc}" &
+		done
+	else
+		PBULK_CONF=${PBULK_CONF} ${pscan_prepare} && PBULK_CONF=${PBULK_CONF} ${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc} &
+	fi
+fi
