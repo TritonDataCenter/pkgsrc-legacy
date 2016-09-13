@@ -45,12 +45,10 @@ USE_TOOLS+=	gmake intltool msgfmt perl pkg-config automake
 USE_LIBTOOL=	YES
 USE_MULTIARCH=		lib
 
-MULTIARCH_SKIP_DIRS.lib=	lib/ConsoleKit
-
 CONFIGURE_ARGS+=--sysconfdir=${PKG_SYSCONFBASE}			\
 		--localstatedir=${VARBASE}			\
 		--enable-pam-module				\
-		--with-pam-module-dir=${PREFIX}/lib/security	\
+		--with-pam-module-dir=${PREFIX}/lib${LIBARCHSUFFIX}/security
 
 CONFIGURE_ARGS.SunOS+=	--enable-rbac-shutdown=solaris.system.shutdown
 
