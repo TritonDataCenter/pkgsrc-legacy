@@ -1,9 +1,9 @@
 # $NetBSD: Makefile,v 1.33.2.1 2016/02/20 21:24:10 spz Exp $
 
-DISTNAME=	salt-2015.8.5
+DISTNAME=	salt-2015.8.12
 PKGREVISION=	1
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_PYPI:=s/salt/}
+MASTER_SITES=	https://pypi.python.org/packages/d1/9b/6f36ebb9533538157950329cb8ce52240607b6fbd4ee1399caabd7922a9a/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://saltstack.org/
