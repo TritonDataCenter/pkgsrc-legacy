@@ -169,6 +169,7 @@ post-install:
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/pyconfig.h \
 		${DESTDIR}/${PREFIX}/include/python${PY_VER_SUFFIX}
+	${RM} -rf ${DESTDIR}/${PREFIX}/lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/__pycache__
 .endif
 
 BUILDLINK_DEPMETHOD.readline=		build
