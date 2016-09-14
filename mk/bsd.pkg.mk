@@ -113,6 +113,7 @@ DEPENDS+=		abiexec-[0-9]*:../../pkgtools/abiexec
 .  endif
 MULTIARCH_DIRS.bin?=	bin sbin
 MULTIARCH_DIRS.lib?=	lib
+MULTIARCH_SKIP_DIRS.lib+=	lib/systemd
 .endif
 
 # Override for SU_CMD user check
