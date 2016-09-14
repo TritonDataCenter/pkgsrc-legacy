@@ -327,6 +327,8 @@ lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/install-sh
 lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/libpython${PY_VER_SUFFIX}.a
 lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/makesetup
 lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/python-config.py
+lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/python-config.pyc
+lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/python-config.pyo
 lib/python${PY_VER_SUFFIX}/config-${PY_VER_SUFFIX}${LIBARCHSUFFIX}/python.o
 lib/python${PY_VER_SUFFIX}/configparser.py
 lib/python${PY_VER_SUFFIX}/configparser.pyc
