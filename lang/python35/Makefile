@@ -31,10 +31,10 @@ CONFIGURE_ARGS+=	--without-ensurepip
 CONFIGURE_ENV+=		ac_cv_path_mkdir=${TOOLS_PATH.mkdir}
 PKGCONFIG_OVERRIDE+=	Misc/python.pc.in
 
-USE_MULTIARCH=         bin lib
-MULTIARCH_DIRS.lib=    # empty, manually set in PLIST
-NO_MULTIARCH_LIBDIR=   # defined, manually set
-CHECK_INTERPRETER=no   # $PREFIX/bin/python2.7 not created until pkg_add
+USE_MULTIARCH=		bin lib
+MULTIARCH_DIRS.lib=	# empty, manually set in PLIST
+NO_MULTIARCH_LIBDIR=	# defined, manually set
+CHECK_INTERPRETER=no	# $PREFIX/bin/python2.7 not created until pkg_add
 
 PTHREAD_OPTS+=	require
 .include "../../mk/pthread.buildlink3.mk"
