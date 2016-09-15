@@ -15,6 +15,7 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	bison pkg-config gmake flex
 USE_LANGUAGES=	c99 c++
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 
 GCC_REQD+=	4.2
 
