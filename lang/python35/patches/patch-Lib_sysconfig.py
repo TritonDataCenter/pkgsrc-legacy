@@ -21,9 +21,9 @@ chop "-RELEASE" or "-DEVELOPMENT" from release for DragonFly.
          config_dir_name = 'config'
 -    return os.path.join(get_path('stdlib'), config_dir_name, 'Makefile')
 +    if sys.maxsize > 2**32:
-+        return os.path.join(get_path('platstdlib'), "config", "@LIBARCHSUFFIX.64@".lstrip('/'), "Makefile")
++        return os.path.join(get_path('stdlib'), config_dir_name, "@LIBARCHSUFFIX.64@".lstrip('/'), "Makefile")
 +    else:
-+        return os.path.join(get_path('platstdlib'), "config", "@LIBARCHSUFFIX.32@".lstrip('/'), "Makefile")
++        return os.path.join(get_path('stdlib'), config_dir_name, "@LIBARCHSUFFIX.32@".lstrip('/'), "Makefile")
  
  def _generate_posix_vars():
      """Generate the Python module containing build-time variables."""
