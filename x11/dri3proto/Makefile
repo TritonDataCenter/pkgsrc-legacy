@@ -13,6 +13,7 @@ COMMENT=	X11 extension for Direct Rendering Infrastructure V3
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c
+USE_MULTIARCH=	lib
 
 PKGCONFIG_OVERRIDE+=	dri3proto.pc.in
 
