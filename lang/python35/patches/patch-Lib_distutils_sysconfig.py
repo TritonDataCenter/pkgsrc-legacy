@@ -22,9 +22,9 @@ Support multiarch.
      config_file = 'config-{}{}'.format(get_python_version(), build_flags)
 -    return os.path.join(lib_dir, config_file, 'Makefile')
 +    if sys.maxsize > 2**32:
-+        return os.path.join(lib_dir, "config", "@LIBARCHSUFFIX.64@".lstrip('/'), "Makefile")
++        return os.path.join(lib_dir, config_file, "@LIBARCHSUFFIX.64@".lstrip('/'), "Makefile")
 +    else:
-+        return os.path.join(lib_dir, "config", "@LIBARCHSUFFIX.32@".lstrip('/'), "Makefile")
++        return os.path.join(lib_dir, config_file, "@LIBARCHSUFFIX.32@".lstrip('/'), "Makefile")
  
  
  def parse_config_h(fp, g=None):

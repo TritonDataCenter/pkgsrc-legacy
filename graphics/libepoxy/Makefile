@@ -14,6 +14,7 @@ LICENSE=	mit
 BUILD_DEPENDS+=	${PYPKGPREFIX}-expat>=0:../../textproc/py-expat
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config autoconf autoreconf automake
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE+=	epoxy.pc.in
