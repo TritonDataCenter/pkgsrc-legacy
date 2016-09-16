@@ -15,6 +15,7 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++
+USE_MULTIARCH=	lib
 
 PKGCONFIG_OVERRIDE+=	glu.pc.in
 
