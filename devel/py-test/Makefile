@@ -23,6 +23,7 @@ REPLACE_PYTHON+=	_pytest/standalonetemplate.py
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
+		[ -f py.test ] && \
 		${MV} py.test py.test-${PYVERSSUFFIX} && \
 		${MV} pytest pytest-${PYVERSSUFFIX}
 
