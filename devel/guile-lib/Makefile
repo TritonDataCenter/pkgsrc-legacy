@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.23 2014/12/04 01:05:25 gdt Exp $
+# $NetBSD: Makefile,v 1.26 2016/09/20 00:37:37 gdt Exp $
 
-DISTNAME=	guile-lib-0.2.2
+DISTNAME=	guile-lib-0.2.3
 CATEGORIES=	devel
 MASTER_SITES=	http://download.savannah.gnu.org/releases/guile-lib/
 # http://download.gna.org/guile-lib/
@@ -11,7 +11,7 @@ COMMENT=	Library functions for Guile, implemented in Scheme
 
 GNU_CONFIGURE=	yes
 
-USE_TOOLS+=	gmake makeinfo
+USE_TOOLS+=	gmake makeinfo pkg-config
 TEXINFO_REQD=	4.2
 INFO_FILES=	yes
 TEST_TARGET=	check
@@ -38,5 +38,5 @@ INSTALLATION_DIRS+=	share/guile/site/term
 INSTALLATION_DIRS+=	share/guile/site/texinfo
 INSTALLATION_DIRS+=	share/guile/site/text
 
-.include "../../lang/guile/buildlink3.mk"
+.include "../../lang/guile20/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

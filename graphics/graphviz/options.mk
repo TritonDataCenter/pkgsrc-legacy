@@ -1,7 +1,7 @@
-# $NetBSD: options.mk,v 1.20 2015/07/04 16:18:35 joerg Exp $
+# $NetBSD: options.mk,v 1.22 2016/09/16 10:53:14 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.graphviz
-PKG_SUPPORTED_OPTIONS=	gd ghostscript gtk guile lua ocaml pangocairo rsvg tcl x11 perl
+PKG_SUPPORTED_OPTIONS=	gd ghostscript gtk lua ocaml pangocairo rsvg tcl x11 perl # guile does not build with guile20
 PKG_SUGGESTED_OPTIONS=	gd gtk lua pangocairo perl tcl x11
 # Explanation of consequence of options, to help those trying to slim down:
 #   guile ocaml lua tcl perl: extension language support
@@ -144,7 +144,7 @@ CONFIGURE_ARGS+=	--disable-tcl
 
 .if !empty(PKG_OPTIONS:Mguile)
 USING_SWIG=	yes
-.include "../../lang/guile/buildlink3.mk"
+.include "../../lang/guile20/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-guile
 PLIST.guile=		yes
 .else

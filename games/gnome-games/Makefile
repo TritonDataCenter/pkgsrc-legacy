@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.150 2016/08/03 10:22:46 adam Exp $
+# $NetBSD: Makefile,v 1.152 2016/09/16 01:10:06 gdt Exp $
 
 DISTNAME=		gnome-games-2.32.1
-PKGREVISION=		30
+PKGREVISION=		31
 CATEGORIES=		games gnome
 MASTER_SITES=		${MASTER_SITE_GNOME:=sources/gnome-games/2.32/}
 EXTRACT_SUFX=		.tar.bz2
@@ -69,6 +69,8 @@ BUILDLINK_API_DEPENDS.librsvg+=	librsvg>=2.12.6
 BUILDLINK_API_DEPENDS.clutter+= clutter>=1.0
 .include "../../graphics/clutter/buildlink3.mk"
 .include "../../graphics/clutter-gtk0.10/buildlink3.mk"
+# guile 2.0 fails with
+# game.c:312:44: error: 'scm_the_last_stack_fluid_var' undeclared (first use in this function)
 .include "../../lang/guile/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/omf-scrollkeeper.mk"
