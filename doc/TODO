@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.16410 2016/09/11 16:09:04 taca Exp $
+$NetBSD: TODO,v 1.16480 2016/09/20 13:38:27 mef Exp $
 
 Suggested new packages
 ======================
@@ -352,11 +352,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o CSP-0.34
 	o Chinput-3.0.1
 	o DarwinStreamingServer-6.0.3
-	o FiraCode-1.201
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o ImageMagick-7.0.3.0
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaDemos-8.3.0
@@ -531,7 +529,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o covered-0.7.10
 	o covered-current-20091126
 	o cpmtools-2.20
-	o cppcheck-1.75
 	o crack-attack-1.1.15
 	o crafty-25.0.1
 	o crimsonfields-0.5.3
@@ -540,6 +537,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o crossfire-1.71.0
 	o crossfire-client-gtk2-1.60.0
 	o csharp-mysql-6.9.8
+	o cups-2.2
 	o cvm-0.97
 	o cvs-fast-export-1.38
 	o cvs2p4-2.5.5 [schmonz]
@@ -558,15 +556,13 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o darcs-2.12.0
 	o darktable-2.0.4
 	o dasher-4.11
-	o dateutils-0.4.0
 	o davical-1.1.4
-	o dbus-glib-0.108
 	o dd_rescue-1.46
 	o dd_rhelp-0.3.0
 	o ddrescue-1.21
 	o dega-1.12
 	o delegate-9.9.13
-	o denemo-2.0.10
+	o denemo-2.0.12
 	o desklaunch-1.1.7
 	o deskmenu-1.4.5
 	o dhcpcd-dbus-0.6.1
@@ -580,7 +576,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o dolphin-5.0
 	o dpkg-1.18.4
 	o drivel-3.0.5
-	o dropbear-2016.72
+	o dropbear-2016.74
 	o drupal-8.0.3
 	o dtach-0.9
 	o duplicity-0.7.10
@@ -700,16 +696,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o fuse-mp3fs-0.91 [needs fixes to work on NetBSD; started in wip]
 	o fvwm-devel-2.7.0
 	o fvwm2-themes-0.7.0
-	o g-wrap-1.9.15
 	o gallery3-3.0.2
 	o ganglia-3.7.1
 	o gap-4r4p9
 	o gated-3.6
 	o gbrainy-2.27
 	o gcal-4
-	o gcc-5.4
-	o gcc-6.2
-	o gcc48-4.8.5
 	o gcin-1.5.5
 	o gcombust-0.1.55
 	o gcompris-15.02
@@ -782,14 +774,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gnu-crypto-2.1.0
 	o gnu-pw-mgr-2.0
 	o gnucap-20130423
-	o gnuchess-book-1.02
 	o gnustep-back-0.24.1
 	o gnustep-base-1.24.8
 	o gnustep-examples-1.4.0
 	o gnustep-gui-0.24.1
 	o gnustep-make-2.6.7
 	o gnustep-objc-1.8
-	o gnutls-3.4.10 [wip]
 	o goaccess-0.12
 	o gob-2.0.19
 	o gobby-0.5.0
@@ -817,7 +807,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gss-1.0.3
 	o gst-rtsp-server-1.6.2
 	o gst123-0.3.4
-	o gstreamer1-1.8.3
 	o gtexinfo-6.3
 	o gthumb-3.4.0
 	o gtk-gnutella-0.98.4
@@ -836,12 +825,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gxine-0.99.9
 	o gxmessage-3.4.3
 	o gzip-1.8
-	o h2o-2.0.3
 	o h323plus-1.24.0 [replaces openh323, from http://www.h323plus.org/]
 	o hamster-applet-2.32.1 [GNOME 2.32]
 	o handbrake-0.10.2
 	o hanzim-3.5
-	o harfbuzz-1.3.1
 	o harminv-1.4
 	o haskell-mode-13.20
 	o hdevtools-0.1.3.0
@@ -965,11 +952,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o kdevelop4-4.7.2
 	o kdevplatform-1.7.1
 	o keybinder-0.3.1
-	o keychain-2.8.2
-	o kicad-4.0.2
-	o kicad-doc-4.0.2
-	o kicad-footprints-4.0.2
-	o kicad-lib-4.0.2
 	o kipi-plugins-4.14.0
 	o kismet-2011.03r2 [pkg/45692]
 	o kismet-2013.03R1b
@@ -1020,7 +1002,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libkgeomap-4.14.0
 	o libkvkontakte-4.14.0
 	o liblzo-2.09
-	o libmatheval-1.1.11
 	o libmcs-0.7.2
 	o libmediawiki-4.14.0
 	o libmilter-8.16.0.16
@@ -1028,7 +1009,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o liboobs-2.32.0 [GNOME 2.32]
 	o libowfat-0.29
 	o libpgm-5.2.122
-	o libprelude-1.2.5
+	o libprelude-3.1.0
+	o libpreludedb-3.1.0
 	o libquantum-1.1.0 [pkg/43728, development release]
 	o libreoffice-5.2
 	o libstree-0.4.2
@@ -1038,7 +1020,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libthrift-0.9.3
 	o libtool-2.4.6
 	o libtrace-3.0.22
-	o libuuid-2.28.2
 	o libv4l-0.8.5
 	o libva-1.6.2
 	o libvdpau-1.1.1
@@ -1091,7 +1072,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mcabber-1.0.2
 	o mcollective-2.3.2
 	o mcsim-5.6.5
-	o mdds-1.2.2
 	o mecab-ipadic-2.7.0.20070801
 	o mednafen-0.9.39.1
 	o megatools-1.9.97
@@ -1141,8 +1121,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o muse-0.9.2
 	o mutagen-tools-1.31
 	o myodbc-5.3.4
-	o mysql-5.7.9
-	o mysql-cluster-7.5.0
 	o mysql-workbench-6.3
 	o nagios-base-4.1.1
 	o nagios-plugin-ldap-2.1.1
@@ -1164,8 +1142,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o netramet-50
 	o newmail-1.0.2
 	o nikto-2.1.5
-	o nodejs-6.5.0
-	o notmuch-0.22.2
 	o nqp-2016.02
 	o ns-3.14.1
 	o ns-plugger-common-5.1.3
@@ -1195,7 +1171,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o openssh-7.3p1
 	o openssl-1.1.0
 	o opera-26
-	o orcus-0.12.0
 	o oroborus-2.0.18
 	o ortp-0.25.0
 	o oto-0.5
@@ -1210,17 +1185,14 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-DBD-DB2-1.85
 	o p5-DBD-ODBC-1.52
 	o p5-DBD-Oracle-1.74
-	o p5-Font-FreeType-0.07
 	o p5-FormValidator-Simple-1.00
 	o p5-GStreamer-0.20
-	o p5-Git-Wrapper-0.045
 	o p5-GraphViz2-2.37
 	o p5-GraphicsMagick-1.4.020160216
 	o p5-Gtk2-1.223
 	o p5-HTTP-Server-EV-0.69
 	o p5-Heap-1.04
 	o p5-IP-Country-3.03
-	o p5-Locale-Codes-3.38
 	o p5-Memoize-Memcached-0.11
 	o p5-Net-ManageSieve-0.13
 	o p5-NetPacket-1.6.0
@@ -1239,26 +1211,22 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o p5-Padre-Plugin-Nopaste-0.08
 	o p5-Padre-Plugin-SpellCheck-1.33
 	o p5-Padre-Plugin-XS-0.12
-	o p5-Parallel-Prefork-0.18
 	o p5-PostScript-2.32
 	o p5-PostScript-Simple-1.02
 	o p5-Publican-4.3.2
 	o p5-RADIUS-2.30
 	o p5-RT-Authen-ExternalAuth-0.25
-	o p5-Return-Value-1.666005
 	o p5-SDL-2.544 [wip, make sure games/frozen-bubble runs, may require p5-SDL_perl]
 	o p5-SVG-Graph-0.0402
 	o p5-SVN-Simple-0.312
 	o p5-Sys-Utmp-1.7
 	o p5-Text-Hunspell-2.14
-	o p5-Tie-Cycle-1.221
 	o p5-Tie-DBI-1.06
 	o p5-Wx-0.9928
 	o p5-X11-Protocol-29
 	o p5-collectd-5.5.1
 	o p5-eBay-API-0.29
 	o p5-gtk2-1.300
-	o p5-pango-1.227
 	o p5-pcsc-1.4.14
 	o p5-sybperl-2.18
 	o p5-xmltv-0.5.66
@@ -1268,7 +1236,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pam-saml-1.5
 	o pam-yubico-2.21
 	o paragui-1.1.8
-	o parallel-20160222
 	o parrot-7.11.0
 	o patchelf-0.9
 	o patchutils-0.3.4
@@ -1316,7 +1283,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o plan-1.10.1
 	o plasma-5.7
 	o ploticus-examples-230
-	o ply-3.8
 	o pngcrush-1.8.0
 	o poco-1.7.5
 	o podcastdl-0.3.3
@@ -1326,8 +1292,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o poppass-4.0.14
 	o posh-0.12.6
 	o postal-0.72
-	o postfix-3.0.6
-	o postfix-3.1.2
 	o powerdns-3.7.3
 	o powerdns-ldap-3.7.3
 	o powerdns-mysql-3.7.3
@@ -1339,6 +1303,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o pppd-2.4.7
 	o prayer-1.3.5
 	o prboom-plus-2.5.1.4
+	o prelude-correlator-3.1.0
+	o prelude-lml-3.1.0
+	o prelude-manager-3.1.0
 	o prime-1.5.1.3
 	o privoxy-3.0.24
 	o profit-2.5.3
@@ -1358,7 +1325,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-buildbot-0.9.0b5
 	o py-buildbot-slave-0.9.0b5
 	o py-cassa-1.11.0
-	o py-cffi-1.8.2
 	o py-collectd-5.5.1
 	o py-colorama-0.3.6
 	o py-creole-1.1.1
@@ -1398,7 +1364,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-omniORBpy-3.7
 	o py-pdf-parser-0.6.4
 	o py-pendrell-0.3.7
-	o py-postgresql-5.0.1
 	o py-proteus-3.6.1
 	o py-ptt-1.10.2
 	o py-pycountry-1.20
@@ -1406,7 +1371,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-radare2-0.10.5
 	o py-scgi-1.15
 	o py-serpent-1.12
-	o py-setuptools-27.1.2
 	o py-simpletal-5.1
 	o py-smb-1.1.17
 	o py-softlayer-5.1.0
@@ -1423,7 +1387,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-yubiauth-0.3.10
 	o py-zconfig-3.0.3
 	o pythontidy-1.23
-	o qbzr-0.22.4
+	o qbzr-0.23.2
 	o qgis-2.14.0
 	o qlandkartegt-1.8.1 [pkg/49910]
 	o qnetwalk-1.4
@@ -1512,7 +1476,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o serd-0.22.0
 	o sgb-20090810
 	o sge-8.1.8
-	o shared-mime-info-1.7
 	o sharity-3.7
 	o shc-3.8.9b
 	o shotwell-0.22.1
@@ -1526,13 +1489,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o sjeng-11.2
 	o skktools-1.3.3
 	o skype-4.3
-	o slib-3b5
 	o slony1-2.2.4
 	o slurm-14.11.2
 	o smokeping-2.6.11
 	o smproxy-1.0.3
-	o snappy-1.1.3
-	o snd-16.6
 	o snes9x-1.53
 	o snobol-2.0
 	o snort-2.9.8.0
@@ -1577,7 +1537,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o stratagus-2.2.5.5
 	o streamtuner-2.1.4
 	o subtitleeditor-0.52.1
-	o sudo-1.8.16
 	o superlu-5.1.1
 	o supertuxkart-0.9.2
 	o swapd-1.0.5
@@ -1622,7 +1581,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o thunderbird-enigmail-1.9.5
 	o tidy-5.1.25 [wip]
 	o tig-2.2
-	o tigervnc-1.7.0
 	o tightvnc-2.7.10
 	o tile-0.7.4
 	o tileworld-1.3.2
@@ -1635,7 +1593,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tomboy-1.10.2
 	o top-3.8beta1
 	o topgit-0.8
-	o tor-browser-6.0.4
+	o tor-browser-6.0.5
 	o totem-3.14.1
 	o totem-pl-parser-3.10.3
 	o tripwire-2.3.1 [see also pkg/22362]
@@ -1673,6 +1631,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o vicq-0.4.2
 	o viewvc-1.1.24
 	o vile-9.8q
+	o vim-8.0
 	o vinagre-3.16.1
 	o vino-3.16.0
 	o virt-manager-1.3.2
@@ -1699,9 +1658,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o whohas-0.29.1
 	o whowatch-1.8.5
 	o windowlab-1.40
-	o wine-1.8.4
-	o wine-devel-1.9.18
-	o wireshark-2.2
+	o wine-devel-1.9.19
 	o wmi-11
 	o wmii+ixp-3.9.2 [pkg/43459; wip (wmii-devel); see also libixp entry]
 	o wmx-8
@@ -1709,12 +1666,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o worker-3.8.3
 	o wxGTK-3.1.0
 	o wxRemind-101
-	o x264-devel-20160910
+	o x264-devel-20160917
 	o x2vnc-1.31
 	o xa65-2.3.7
 	o xaric-0.13.7
-	o xbindkeys-1.8.6
-	o xbindkeys-tk-1.8.0
 	o xcircuit-3.9.44
 	o xcoral-3.14
 	o xemacs-current-21.5.31

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/09/06 10:36:49 jperkin Exp $
+# $NetBSD: Makefile,v 1.4 2016/09/13 12:37:08 ryoon Exp $
 
 DISTNAME=	rustc-1.11.0-src
 PKGNAME=	${DISTNAME:S/rustc/rust/:S/-src//}
@@ -55,6 +55,11 @@ CONFIGURE_ARGS+=	--disable-jemalloc
 .endif
 
 #
+# Under NetBSD, do not use DT_RUNPATH
+#
+BUILDLINK_TRANSFORM.NetBSD+=	rm:-Wl,--enable-new-dtags
+
+#
 # Can't use pkgsrc llvm on SunOS at the moment due to a relocation error.
 #
 .if ${OPSYS} != "SunOS"
@@ -89,14 +94,18 @@ RUST_ARCH=		x86_64-unknown-linux-gnu
 .elif !empty(MACHINE_PLATFORM:MSunOS-*-x86_64)
 RUST_ARCH=		x86_64-sun-solaris
 SITES.${RUST_STAGE2}=	https://us-east.manta.joyent.com/pkgsrc/public/tmp/
+.elif !empty(MACHINE_PLATFORM:MNetBSD-*-x86_64)
+RUST_ARCH=		x86_64-unknown-netbsd
 .else
 NOT_FOR_PLATFORM+=	${MACHINE_PLATFORM}
 .endif
 
+.if defined(RUST_ARCH)
 RUST_STAGE2_VER=	1.10.0
 RUST_STAGE2?=		rust-${RUST_STAGE2_VER}-${RUST_ARCH}.tar.gz
 SITES.${RUST_STAGE2}?=	https://static.rust-lang.org/dist/
 DISTFILES=		${DEFAULT_DISTFILES} ${RUST_STAGE2}
+.endif
 
 PLIST_SRC=		PLIST
 .if ${OPSYS} == "Darwin"

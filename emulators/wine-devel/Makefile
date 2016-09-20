@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.57 2016/08/27 20:56:29 joerg Exp $
+# $NetBSD: Makefile,v 1.61 2016/09/19 13:04:21 wiz Exp $
 
-DISTNAME=	wine-1.7.36
-PKGREVISION=	8
+DISTNAME=	wine-1.9.18
+PKGREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	http://ibiblio.org/pub/linux/system/emulators/wine/ \
 		${MASTER_SITE_SOURCEFORGE:=wine/}
@@ -18,16 +18,17 @@ ONLY_FOR_PLATFORM+=	*-*-i386 *-*-x86_64
 
 PKG_DESTDIR_SUPPORT=	user-destdir
 
+
 USE_LANGUAGES=		c
 USE_LIBTOOL=		yes
 USE_NCURSES=		yes
-USE_TOOLS+=		bison flex gmake mktemp msgfmt
+USE_TOOLS+=		bison flex gmake mktemp msgfmt autoconf
 FLEX_REQD=		2.5.33
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-tests
 UNLIMIT_RESOURCES=	datasize
 
-REPLACE_PERL+=		tools/winemaker tools/winedump/function_grep.pl
+REPLACE_PERL+=		tools/winemaker/winemaker tools/winedump/function_grep.pl
 
 # The Wine configure script has problems locating the libraries in the
 # buildlink directory, so prepend all of the LDFLAGS necessary to link
@@ -48,18 +49,23 @@ PLIST_VARS+=		oss wine16 wine32 wine64
 #CONFIGURE_ENV+=		ac_cv_prog_CXX=${CXX:Q}\ -m32
 #CONFIGURE_ENV+=		ac_cv_prog_AS=${AS:Q}\ --32
 #CONFIGURE_ENV+=		ac_cv_prog_LD=${LD:Q}\ -m\ elf_i386
-PLIST.wine16=		yes
-PLIST.wine32=		yes
+#PLIST.wine16=		yes
+PLIST_SRC=	PLIST.wine32
+NOT_PAX_MPROTECT_SAFE+=	bin/wine
+#PLIST.wine32=		yes
 .endif
-# Needs GCC >= 4.4; Experimental
+# Avoid using gethostbyname_r in netbsd, it's not
+# linux-like
+CONFIGURE_ARGS.NetBSD+=		wine_cv_linux_gethostbyname_r_6=no
+# NetBSD doesn't allow manipulation of _res by
+# multithreaded programs. avoid its use, networking
+# still works fine.
+CONFIGURE_ARGS.NetBSD+=		ac_cv_header_resolv_h=no
 .if !empty(MACHINE_ARCH:Mx86_64)
-CONFIGURE_ARGS+=	--enable-win64
-PLIST.wine64=		yes
-.endif
-
-.if ${OPSYS} == "NetBSD"
-# gethostbyname_r is in libc, but has a different calling convention
-CONFIGURE_ARGS+=	wine_cv_linux_gethostbyname_r_6=no
+CONFIGURE_ARGS+=	--enable-win64 --libdir=${PREFIX}/lib
+NOT_PAX_MPROTECT_SAFE+=	bin/wine64
+PLIST_SRC=	PLIST.wine64
+#PLIST.wine64=		yes
 .endif
 
 .if ${OPSYS} != "Darwin"
@@ -67,6 +73,9 @@ PLIST.oss=		yes
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
 .endif
+
+pre-configure:
+	cd ${WRKSRC} && autoconf
 
 .include "options.mk"
 

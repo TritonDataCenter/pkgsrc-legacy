@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.20 2016/06/30 17:44:01 wiz Exp $
+$NetBSD: distinfo,v 1.22 2016/09/18 23:38:25 mef Exp $
 
-SHA1 (DateTime-Locale-1.05.tar.gz) = 459a7fe49740fdd3a08c58a36c3549383b6839ae
-RMD160 (DateTime-Locale-1.05.tar.gz) = 16e1691b92ab7fe95954397af8503e6cf0adb4db
-SHA512 (DateTime-Locale-1.05.tar.gz) = 8e5484e20ccd6f21343dd8eed708f4ec70a0a11f86b83d4a304ebc01b6f8a613d8b08b3a51cf520eeac7730720a996ef36b5e93e771f5fd03f92e283e4ff1f94
-Size (DateTime-Locale-1.05.tar.gz) = 959564 bytes
+SHA1 (DateTime-Locale-1.07.tar.gz) = 2ca62d38d1fe2c7732ad5845abaa3d4ab69e6447
+RMD160 (DateTime-Locale-1.07.tar.gz) = 9196885ea0d7ea2484c0103761937d9419325974
+SHA512 (DateTime-Locale-1.07.tar.gz) = f4e6f04b1b993607bdd509d079de15d1ad38ecf78367fbb77f925b34904ca9dcb1cac638dd327eacbd35f58e3f55646f8900523a3623be46ec5b3c1d29fd5894
+Size (DateTime-Locale-1.07.tar.gz) = 960814 bytes
