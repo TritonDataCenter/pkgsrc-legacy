@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.58 2016/09/15 09:25:53 maya Exp $
+# $NetBSD: Makefile,v 1.61 2016/09/19 13:04:21 wiz Exp $
 
 DISTNAME=	wine-1.9.18
+PKGREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	http://ibiblio.org/pub/linux/system/emulators/wine/ \
 		${MASTER_SITE_SOURCEFORGE:=wine/}
@@ -53,7 +54,13 @@ PLIST_SRC=	PLIST.wine32
 NOT_PAX_MPROTECT_SAFE+=	bin/wine
 #PLIST.wine32=		yes
 .endif
-# Needs GCC >= 4.4; Experimental
+# Avoid using gethostbyname_r in netbsd, it's not
+# linux-like
+CONFIGURE_ARGS.NetBSD+=		wine_cv_linux_gethostbyname_r_6=no
+# NetBSD doesn't allow manipulation of _res by
+# multithreaded programs. avoid its use, networking
+# still works fine.
+CONFIGURE_ARGS.NetBSD+=		ac_cv_header_resolv_h=no
 .if !empty(MACHINE_ARCH:Mx86_64)
 CONFIGURE_ARGS+=	--enable-win64 --libdir=${PREFIX}/lib
 NOT_PAX_MPROTECT_SAFE+=	bin/wine64

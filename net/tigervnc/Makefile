@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2016/07/09 06:38:46 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2016/09/20 08:12:14 wiz Exp $
 
-DISTNAME=	tigervnc-1.6.0
-PKGREVISION=	1
+DISTNAME=	tigervnc-1.7.0
+PKGREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=TigerVNC/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -17,6 +17,8 @@ LICENSE=	gnu-gpl-v2
 BUILD_DEPENDS+=	xorg-util-macros-[0-9]*:../../devel/xorg-util-macros
 BUILD_DEPENDS+=	font-util-[0-9]*:../../fonts/font-util
 BUILD_DEPENDS+=	tradcpp-[0-9]*:../../devel/tradcpp
+
+DEPENDS+=	mcookie-[0-9]*:../../x11/mcookie
 
 USE_CMAKE=	yes
 USE_LIBTOOL=	yes
@@ -65,6 +67,7 @@ pre-configure:
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
