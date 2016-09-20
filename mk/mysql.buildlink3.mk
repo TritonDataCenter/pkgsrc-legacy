@@ -8,7 +8,7 @@
 # MYSQL_VERSION_DEFAULT
 #	The preferred MySQL version.
 #
-#	Possible: 56 55 51 mariadb55 mariadb100
+#	Possible: 57 56 55 51 mariadb55 mariadb100
 #		  73-cluster percona56 percona55
 #		  percona56-cluster percona55-cluster
 #	Default: 55
@@ -31,7 +31,7 @@
 # MYSQL_PKG_PREFIX
 # 	The package name prefix for the selected version.
 #
-# 	Possible: mysql73-cluster mysql56 mysql55 mysql51 mysql5
+# 	Possible: mysql73-cluster mysql57 mysql56 mysql55 mysql51 mysql5
 # 		  percona56 percona55 percona55-cluster percona56-cluster
 #
 
@@ -53,12 +53,16 @@ BUILD_DEFS_EFFECTS+=		MYSQL_VERSION MYSQL_PKG_PREFIX
 MYSQL_VERSIONS_ACCEPTED?=	${_PKG_MYSQLS}
 
 # The available MySQL packages:
-_PKG_MYSQLS=			56 55 51 mariadb55 mariadb100 percona56 percona55
+_PKG_MYSQLS=			57 56 55 51 mariadb55 mariadb100 percona56 percona55
 _PKG_MYSQLS+=			57-cluster percona55-cluster percona56-cluster
 
 _MYSQL_PKGBASE.57-cluster=	mysql-cluster-7.3.*
 _MYSQL_PKGSRCDIR.57-cluster=	../../joyent/mysql73-cluster
 _MYSQL_PKG_PREFIX.57-cluster=	mysql73-cluster
+
+_MYSQL_PKGBASE.57=		mysql-client-5.7.*
+_MYSQL_PKGSRCDIR.57=		../../databases/mysql57-client
+_MYSQL_PKG_PREFIX.57=		mysql57
 
 _MYSQL_PKGBASE.56=		mysql-client-5.6.*
 _MYSQL_PKGSRCDIR.56=		../../databases/mysql56-client
