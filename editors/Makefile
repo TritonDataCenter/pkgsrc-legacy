@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.176 2016/07/11 05:21:59 agc Exp $
+# $NetBSD: Makefile,v 1.178 2016/09/18 13:40:24 ryoon Exp $
 #
 
 COMMENT=	Editors
@@ -41,6 +41,8 @@ SUBDIR+=	emacs23
 SUBDIR+=	emacs23-nox11
 SUBDIR+=	emacs24
 SUBDIR+=	emacs24-nox11
+SUBDIR+=	emacs25
+SUBDIR+=	emacs25-nox11
 SUBDIR+=	ex
 SUBDIR+=	fe
 SUBDIR+=	gate

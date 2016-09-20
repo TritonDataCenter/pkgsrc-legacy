@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.332 2016/08/24 23:52:43 markd Exp $
+# $NetBSD: Makefile,v 1.334 2016/09/20 10:34:34 wiz Exp $
 
 COMMENT=	Mathematics
 
@@ -144,6 +144,7 @@ SUBDIR+=	kseg
 SUBDIR+=	lapack
 SUBDIR+=	libffm
 SUBDIR+=	libint
+SUBDIR+=	libixion
 SUBDIR+=	liblbfgs
 SUBDIR+=	liblinear
 SUBDIR+=	libmatheval
@@ -248,6 +249,7 @@ SUBDIR+=	py-fpconst
 SUBDIR+=	py-gmpy
 SUBDIR+=	py-infinity
 SUBDIR+=	py-intervals
+SUBDIR+=	py-lmfit
 SUBDIR+=	py-mpmath
 SUBDIR+=	py-munkres
 SUBDIR+=	py-networkx

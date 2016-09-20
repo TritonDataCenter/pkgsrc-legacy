@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.516 2016/08/04 16:05:01 jdolecek Exp $
+# $NetBSD: Makefile,v 1.519 2016/09/20 12:55:04 jaapb Exp $
 
 COMMENT=	Databases
 
@@ -99,12 +99,15 @@ SUBDIR+=	mysql55-client
 SUBDIR+=	mysql55-server
 SUBDIR+=	mysql56-client
 SUBDIR+=	mysql56-server
+SUBDIR+=	mysql57-client
+SUBDIR+=	mysql57-server
 SUBDIR+=	mysqlcc
 SUBDIR+=	mysqltuner
 SUBDIR+=	mytop
 SUBDIR+=	nss-pgsql
 SUBDIR+=	nss_ldap
 SUBDIR+=	ocaml-dbm
+SUBDIR+=	ocaml-ldap
 SUBDIR+=	ocaml-mysql
 SUBDIR+=	ocaml-sqlite3
 SUBDIR+=	odbc-postgresql
@@ -195,6 +198,7 @@ SUBDIR+=	p5-MLDBM
 SUBDIR+=	p5-MLDBM-Serializer-JSON
 SUBDIR+=	p5-MLDBM-Sync
 SUBDIR+=	p5-Net-Cassandra
+SUBDIR+=	p5-Net-FileMaker
 SUBDIR+=	p5-Net-MySQL
 SUBDIR+=	p5-ORLite
 SUBDIR+=	p5-ORLite-Migrate

@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.404 2016/09/02 16:46:22 wiz Exp $
+# $NetBSD: Makefile,v 1.406 2016/09/18 16:58:26 kamil Exp $
 #
 
 COMMENT=	Games
 
 SUBDIR+=	0verkill
+SUBDIR+=	2048-cli
 SUBDIR+=	4stAttack
 SUBDIR+=	InterLOGIC
 SUBDIR+=	KoboDeluxe
@@ -320,6 +321,7 @@ SUBDIR+=	spider
 SUBDIR+=	stegavorto
 SUBDIR+=	stratagus
 SUBDIR+=	sudoku-cli
+SUBDIR+=	supertux
 SUBDIR+=	supertuxkart
 SUBDIR+=	svb
 SUBDIR+=	tads
