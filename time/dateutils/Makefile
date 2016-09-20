@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2015/03/19 19:17:18 joerg Exp $
+# $NetBSD: Makefile,v 1.8 2016/09/19 05:33:15 mef Exp $
 
-DISTNAME=	dateutils-0.3.1
-PKGREVISION=	1
+DISTNAME=	dateutils-0.4.0
 CATEGORIES=	time
-MASTER_SITES=	https://github.com/hroptatyr/dateutils/releases/download/v0.3.1/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=hroptatyr/}
 MASTER_SITES+=	https://bitbucket.org/hroptatyr/dateutils/downloads/
 EXTRACT_SUFX=	.tar.xz
 

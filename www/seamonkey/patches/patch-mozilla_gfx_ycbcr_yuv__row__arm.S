@@ -1,4 +1,4 @@
-$NetBSD: patch-mozilla_gfx_ycbcr_yuv__row__arm.S,v 1.1 2015/01/02 04:26:21 ryoon Exp $
+$NetBSD: patch-mozilla_gfx_ycbcr_yuv__row__arm.S,v 1.3 2016/09/19 22:39:21 wiz Exp $
 
 --- mozilla/gfx/ycbcr/yuv_row_arm.S.orig	2015-01-01 17:44:52.000000000 +0000
 +++ mozilla/gfx/ycbcr/yuv_row_arm.S
