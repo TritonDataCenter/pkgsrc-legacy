@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.136 2016/04/14 21:09:07 dholland Exp $
+$NetBSD: distinfo,v 1.138 2016/09/19 22:39:07 wiz Exp $
 
 SHA1 (seamonkey-2.40.source.tar.xz) = ecf99bc7478319835a0e19f35ed5b7b1aa2c0046
 RMD160 (seamonkey-2.40.source.tar.xz) = 4030688f145fdf35a6d2728d097cf7cda8e50231
