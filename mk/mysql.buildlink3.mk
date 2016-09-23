@@ -1,4 +1,4 @@
-# $NetBSD: mysql.buildlink3.mk,v 1.20 2015/04/16 20:24:15 ryoon Exp $
+# $NetBSD: mysql.buildlink3.mk,v 1.21 2016/09/21 14:27:51 adam Exp $
 #
 # This file is included by packages that require some version of the
 # MySQL database client.

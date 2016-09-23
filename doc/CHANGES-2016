@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2016,v 1.3969 2016/09/20 13:25:24 markd Exp $
+$NetBSD: CHANGES-2016,v 1.3984 2016/09/23 17:55:03 jnemeth Exp $
 
 Changes to the packages collection and infrastructure in 2016:
 
@@ -5592,3 +5592,19 @@ Changes to the packages collection and infrastructure in 2016:
 	Added print/tex-utf8mex-doc version 2016 [markd 2016-09-20]
 	Added print/tex-mex version 1.05 [markd 2016-09-20]
 	Added print/tex-mex-doc version 1.05 [markd 2016-09-20]
+	mk/bsd.pkg.mk: started freeze for pkgsrc-2016Q3 branch [jperkin 2016-09-20]
+	Updated x11/xorg-cf-files to 1.0.6nb1 [jperkin 2016-09-20]
+	Updated www/firefox to 49.0 [ryoon 2016-09-20]
+	Updated www/firefox-l10n to 49.0 [ryoon 2016-09-20]
+	Updated print/dvidvi to 1.1 [wiz 2016-09-21]
+	Updated www/firefox45 to 45.4.0 [ryoon 2016-09-21]
+	Updated www/firefox45-l10n to 45.4.0 [ryoon 2016-09-21]
+	Updated devel/xulrunner45 to 45.4.0 [ryoon 2016-09-21]
+	Updated sysutils/xentools45 to 4.5.5 [bouyer 2016-09-21]
+	Updated sysutils/xenkernel45 to 4.5.5 [bouyer 2016-09-21]
+	Updated chat/irssi to 0.8.20 [maya 2016-09-21]
+	Updated devel/py-cffi to 1.8.3nb1 [wiz 2016-09-22]
+	Updated chat/irssi to 0.8.20nb1 [maya 2016-09-22]
+	Updated security/openssl to 1.0.2i [jperkin 2016-09-22]
+	Updated converters/dvi2tty to 6.0.0 [markd 2016-09-23]
+	Updated comms/asterisk13 to 13.11.2 [jnemeth 2016-09-23]
