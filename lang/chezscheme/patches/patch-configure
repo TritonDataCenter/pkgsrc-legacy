@@ -1,0 +1,27 @@
+$NetBSD$
+
+--- /var/tmp/pkgsrc-obj/lang/chezscheme/work/ChezScheme-9.4/configure.orig	2016-05-13 16:59:20.000000000 +0000
++++ /var/tmp/pkgsrc-obj/lang/chezscheme/work/ChezScheme-9.4/configure
+@@ -288,22 +288,6 @@ if [ "$m" = "" -o ! -f boot/$m/scheme.bo
+   exit 1
+ fi
+ 
+-if [ -d '.git' ] ; then
+-  git submodule init && git submodule update || exit 1
+-else
+-  if [ ! -f 'nanopass/nanopass.ss' ] ; then
+-    rmdir nanopass && (curl  -L -o v1.9.tar.gz https://github.com/nanopass/nanopass-framework-scheme/archive/v1.9.tar.gz && tar -zxf v1.9.tar.gz && mv nanopass-framework-scheme-1.9 nanopass && rm v1.9.tar.gz) || exit 1
+-  fi
+-
+-  if [ ! -f 'zlib/configure' ] ; then
+-    rmdir zlib && (curl -L -o v1.2.8.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz && tar -xzf v1.2.8.tar.gz && mv zlib-1.2.8 zlib && rm v1.2.8.tar.gz) || exit 1
+-  fi
+-
+-  if [ ! -f 'stex/Mf-stex' ] ; then
+-    rmdir stex && (curl -L -o v1.2.1.tar.gz https://github.com/dybvig/stex/archive/v1.2.1.tar.gz && tar -zxf v1.2.1.tar.gz && mv stex-1.2.1 stex && rm v1.2.1.tar.gz) || exit 1
+-  fi
+-fi
+-
+ ./workarea $m $w
+ 
+ sed -e 's/$(m)/'$m'/g'\

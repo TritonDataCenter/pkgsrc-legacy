@@ -1,0 +1,7 @@
+$NetBSD: distinfo,v 1.2 2015/06/28 14:53:16 kirussel Exp $
+
+SHA1 (proplib-0.6.4.tar.gz) = d115cf16d1e2545d63db20a9d3f2233c3839f48c
+RMD160 (proplib-0.6.4.tar.gz) = a3cc221feacbb11d1b194ba54ca1ccc800ad00eb
+Size (proplib-0.6.4.tar.gz) = 76263 bytes
+SHA1 (patch-configure) = 708be1b61702b2106ee3def5e66d940dab40beea
+SHA1 (patch-src_prop_object.c) = e201e838d42090a485686663ee0f333a0e34d95c

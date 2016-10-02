@@ -1,0 +1,16 @@
+$NetBSD: patch-configure,v 1.1 2015/06/28 14:53:16 kirussel Exp $
+
+Add a check for the presence of fdatasync() in the header files.  This change
+has already been pushed upstream:
+    https://github.com/xtraeme/portableproplib/pull/1
+
+--- configure.ac.orig	2014-05-17 18:15:13.000000000 +0000
++++ configure.ac
+@@ -52,6 +52,7 @@ AC_CONFIG_MACRO_DIR([m4])
+ 
+ AC_CHECK_HEADERS(limits.h stddef.h fcntl.h)
+ AC_CHECK_FUNCS(memmove memset munmap strchr strtoul stroull strlcat fdatasync)
++AC_CHECK_DECLS(fdatasync, [], [], [#include <unistd.h>])
+ AC_CHECK_LIB(pthread, pthread_mutex_init, ,
+ 	     AC_MSG_ERROR(*** A POSIX threads library is required, aborting ***))
+ AC_CHECK_LIB(z, inflate, ,
