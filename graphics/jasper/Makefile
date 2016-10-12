@@ -13,6 +13,7 @@ LICENSE=	modified-bsd
 
 USE_LANGUAGES=		c99
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-shared --without-x --disable-opengl
 

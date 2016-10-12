@@ -55,6 +55,11 @@
 #else
 #include <netdb.h>
 #endif
+#if HAVE_POLL_H
+#include <poll.h>
+#elif HAVE_SYS_POLL_H
+#include <sys/poll.h>
+#endif
 #include <pwd.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -492,6 +497,46 @@ fetch_ssl(conn_t *conn, const struct url *URL, int verbose)
 #endif
 }
 
+#define FETCH_READ_WAIT		-2
+#define FETCH_READ_ERROR	-1
+#define FETCH_READ_DONE		0
+
+#ifdef WITH_SSL
+static ssize_t
+fetch_ssl_read(SSL *ssl, char *buf, size_t len)
+{
+	ssize_t rlen;
+	int ssl_err;
+
+	rlen = SSL_read(ssl, buf, len);
+	if (rlen < 0) {
+		ssl_err = SSL_get_error(ssl, rlen);
+		if (ssl_err == SSL_ERROR_WANT_READ ||
+		    ssl_err == SSL_ERROR_WANT_WRITE) {
+			return (FETCH_READ_WAIT);
+		} else {
+			ERR_print_errors_fp(stderr);
+			return (FETCH_READ_ERROR);
+		}
+	}
+	return (rlen);
+}
+#endif
+
+static ssize_t
+fetch_socket_read(int sd, char *buf, size_t len)
+{
+	ssize_t rlen;
+
+	rlen = read(sd, buf, len);
+	if (rlen < 0) {
+		if (errno == EAGAIN || (errno == EINTR && fetchRestartCalls))
+			return (FETCH_READ_WAIT);
+		else
+			return (FETCH_READ_ERROR);
+	}
+	return (rlen);
+}
 
 /*
  * Read a character from a connection w/ timeout
@@ -500,9 +545,9 @@ ssize_t
 fetch_read(conn_t *conn, char *buf, size_t len)
 {
 	struct timeval now, timeout, waittv;
-	fd_set readfds;
+	struct pollfd pfd;
 	ssize_t rlen;
-	int r;
+	int deltams;
 
 	if (len == 0)
 		return 0;
@@ -516,15 +561,50 @@ fetch_read(conn_t *conn, char *buf, size_t len)
 		return len;
 	}
 
-	if (fetchTimeout) {
-		FD_ZERO(&readfds);
+	if (fetchTimeout > 0) {
 		gettimeofday(&timeout, NULL);
 		timeout.tv_sec += fetchTimeout;
 	}
 
+	deltams = -1;
+	memset(&pfd, 0, sizeof pfd);
+	pfd.fd = conn->sd;
+	pfd.events = POLLIN | POLLERR;
+
 	for (;;) {
-		while (fetchTimeout && !FD_ISSET(conn->sd, &readfds)) {
-			FD_SET(conn->sd, &readfds);
+		/*
+		 * The socket is non-blocking.  Instead of the canonical
+		 * poll() -> read(), we do the following:
+		 *
+		 * 1) call read() or SSL_read().
+		 * 2) if we received some data, return it.
+		 * 3) if an error occurred, return -1.
+		 * 4) if read() or SSL_read() signaled EOF, return.
+		 * 5) if we did not receive any data but we're not at EOF,
+		 *    call poll().
+		 *
+		 * In the SSL case, this is necessary because if we
+		 * receive a close notification, we have to call
+		 * SSL_read() one additional time after we've read
+		 * everything we received.
+		 *
+		 * In the non-SSL case, it may improve performance (very
+		 * slightly) when reading small amounts of data.
+		 */
+#ifdef WITH_SSL
+		if (conn->ssl != NULL)
+			rlen = fetch_ssl_read(conn->ssl, buf, len);
+		else
+#endif
+			rlen = fetch_socket_read(conn->sd, buf, len);
+		if (rlen >= 0) {
+			break;
+		} else if (rlen == FETCH_READ_ERROR) {
+			fetch_syserr();
+			return (-1);
+		}
+		// assert(rlen == FETCH_READ_WAIT);
+		if (fetchTimeout > 0) {
 			gettimeofday(&now, NULL);
 			waittv.tv_sec = timeout.tv_sec - now.tv_sec;
 			waittv.tv_usec = timeout.tv_usec - now.tv_usec;
@@ -537,26 +617,17 @@ fetch_read(conn_t *conn, char *buf, size_t len)
 				fetch_syserr();
 				return (-1);
 			}
-			errno = 0;
-			r = select(conn->sd + 1, &readfds, NULL, NULL, &waittv);
-			if (r == -1) {
-				if (errno == EINTR && fetchRestartCalls)
-					continue;
-				fetch_syserr();
-				return (-1);
-			}
+			deltams = waittv.tv_sec * 1000 +
+				  waittv.tv_usec / 1000;
 		}
-#ifdef WITH_SSL
-		if (conn->ssl != NULL)
-			rlen = SSL_read(conn->ssl, buf, len);
-		else
-#endif
-			rlen = read(conn->sd, buf, len);
-		if (rlen >= 0)
-			break;
-	
-		if (errno != EINTR || !fetchRestartCalls)
+		errno = 0;
+		pfd.revents = 0;
+		if (poll(&pfd, 1, deltams) < 0) {
+			if (errno == EINTR && fetchRestartCalls)
+				continue;
+			fetch_syserr();
 			return (-1);
+		}
 	}
 	return (rlen);
 }

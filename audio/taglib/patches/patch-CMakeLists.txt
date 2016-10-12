@@ -1,0 +1,18 @@
+$NetBSD$
+
+Support multiarch.
+
+--- CMakeLists.txt.orig	2016-04-29 08:26:33.000000000 +0000
++++ CMakeLists.txt
+@@ -41,9 +41,10 @@ add_definitions(-DHAVE_CONFIG_H)
+ set(TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tests/")
+ 
+ ## the following are directories where stuff will be installed to
++set(BIN_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)")
+ set(LIB_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)")
+ set(EXEC_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}" CACHE PATH "Base directory for executables and libraries")
+-set(BIN_INSTALL_DIR "${EXEC_INSTALL_PREFIX}/bin" CACHE PATH "The subdirectory to the binaries prefix (default prefix/bin)")
++set(BIN_INSTALL_DIR "${EXEC_INSTALL_PREFIX}/bin${BIN_SUFFIX}" CACHE PATH "The subdirectory to the binaries prefix (default prefix/bin)")
+ set(LIB_INSTALL_DIR "${EXEC_INSTALL_PREFIX}/lib${LIB_SUFFIX}" CACHE PATH "The subdirectory relative to the install prefix where libraries will be installed (default is /lib${LIB_SUFFIX})")
+ set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include" CACHE PATH "The subdirectory to the header prefix")
+ 

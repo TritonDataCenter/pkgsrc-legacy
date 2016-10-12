@@ -12,6 +12,7 @@ BJAM_ARGS+=		-j${MAKE_JOBS}
 .endif
 BJAM_ARGS+=		--builddir=${WRKSRC}/build
 BJAM_ARGS+=		--layout=system
+BJAM_ARGS+=		--libdir=${PREFIX}/lib${LIBARCHSUFFIX}
 BJAM_ARGS+=		--toolset=${BOOST_TOOLSET}
 BJAM_ARGS+=		--disable-long-double
 BJAM_ARGS+=		${BJAM_BUILD}

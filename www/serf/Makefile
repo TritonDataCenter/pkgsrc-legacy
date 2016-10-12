@@ -13,6 +13,9 @@ LICENSE=	apache-2.0
 
 BUILD_DEPENDS+=		scons>=2.3.0:../../devel/scons
 
+USE_MULTIARCH=		lib
+SCONS_ARGS+=		LIBDIR=${PREFIX}/lib${LIBARCHSUFFIX}
+
 SCONS_ARGS+=		APR=${PREFIX}/bin/apr-1-config
 SCONS_ARGS+=		APU=${PREFIX}/bin/apu-1-config
 SCONS_ARGS+=		CC=${CC:Q}

@@ -64,6 +64,7 @@ usage="Usage: $0 "'
     [ --help ]
     [ --make-jobs <num> ]
     [ --mk-fragment <mk.conf> ]
+    [ --multiarch ]
     [ --pkgdbdir <pkgdbdir> ]
     [ --pkginfodir <pkginfodir> ]
     [ --pkgmandir <pkgmandir> ]
@@ -436,6 +437,7 @@ while [ $# -gt 0 ]; do
 	--abi=*)	abi=`get_optarg "$1"` ;;
 	--abi)		abi="$2"; shift ;;
 	--cwrappers)	cwrappers=yes ;;
+	--multiarch)	multiarch=yes ;;
 	--unprivileged | --ignore-user-check) unprivileged=yes ;;
 	--prefer-pkgsrc=*)
 			prefer_pkgsrc=`get_optarg "$1"` ;;
@@ -1020,6 +1022,9 @@ fi
 
 if [ -n "$abi" ]; then
 	echo "ABI=			$abi" >> ${TARGET_MKCONF}
+fi
+if [ -n "$multiarch" ]; then
+	echo "MULTIARCH=		$multiarch" >> ${TARGET_MKCONF}
 fi
 if [ "$compiler" != "" ]; then
 	echo "PKGSRC_COMPILER=	$compiler" >> ${TARGET_MKCONF}

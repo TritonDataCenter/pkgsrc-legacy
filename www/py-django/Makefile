@@ -17,10 +17,12 @@ REPLACE_PYTHON+=	${WRKSRC}/django/conf/project_template/manage.py-tpl
 PYTHON_VERSIONED_DEPENDENCIES=	flup
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/bin/django-admin \
-		${DESTDIR}${PREFIX}/bin/django-admin${PYVERSSUFFIX}
-	${MV} ${DESTDIR}${PREFIX}/bin/django-admin.py \
-		${DESTDIR}${PREFIX}/bin/django-admin${PYVERSSUFFIX}.py
+	@if [ -f ${DESTDIR}${PREFIX}/bin/django-admin ]; then \
+		${MV} ${DESTDIR}${PREFIX}/bin/django-admin \
+			${DESTDIR}${PREFIX}/bin/django-admin${PYVERSSUFFIX}; \
+		${MV} ${DESTDIR}${PREFIX}/bin/django-admin.py \
+			${DESTDIR}${PREFIX}/bin/django-admin${PYVERSSUFFIX}.py; \
+	fi
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

@@ -11,6 +11,7 @@ COMMENT=		X font Library
 LICENSE=		mit AND modified-bsd
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
 

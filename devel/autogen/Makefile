@@ -14,6 +14,7 @@ LICENSE=	gnu-gpl-v3
 USE_TOOLS+=		bash:run gmake gzip makeinfo perl:run pkg-config
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 INFO_FILES=		yes
 
 # embedded in some installed tools

@@ -11,6 +11,7 @@ COMMENT=	Library to navigate DVDs
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE=	misc/dvdnav.pc.in

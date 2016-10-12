@@ -13,6 +13,7 @@ COMMENT=	Portable subtitle renderer for the ASS/SSA subtitle format
 LICENSE=	isc
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-asm

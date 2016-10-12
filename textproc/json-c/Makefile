@@ -13,6 +13,7 @@ MAKE_JOBS_SAFE=	no
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	pkg-config
 
 PKGCONFIG_OVERRIDE+=	json-c.pc.in

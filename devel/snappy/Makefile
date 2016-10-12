@@ -14,6 +14,7 @@ GITHUB_RELEASE=	${PKGVERSION_NOREV}
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_LANGUAGES+=	c c++
+USE_MULTIARCH=	lib
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

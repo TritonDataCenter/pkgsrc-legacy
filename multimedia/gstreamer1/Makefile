@@ -13,6 +13,7 @@ LICENSE=	gnu-lgpl-v2
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		bison flex gmake perl pkg-config
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c

@@ -13,6 +13,8 @@ LICENSE=		mit
 PKGCONFIG_OVERRIDE+=	videoproto.pc.in
 GNU_CONFIGURE=		yes
 
+USE_MULTIARCH=		lib
+
 BUILDLINK_DEPMETHOD.libX11?=	build # uses headers
 .include "../../x11/libX11/buildlink3.mk"
 

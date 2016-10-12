@@ -15,6 +15,7 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config bison flex
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	bin lib
 
 CONFIGURE_ARGS+=	--disable-python
 CONFIGURE_ARGS+=	--disable-perl

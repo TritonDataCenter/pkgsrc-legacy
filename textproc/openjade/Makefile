@@ -14,12 +14,13 @@ MAKE_JOBS_SAFE=		no
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake perl
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--datadir=${OPENJADE_DATA_DIR}
 CONFIGURE_ARGS+=	--enable-default-catalog=${OPENJADE_DATA_DIR}/catalog
 CONFIGURE_ARGS+=	--enable-spincludedir=${BUILDLINK_PREFIX.opensp}/include/OpenSP
-CONFIGURE_ARGS+=	--enable-splibdir=${BUILDLINK_PREFIX.opensp}/lib
+CONFIGURE_ARGS+=	--enable-splibdir=${BUILDLINK_PREFIX.opensp}/lib${LIBARCHSUFFIX}
 CONFIGURE_ENV+=		CXXFLAGS=${CFLAGS:M*:Q}
 
 SGML_CATALOGS=		${PREFIX}/share/sgml/openjade/catalog

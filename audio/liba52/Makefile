@@ -14,6 +14,7 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 CONFIGURE_ARGS+=	--disable-oss
 CONFIGURE_ARGS+=	--disable-mlib

@@ -18,6 +18,7 @@ CONFLICTS+=	sp-[0-9]*
 USE_TOOLS+=		gmake msgfmt perl
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 PTHREAD_OPTS+=		require
 USE_PKGLOCALEDIR=	yes
 

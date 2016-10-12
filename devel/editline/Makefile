@@ -16,6 +16,7 @@ PKGCONFIG_OVERRIDE+=	libedit.pc.in
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		lib
 USE_TOOLS+=		automake autoreconf
 CONFIGURE_ARGS+=	--enable-widec
 

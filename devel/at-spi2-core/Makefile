@@ -11,6 +11,7 @@ COMMENT=	Assistive Technology Service Provider Interface Core
 LICENSE=	gnu-lgpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 GNU_CONFIGURE=		yes

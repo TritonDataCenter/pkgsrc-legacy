@@ -13,6 +13,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gm4 gmake perl:build
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE=	sigc++.pc.in

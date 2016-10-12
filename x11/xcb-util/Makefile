@@ -12,6 +12,7 @@ COMMENT=	XCB Utilities
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config gmake gm4
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 
 PKGCONFIG_OVERRIDE+=	xcb-util.pc.in
 PKGCONFIG_OVERRIDE+=	xcb-atom.pc.in

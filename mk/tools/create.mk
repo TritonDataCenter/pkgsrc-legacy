@@ -140,7 +140,7 @@ MKDIR?=         mkdir -p
 # command-line arguments passed to the wrapper script.
 #
 .for _t_ in ${TOOLS_CREATE}
-TOOLS_CMD.${_t_}?=		${TOOLS_DIR}/bin/${_t_}
+TOOLS_CMD.${_t_}?=		${TOOLS_DIR}/bin${BINARCHSUFFIX}/${_t_}
 TOOLS_PATH.${_t_}?=		${FALSE}
 TOOLS_SCRIPT_DFLT.${_t_}=	\
 	${TOOLS_PATH.${_t_}} ${TOOLS_ARGS.${_t_}} "$$@"

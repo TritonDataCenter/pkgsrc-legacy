@@ -15,6 +15,8 @@ LICENSE=	2-clause-bsd
 WRKSRC=			${WRKDIR}/tcl${TCL_VERSION}
 
 USE_GCC_RUNTIME=	yes
+USE_MULTIARCH=		lib
+MULTIARCH_DIRS.lib=	# manually set in PLIST
 
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		unix
@@ -40,7 +42,7 @@ CONFIGURE_ARGS.NetBSD+=	ac_cv_func_gethostbyname_r=no
 SUBST_CLASSES+=		tcl-config
 SUBST_STAGE.tcl-config=	post-build
 SUBST_FILES.tcl-config=	unix/tclConfig.sh
-SUBST_SED.tcl-config+=	-e "s|${WRKSRC}/unix|${PREFIX}/lib|"
+SUBST_SED.tcl-config+=	-e "s|${WRKSRC}/unix|${PREFIX}/lib${LIBARCHSUFFIX}|"
 SUBST_SED.tcl-config+=	-e "s|${WRKSRC}|${PREFIX}/include/tcl|"
 
 PLIST_SUBST+=		SONUM=${TCL_SONUM}

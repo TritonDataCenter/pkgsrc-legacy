@@ -15,6 +15,7 @@ GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 PKGCONFIG_OVERRIDE=	libwnck-3.0.pc.in
 

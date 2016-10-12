@@ -50,7 +50,7 @@ TOOLS_PATH.rpcgen?=	${_d_}/rpcgen
 .  endfor
 TOOLS_PATH.rpcgen?=	${FALSE}
 .endif
-TOOLS_CMD.rpcgen=	${TOOLS_DIR}/bin/rpcgen
+TOOLS_CMD.rpcgen=	${TOOLS_DIR}/bin${BINARCHSUFFIX}/rpcgen
 .if ${OPSYS} == "NetBSD"
 TOOLS_ARGS.rpcgen?=	-b
 .elif ${OPSYS} == "Linux"

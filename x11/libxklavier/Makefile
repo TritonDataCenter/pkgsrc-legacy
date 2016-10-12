@@ -15,6 +15,7 @@ LICENSE=	gnu-lgpl-v2
 USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 
 PKGCONFIG_OVERRIDE=	libxklavier.pc.in
 

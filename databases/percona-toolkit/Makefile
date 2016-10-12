@@ -20,7 +20,7 @@ CHECK_INTERPRETER_SKIP+=	*pt-pmp
 CHECK_INTERPRETER_SKIP+=	*pt-sift
 CHECK_INTERPRETER_SKIP+=	*pt-stalk
 
-DEPENDS+=	p5-DBD-mysql-[0-9]*:../../databases/p5-DBD-mysql
+DEPENDS+=	p5-DBD-{mysql,percona}*-[0-9]*:../../databases/p5-DBD-mysql
 #DEPENDS+=	{perl>=5.7.3,p5-Time-HiRes-[0-9]*}:../../time/p5-Time-HiRes
 
 PERL5_PACKLIST=	auto/percona-toolkit/.packlist

@@ -23,6 +23,7 @@ PATCHDIR=	${.CURDIR}/../../multimedia/gst-plugins0.10-${GST_PLUGINS0.10_TYPE}/pa
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake pkg-config
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 
 CONFIGURE_ARGS+=	--disable-examples

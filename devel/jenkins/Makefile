@@ -12,7 +12,7 @@ HOMEPAGE=	http://jenkins-ci.org/
 COMMENT=	Open source continuous integration server (LTS release)
 LICENSE=	mit
 
-J_VERSION=	1.642
+J_VERSION=	2.25
 
 DIST_SUBDIR=	${PKGNAME_NOREV}
 

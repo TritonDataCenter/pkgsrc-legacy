@@ -15,6 +15,7 @@ LICENSE=	gnu-lgpl-v2
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config msgfmt gmake
 USE_PKGLOCALEDIR=	yes
 

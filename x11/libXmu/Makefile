@@ -10,6 +10,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		X Miscellaneous Utilities library
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 PKGCONFIG_OVERRIDE+=	xmu.pc.in
 PKGCONFIG_OVERRIDE+=	xmuu.pc.in
 GNU_CONFIGURE=		yes

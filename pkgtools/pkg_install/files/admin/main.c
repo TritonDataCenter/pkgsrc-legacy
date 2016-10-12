@@ -164,10 +164,19 @@ add_pkg(const char *pkgdir, void *vp)
 	for (p = Plist.head; p; p = p->next) {
 		switch(p->type) {
 		case PLIST_FILE:
+		case PLIST_LINK:
 			if (dirp == NULL) {
 				errx(EXIT_FAILURE, "@cwd not yet found, please send-pr!");
 			}
-			(void) snprintf(file, sizeof(file), "%s/%s", dirp, p->name);
+			if (p->type == PLIST_LINK) {
+				char *linkdst, *freelink;
+			        freelink = linkdst = xstrdup(p->name);
+				(void) strsep(&linkdst, " \t");
+				(void) snprintf(file, sizeof(file), "%s/%s", dirp, linkdst);
+				free(freelink);
+			} else {
+				(void) snprintf(file, sizeof(file), "%s/%s", dirp, p->name);
+			}
 			if (!(isfile(file) || islinktodir(file))) {
 				if (isbrokenlink(file)) {
 					warnx("%s: Symlink `%s' exists and is in %s but target does not exist!",

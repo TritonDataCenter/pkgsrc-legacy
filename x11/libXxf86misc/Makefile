@@ -11,6 +11,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		Library for the XFree86-Misc X extension
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 PKGCONFIG_OVERRIDE+=	xxf86misc.pc.in
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes

@@ -11,6 +11,7 @@ COMMENT=	Monitor and filter incoming requests for network services
 LICENSE=	2-clause-bsd # not exactly but close enough
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.tcp_wrappers
 PKG_SUPPORTED_OPTIONS=	inet6
@@ -49,7 +50,7 @@ MAKE_ENV+=	IPV6=-DHAVE_IPV6
 PKG_SYSCONFDIR.tcp_wrappers?=	/etc
 MAKE_ENV+=	PKGSYSCONFDIR=${PKG_SYSCONFDIR}
 
-INSTALLATION_DIRS=	bin include lib libexec ${PKGMANDIR}/man3 ${PKGMANDIR}/man5 ${PKGMANDIR}/man8
+INSTALLATION_DIRS=	bin include lib${LIBARCHSUFFIX} libexec ${PKGMANDIR}/man3 ${PKGMANDIR}/man5 ${PKGMANDIR}/man8
 
 post-build:
 	set -e; cd ${WRKSRC}; for file in *.[0-9]; do			\
@@ -63,7 +64,7 @@ INSTALLATION_DIRS+=	${DOCDIR}
 
 do-install:
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
-		${WRKSRC}/libwrap.la ${DESTDIR}${PREFIX}/lib
+		${WRKSRC}/libwrap.la ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}
 	${LIBTOOL} --mode=install ${INSTALL_PROGRAM} \
 		${WRKSRC}/tcpdchk ${WRKSRC}/tcpdmatch ${WRKSRC}/try-from \
 		${WRKSRC}/safe_finger ${DESTDIR}${PREFIX}/bin

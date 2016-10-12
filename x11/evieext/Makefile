@@ -11,6 +11,7 @@ HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		EvIE extension headers
 
 PKGCONFIG_OVERRIDE+=	${WRKSRC}/evieproto.pc.in
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 

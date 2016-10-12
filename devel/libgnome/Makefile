@@ -15,6 +15,7 @@ LICENSE=	gnu-lgpl-v2
 GNU_CONFIGURE=		YES
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	YES
 
 PKGCONFIG_OVERRIDE=	libgnome/libgnome-2.0.pc.in

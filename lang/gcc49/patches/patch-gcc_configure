@@ -3,10 +3,20 @@ $NetBSD: patch-gcc_configure,v 1.1 2014/09/04 18:43:11 jperkin Exp $
 Add dl_iterate_phdr detection for FreeBSD and DragonFly.
 Detection for NetBSD and OpenBSD is added but commented out in case this
 error handling mechanism is activated for these platforms later.
+Fix detection of native TLS on SunOS, joyent/pkgsrc#264
 
---- gcc/configure.orig	2014-05-28 11:37:50.000000000 +0000
+--- gcc/configure.orig	2015-05-12 08:55:54.000000000 +0000
 +++ gcc/configure
-@@ -27449,6 +27449,20 @@ case "$target" in
+@@ -23330,7 +23330,7 @@ $as_echo "#define TLS_SECTION_ASM_FLAG '
+       tls_first_major=2
+       tls_first_minor=14
+       tls_section_flag=T
+-      tls_as_opt="--fatal-warnings"
++      tls_as_opt="-32 --fatal-warnings"
+     fi
+     conftest_s="$conftest_s
+ foo:	.long	25
+@@ -27570,6 +27570,20 @@ case "$target" in
        gcc_cv_target_dl_iterate_phdr=no
      fi
      ;;

@@ -15,6 +15,7 @@ DEPENDS+=	${PYPKGPREFIX}-pip-[0-9]*:../../devel/py-pip
 REPLACE_PYTHON+=	pbr/tests/testpackage/setup.py
 
 post-install:
+	[ -f ${DESTDIR}${PREFIX}/bin/pbr ] && \
 	${MV} ${DESTDIR}${PREFIX}/bin/pbr \
 		${DESTDIR}${PREFIX}/bin/pbr${PYVERSSUFFIX}
 

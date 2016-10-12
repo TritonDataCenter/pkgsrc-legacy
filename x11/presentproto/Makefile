@@ -13,6 +13,7 @@ COMMENT=	X11 extension for efficient window updates
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c
+USE_MULTIARCH=	lib
 
 PKGCONFIG_OVERRIDE+=	presentproto.pc.in
 

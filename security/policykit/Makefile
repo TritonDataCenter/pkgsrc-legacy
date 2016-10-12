@@ -31,6 +31,7 @@ GNU_CONFIGURE=		YES
 USE_PKGLOCALEDIR=	YES
 USE_TOOLS+=		gmake intltool msgfmt perl pkg-config autoconf
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 
 USE_LANGUAGES=		c99
 

@@ -17,6 +17,7 @@ DISTINFO_FILE=	${.CURDIR}/../../net/libnice/distinfo
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	pkg-config
 
 .include "../../mk/bsd.prefs.mk"

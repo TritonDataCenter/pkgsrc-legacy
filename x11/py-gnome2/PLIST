@@ -1,8 +1,8 @@
 @comment $NetBSD: PLIST,v 1.8 2009/06/14 18:25:03 joerg Exp $
 include/gnome-python-2.0/pygnomevfs.h
 include/gnome-python-2.0/pygnomevfsbonobo.h
-lib/gnome-vfs-2.0/modules/libpythonmethod.la
-lib/pkgconfig/gnome-python-2.0.pc
+lib${LIBARCHSUFFIX}/gnome-vfs-2.0/modules/libpythonmethod.la
+lib${LIBARCHSUFFIX}/pkgconfig/gnome-python-2.0.pc
 ${PYSITELIB}/gtk-2.0/bonobo/__init__.py
 ${PYSITELIB}/gtk-2.0/bonobo/__init__.pyc
 ${PYSITELIB}/gtk-2.0/bonobo/__init__.pyo

@@ -9,6 +9,7 @@ COMMENT=	On-screen Input Pad to Send Characters with Mouse
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config intltool msgfmt xgettext msgmerge
 

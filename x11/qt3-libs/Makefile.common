@@ -22,10 +22,14 @@ HAS_CONFIGURE=		yes
 USE_TOOLS+=		gmake
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 QTPREFIX=		${PREFIX}/qt3
 
+MULTIARCH_DIRS.lib=	lib qt3/lib qt3/plugins
 CONFIGURE_ARGS+=	-prefix ${QTPREFIX}
+CONFIGURE_ARGS+=	-libdir ${QTPREFIX}/lib${LIBARCHSUFFIX}
+CONFIGURE_ARGS+=	-plugindir ${QTPREFIX}/plugins${LIBARCHSUFFIX}
 CONFIGURE_ARGS+=	-shared -sm -thread \
 			-system-zlib -system-libpng \
 			-system-libmng -system-libjpeg \

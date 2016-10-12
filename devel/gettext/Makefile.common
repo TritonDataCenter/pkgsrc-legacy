@@ -17,4 +17,5 @@ LICENSE=	gnu-gpl-v3
 CONFLICTS=	gettext<=0.10.35
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes

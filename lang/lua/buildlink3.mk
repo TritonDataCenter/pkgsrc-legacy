@@ -17,5 +17,5 @@ LUA_BUILDLINK3_MK:=
 BUILDLINK_TARGETS+=     buildlink-bin-unversioned
 
 buildlink-bin-unversioned:
-	${LN} -s ${BUILDLINK_DIR}/lib/pkgconfig/lua-${_LUA_DOT_VERSION}.pc ${BUILDLINK_DIR}/lib/pkgconfig/lua.pc
+	${LN} -s ${BUILDLINK_DIR}/lib${LIBARCHSUFFIX}/pkgconfig/lua-${_LUA_DOT_VERSION}.pc ${BUILDLINK_DIR}/lib${LIBARCHSUFFIX}/pkgconfig/lua.pc
 .endif # LUA_BUILDLINK3_MK

@@ -13,6 +13,7 @@ NOT_FOR_PLATFORM+=	Interix-*-* # no raw interface access
 
 USE_LIBTOOL=		yes
 USE_TOOLS+=		bison flex gm4
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS.Darwin+=	--disable-universal
 

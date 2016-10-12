@@ -40,8 +40,10 @@ OPSYSVARS+=		DEPENDS
 DEPENDS.Darwin+=	${PYPKGPREFIX}-py2app-[0-9]*:../../devel/py-py2app
 
 post-install:
+	if [ -f ${DESTDIR}${PREFIX}/bin/trytond ]; then \
 	${MV} ${DESTDIR}${PREFIX}/bin/trytond \
-		${DESTDIR}${PREFIX}/bin/trytond${PYVERSSUFFIX}
+		${DESTDIR}${PREFIX}/bin/trytond${PYVERSSUFFIX}; \
+	fi
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

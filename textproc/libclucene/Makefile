@@ -18,6 +18,7 @@ USE_CMAKE=		yes
 CMAKE_ARGS+=		-DBUILD_CONTRIBS_LIB=ON
 #BUILD_TARGET+=	clucene-contribs-lib
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

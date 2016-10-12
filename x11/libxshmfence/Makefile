@@ -14,6 +14,7 @@ LICENSE=	mit
 GNU_CONFIGURE=	yes
 TEST_TARGET=	check
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	pkg-config autoconf automake autoreconf
 
 PKGCONFIG_OVERRIDE+=	xshmfence.pc.in

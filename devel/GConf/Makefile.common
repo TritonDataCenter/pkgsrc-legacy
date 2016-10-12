@@ -24,6 +24,7 @@ PATCHDIR=		${.CURDIR}/../GConf/patches
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake intltool msgfmt perl pkg-config
 
 PKGCONFIG_OVERRIDE=	gconf-2.0.pc.in

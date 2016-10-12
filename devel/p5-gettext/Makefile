@@ -17,7 +17,7 @@ PERL5_PACKLIST=		auto/Locale/gettext/.packlist
 
 SUBST_CLASSES+=		intlpath
 SUBST_FILES.intlpath=	Makefile.PL
-SUBST_SED.intlpath+=	-e 's,-lintl,-L${BUILDLINK_PREFIX.gettext}/lib -lintl,g'
+SUBST_SED.intlpath+=	-e 's,-lintl,-L${BUILDLINK_PREFIX.gettext}/lib${LIBARCHSUFFIX} -lintl,g'
 SUBST_STAGE.intlpath=	pre-configure
 
 .include "../../devel/gettext-lib/buildlink3.mk"

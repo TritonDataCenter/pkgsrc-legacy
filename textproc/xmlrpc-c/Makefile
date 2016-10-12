@@ -25,6 +25,7 @@ SUPERSEDES+=	xmlrpc-c-[0-9]*
 
 USE_LANGUAGES=		c99 c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
 MAKE_FILE=		GNUmakefile

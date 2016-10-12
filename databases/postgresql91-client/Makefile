@@ -55,12 +55,12 @@ SUBST_SED.pgxs+=	-e 's,${WRKDIR}/.wrapper/bin/ld,${LD},'
 SUBST_SED.pgxs+=	-e 's,${WRKDIR}/.wrapper,${PREFIX},'
 SUBST_SED.pgxs+=	-e 's,${WRKSRC},/dev/null,'
 
-INSTALLATION_DIRS+=	lib/postgresql/pgxs
-INSTALLATION_DIRS+=	lib/postgresql/pgxs/config
-INSTALLATION_DIRS+=	lib/postgresql/pgxs/src
-INSTALLATION_DIRS+=	lib/postgresql/pgxs/src/makefiles
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/postgresql/pgxs
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/postgresql/pgxs/config
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/postgresql/pgxs/src
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/postgresql/pgxs/src/makefiles
 
-DEST_PGXS=	${DESTDIR}${PREFIX}/lib/postgresql/pgxs
+DEST_PGXS=	${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/postgresql/pgxs
 PGXS_FILES=	config/install-sh
 PGXS_FILES+=	src/makefiles/pgxs.mk src/Makefile.global
 PGXS_FILES+=	src/Makefile.port src/Makefile.shlib
@@ -73,9 +73,24 @@ post-wrapper:
 	touch ${BUILDLINK_DIR}/include/crypt.h
 .endif
 
+do-install-multiarch-hook:
+	${MKDIR} ${DESTDIR}/${PREFIX}/include/${INCARCHSUFFIX} \
+		${DESTDIR}/${PREFIX}/include/postgresql/server${INCARCHSUFFIX}
+	${MV} ${DESTDIR}/${PREFIX}/include/ecpg_config.h \
+		${DESTDIR}/${PREFIX}/include/${INCARCHSUFFIX}
+	${MV} ${DESTDIR}/${PREFIX}/include/pg_config.h \
+		${DESTDIR}/${PREFIX}/include/${INCARCHSUFFIX}
+	${MV} ${DESTDIR}/${PREFIX}/include/postgresql/server/pg_config.h \
+		${DESTDIR}/${PREFIX}/include/postgresql/server${INCARCHSUFFIX}
+
 post-install:
 .for file in ${PGXS_FILES}
 	${INSTALL_DATA} ${WRKSRC}/${file} ${DEST_PGXS}/${file}
 .endfor
+.if !empty(MULTIARCH:M[Yy][Ee][Ss])
+	${INSTALL_DATA} ${FILESDIR}/ecpg_config.h ${DESTDIR}/${PREFIX}/include
+	${INSTALL_DATA} ${FILESDIR}/pg_config.h ${DESTDIR}/${PREFIX}/include
+	${INSTALL_DATA} ${FILESDIR}/pg_config.h ${DESTDIR}/${PREFIX}/include/postgresql/server
+.endif
 
 .include "../../mk/bsd.pkg.mk"

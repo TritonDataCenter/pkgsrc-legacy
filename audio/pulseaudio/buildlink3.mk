@@ -15,8 +15,8 @@ BUILDLINK_PKGSRCDIR.pulseaudio?=	../../audio/pulseaudio
 .include "../../devel/libatomic_ops/buildlink3.mk"
 .endif
 
-BUILDLINK_LIBDIRS.pulseaudio+=		lib/pulseaudio
-BUILDLINK_RPATHDIRS.pulseaudio+=	lib/pulseaudio
+BUILDLINK_LIBDIRS.pulseaudio+=		lib${LIBARCHSUFFIX}/pulseaudio
+BUILDLINK_RPATHDIRS.pulseaudio+=	lib${LIBARCHSUFFIX}/pulseaudio
 
 _WRAP_EXTRA_ARGS.LIBTOOL+=	-L${PREFIX}/lib/pulseaudio
 

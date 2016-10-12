@@ -15,6 +15,7 @@ BUILD_DEPENDS+=		help2man-[0-9]*:../../converters/help2man
 TEST_TARGET=		check
 USE_LIBTOOL=		yes
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/libdata

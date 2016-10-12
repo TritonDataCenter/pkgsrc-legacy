@@ -11,6 +11,7 @@ COMMENT=		XVideo Motion Compensation Library
 LICENSE=		mit
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 

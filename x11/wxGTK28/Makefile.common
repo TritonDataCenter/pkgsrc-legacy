@@ -21,6 +21,7 @@ PATCH_DIST_STRIP.${DISTNAME}-libtool.diff.bz2= -p1
 USE_TOOLS+=		pkg-config msgfmt
 USE_LIBTOOL=		yes
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		YES
 USE_GNU_CONFIGURE_HOST=	no
 CONFIGURE_ARGS+=	--with-gtk=2

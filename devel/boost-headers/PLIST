@@ -1373,7 +1373,7 @@ include/boost/config/stdlib/sgi.hpp
 include/boost/config/stdlib/stlport.hpp
 include/boost/config/stdlib/vacpp.hpp
 include/boost/config/suffix.hpp
-include/boost/config/user.hpp
+include/boost/config${INCARCHSUFFIX}/user.hpp
 include/boost/config/warning_disable.hpp
 include/boost/container/adaptive_pool.hpp
 include/boost/container/allocator.hpp

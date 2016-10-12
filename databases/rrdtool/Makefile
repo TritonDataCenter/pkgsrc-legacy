@@ -15,6 +15,7 @@ LICENSE=	gnu-gpl-v2
 DEPENDS+=		dejavu-ttf>=2.26:../../fonts/dejavu-ttf
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		gmake pkg-config perl msgfmt intltool groff nroff
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-shared

@@ -14,5 +14,6 @@ COMMENT=		XF86DRI extension headers from modular X.org
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE+=	xf86driproto.pc.in
 USE_LANGUAGES=		c
+USE_MULTIARCH=		lib
 
 .include "../../mk/bsd.pkg.mk"

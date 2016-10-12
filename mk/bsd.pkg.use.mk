@@ -76,7 +76,7 @@ BUILD_DEFS+=		KERBEROS
 PKG_FAIL_REASON+=	"Cross-compiling Fortran with libtool NYI."
 .  endif
 
-PKG_LIBTOOL?=		${LOCALBASE}/bin/libtool-fortran
+PKG_LIBTOOL?=		${LOCALBASE}/bin${BINARCHSUFFIX}/libtool-fortran
 PKG_SHLIBTOOL?=		${LOCALBASE}/bin/shlibtool-fortran
 
 .  if defined(USE_LIBTOOL)
@@ -87,7 +87,7 @@ BUILD_DEPENDS+=		libtool-fortran>=${_OPSYS_LIBTOOL_REQD:U${LIBTOOL_REQD}}:../../
 PKG_LIBTOOL?=		${CROSSBASE}/bin/libtool
 PKG_SHLIBTOOL?=		${CROSSBASE}/bin/shlibtool
 .  else
-PKG_LIBTOOL?=		${LOCALBASE}/bin/libtool
+PKG_LIBTOOL?=		${LOCALBASE}/bin${BINARCHSUFFIX}/libtool
 PKG_SHLIBTOOL?=		${LOCALBASE}/bin/shlibtool
 .  endif
 .endif
@@ -97,7 +97,8 @@ SHLIBTOOL?=		${WRAPPER_BINDIR}/shlibtool
 LIBTOOL_REQD?=		2.2.6bnb3
 .if !empty(USE_CROSS_COMPILE:M[yY][eE][sS])
 TOOL_DEPENDS+=		cross-libtool-base-${MACHINE_ARCH}>=${_OPSYS_LIBTOOL_REQD:U${LIBTOOL_REQD}}:../../cross/libtool-base
-.else
+# We use an external libtool for binutils.
+.elif empty(PKGPATH:Mdevel/binutils)
 TOOL_DEPENDS+=		libtool-base>=${_OPSYS_LIBTOOL_REQD:U${LIBTOOL_REQD}}:../../devel/libtool-base
 .endif
 CONFIGURE_ENV+=		LIBTOOL="${LIBTOOL} ${LIBTOOL_FLAGS}"

@@ -13,8 +13,9 @@ LICENSE=	modified-bsd
 
 USE_LANGUAGES=		c fortran
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 DISTINFO_FILE=	${.CURDIR}/../../math/lapack/distinfo
 PATCHDIR=	${.CURDIR}/../../math/lapack/patches
 
-INSTALLATION_DIRS=	lib
+INSTALLATION_DIRS=	lib${LIBARCHSUFFIX}

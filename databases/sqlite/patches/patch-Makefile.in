@@ -1,6 +1,7 @@
 $NetBSD: patch-Makefile.in,v 1.1 2015/03/16 11:56:32 jperkin Exp $
 
 Honour LDFLAGS for bl3.
+Support multiarch.
 
 --- Makefile.in.orig	2005-04-23 22:43:23.000000000 +0000
 +++ Makefile.in
@@ -13,3 +14,39 @@ Honour LDFLAGS for bl3.
  LTINSTALL = $(LIBTOOL) --mode=install $(INSTALL)
  
  # Compiler options needed for programs that use the TCL library.
+@@ -187,12 +187,12 @@
+           | awk '{print $$5,$$6}' >last_change
+ 
+ libsqlite.la:	$(LIBOBJ)
+-	$(LTLINK) -o libsqlite.la $(LIBOBJ) ${RELEASE} -rpath @exec_prefix@/lib \
++	$(LTLINK) -o libsqlite.la $(LIBOBJ) ${RELEASE} -rpath @libdir@ \
+ 		-version-info "8:6:8"
+ 
+ libtclsqlite.la:	tclsqlite.lo libsqlite.la
+ 	$(LTLINK) -o libtclsqlite.la tclsqlite.lo \
+-		libsqlite.la $(LIBTCL) -rpath @exec_prefix@/lib/sqlite \
++		libsqlite.la $(LIBTCL) -rpath @libdir@/sqlite \
+ 		-version-info "8:6:8"
+ 
+ sqlite@TARGET_EXEEXT@:	$(TOP)/src/shell.c libsqlite.la sqlite.h
+@@ -465,14 +465,14 @@
+ 	mv $(DOC) doc
+ 
+ install:	sqlite libsqlite.la sqlite.h
+-	$(INSTALL) -d $(DESTDIR)$(exec_prefix)/lib
+-	$(LTINSTALL) libsqlite.la $(DESTDIR)$(exec_prefix)/lib
+-	$(INSTALL) -d $(DESTDIR)$(exec_prefix)/bin
+-	$(LTINSTALL) sqlite $(DESTDIR)$(exec_prefix)/bin
++	$(INSTALL) -d $(DESTDIR)@libdir@
++	$(LTINSTALL) libsqlite.la $(DESTDIR)@libdir@
++	$(INSTALL) -d $(DESTDIR)@bindir@
++	$(LTINSTALL) sqlite $(DESTDIR)@bindir@
+ 	$(INSTALL) -d $(DESTDIR)$(prefix)/include
+ 	$(INSTALL) -m 0644 sqlite.h $(DESTDIR)$(prefix)/include
+-	$(INSTALL) -d $(DESTDIR)$(exec_prefix)/lib/pkgconfig; 
+-	$(INSTALL) -m 0644 sqlite.pc $(DESTDIR)$(exec_prefix)/lib/pkgconfig; 
++	$(INSTALL) -d $(DESTDIR)@libdir@/pkgconfig; 
++	$(INSTALL) -m 0644 sqlite.pc $(DESTDIR)@libdir@/pkgconfig; 
+ 
+ clean:	
+ 	rm -f *.lo *.la *.o sqlite@TARGET_EXEEXT@ libsqlite.la sqlite.h opcodes.*

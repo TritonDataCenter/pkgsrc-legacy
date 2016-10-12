@@ -13,6 +13,7 @@ COMMENT=	Garbage collection and memory leak detection for C and C++
 USE_TOOLS+=		gmake pkg-config
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		YES
 CONFIGURE_ARGS+=	--enable-cplusplus
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/share/doc

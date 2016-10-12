@@ -25,6 +25,7 @@ PLIST.worker=		yes
 .elif !empty(PKG_OPTIONS:Mapache-mpm-worker)
 CONFIGURE_ARGS+=	--with-mpm=worker
 PLIST.worker=		yes
+PKGNAME=		${DISTNAME:S/httpd/apache-worker/}
 .else
 CONFIGURE_ARGS+=	--with-mpm=prefork
 .endif
@@ -65,5 +66,5 @@ CONFIGURE_ARGS+=	${APACHE_SUEXEC_CONFIGURE_ARGS:M--with-suexec-*}
 BUILD_DEFS+=		APACHE_SUEXEC_CONFIGURE_ARGS
 BUILD_TARGET=		all suexec
 PLIST.suexec=		yes
-SPECIAL_PERMS+=		sbin/suexec ${REAL_ROOT_USER} ${APACHE_GROUP} 4510
+SPECIAL_PERMS+=		sbin${BINARCHSUFFIX}/suexec ${REAL_ROOT_USER} ${APACHE_GROUP} 4510
 .endif

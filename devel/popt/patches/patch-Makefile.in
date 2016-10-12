@@ -1,0 +1,15 @@
+$NetBSD$
+
+Support multiarch.
+
+--- Makefile.in.orig	Wed Aug  1 15:00:41 2012
++++ Makefile.in	Wed Aug  1 15:01:22 2012
+@@ -370,7 +370,7 @@
+ libpopt_la_SOURCES = popt.c poptparse.c poptconfig.c popthelp.c poptint.c
+ libpopt_la_LDFLAGS = -no-undefined @LTLIBINTL@ @LTLIBICONV@ \
+ 	$(am__append_1)
+-pkgconfigdir = $(prefix)/lib/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = popt.pc
+ man_MANS = popt.3
+ BUILT_SOURCES = popt.pc # popt.lcd

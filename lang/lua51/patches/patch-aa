@@ -6,22 +6,28 @@ DESTDIR support.
 
 --- Makefile.orig	2012-02-10 09:50:23.000000000 +0000
 +++ Makefile
-@@ -9,11 +9,11 @@ PLAT= none
+@@ -9,22 +9,22 @@ PLAT= none
  
  # Where to install. The installation starts in the src and doc directories,
  # so take care if INSTALL_TOP is not an absolute path.
 -INSTALL_TOP= /usr/local
-+INSTALL_TOP= ${PREFIX}
- INSTALL_BIN= $(INSTALL_TOP)/bin
+-INSTALL_BIN= $(INSTALL_TOP)/bin
 -INSTALL_INC= $(INSTALL_TOP)/include
-+INSTALL_INC= $(INSTALL_TOP)/include/lua-5.1
- INSTALL_LIB= $(INSTALL_TOP)/lib
+-INSTALL_LIB= $(INSTALL_TOP)/lib
 -INSTALL_MAN= $(INSTALL_TOP)/man/man1
++INSTALL_TOP= ${PREFIX}
++INSTALL_BIN= $(INSTALL_TOP)/bin${BINARCHSUFFIX}
++INSTALL_INC= $(INSTALL_TOP)/include/lua-5.1
++INSTALL_LIB= $(INSTALL_TOP)/lib${LIBARCHSUFFIX}
 +INSTALL_MAN= $(INSTALL_TOP)/${PKGMANDIR}/man1
  #
  # You probably want to make INSTALL_LMOD and INSTALL_CMOD consistent with
  # LUA_ROOT, LUA_LDIR, and LUA_CDIR in luaconf.h (and also with etc/lua.pc).
-@@ -24,7 +24,7 @@ INSTALL_CMOD= $(INSTALL_TOP)/lib/lua/$V
+ INSTALL_LMOD= $(INSTALL_TOP)/share/lua/$V
+-INSTALL_CMOD= $(INSTALL_TOP)/lib/lua/$V
++INSTALL_CMOD= $(INSTALL_TOP)/lib${LIBARCHSUFFIX}/lua/$V
+ 
+ # How to install. If your install program does not support "-p", then you
  # may have to run ranlib on the installed liblua.a (do "make ranlib").
  INSTALL= install -p
  INSTALL_EXEC= $(INSTALL) -m 0755

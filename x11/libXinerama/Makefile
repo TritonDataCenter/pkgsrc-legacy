@@ -10,6 +10,7 @@ HOMEPAGE=	http://xorg.freedesktop.org/
 COMMENT=	X PanoramiX extension library
 
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config
 

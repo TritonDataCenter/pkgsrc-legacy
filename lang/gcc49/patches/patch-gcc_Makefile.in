@@ -1,8 +1,9 @@
 $NetBSD: patch-gcc_Makefile.in,v 1.1 2014/09/04 18:43:11 jperkin Exp $
 
 Add this GCC libdir to rpath.
+Disable fixincludes, as per joyent/pkgsrc#270
 
---- gcc/Makefile.in.orig	2014-04-15 08:04:17.000000000 +0000
+--- gcc/Makefile.in.orig	2014-10-16 13:50:42.000000000 +0000
 +++ gcc/Makefile.in
 @@ -1930,6 +1930,7 @@ prefix.o: $(BASEVER)
  # Language-independent files.
@@ -12,3 +13,12 @@ Add this GCC libdir to rpath.
    -DSTANDARD_STARTFILE_PREFIX=\"$(unlibsubdir)/\" \
    -DSTANDARD_EXEC_PREFIX=\"$(libdir)/gcc/\" \
    -DSTANDARD_LIBEXEC_PREFIX=\"$(libexecdir)/gcc/\" \
+@@ -2730,7 +2731,7 @@ stmp-fixinc: gsyslimits.h macro_list fix
+ 	      gcc_dir=`${PWD_COMMAND}` ; \
+ 	      export TARGET_MACHINE srcdir SHELL MACRO_LIST && \
+ 	      cd $(build_objdir)/fixincludes && \
+-	      $(SHELL) ./fixinc.sh "$${gcc_dir}/$${fix_dir}" \
++	      $(SHELL) -c true "$${gcc_dir}/$${fix_dir}" \
+ 	        $(SYSTEM_HEADER_DIR) $(OTHER_FIXINCLUDES_DIRS) ); \
+ 	    rm -f $${fix_dir}/syslimits.h; \
+ 	    if [ -f $${fix_dir}/limits.h ]; then \

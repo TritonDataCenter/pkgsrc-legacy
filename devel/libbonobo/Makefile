@@ -15,6 +15,7 @@ CONFLICTS=		bonobo-activation-[0-9]*
 GNU_CONFIGURE=		YES
 USE_PKGLOCALEDIR=	YES
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 USE_TOOLS+=		bison flex gmake intltool msgfmt perl:run pkg-config
 
 PKGCONFIG_OVERRIDE=	bonobo/libbonobo-2.0.pc.in

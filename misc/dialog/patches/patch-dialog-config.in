@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- dialog-config.in.orig	Tue Aug 14 15:01:29 2012
++++ dialog-config.in	Tue Aug 14 15:01:39 2012
+@@ -77,7 +77,7 @@
+ 		;;
+ 	--libs)
+ 		sed -e 's,^[ ]*,,' -e 's, [ ]*, ,g' -e 's,[ ]*$,,' <<-ENDECHO
+-			-L${exec_prefix}/lib -l${THIS} @LIBS@
++			-L${libdir} -l${THIS} @LIBS@
+ ENDECHO
+ 		;;
+ 	# identification

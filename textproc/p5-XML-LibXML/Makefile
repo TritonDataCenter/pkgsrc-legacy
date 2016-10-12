@@ -20,6 +20,7 @@ CONFLICTS+=	p5-XML-LibXML-Common-[0-9]*
 # includes XML::LibXML::XPathContext module
 CONFLICTS+=	p5-XML-LibXML-XPathContext-[0-9]*
 
+USE_MULTIARCH=		lib
 MAKE_ENV+=		SKIP_SAX_INSTALL=1 # Must be done in the INSTALL script
 MAKE_PARAMS+=		INC="-I${BUILDLINK_PREFIX.libxml2}/include/libxml2"
 MAKE_PARAMS+=		LIBS="-L${BUILDLINK_PREFIX.libxml2}/lib ${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libxml2}/lib -lxml2"

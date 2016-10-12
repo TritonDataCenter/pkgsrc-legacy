@@ -1,6 +1,6 @@
 prefix=@PREFIX@
 exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
+libdir=${exec_prefix}/lib@LIBARCHSUFFIX@
 includedir=${prefix}/include
 
 Name: id3tag

@@ -8,8 +8,8 @@ BUILDLINK_API_DEPENDS.nss+=	nss>=3.14.0
 BUILDLINK_ABI_DEPENDS.nss+=	nss>=3.14.0
 BUILDLINK_PKGSRCDIR.nss?=	../../devel/nss
 
-BUILDLINK_LIBDIRS.nss+=		lib/nss
-BUILDLINK_RPATHDIRS.nss+=	lib/nss
+BUILDLINK_LIBDIRS.nss+=		lib${LIBARCHSUFFIX}/nss
+BUILDLINK_RPATHDIRS.nss+=	lib${LIBARCHSUFFIX}/nss
 
 BUILDLINK_INCDIRS.nss+=		include/nss/nss
 

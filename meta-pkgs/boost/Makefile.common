@@ -37,6 +37,7 @@ PATCHDIR=		${.CURDIR}/../../meta-pkgs/boost/patches
 
 USE_TOOLS+=		pax
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		lib
 # GCC 4.5 or later is required to build, and GCC 4.5 is not provided for OpenBSD
 .  if ${OPSYS} == "OpenBSD"
 .    if ${MACHINE_ARCH} != "sparc64"
@@ -54,7 +55,7 @@ SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
 SUBST_MESSAGE.prefix=	Fixing prefix.
 SUBST_FILES.prefix=	boostcpp.jam
-SUBST_VARS.prefix=	PREFIX
+SUBST_VARS.prefix=	PREFIX LIBARCHSUFFIX
 
 SUBST_CLASSES+=		darwin
 SUBST_STAGE.darwin=	pre-configure
@@ -95,17 +96,18 @@ pre-configure:
 .    include "../../devel/boost-headers/buildlink3.mk"
 do-configure:
 	${CP} -f \
-	    ${BUILDLINK_PREFIX.boost-headers}/include/boost/config/user.hpp \
+	    ${BUILDLINK_PREFIX.boost-headers}/include/boost/config${INCARCHSUFFIX}/user.hpp \
 	    ${WRKSRC}/boost/config/user.hpp
 .  elif ${BOOST_CONFIG} == "generate"
 do-configure:
 	cd ${WRKSRC}/libs/config && \
 	    ${SETENV} ${CONFIGURE_ENV} ${SH} ./configure
-	${CP} -f ${WRKSRC}/libs/config/user.hpp ${WRKSRC}/boost/config/user.hpp
+	${MKDIR} ${WRKSRC}/boost/config${INCARCHSUFFIX}
+	${CP} -f ${WRKSRC}/libs/config/user.hpp ${WRKSRC}/boost/config${INCARCHSUFFIX}/user.hpp
 .  endif
 
 boost-install-libs:
 	${INSTALL_LIB_DIR} ${DESTDIR}${PREFIX}/lib
-	cd ${WRKSRC}/stage/lib && pax -rw -p p libboost* ${DESTDIR}${PREFIX}/lib
+	cd ${WRKSRC}/stage/lib && pax -rw -p p libboost* ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}
 
 .endif # ${BOOST_PACKAGE} == "meta-pkg"

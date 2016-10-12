@@ -12,5 +12,6 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	YES
 USE_LIBTOOL=	YES
+USE_MULTIARCH=	bin lib
 
 .include "../../mk/bsd.pkg.mk"

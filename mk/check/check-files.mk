@@ -44,7 +44,8 @@ CHECK_FILES_SKIP+=	${PREFIX}/.*/dir
 # Perl's perllocal.pod index that is regenerated when a local module
 # is added.
 #
-CHECK_FILES_SKIP+=	${PERL5_INSTALLARCHLIB}/perllocal.pod
+# XXX: multiarch
+CHECK_FILES_SKIP+=	${PREFIX}/.*/perllocal.pod
 
 # R's index files that are regenerated when a local module
 # is added.
@@ -98,7 +99,13 @@ CHECK_FILES_SKIP+=	${PREFIX}/.*/fonts.cache-1
 .endif
 
 # Mutable charset.alias file
+.if defined(_MULTIARCH)
+.  for _abi_ in ${MULTIARCH_ABIS}
+CHECK_FILES_SKIP+=	${PREFIX}/lib${LIBARCHSUFFIX.${_abi_}}/charset.alias
+.  endfor
+.else
 CHECK_FILES_SKIP+=	${PREFIX}/lib/charset.alias
+.endif
 
 # Mutable locale.alias file
 CHECK_FILES_SKIP+=	${PREFIX}/share/locale/locale.alias

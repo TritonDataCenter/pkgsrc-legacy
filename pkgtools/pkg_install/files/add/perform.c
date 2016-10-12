@@ -688,7 +688,7 @@ extract_files(struct pkg_task *pkg)
 	int r;
 	plist_t *p;
 	const char *last_file;
-	char *fullpath;
+	char *fullpath, *linksrc, *linkdst, *linkpath, *freelink;
 
 	if (Fake)
 		return 0;
@@ -721,6 +721,25 @@ extract_files(struct pkg_task *pkg)
 
 	for (p = pkg->plist.head; p != NULL; p = p->next) {
 		switch (p->type) {
+		case PLIST_LINK:
+			freelink = linkdst = xstrdup(p->name);
+			linksrc = strsep(&linkdst, " \t");
+			if (linksrc == NULL || linkdst == NULL) {
+				warnx("@link entry '%s' not properly formed", p->name);
+				continue;
+			}
+			linkpath = xasprintf("%s/%s", pkg->prefix, linksrc);
+			fullpath = xasprintf("%s/%s", pkg->prefix, linkdst);
+			(void)unlink(fullpath);
+			(void)link(linkpath, fullpath);
+			free(linkpath);
+			pkgdb_store(fullpath, pkg->pkgname);
+			free(fullpath);
+			if (Verbose)
+				printf("%s\n", linkdst);
+			free(freelink);
+			continue;
+
 		case PLIST_FILE:
 			last_file = p->name;
 			if (pkg->entry == NULL) {
@@ -1078,19 +1097,32 @@ check_implicit_conflict(struct pkg_task *pkg)
 		if (p->type == PLIST_IGNORE) {
 			p = p->next;
 			continue;
-		} else if (p->type != PLIST_FILE)
+		} else if (p->type == PLIST_LINK) {
+			char *freelink, *linkdst;
+			freelink = linkdst = xstrdup(p->name);
+			(void)strsep(&linkdst, " \t");
+			fullpath = xasprintf("%s/%s", pkg->prefix, linkdst);
+			free(freelink);
+			existing = pkgdb_retrieve(fullpath);
+			free(fullpath);
+			if (existing == NULL)
+				continue;
+			if (pkg->other_version != NULL &&
+			    strcmp(pkg->other_version, existing) == 0)
+				continue;
+			warnx("Conflicting PLIST with %s: %s", existing, linkdst);
+		} else if (p->type == PLIST_FILE) {
+			fullpath = xasprintf("%s/%s", pkg->prefix, p->name);
+			existing = pkgdb_retrieve(fullpath);
+			free(fullpath);
+			if (existing == NULL)
+				continue;
+			if (pkg->other_version != NULL &&
+			    strcmp(pkg->other_version, existing) == 0)
+				continue;
+			warnx("Conflicting PLIST with %s: %s", existing, p->name);
+		} else
 			continue;
-
-		fullpath = xasprintf("%s/%s", pkg->prefix, p->name);
-		existing = pkgdb_retrieve(fullpath);
-		free(fullpath);
-		if (existing == NULL)
-			continue;
-		if (pkg->other_version != NULL &&
-		    strcmp(pkg->other_version, existing) == 0)
-			continue;
-
-		warnx("Conflicting PLIST with %s: %s", existing, p->name);
 		if (!Force) {
 			status = -1;
 			if (!Verbose)

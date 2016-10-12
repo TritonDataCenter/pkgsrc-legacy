@@ -1,5 +1,7 @@
 @comment $NetBSD: PLIST,v 1.6 2012/11/02 07:29:30 sbd Exp $
-bin/perllink
-lib/perl5/bin/perllink
+bin${BINARCHSUFFIX}/perl
+bin${BINARCHSUFFIX}/perl${PKGVERSION}
+bin${BINARCHSUFFIX}/perllink
+lib/perl5/bin${BINARCHSUFFIX}/perllink
 lib/perl5/${PKGMANDIR}/man1/perllink.1
 man/man1/perllink.1

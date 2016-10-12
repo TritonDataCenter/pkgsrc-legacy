@@ -201,6 +201,10 @@ include/opencv2/videostab/outlier_rejection.hpp
 include/opencv2/videostab/ring_buffer.hpp
 include/opencv2/videostab/stabilizer.hpp
 include/opencv2/videostab/wobble_suppression.hpp
+lib/cmake/opencv/OpenCVConfig-version.cmake
+lib/cmake/opencv/OpenCVConfig.cmake
+lib/cmake/opencv/OpenCVModules-release.cmake
+lib/cmake/opencv/OpenCVModules.cmake
 lib/libopencv_calib3d.so
 lib/libopencv_calib3d.so.3.1
 lib/libopencv_calib3d.so.${PKGVERSION}
@@ -252,10 +256,6 @@ lib/libopencv_videostab.so.3.1
 lib/libopencv_videostab.so.${PKGVERSION}
 lib/pkgconfig/opencv.pc
 ${PYSITELIB}/cv2.so
-share/OpenCV/OpenCVConfig-version.cmake
-share/OpenCV/OpenCVConfig.cmake
-share/OpenCV/OpenCVModules-release.cmake
-share/OpenCV/OpenCVModules.cmake
 share/OpenCV/haarcascades/haarcascade_eye.xml
 share/OpenCV/haarcascades/haarcascade_eye_tree_eyeglasses.xml
 share/OpenCV/haarcascades/haarcascade_frontalcatface.xml

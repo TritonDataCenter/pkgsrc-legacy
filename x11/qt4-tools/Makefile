@@ -8,7 +8,7 @@ COMMENT=	QT GUI (WYSIWYG) builder and other tools
 
 DEPENDS+=	libtool-base-[0-9]*:../../devel/libtool-base
 
-CONFIGURE_ARGS+=	-I${QTDIR}/include -L${QTDIR}/lib
+CONFIGURE_ARGS+=	-I${QTDIR}/include -L${QTDIR}/lib${LIBARCHSUFFIX}
 CONFIGURE_ARGS+=	-DQT_NO_DBUS
 
 # XXX this is to test what really gets installed when 'do-install' is disabled
@@ -19,11 +19,11 @@ BUILD_TARGET=		sub-tools-bootstrap sub-tools
 BUILD_QT4=		yes
 UNLIMIT_RESOURCES=	datasize
 
-INSTALLATION_DIRS=	lib/pkgconfig
+INSTALLATION_DIRS=	lib${LIBARCHSUFFIX}/pkgconfig
 INSTALLATION_DIRS+=	${QTPREFIX}/bin
-INSTALLATION_DIRS+=	${QTPREFIX}/lib
+INSTALLATION_DIRS+=	${QTPREFIX}/lib${LIBARCHSUFFIX}
 INSTALLATION_DIRS+=	${QTPREFIX}/phrasebooks
-INSTALLATION_DIRS+=	${QTPREFIX}/plugins/designer
+INSTALLATION_DIRS+=	${QTPREFIX}/plugins${LIBARCHSUFFIX}/designer
 INSTALLATION_DIRS+=	${QTPREFIX}/mkspecs
 INSTALLATION_DIRS+=	${QTPREFIX}/tools/qdoc3
 INSTALL_ENV+=		INSTALL_ROOT=${DESTDIR}
@@ -60,15 +60,15 @@ do-install:
 		${MAKE_PROGRAM} install_quitools_headers
 .for f in QtCLucene QtDesigner QtDesignerComponents QtHelp QtUiTools
 	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/lib/lib${f}.la \
-		${DESTDIR}${QTPREFIX}/lib/
+		${DESTDIR}${QTPREFIX}/lib${LIBARCHSUFFIX}/
 	sed -e "s:${WRKSRC}:${QTPREFIX}:g" \
 		${WRKSRC}/lib/pkgconfig/${f}.pc > ${WRKDIR}/${f}.pc
-	${INSTALL_DATA} ${WRKDIR}/${f}.pc ${DESTDIR}${PREFIX}/lib/pkgconfig/
+	${INSTALL_DATA} ${WRKDIR}/${f}.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig/
 .endfor
 .for f in qdeclarativeview qt3supportwidgets qwebview
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/plugins/designer/lib${f}.la \
-		${DESTDIR}${QTPREFIX}/plugins/designer/
+		${DESTDIR}${QTPREFIX}/plugins${LIBARCHSUFFIX}/designer/
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/tools/linguist/phrasebooks/*.qph \
 		${DESTDIR}${QTPREFIX}/phrasebooks/

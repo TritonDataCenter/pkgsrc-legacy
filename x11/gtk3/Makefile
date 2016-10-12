@@ -15,6 +15,7 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake perl pkg-config bash xgettext msgmerge
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 PTHREAD_AUTO_VARS=	yes
 BUILD_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 TOOL_DEPENDS+=		gettext-tools>=0.19.4nb1:../../devel/gettext-tools

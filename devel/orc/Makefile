@@ -12,6 +12,7 @@ LICENSE=	modified-bsd
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS=	gmake
 
 PKGCONFIG_OVERRIDE+=	orc.pc.in

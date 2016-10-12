@@ -104,12 +104,21 @@ check1pkg(const char *pkgdir, int *filecnt, int *pkgcnt)
 	for (p = Plist.head; p; p = p->next) {
 		switch (p->type) {
 		case PLIST_FILE:
+		case PLIST_LINK:
 			if (dirp == NULL) {
 				warnx("dirp not initialized, please send-pr!");
 				abort();
 			}
 			
-			(void) snprintf(file, sizeof(file), "%s/%s", dirp, p->name);
+			if (p->type == PLIST_LINK) {
+				char *freelink, *linkdst;
+				freelink = linkdst = xstrdup(p->name);
+				(void) strsep(&linkdst, " \t");
+				(void) snprintf(file, sizeof(file), "%s/%s", dirp, linkdst);
+				free(freelink);
+			} else {
+				(void) snprintf(file, sizeof(file), "%s/%s", dirp, p->name);
+			}
 
 			if (isfile(file) || islinktodir(file)) {
 				if (p->next && p->next->type == PLIST_COMMENT) {

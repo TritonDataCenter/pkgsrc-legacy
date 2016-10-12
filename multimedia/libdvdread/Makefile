@@ -11,6 +11,7 @@ COMMENT=	DVD access library
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE=	misc/dvdread.pc.in
 

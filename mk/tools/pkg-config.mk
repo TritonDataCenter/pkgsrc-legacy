@@ -39,6 +39,7 @@
 # Override the location where pkg-config searches for *.pc files in the
 # pkg-config wrapper script.
 #
+_PKG_CONFIG_LIBDIR?=	${BUILDLINK_DIR}/lib${LIBARCHSUFFIX}/pkgconfig:${BUILDLINK_DIR}/share/pkgconfig
 .if !empty(LIBABISUFFIX)
 _PKG_CONFIG_LIBDIR?=	${BUILDLINK_DIR}/lib${LIBABISUFFIX}/pkgconfig:${BUILDLINK_DIR}/lib/pkgconfig:${BUILDLINK_DIR}/share/pkgconfig
 .endif

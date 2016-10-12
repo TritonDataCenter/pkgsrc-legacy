@@ -13,6 +13,7 @@ LICENSE=		mit AND gnu-lgpl-v2.1
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 PKGCONFIG_OVERRIDE=	libstartup-notification-1.0.pc.in
 

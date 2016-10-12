@@ -215,6 +215,7 @@ _UNWRAP_SED=		-f ${_WRAP_UNTRANSFORM_SEDFILE}
 _WRAPPER_SH.${_wrappee_}=		${WRAPPER_SRCDIR}/wrapper.sh
 _WRAP_ENV.${_wrappee_}?=		${_WRAP_ENV}
 _WRAP_EXTRA_ARGS.${_wrappee_}?=		# empty
+_WRAP_EXTRA_LIBS.${_wrappee_}?=		# empty
 _WRAP_ARG_PP.${_wrappee_}?=		${_WRAP_ARG_PP}
 _WRAP_ARG_PP_MAIN.${_wrappee_}?=	${_WRAP_ARG_PP_MAIN}
 _WRAP_ARG_SOURCE.${_wrappee_}?=		${_WRAP_ARG_SOURCE}
@@ -401,6 +402,7 @@ _WRAP_SUBST_SED.${_wrappee_}=						\
 	-e "s|@_WRAP_EMPTY_FILE@|${_WRAP_EMPTY_FILEQ}|g"		\
 	-e "s|@_WRAP_ENV@|${_WRAP_ENV.${_wrappee_}:Q}|g"		\
 	-e "s|@_WRAP_EXTRA_ARGS@|${_WRAP_EXTRA_ARGS.${_wrappee_}:Q}|g"	\
+	-e "s|@_WRAP_EXTRA_LIBS@|${_WRAP_EXTRA_LIBS.${_wrappee_}:Q}|g"	\
 	-e "s|@_WRAP_ARG_PP@|${_WRAP_ARG_PP.${_wrappee_}:Q}|g"		\
 	-e "s|@_WRAP_ARG_PP_MAIN@|${_WRAP_ARG_PP_MAIN.${_wrappee_}:Q}|g" \
 	-e "s|@_WRAP_ARG_SOURCE@|${_WRAP_ARG_SOURCE.${_wrappee_}:Q}|g"	\
@@ -730,7 +732,11 @@ ${_COOKIE.wrapper}: real-wrapper
 .endif
 
 .PHONY: real-wrapper
+.if defined(_MULTIARCH)
+real-wrapper: wrapper-message wrapper-vars-multi pre-wrapper do-wrapper-multi post-wrapper wrapper-cookie error-check
+.else
 real-wrapper: wrapper-message wrapper-vars pre-wrapper do-wrapper post-wrapper wrapper-cookie error-check
+.endif
 
 .PHONY: wrapper-message
 wrapper-message:
@@ -743,6 +749,16 @@ do-wrapper: generate-wrappers
 .if !target(do-wrapper)
 do-wrapper:
 	@${DO_NADA}
+.endif
+
+.if defined(_MULTIARCH)
+.  for _tgt_ in wrapper-vars do-wrapper
+.PHONY: ${_tgt_}-multi
+${_tgt_}-multi:
+.    for _abi_ in ${MULTIARCH_ABIS}
+	@${MAKE} ${MAKE_FLAGS} ABI=${_abi_} WRKSRC=${WRKSRC}-${_abi_} ${_tgt_}
+.    endfor
+.  endfor
 .endif
 
 .if !target(pre-wrapper)

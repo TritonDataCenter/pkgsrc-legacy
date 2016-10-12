@@ -13,6 +13,7 @@ LICENSE=	modified-bsd
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	pkg-config gmake
 BUILD_DEFS+=	VARBASE
 
@@ -60,6 +61,11 @@ CONFIGURE_ENV+=	VCC_CC="cc ${_COMPILER_ABI_FLAG.${ABI}} -Kpic -G -o %o %s"
 .  else
 CONFIGURE_ENV+=	VCC_CC="gcc ${_COMPILER_ABI_FLAG.${ABI}} -fpic -shared -o %o %s"
 .  endif
+.endif
+
+.include "../../mk/compiler.mk"
+.if ${PKGSRC_COMPILER} == "gcc"
+DEPENDS+=	${_GCC_DEPENDENCY}
 .endif
 
 .include "../../mk/curses.buildlink3.mk"

@@ -12,6 +12,7 @@ COMMENT=	Portable lossless data compression library (v1)
 
 GNU_CONFIGURE=	YES
 USE_LIBTOOL=	YES
+USE_MULTIARCH=	lib
 
 # Don't spuriously detect zlib, as it's not needed for the library.
 BUILDLINK_TRANSFORM+=	rm:-lz

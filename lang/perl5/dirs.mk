@@ -15,6 +15,10 @@ BUILD_DEFS+=		PERL5_SITEPREFIX
 PERL5=			${PERL5_PREFIX}/bin/perl
 PERL5_PERLBASE=		${PERL5_PREFIX}/lib/perl5
 PERL5_VENDORBASE=	${PERL5_VENDORPREFIX}/lib/perl5/vendor_perl
+
+# Permit for libperl.so
+BUILDLINK_PASSTHRU_DIRS+=	${PERL5_PERLBASE}
+
 #
 # The unusual check for empty(PERL5_SITEPREFIX) is because ${PREFIX} isn't
 # defined until bsd.pkg.mk is included, so when we inspect its value at

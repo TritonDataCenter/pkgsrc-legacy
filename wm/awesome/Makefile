@@ -44,6 +44,8 @@ BUILD_DEPENDS+=	asciidoc>=8.3.0:../../textproc/asciidoc
 BUILD_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
 BUILD_DEPENDS+=	docbook-xml-[0-9]*:../../textproc/docbook-xml
 
+LUA_VERSIONS_ACCEPTED=	51
+
 DEPENDS+=		lua${_LUA_VERSION}-gi>=0.7.0:../../devel/lua-gi
 DEPENDS+=		pango>=1.29.4nb2:../../devel/pango
 

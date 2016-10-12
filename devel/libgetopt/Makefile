@@ -13,6 +13,7 @@ LICENSE=	2-clause-bsd AND original-bsd
 CONFLICTS=	man-pages-[0-9]*
 
 USE_LIBTOOL=	YES
+USE_MULTIARCH=	lib
 WRKSRC=		${WRKDIR}/libgetopt
 
 .include "../../mk/bsd.prefs.mk"
@@ -24,7 +25,7 @@ CFLAGS+=	-DREPLACE_GETOPT
 .endif
 CFLAGS.OSF1+=	-I.	# stdio.h includes <getopt.h>, make sure it's our copy
 
-INSTALLATION_DIRS=	include lib ${PKGMANDIR}/man3
+INSTALLATION_DIRS=	include lib${LIBARCHSUFFIX} ${PKGMANDIR}/man3
 
 do-extract:
 	${MKDIR} ${WRKSRC}
@@ -32,12 +33,12 @@ do-extract:
 	${CP} ${FILESDIR}/getopt.h ${WRKSRC}
 
 do-build:
-	cd ${WRKSRC} && ${LIBTOOL} --mode=compile ${COMPILE.c} getopt_long.c
-	cd ${WRKSRC} && ${LIBTOOL} --mode=link ${LINK.c} -o libgetopt.la getopt_long.lo -version-info 5:1:4 -rpath ${PREFIX}/lib
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${LIBTOOL} --mode=compile ${COMPILE.c} getopt_long.c
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${LIBTOOL} --mode=link ${LINK.c} -o libgetopt.la getopt_long.lo -version-info 5:1:4 -rpath ${PREFIX}/lib${LIBARCHSUFFIX}
 
 do-install:
 	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/libgetopt.la \
-		${DESTDIR}${PREFIX}/lib/
+		${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/
 	${INSTALL_DATA} ${WRKSRC}/getopt.h ${DESTDIR}${PREFIX}/include/
 	${INSTALL_MAN} ${WRKSRC}/getopt_long.3 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man3/

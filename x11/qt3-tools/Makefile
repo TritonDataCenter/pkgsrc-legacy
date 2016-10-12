@@ -15,14 +15,14 @@ COMMENT=	QT GUI (WYSIWYG) builder and other tools
 DEPENDS+=	libtool-base-[0-9]*:../../devel/libtool-base
 
 CONFIGURE_ARGS+=	-I${QTDIR}/include \
-			-L${QTDIR}/lib
+			-L${QTDIR}/lib${LIBARCHSUFFIX}
 
 BUILD_QT3=		yes
 UNLIMIT_RESOURCES=	datasize
 BUILD_TARGET=		sub-tools
 
-INSTALLATION_DIRS=	${QTPREFIX}/bin ${QTPREFIX}/lib			\
-			${QTPREFIX}/plugins/designer ${QTPREFIX}/mkspecs
+INSTALLATION_DIRS=	${QTPREFIX}/bin ${QTPREFIX}/lib${LIBARCHSUFFIX}			\
+			${QTPREFIX}/plugins${LIBARCHSUFFIX}/designer ${QTPREFIX}/mkspecs
 
 USE_TOOLS+=		pax
 
@@ -34,13 +34,13 @@ do-install:
 	done
 	for lib in libeditor.la libqassistantclient.la libqui.la; do	\
 		${LIBTOOL} --mode=install ${INSTALL_PROGRAM} ${WRKSRC}/lib/$$lib	\
-		    ${DESTDIR}${QTPREFIX}/lib;				\
+		    ${DESTDIR}${QTPREFIX}/lib${LIBARCHSUFFIX};				\
 	done
 	for plugin in libwizards.la libcppeditor.la libdlgplugin.la	\
 	    librcplugin.la libkdevdlgplugin.la; do			\
 		${LIBTOOL} --mode=install ${INSTALL_PROGRAM}				\
 		    ${WRKSRC}/plugins/designer/$$plugin			\
-		    ${DESTDIR}${QTPREFIX}/plugins/designer;		\
+		    ${DESTDIR}${QTPREFIX}/plugins${LIBARCHSUFFIX}/designer;		\
 	done
 	cd ${WRKSRC}/mkspecs && pax -rw . ${DESTDIR}${QTPREFIX}/mkspecs
 

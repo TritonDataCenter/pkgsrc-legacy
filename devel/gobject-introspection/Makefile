@@ -14,6 +14,7 @@ DEPENDS+=	${PYPKGPREFIX}-cElementTree-[0-9]*:../../textproc/py-cElementTree
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	bin lib
 USE_TOOLS+=	pkg-config flex bison gmake
 GMAKE_REQD=	3.81
 GNU_CONFIGURE=	yes

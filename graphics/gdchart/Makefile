@@ -11,7 +11,8 @@ HOMEPAGE=	http://www.fred.net/brv/chart/
 COMMENT=	Easy to use, fast C API for creating charts and graphs
 
 USE_LIBTOOL=		yes
-INSTALLATION_DIRS=	include lib
+USE_MULTIARCH=		lib
+INSTALLATION_DIRS=	include lib${LIBARCHSUFFIX}
 
 #TEST_TARGET=	gdc_samp1 gdc_samp2 gdc_pie_samp ft_samp
 
@@ -24,7 +25,7 @@ post-patch:
 
 do-install:
 	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/libgdchart.la \
-		 ${DESTDIR}${PREFIX}/lib
+		 ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}
 	${INSTALL_DATA}	${WRKSRC}/gdchart.h ${DESTDIR}${PREFIX}/include
 	${INSTALL_DATA}	${WRKSRC}/gdc.h ${DESTDIR}${PREFIX}/include
 	${INSTALL_DATA}	${WRKSRC}/gdcpie.h ${DESTDIR}${PREFIX}/include

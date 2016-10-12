@@ -6,7 +6,7 @@ PKGREVISION=		13
 .include "../../devel/py-gobject/Makefile.common"
 
 PYTHON_FOR_BUILD_ONLY=	yes
-INSTALLATION_DIRS=	include/pygtk-2.0 lib/pkgconfig
+INSTALLATION_DIRS=	include/pygtk-2.0 lib${LIBARCHSUFFIX}/pkgconfig
 # we do not really need py-cairo's pkg-config flags
 # just some non-empty valid arguments so py-cairo is detected
 # as found
@@ -19,9 +19,9 @@ do-install:
 	${INSTALL_DATA_DIR} ${DESTDIR:Q}${PREFIX:Q}/include/pygtk-2.0
 	${INSTALL_DATA} ${WRKSRC}/gobject/pygobject.h \
 		${DESTDIR:Q}${PREFIX:Q}/include/pygtk-2.0
-	${INSTALL_DATA_DIR} ${DESTDIR:Q}${PREFIX:Q}/lib/pkgconfig
+	${INSTALL_DATA_DIR} ${DESTDIR:Q}${PREFIX:Q}/lib${LIBARCHSUFFIX}/pkgconfig
 	${INSTALL_DATA} ${WRKSRC}/pygobject-2.0.pc \
-		${DESTDIR:Q}${PREFIX:Q}/lib/pkgconfig
+		${DESTDIR:Q}${PREFIX:Q}/lib${LIBARCHSUFFIX}/pkgconfig
 
 .include "../../lang/python/application.mk"
 .include "../../devel/glib2/buildlink3.mk"

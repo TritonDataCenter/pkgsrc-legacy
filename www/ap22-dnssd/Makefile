@@ -25,6 +25,10 @@ APACHE_MODULE=		yes
 
 INSTALLATION_DIRS+=	lib/httpd
 
+# XXX:
+BUILDLINK_TRANSFORM.SunOS+=	rm:-D_XOPEN_SOURCE
+BUILDLINK_TRANSFORM.SunOS+=	rm:-D_XOPEN_SOURCE_EXTENDED=1
+
 do-install:
 	cd ${WRKSRC}/src &&						\
 	    libexecdir=`${APXS} -q LIBEXECDIR` &&			\

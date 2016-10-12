@@ -17,6 +17,7 @@ CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}js/src/configure
 CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}configure
 
 USE_GCC_RUNTIME=	yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake perl pax pkg-config
 MAKE_JOBS_SAFE=		no
 
@@ -28,7 +29,7 @@ SUBST_CLASSES.Darwin+=		exec_path
 SUBST_STAGE.exec_path=		pre-configure
 SUBST_MESSAGE.exec_path=	Fixing @executable_path
 SUBST_FILES.exec_path=		nss/coreconf/Darwin.mk
-SUBST_SED.exec_path=		-e 's,@executable_path,${PREFIX}/lib/nss,g'
+SUBST_SED.exec_path=		-e 's,@executable_path,${PREFIX}/lib${LIBARCHSUFFIX}/nss,g'
 
 SUBST_CLASSES+=			zlib
 SUBST_STAGE.zlib=		pre-configure
@@ -64,9 +65,9 @@ MAKE_ENV+=	BUILD_OPT=1
 #MAKE_ENV+=	OPTIMIZER=${CFLAGS:Q}
 MAKE_ENV+=	INCLUDES=-I${BUILDLINK_PREFIX.nspr}/include/nspr
 MAKE_ENV+=	NSS_USE_SYSTEM_SQLITE=1
-MAKE_ENV+=	ZLIB_LIBS="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.zlib}/lib -L${BUILDLINK_PREFIX.zlib}/lib -lz"
+MAKE_ENV+=	ZLIB_LIBS="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.zlib}/lib${LIBARCHSUFFIX} -L${BUILDLINK_PREFIX.zlib}/lib${LIBARCHSUFFIX} -lz"
 MAKE_ENV+=	USE_SYSTEM_ZLIB=1
-MAKE_ENV+=	EXTRA_SHARED_LIBS="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.nspr}/lib/nspr ${COMPILER_RPATH_FLAG}${PREFIX}/lib/nss -L${BUILDLINK_PREFIX.nspr}/lib/nspr -lplc4 -lplds4 -lnspr4"
+MAKE_ENV+=	EXTRA_SHARED_LIBS="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.nspr}/lib${LIBARCHSUFFIX}/nspr ${COMPILER_RPATH_FLAG}${PREFIX}/lib${LIBARCHSUFFIX}/nss -L${BUILDLINK_PREFIX.nspr}/lib${LIBARCHSUFFIX}/nspr -lplc4 -lplds4 -lnspr4"
 MAKE_ENV+=	NSS_DISABLE_GTESTS=yes
 .include "../../mk/compiler.mk"
 .if !empty(CC_VERSION:Mgcc-4.[0-7]*)
@@ -84,11 +85,12 @@ SUBST_SED.config+=	-e "s,@NSS_MINOR_VERSION@,${NSS_MINOR_VERSION},"
 SUBST_SED.config+=	-e "s,@NSS_PATCH_VERSION@,${NSS_PATCH_VERSION},"
 SUBST_SED.config+=	-e "s!@COMPILER_RPATH_FLAG@!${COMPILER_RPATH_FLAG}!"
 SUBST_SED.config+=	-e "s,@PTHREAD@,${BUILDLINK_LIBS.pthread:Q},"
+SUBST_SED.config+=	-e "s,@LIBARCHSUFFIX@,${LIBARCHSUFFIX},"
 SUBST_STAGE.config=	pre-build
 SUBST_MESSAGE.config=	Preparing *-config files.
 SUBST_FILES.config+=	nss.pc nss-config
 
-INSTALLATION_DIRS=	bin include/nss lib/nss lib/pkgconfig
+INSTALLATION_DIRS=	bin include/nss lib${LIBARCHSUFFIX}/nss lib${LIBARCHSUFFIX}/pkgconfig
 DIST=	${WRKSRC}/dist
 
 post-extract:
@@ -100,10 +102,10 @@ post-extract:
 do-install:
 	(cd ${DIST}/public && pax -Lrw . ${DESTDIR}${PREFIX}/include/nss/ )
 	(cd ${DIST}/*_OPT.OBJ/lib && \
-		pax -Lrw *.${SO_SUFFIX} ${DESTDIR}${PREFIX}/lib/nss/ )
+		pax -Lrw *.${SO_SUFFIX} ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/nss/ )
 	${INSTALL_LIB} ${DIST}/*_OPT.OBJ/lib/libcrmf.a \
-		${DESTDIR}${PREFIX}/lib/nss/
-	${INSTALL_DATA} ${WRKSRC}/nss.pc ${DESTDIR}${PREFIX}/lib/pkgconfig/nss.pc
+		${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/nss/
+	${INSTALL_DATA} ${WRKSRC}/nss.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig/nss.pc
 	${INSTALL_SCRIPT} ${WRKSRC}/nss-config ${DESTDIR}${PREFIX}/bin/nss-config
 
 # For consistency of libxul.so link in www/firefox.

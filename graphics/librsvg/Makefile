@@ -15,6 +15,7 @@ CONFLICTS+=	librsvg2-gtk-[0-9]* librsvg2-[0-9]*
 MAKE_JOBS_SAFE=	NO
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config gmake
 USE_LANGUAGES+=		c c++
 GNU_CONFIGURE=		yes

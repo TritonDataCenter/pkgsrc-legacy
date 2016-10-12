@@ -14,5 +14,6 @@ CONFLICTS+=		xextensions-[0-9]*
 GNU_CONFIGURE=		yes
 PKGCONFIG_OVERRIDE+=	inputproto.pc.in
 CONFIGURE_ARGS+=	--with-asciidoc=no
+USE_MULTIARCH=		lib
 
 .include "../../mk/bsd.pkg.mk"

@@ -10,6 +10,7 @@ COMMENT=	Little Color Management System - a color management library
 LICENSE=	mit
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 TEST_TARGET=		check
 

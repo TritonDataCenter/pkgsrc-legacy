@@ -12,8 +12,15 @@ LICENSE=		gnu-gpl-v2
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake
 PKGCONFIG_OVERRIDE+=	${WRKSRC}/enca.pc.in
+
+# XXX: multiarch
+SUBST_CLASSES+=		lns
+SUBST_STAGE.lns=	pre-build
+SUBST_FILES.lns=	Makefile src/Makefile
+SUBST_SED.lns=		-e '/^LN_S =/s/-s/-sf/'
 
 .include "../../mk/bsd.pkg.mk"

@@ -14,6 +14,7 @@ BUILD_DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+= --enable-vala-bindings
+USE_MULTIARCH=	lib
 USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake pkg-config
 

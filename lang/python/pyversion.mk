@@ -187,6 +187,12 @@ PYLIB!=	${PYTHONBIN} -c "import distutils.sysconfig; \
 	print (distutils.sysconfig.get_python_lib(0, 1, \"\"))" || ${ECHO} ""
 PYSITELIB!=	${PYTHONBIN} -c "import distutils.sysconfig; \
 	print (distutils.sysconfig.get_python_lib(0, 0, \"\"))" || ${ECHO} ""
+.if defined(MULTIARCH)
+PYSITELIB.32!=	ABI=32 ${PYTHONBIN} -c "import distutils.sysconfig; \
+	print (distutils.sysconfig.get_python_lib(0, 0, \"\"))" || ${ECHO} ""
+PYSITELIB.64!=	ABI=64 ${PYTHONBIN} -c "import distutils.sysconfig; \
+	print (distutils.sysconfig.get_python_lib(0, 0, \"\"))" || ${ECHO} ""
+.endif
 
 PRINT_PLIST_AWK+=	/^${PYINC:S|/|\\/|g}/ \
 			{ gsub(/${PYINC:S|/|\\/|g}/, "$${PYINC}") }

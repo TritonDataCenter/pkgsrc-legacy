@@ -12,6 +12,7 @@ COMMENT=	Simple API library designed for DVD navigation
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	gmake
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 
 .include "../../multimedia/libdvdread/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -15,16 +15,18 @@ CONFLICTS=	mad<0.15
 
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 
-INSTALLATION_DIRS=	lib/pkgconfig
+INSTALLATION_DIRS=	lib${LIBARCHSUFFIX}/pkgconfig
 
 post-build:
 	${SED}	-e 's,@PREFIX@,${PREFIX},g'			\
 		-e 's,@VERSION@,${PKGVERSION},g'		\
+		-e 's,@LIBARCHSUFFIX@,${LIBARCHSUFFIX},g'	\
 		< ${FILESDIR}/mad.pc.in > ${WRKDIR}/mad.pc
 
 post-install:
-	${INSTALL_DATA} ${WRKDIR}/mad.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
+	${INSTALL_DATA} ${WRKDIR}/mad.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig
 
 .include "../../mk/bsd.pkg.mk"

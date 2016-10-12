@@ -11,6 +11,7 @@ COMMENT=		Base X libraries from modular Xorg X11
 LICENSE=		mit
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake pkg-config
 

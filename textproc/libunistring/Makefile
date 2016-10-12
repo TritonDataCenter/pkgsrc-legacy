@@ -11,6 +11,7 @@ LICENSE=	gnu-lgpl-v3
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 INFO_FILES=	yes
 
 .include "../../converters/libiconv/buildlink3.mk"

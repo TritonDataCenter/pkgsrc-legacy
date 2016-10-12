@@ -100,6 +100,7 @@ static const cmd_t cmdv[] = {
 	{"dirrm", PLIST_DIR_RM, 1, 0},
 	{"option", PLIST_OPTION, 1, 0},
 	{"blddep", PLIST_BLDDEP, 1, 0},
+	{"link", PLIST_LINK, 1, 0},
 	{NULL, FAIL, 0, 0}
 };
 
@@ -588,11 +589,22 @@ delete_package(Boolean ign_err, package_t *pkg, Boolean NoDeleteFiles,
 			}
 			break;
 
+		case PLIST_LINK:
 		case PLIST_FILE:
-			last_file = p->name;
-			(void) snprintf(tmp, sizeof(tmp), "%s%s%s/%s",
-			    destdir ? destdir : "", destdir ? "/" : "",
-			    prefix, p->name);
+			if (p->type == PLIST_LINK) {
+				char *freelink, *linkdst;
+				freelink = linkdst = xstrdup(p->name);
+				(void)strsep(&linkdst, " \t");
+				(void) snprintf(tmp, sizeof(tmp), "%s%s%s/%s",
+				    destdir ? destdir : "", destdir ? "/" : "",
+				    prefix, linkdst);
+				free(freelink);
+			} else {
+				last_file = p->name;
+				(void) snprintf(tmp, sizeof(tmp), "%s%s%s/%s",
+				    destdir ? destdir : "", destdir ? "/" : "",
+				    prefix, p->name);
+			}
 			if (isdir(tmp)) {
 				warnx("attempting to delete directory `%s' as a file\n"
 				    "this packing list is incorrect - ignoring delete request", tmp);

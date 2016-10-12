@@ -22,6 +22,7 @@ LICENSE=	sleepycat-public
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		pax
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		build_unix

@@ -13,6 +13,7 @@ LICENSE=		mit
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 
 PKGCONFIG_OVERRIDE+=	xdamage.pc.in

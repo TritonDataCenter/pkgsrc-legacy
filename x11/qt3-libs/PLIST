@@ -104,7 +104,7 @@ qt3/include/qconfig-large.h
 qt3/include/qconfig-medium.h
 qt3/include/qconfig-minimal.h
 qt3/include/qconfig-small.h
-qt3/include/qconfig.h
+qt3/include${INCARCHSUFFIX}/qconfig.h
 qt3/include/qconnect.h
 qt3/include/qconnection.h
 qt3/include/qcstring.h

@@ -13,6 +13,7 @@ COMMENT=	Multiple-image Network Graphics (MNG) reference library
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 CONFIGURE_ARGS+=	--with-jpeg=${JPEGBASE}
 CONFIGURE_ARGS+=	--with-lcms2

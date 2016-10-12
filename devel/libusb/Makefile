@@ -13,6 +13,7 @@ LICENSE=	gnu-lgpl-v2.1
 USE_LANGUAGES=		c c++
 GCC_REQD+=		3.3
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-build-docs
 PKGCONFIG_OVERRIDE+=	libusb.pc.in
@@ -46,10 +47,10 @@ SED_TRANSFORMS+=	-e "s,@exec_prefix@,${PREFIX},g"
 SED_TRANSFORMS+=	-e "s,@LIBUSB_VERSION@,${PKGVERSION_NOREV},g"
 SED_TRANSFORMS+=	-e "s,@VERSION@,${PKGVERSION_NOREV},g"
 SED_TRANSFORMS+=	-e "s,@includedir@,${PREFIX}/include,g"
-SED_TRANSFORMS+=	-e "s,@libdir@,${PREFIX}/lib,g"
+SED_TRANSFORMS+=	-e "s,@libdir@,${PREFIX}/lib${LIBARCHSUFFIX},g"
 SED_TRANSFORMS+=	-e "s,@OSLIBS@,,g"
 
-INSTALLATION_DIRS+=	bin include lib/pkgconfig
+INSTALLATION_DIRS+=	bin${BINARCHSUFFIX} include lib${LIBARCHSUFFIX}/pkgconfig
 
 do-configure:
 	cp ${FILESDIR}/libusbugen* ${WRKSRC}/
@@ -61,23 +62,23 @@ do-build:
 	cd ${WRKSRC} && ${LIBTOOL} --mode=compile --tag=CC ${CC} ${CFLAGS} \
 	    -I. -c libusbugen.c
 	cd ${WRKSRC} && ${LIBTOOL} --mode=link --tag=CC ${CC} \
-	    -rpath ${PREFIX}/lib -version-info 8:4:4 -release 0.1 \
+	    -rpath ${PREFIX}/lib${LIBARCHSUFFIX} -version-info 8:4:4 -release 0.1 \
 	    -o libusb.la libusbugen.lo
 	cd ${WRKSRC} && ${LIBTOOL} --mode=compile --tag=CXX ${CXX} ${CXXFLAGS} \
 	    -I. -c usbpp.cpp
 	cd ${WRKSRC} && ${LIBTOOL} --mode=link --tag=CXX ${CXX} \
-	    -rpath ${PREFIX}/lib -version-info 8:4:4 -release 0.1 \
+	    -rpath ${PREFIX}/lib${LIBARCHSUFFIX} -version-info 8:4:4 -release 0.1 \
 	    -o libusbpp.la usbpp.lo
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/libusb-config ${DESTDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/libusb-config ${DESTDIR}${PREFIX}/bin${BINARCHSUFFIX}
 	${INSTALL_DATA} ${WRKSRC}/usb.h ${DESTDIR}${PREFIX}/include
 	${INSTALL_DATA} ${WRKSRC}/usbpp.h ${DESTDIR}${PREFIX}/include
 	cd ${WRKSRC} && ${LIBTOOL} --mode=install ${INSTALL_LIB} libusb.la \
-	    ${DESTDIR}${PREFIX}/lib
+	    ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}
 	cd ${WRKSRC} && ${LIBTOOL} --mode=install ${INSTALL_LIB} libusbpp.la \
-	    ${DESTDIR}${PREFIX}/lib
-	${INSTALL_DATA} ${WRKSRC}/libusb.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
+	    ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}
+	${INSTALL_DATA} ${WRKSRC}/libusb.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig
 .endif
 
 .include "../../mk/bsd.pkg.mk"

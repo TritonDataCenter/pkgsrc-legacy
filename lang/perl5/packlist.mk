@@ -32,9 +32,16 @@ PERL5_USE_PACKLIST?=	yes
 PERL5_PACKLIST_DESTDIR?=	yes
 
 .if defined(PERL5_PACKLIST)
+.  if defined(MULTIARCH) && !empty(MULTIARCH:M[Yy][Ee][Ss]) && defined(USE_MULTIARCH) && !empty(USE_MULTIARCH:Mlib) && !defined(PERL5_PACKLIST_DIR)
+PERL5_PACKLIST_DIR_cmd=	for abi in ${MULTIARCH_ABIS}; do ${MAKE} ${MAKE_FLAGS} ABI=$${abi} show-var VARNAME=PERL5_INSTALLVENDORARCH; done
+PERL5_PACKLIST_DIR=	${PERL5_PACKLIST_DIR_cmd:sh}
+.  else
 PERL5_PACKLIST_DIR?=	${PERL5_INSTALLVENDORARCH}
-_PERL5_REAL_PACKLIST=	${PERL5_PACKLIST:S/^/${PERL5_PACKLIST_DIR}\//}
-_PERL5_PACKLIST=	${_PERL5_REAL_PACKLIST:S/^/${DESTDIR}/}
+.  endif
+_PERL5_REAL_PACKLIST_cmd=	for file in ${PERL5_PACKLIST}; do for dir in ${PERL5_PACKLIST_DIR}; do echo $${dir}/$${file}; done; done
+_PERL5_PACKLIST_cmd=		for pl in ${_PERL5_REAL_PACKLIST}; do echo ${DESTDIR}$${pl}; done
+_PERL5_REAL_PACKLIST=	${_PERL5_REAL_PACKLIST_cmd:sh}
+_PERL5_PACKLIST=	${_PERL5_PACKLIST_cmd:sh}
 .endif
 
 ###########################################################################
@@ -61,6 +68,7 @@ PERL5_PLIST_COMMENT_CMD= \
 PERL5_PLIST_FILES_CMD= \
 	{ ${CAT} ${_PERL5_PACKLIST}; for f in ${_PERL5_REAL_PACKLIST}; do ${TEST} ! -f "${DESTDIR}$$f" || ${ECHO} "$$f"; done; } \
 	| ${SED} -e "s,[ 	].*,," -e "s,/\\./,/,g" -e "s,${PREFIX}/,," \
+	| ${SED} -e "/^bin/d" \
 	| ${SORT} -u
 PERL5_GENERATE_PLIST=	${PERL5_PLIST_COMMENT_CMD}; \
 			${PERL5_PLIST_FILES_CMD};

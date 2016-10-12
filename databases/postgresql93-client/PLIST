@@ -21,7 +21,7 @@ bin/pg_restore
 bin/psql
 bin/reindexdb
 bin/vacuumdb
-include/ecpg_config.h
+include${INCARCHSUFFIX}/ecpg_config.h
 include/ecpg_informix.h
 include/ecpgerrno.h
 include/ecpglib.h
@@ -29,7 +29,7 @@ include/ecpgtype.h
 include/libpq-events.h
 include/libpq-fe.h
 include/libpq/libpq-fs.h
-include/pg_config.h
+include${INCARCHSUFFIX}/pg_config.h
 include/pg_config_ext.h
 include/pg_config_manual.h
 include/pg_config_os.h
@@ -333,7 +333,7 @@ include/postgresql/server/parser/parser.h
 include/postgresql/server/parser/parsetree.h
 include/postgresql/server/parser/scanner.h
 include/postgresql/server/parser/scansup.h
-include/postgresql/server/pg_config.h
+include/postgresql/server${INCARCHSUFFIX}/pg_config.h
 include/postgresql/server/pg_config_ext.h
 include/postgresql/server/pg_config_manual.h
 include/postgresql/server/pg_config_os.h

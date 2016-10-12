@@ -11,6 +11,7 @@ LICENSE=	gnu-fdl-v1.3 AND gnu-lgpl-v2.1 AND gnu-gpl-v3
 
 USE_TOOLS+=		makeinfo
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 TEST_TARGET=		check
 INFO_FILES=		yes

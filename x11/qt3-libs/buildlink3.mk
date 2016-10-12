@@ -10,7 +10,7 @@ BUILDLINK_ABI_DEPENDS.qt3-libs+=	qt3-libs>=3.3.8nb29
 BUILDLINK_PKGSRCDIR.qt3-libs?=	../../x11/qt3-libs
 
 BUILDLINK_INCDIRS.qt3-libs+=	qt3/include
-BUILDLINK_LIBDIRS.qt3-libs+=	qt3/lib
+BUILDLINK_LIBDIRS.qt3-libs+=	qt3/lib${LIBARCHSUFFIX}
 
 QTDIR=	${BUILDLINK_PREFIX.qt3-libs}/qt3
 

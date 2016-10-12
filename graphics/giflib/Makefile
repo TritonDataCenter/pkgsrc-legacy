@@ -6,6 +6,8 @@ COMMENT=	GIF image format library
 
 CONFLICTS+=	libungif-[0-9]*
 
+USE_MULTIARCH=	lib
+
 BUILD_DIRS=	lib
 INSTALL_DIRS=	lib
 

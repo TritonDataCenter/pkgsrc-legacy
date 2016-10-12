@@ -5,6 +5,7 @@ RMD160 (opencv-3.1.0.zip) = d7a811c67cfb16243470822150760252d5770165
 SHA512 (opencv-3.1.0.zip) = b4915e8838fce8ba9e1af8b11e46678624435e9a41592e645413dfdc830993eaa017d337fe4c212a49f096421a6317a1892546087fbc3cfdab554522336c0f1a
 Size (opencv-3.1.0.zip) = 79186131 bytes
 SHA1 (patch-3rdparty_ippicv_downloader.cmake) = a0b7c1b52f9ec4f35ff3f846785fbbfec1eeac51
+SHA1 (patch-CMakeLists.txt) = cabbf0df805ddf07c790adebf41235723d05bbf3
 SHA1 (patch-apps_annotation_CMakeLists.txt) = 4c3a00b0dfef5e978b10ba966f68d050a06208fe
 SHA1 (patch-apps_createsamples_CMakeLists.txt) = 2d60ecc0e1674cde4414e91e837c24fa464d42aa
 SHA1 (patch-apps_traincascade_CMakeLists.txt) = 7114cc4c2057e12dc8e47bc61334cb8e175987eb

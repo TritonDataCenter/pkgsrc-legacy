@@ -12,6 +12,7 @@ COMMENT=		X RandR Library from X.org
 CONFLICTS+=		Xrandr-[0-9]*
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
 

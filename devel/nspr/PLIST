@@ -90,6 +90,5 @@ lib/nspr/libplc4.a
 lib/nspr/libplc4.so
 lib/nspr/libplds4.a
 lib/nspr/libplds4.so
-lib/nspr/pkgconfig/nspr.pc
 lib/pkgconfig/nspr.pc
 share/aclocal/nspr.m4

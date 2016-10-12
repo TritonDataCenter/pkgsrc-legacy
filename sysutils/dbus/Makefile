@@ -17,6 +17,7 @@ BUILD_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
 GNU_CONFIGURE=		YES
 USE_TOOLS+=		gmake msgfmt pkg-config
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 
 PKGCONFIG_OVERRIDE=	dbus-1.pc.in
 

@@ -19,6 +19,7 @@ CONFLICTS+=	lua-[0-9]*
 .include "../../mk/bsd.prefs.mk"
 
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	bin lib
 USE_TOOLS+=	gmake
 MAKE_ENV+=	DLLIB=${BUILDLINK_LDADD.dl:Q}
 MAKE_ENV+=	INSTALL_DATA=${INSTALL_DATA:Q}
@@ -35,7 +36,7 @@ LDFLAGS+=	-pthread
 .endif
 
 PKGCONFIG_OVERRIDE=	${WRKSRC}/lua.pc
-INSTALLATION_DIRS+=	lib/pkgconfig share/doc/lua-5.2
+INSTALLATION_DIRS+=	lib${LIBARCHSUFFIX}/pkgconfig share/doc/lua-5.2
 
 .if ${OPSYS} == "FreeBSD"
 BUILD_TARGET=	freebsd
@@ -59,6 +60,8 @@ DOCDIR=		${PREFIX}/share/doc/lua-5.2
 
 pre-configure:
 	sed	-e 's,@PREFIX@,${PREFIX},g' \
+		-e 's,@BINARCHSUFFIX@,${BINARCHSUFFIX},g' \
+		-e 's,@LIBARCHSUFFIX@,${LIBARCHSUFFIX},g' \
 		-e 's,@VER@,${PKGVERSION_NOREV:R},g' \
 		-e 's,@REV@,${PKGVERSION_NOREV},g' \
 		${FILESDIR}/lua.pc.in > ${WRKSRC}/lua.pc
@@ -69,7 +72,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/*.[a-z][a-z][a-z] \
 	    ${WRKSRC}/doc/*.html ${DESTDIR}${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/lua.pc \
-	    ${DESTDIR}${PREFIX}/lib/pkgconfig/lua-5.2.pc
+	    ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig/lua-5.2.pc
 
 .include "../../mk/readline.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"

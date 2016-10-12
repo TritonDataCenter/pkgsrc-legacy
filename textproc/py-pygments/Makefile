@@ -19,7 +19,11 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
 USE_LANGUAGES=		# none
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/bin/pygmentize ${DESTDIR}${PREFIX}/bin/pygmentize${PYVERSSUFFIX}
+	@if [ -f ${DESTDIR}${PREFIX}/bin/pygmentize ]; then \
+		${MV} ${DESTDIR}${PREFIX}/bin/pygmentize \
+			${DESTDIR}${PREFIX}/bin/pygmentize${PYVERSSUFFIX}; \
+	fi
+
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

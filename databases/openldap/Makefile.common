@@ -31,6 +31,7 @@ DISTINFO_FILE=		${.CURDIR}/../../databases/openldap/distinfo
 PATCHDIR=		${.CURDIR}/../../databases/openldap/patches
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		soelim
 GNU_CONFIGURE=		yes
 

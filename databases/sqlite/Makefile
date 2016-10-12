@@ -12,6 +12,7 @@ COMMENT=		SQL Database Engine in a C Library
 
 USE_TOOLS+=		gmake
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 
 GNU_CONFIGURE=		yes
 OBJDIR=			../sqlite-build

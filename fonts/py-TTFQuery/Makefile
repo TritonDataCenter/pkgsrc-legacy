@@ -16,7 +16,9 @@ PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-fonttools
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && for f in ttffamily ttffiles ttfgroups ttfmetadata; do \
+		if [ -f $${f} ]; then \
 		${MV} $${f} $${f}${PYVERSSUFFIX}; \
+		fi; \
 	done
 
 .include "../../lang/python/distutils.mk"

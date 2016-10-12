@@ -14,6 +14,7 @@ LICENSE=	gnu-gpl-v2
 USE_TOOLS+=	autoconf automake autoreconf gmake
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	YES
+USE_MULTIARCH=	lib
 
 AUTOCONF_REQD=	2.50
 GNU_CONFIGURE=	YES

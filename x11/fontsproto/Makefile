@@ -9,6 +9,7 @@ MAINTAINER=		joerg@NetBSD.org
 HOMEPAGE=		http://xorg.freedesktop.org/
 COMMENT=		Fonts extension headers from X.org
 
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 PKGCONFIG_OVERRIDE+=	${WRKSRC}/fontsproto.pc.in
 GNU_CONFIGURE=		yes

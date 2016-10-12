@@ -8,6 +8,7 @@ COMMENT=	Full-text search system for communities
 LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 PKGCONFIG_OVERRIDE=	hyperestraier.pc.in
 TEST_TARGET=		check

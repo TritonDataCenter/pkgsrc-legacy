@@ -15,6 +15,7 @@ INSTALLATION_DIRS+=	share/doc/see
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		pkg-config perl aclocal autoconf automake
 
 CONFIGURE_ARGS+=	--with-readline

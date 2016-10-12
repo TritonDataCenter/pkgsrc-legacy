@@ -6,6 +6,7 @@
 PKGREVISION=		2
 PKGCONFIG_OVERRIDE=	theora.pc.in theoradec.pc.in theoraenc.pc.in
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 TEST_TARGET=		check
 
 # disable doxygen, see libtheora-docs package

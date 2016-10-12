@@ -11,6 +11,7 @@ LICENSE=	apache-2.0
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake
 PKGCONFIG_OVERRIDE=	xerces-c.pc.in
 GNU_CONFIGURE=		yes

@@ -11,6 +11,7 @@ COMMENT=	EXIF file library
 LICENSE=	gnu-lgpl-v2.1
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes

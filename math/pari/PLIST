@@ -17,8 +17,8 @@ include/pari/paripriv.h
 include/pari/paristio.h
 include/pari/parisys.h
 include/pari/paritune.h
-${PLIST.nogmp}lib/libpari.la
-${PLIST.gmp}lib/libpari-gmp.la
+${PLIST.nogmp}lib${LIBARCHSUFFIX}/libpari.la
+${PLIST.gmp}lib${LIBARCHSUFFIX}/libpari-gmp.la
 lib/pari/pari.cfg
 man/man1/gp.1
 man/man1/gp-2.7.1

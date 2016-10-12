@@ -20,9 +20,12 @@ USE_TOOLS+=		gmake
 USE_TOOLS+=		perl:run
 USE_LIBTOOL=		yes
 USE_LANGUAGES=		c c++
+USE_MULTIARCH=		bin lib
 USE_NCURSES=		yes
 USE_PKGLOCALEDIR=	yes
 INFO_FILES=		yes
+
+MULTIARCH_DIRS.lib=	# manually configured in PLIST
 
 CONFIGURE_ARGS+=	--enable-doc-dir=${PREFIX}/share/doc/aspell
 CONFIGURE_ARGS+=	--enable-curses=ncurses

@@ -19,15 +19,15 @@ $NetBSD: patch-unix_Makefile.in,v 1.7 2016/03/06 11:47:49 adam Exp $
  
  # Path to the private tk header dir:
  PRIVATE_INCLUDE_DIR	= @PRIVATE_INCLUDE_DIR@
-@@ -100,7 +103,7 @@ DEMO_INSTALL_DIR	= $(INSTALL_ROOT)$(TK_L
- # The directory containing the Tcl sources and headers appropriate
- # for this version of Tk ("srcdir" will be replaced or has already
- # been replaced by the configure script):
--TCL_GENERIC_DIR		= @TCL_SRC_DIR@/generic
-+TCL_GENERIC_DIR		= $(TCL_BIN_DIR)/../include/tcl/generic
+@@ -120,7 +123,7 @@
+ TK_PKG_DIR		= @TK_PKG_DIR@
  
- # The directory containing the platform specific Tcl sources and headers
- # appropriate for this version of Tk:
+ # Directory in which to install the pkgIndex.tcl file for loadable Tk
+-PKG_INSTALL_DIR		= $(LIB_INSTALL_DIR)/$(TK_PKG_DIR)
++PKG_INSTALL_DIR		= $(INSTALL_ROOT)$(TK_LIBRARY)
+ 
+ # Package index file for loadable Tk
+ PKG_INDEX		= $(PKG_INSTALL_DIR)/pkgIndex.tcl
 @@ -137,7 +140,7 @@ CFLAGS_OPTIMIZE		= @CFLAGS_OPTIMIZE@
  #CFLAGS			= $(CFLAGS_DEBUG)
  #CFLAGS			= $(CFLAGS_OPTIMIZE)

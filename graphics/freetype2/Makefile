@@ -13,6 +13,7 @@ COMMENT=	Font rendering engine and library API
 LICENSE=	gnu-gpl-v2
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		grep gmake pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		builds/unix

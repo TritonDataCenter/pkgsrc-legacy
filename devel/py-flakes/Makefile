@@ -15,7 +15,9 @@ USE_LANGUAGES=	# none
 PYDISTUTILSPKG= yes
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/bin/pyflakes ${DESTDIR}${PREFIX}/bin/pyflakes${PYVERSSUFFIX}
+	if [ -f ${DESTDIR}${PREFIX}/bin/pyflakes ]; then \
+	${MV} ${DESTDIR}${PREFIX}/bin/pyflakes ${DESTDIR}${PREFIX}/bin/pyflakes${PYVERSSUFFIX}; \
+	fi
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

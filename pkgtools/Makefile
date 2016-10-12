@@ -4,6 +4,7 @@
 COMMENT=	Tools for use in the packages collection
 
 SUBDIR+=	R2pkg
+SUBDIR+=	abiexec
 SUBDIR+=	autoswc
 SUBDIR+=	binpatch
 SUBDIR+=	bootstrap-extras

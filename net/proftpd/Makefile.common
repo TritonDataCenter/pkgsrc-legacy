@@ -35,6 +35,11 @@ BUILD_DEFS+=		VARBASE
 
 CHECK_SHLIBS_SKIP=libexec/proftpd/*.a
 
+SUBST_CLASSES+=		libs
+SUBST_STAGE.libs=	pre-build
+SUBST_FILES.libs=	modules/mod_sql_mysql.c
+SUBST_SED.libs=		-e 's|^\(.\*\ \$$Libraries:\ \).* \$$|\1'"`mysql_config --libs`"'\ \$$|'
+
 .include "options.mk"
 
 .include "../../devel/gettext-lib/buildlink3.mk"

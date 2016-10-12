@@ -15,6 +15,7 @@ CONFLICTS+=		xextensions-[0-9]*
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--without-xmlto
 PKGCONFIG_OVERRIDE+=	${WRKSRC}/xextproto.pc.in
+USE_MULTIARCH=		lib
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/shmstr.h ${DESTDIR}${PREFIX}/include/X11/extensions

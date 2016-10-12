@@ -13,6 +13,7 @@ LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake perl:run pkg-config
 PKGCONFIG_OVERRIDE+=	libcdio.pc.in

@@ -22,7 +22,7 @@ do-configure:
 
 do-install:
 	${LIBTOOL} --mode=install ${INSTALL_DATA} ${WRKSRC}/liblapack.la \
-		${DESTDIR}${PREFIX}/lib
+		${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}
 
 .include "../../math/blas/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -13,6 +13,7 @@ LICENSE=		gnu-lgpl-v2.1
 
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 
 .include "../../audio/flac/buildlink3.mk"
 .include "../../audio/libmikmod/buildlink3.mk"
