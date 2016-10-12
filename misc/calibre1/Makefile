@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.15 2016/05/22 18:20:47 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2016/08/01 14:23:56 wiz Exp $
 
 DISTNAME=	calibre-1.48.0
-PKGREVISION=	17
+PKGREVISION=	19
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=calibre/}
 EXTRACT_SUFX=	.tar.xz
@@ -18,6 +18,7 @@ DEPENDS+=	xdg-utils>=1.0.2:../../misc/xdg-utils
 DEPENDS+=	poppler-utils-[0-9]*:../../print/poppler-utils
 DEPENDS+=	${PYPKGPREFIX}-lxml>=2.2.1:../../textproc/py-lxml
 DEPENDS+=	${PYPKGPREFIX}-beautifulsoup>=3.0.5:../../www/py-beautifulsoup
+DEPENDS+=	${PYPKGPREFIX}-dns-[0-9]*:../../net/py-dns
 DEPENDS+=	${PYPKGPREFIX}-mechanize>=0.1.11nb1:../../www/py-mechanize
 DEPENDS+=	${PYPKGPREFIX}-cssselect>=0.7.1:../../textproc/py-cssselect
 DEPENDS+=	${PYPKGPREFIX}-cssutils>=0.9.9:../../textproc/py-cssutils
@@ -29,7 +30,7 @@ DEPENDS+=	${PYPKGPREFIX}-chardet-[0-9]*:../../converters/py-chardet
 DEPENDS+=	${PYPKGPREFIX}-netifaces-[0-9]*:../../net/py-netifaces
 DEPENDS+=	${PYPKGPREFIX}-apsw-[0-9]*:../../databases/py-apsw
 
-PYTHON_VERSIONED_DEPENDENCIES=	dateutil dns
+PYTHON_VERSIONED_DEPENDENCIES=	dateutil
 
 # We also need the distfile for qt4-libs to extract some private header files
 # If QTVERSION changes, the distinfo file needs to be updated too.
@@ -44,7 +45,7 @@ EXTRACT_USING=  bsdtar
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	pkg-config pax
 PYTHON_VERSIONS_ACCEPTED=	27
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-mechanize, py-beautifulsoup, py-imaging, py-netifaces
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-mechanize, py-beautifulsoup, py-imaging, py-netifaces
 PYDISTUTILSPKG=	yes
 PYSETUPOPTARGS=	# empty
 PYSETUPINSTALLARGS=	--prefix=${PREFIX} --root=${DESTDIR:Q}${PREFIX}
@@ -125,8 +126,8 @@ post-install:
 BUILDLINK_API_DEPENDS.libusb+=	libusb>=0.1.12
 .include "../../devel/libusb/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
-BUILDLINK_API_DEPENDS.ImageMagick+=	ImageMagick>=6.5.9
-.include "../../graphics/ImageMagick/buildlink3.mk"
+BUILDLINK_API_DEPENDS.ImageMagick6+=	ImageMagick6>=6.5.9
+.include "../../graphics/ImageMagick6/buildlink3.mk"
 BUILDLINK_API_DEPENDS.pyimaging+=	${PYPKGPREFIX}-imaging>=1.1.6
 .include "../../graphics/py-imaging/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libwmf+=	libwmf>=0.2.8

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.4 2016/06/19 06:24:09 ryoon Exp $
+# $NetBSD: Makefile,v 1.11 2016/09/21 11:51:14 ryoon Exp $
 
 MOZILLA_PKG_NAME=	firefox45
 FIREFOX_VER=	${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
-MOZ_BRANCH=	45.2
+MOZ_BRANCH=	45.4
 MOZ_BRANCH_MINOR=	.0esr
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
@@ -27,6 +27,8 @@ CONFIGURE_ARGS+=	--enable-application=browser
 # workround for link of libxul.so etc.
 LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/${MOZILLA_PKG_NAME}
 LDFLAGS.SunOS+=		-lm
+
+NOT_PAX_MPROTECT_SAFE+=	lib/firefox45/firefox
 
 ALL_ENV+=		MOZILLA_PKG_NAME=${MOZILLA_PKG_NAME}
 

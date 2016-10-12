@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.46 2016/03/05 11:29:33 jperkin Exp $
+# $NetBSD: Makefile,v 1.48 2016/08/03 10:23:28 adam Exp $
 
 DISTNAME=	hamster-applet-2.28.1
-PKGREVISION=	29
+PKGREVISION=	30
 CATEGORIES=	time
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/hamster-applet/2.28/}
 
@@ -17,7 +17,7 @@ USE_TOOLS+=	gmake intltool pkg-config msgfmt
 GCONF_SCHEMAS+=	hamster-applet.schemas
 PY_PATCHPLIST=	yes
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-ORBit via py-gnome2, py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-ORBit via py-gnome2, py-gtk2
 
 SUBST_CLASSES+=		python
 SUBST_MESSAGE.python=	Fixing path to Python interpreter.

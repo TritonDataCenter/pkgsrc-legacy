@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.148 2016/03/05 11:28:31 jperkin Exp $
+# $NetBSD: Makefile,v 1.152 2016/09/16 01:10:06 gdt Exp $
 
 DISTNAME=		gnome-games-2.32.1
-PKGREVISION=		29
+PKGREVISION=		31
 CATEGORIES=		games gnome
 MASTER_SITES=		${MASTER_SITE_GNOME:=sources/gnome-games/2.32/}
 EXTRACT_SUFX=		.tar.bz2
@@ -11,7 +11,7 @@ HOMEPAGE=		http://www.gnome.org/
 COMMENT=		GNOME2 games collection
 #LICENSE=		gnu-gpl-v2 AND gnu-fdl-v1.1
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-ORBit via py-gnome2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-ORBit via py-gnome2
 
 CONFLICTS=		xbill-[0-9]*
 SUPERSEDES=		glchess-[0-9]*
@@ -69,6 +69,8 @@ BUILDLINK_API_DEPENDS.librsvg+=	librsvg>=2.12.6
 BUILDLINK_API_DEPENDS.clutter+= clutter>=1.0
 .include "../../graphics/clutter/buildlink3.mk"
 .include "../../graphics/clutter-gtk0.10/buildlink3.mk"
+# guile 2.0 fails with
+# game.c:312:44: error: 'scm_the_last_stack_fluid_var' undeclared (first use in this function)
 .include "../../lang/guile/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/omf-scrollkeeper.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.154 2016/05/21 10:56:07 wen Exp $
+# $NetBSD: Makefile,v 1.157 2016/09/17 02:42:08 mef Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -50,6 +50,7 @@ SUBDIR+=	lmclock
 SUBDIR+=	logtime
 SUBDIR+=	ocaml-calendar
 SUBDIR+=	oclock
+SUBDIR+=	p5-Business-Hours
 SUBDIR+=	p5-Calendar-Simple
 SUBDIR+=	p5-Convert-NLS_DATE_FORMAT
 SUBDIR+=	p5-Data-ICal
@@ -65,6 +66,7 @@ SUBDIR+=	p5-DateTime-Event-ICal
 SUBDIR+=	p5-DateTime-Event-Random
 SUBDIR+=	p5-DateTime-Event-Recurrence
 SUBDIR+=	p5-DateTime-Format-Builder
+SUBDIR+=	p5-DateTime-Format-CLDR
 SUBDIR+=	p5-DateTime-Format-DateManip
 SUBDIR+=	p5-DateTime-Format-DateParse
 SUBDIR+=	p5-DateTime-Format-Epoch
@@ -80,6 +82,7 @@ SUBDIR+=	p5-DateTime-Format-Pg
 SUBDIR+=	p5-DateTime-Format-SQLite
 SUBDIR+=	p5-DateTime-Format-Strptime
 SUBDIR+=	p5-DateTime-Format-W3CDTF
+SUBDIR+=	p5-DateTime-Incomplete
 SUBDIR+=	p5-DateTime-Locale
 SUBDIR+=	p5-DateTime-Precise
 SUBDIR+=	p5-DateTime-Set
@@ -153,6 +156,7 @@ SUBDIR+=	ruby-tzinfo03
 SUBDIR+=	saytime
 SUBDIR+=	sunclock
 SUBDIR+=	swisswatch
+SUBDIR+=	taskwarrior
 SUBDIR+=	tdl
 SUBDIR+=	titrax
 SUBDIR+=	vixie-cron

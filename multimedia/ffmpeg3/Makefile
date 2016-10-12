@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2016/05/05 07:03:47 leot Exp $
+# $NetBSD: Makefile,v 1.13 2016/09/19 13:04:24 wiz Exp $
 
 PKGNAME=	${DISTNAME:S/ffmpeg/ffmpeg3/}
 PKGREVISION=	1
@@ -49,7 +49,7 @@ post-install:
    || !empty(CC_VERSION:Mgcc-4.[01].*) \
    || empty(CC_VERSION:Mgcc*)
 CONFIGURE_ARGS+=	--disable-asm
-.  elif !empty(CC_VERSION:Mgcc-4.*)
+.  elif !empty(CC_VERSION:Mgcc-[456].*)
 CFLAGS+=		-mstackrealign -mpreferred-stack-boundary=4
 .  endif
 .endif

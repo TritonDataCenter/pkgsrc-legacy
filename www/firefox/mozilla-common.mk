@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.78 2016/06/16 12:08:21 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.83 2016/09/20 20:01:41 ryoon Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -9,9 +9,13 @@
 
 .if ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
 BUILD_DEPENDS+=		yasm>=1.1:../../devel/yasm
+
+# Enable Google widevine CDM. This requires external libwidevinecdm.so.
+CONFIGURE_ARGS+=	--enable-eme=widevine
 .endif
 
-GNU_CONFIGURE=		yes
+HAS_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 USE_TOOLS+=		pkg-config perl gmake autoconf213 unzip zip
 USE_LANGUAGES+=		c99 c++
 UNLIMIT_RESOURCES+=	datasize
@@ -43,14 +47,8 @@ CHECK_PORTABILITY_SKIP+=${MOZILLA_DIR}browser/extensions/loop/run-all-loop-tests
 
 CONFIGURE_ARGS+=	--enable-pie
 CONFIGURE_ARGS+=	--disable-tests
-CONFIGURE_ARGS+=	--disable-pedantic
-CONFIGURE_ARGS+=	--enable-crypto
 CONFIGURE_ARGS+=	--with-pthreads
-CONFIGURE_ARGS+=	--disable-javaxpcom
 CONFIGURE_ARGS+=	--enable-default-toolkit=cairo-gtk2
-CONFIGURE_ARGS+=	--enable-svg
-CONFIGURE_ARGS+=	--enable-mathml
-CONFIGURE_ARGS+=	--enable-pango
 CONFIGURE_ARGS+=	--enable-system-cairo
 CONFIGURE_ARGS+=	--enable-system-pixman
 CONFIGURE_ARGS+=	--with-system-libvpx
@@ -69,16 +67,11 @@ CONFIGURE_ARGS+=	--enable-chrome-format=flat
 CONFIGURE_ARGS+=	--disable-libjpeg-turbo
 
 CONFIGURE_ARGS+=	--disable-elf-hack
-CONFIGURE_ARGS+=	--disable-elf-dynstr-gc
 CONFIGURE_ARGS+=	--disable-gconf
 CONFIGURE_ARGS+=	--enable-gio
 CONFIGURE_ARGS+=	--enable-extensions=gio
-CONFIGURE_ARGS+=	--disable-mochitest
-CONFIGURE_ARGS+=	--enable-canvas
 #CONFIGURE_ARGS+=	--enable-readline
-CONFIGURE_ARGS+=	--disable-installer
 CONFIGURE_ARGS+=	--enable-url-classifier
-CONFIGURE_ARGS+=	--with-system-ply
 CONFIGURE_ARGS+=	--disable-icf
 CONFIGURE_ARGS+=	--disable-updater
 
@@ -99,7 +92,7 @@ CONFIG_SUB_OVERRIDE+=		${MOZILLA_DIR}/js/ctypes/libffi/config.sub
 
 PYTHON_VERSIONS_ACCEPTED=	27
 PYTHON_FOR_BUILD_ONLY=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-sqlite2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-sqlite2
 .include "../../lang/python/application.mk"
 CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
 

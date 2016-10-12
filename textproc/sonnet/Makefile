@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/05/26 09:26:57 markd Exp $
+# $NetBSD: Makefile,v 1.3 2016/08/21 21:26:01 markd Exp $
 
 DISTNAME=	sonnet-${KF5VER}
 CATEGORIES=	textproc

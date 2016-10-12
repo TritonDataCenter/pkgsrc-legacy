@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2016/06/14 13:23:45 fhajny Exp $
+# $NetBSD: Makefile,v 1.31 2016/09/08 09:38:08 abs Exp $
 
 PKGNAME=	${DISTNAME:S/-/-server-/}
-PKGREVISION=	1
 COMMENT=	MySQL 5, a free SQL database (server)
 
 CONFLICTS=	mysql3-server-[0-9]*
@@ -67,6 +66,7 @@ REPLACE_PERL+=		mysql-test/suite/engines/rr_trx/run_stress_tx_rr.pl
 REPLACE_PERL+=		mysql-test/suite/funcs_1/lib/DataGen_local.pl
 REPLACE_PERL+=		mysql-test/suite/funcs_1/lib/DataGen_modify.pl
 REPLACE_PERL+=		mysql-test/suite/funcs_2/lib/gen_charset_utf8.pl
+REPLACE_PERL+=		mysql-test/suite/opt_trace/validate_json.pl
 REPLACE_PERL+=		mysql-test/suite/rpl/extension/bhs.pl
 REPLACE_PERL+=		mysql-test/suite/rpl/extension/checksum.pl
 

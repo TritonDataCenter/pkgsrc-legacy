@@ -1,4 +1,4 @@
-# $NetBSD: Darwin.mk,v 1.81 2016/03/11 22:04:34 fhajny Exp $
+# $NetBSD: Darwin.mk,v 1.83 2016/09/06 09:50:20 jperkin Exp $
 #
 # Variable definitions for the Darwin operating system.
 
@@ -67,8 +67,9 @@ ROOT_GROUP?=		wheel
 ROOT_USER?=		root
 SERIAL_DEVICES?=	/dev/null
 ULIMIT_CMD_datasize?=	ulimit -d `ulimit -H -d`
-ULIMIT_CMD_stacksize?=	ulimit -s `ulimit -H -s`
 ULIMIT_CMD_memorysize?=	ulimit -m `ulimit -H -m`
+ULIMIT_CMD_stacksize?=	ulimit -s `ulimit -H -s`
+ULIMIT_CMD_cputime?=	ulimit -t `ulimit -H -t`
 
 GROUPADD?=		${LOCALBASE}/sbin/groupadd
 USERADD?=		${LOCALBASE}/sbin/useradd
@@ -136,9 +137,7 @@ USE_BUILTIN.dl=		no	# Darwin-[56].* uses devel/dlcompat
 _OPSYS_PREFER.libuuid?=		native	# system headers assume uuid_string_t
 _OPSYS_PREFER.linux-pam?=	native
 _OPSYS_PREFER.mit-krb5?=	native
-.if ${OS_VERSION:R} >= 11
 _OPSYS_PREFER.openssl?=		pkgsrc	# builtin deprecated from 10.7 onwards
-.endif
 
 # Remove common GNU ld arguments incompatible with the Darwin linker.
 BUILDLINK_TRANSFORM+=	rm:-Wl,-O1

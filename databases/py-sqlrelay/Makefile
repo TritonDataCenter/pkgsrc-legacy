@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2016/03/05 11:28:18 jperkin Exp $
+# $NetBSD: Makefile,v 1.6 2016/07/09 13:03:36 wiz Exp $
 
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=		1
 COMMENT=		Python extension for SQL Relay
 
 .include "../../databases/sqlrelay/Makefile.common"
@@ -12,7 +11,7 @@ CONFIGURE_ARGS+=	--with-python-prefix=${PREFIX}
 
 BUILD_DIRS=		src/api/python
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 0.55
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 0.55
 
 PY_PATCHPLIST=		yes
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/05/26 08:29:06 markd Exp $
+# $NetBSD: Makefile,v 1.4 2016/08/21 21:17:59 markd Exp $
 
 DISTNAME=	ktexteditor-${KF5VER}
 CATEGORIES=	devel

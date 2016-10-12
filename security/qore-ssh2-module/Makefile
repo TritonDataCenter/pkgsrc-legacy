@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.4 2016/03/05 11:27:55 jperkin Exp $
+# $NetBSD: Makefile,v 1.6 2016/08/07 11:44:43 nros Exp $
 
-DISTNAME=	qore-ssh2-module-0.9.9
-PKGREVISION=	7
+DISTNAME=	qore-ssh2-module-1.0
 CATEGORIES=	security
-MASTER_SITES=   ${MASTER_SITE_SOURCEFORGE:=qore/}
+MASTER_SITES=   ${MASTER_SITE_GITHUB:=qorelanguage/}
 EXTRACT_SUFX=   .tar.bz2
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
+GITHUB_PROJECT=	module-ssh2
 
-MAINTAINER=	nros@users.sourceforge.net
+MAINTAINER=	nros@NetBSD.org
 COMMENT=	SSH2 module for Qore
 HOMEPAGE=	http://www.qore.org/
 LICENSE=	gnu-lgpl-v2.1 OR mit
@@ -16,6 +17,8 @@ USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake pax
 PTHREAD_OPTS+=	native
+
+CONFIGURE_ARGS+=--with-libsuffix=""
 
 #This is needed in order to comply the with MIT license and binary distribution
 #Install docs

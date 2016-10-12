@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.34 2015/12/05 21:25:51 adam Exp $
+# $NetBSD: Makefile,v 1.36 2016/08/03 10:23:12 adam Exp $
 
 DISTNAME=	pitivi-0.15.2
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pitivi/0.15/}
 #MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pitivi/}
@@ -17,7 +17,7 @@ USE_TOOLS+=	pkg-config intltool gmake msgfmt
 CONFIGURE_ENV+=	ac_cv_path_PYTHON=${PYTHONBIN}
 REPLACE_PYTHON=	bin/pitivi.in
 PYTHON_VERSIONED_DEPENDENCIES=	cairo
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-gtk2, py-gstreamer0.10
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2, py-gstreamer0.10
 
 .include "../../multimedia/gstreamer0.10/buildlink3.mk"
 .include "../../lang/python/application.mk"

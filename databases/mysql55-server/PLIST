@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.42 2016/06/14 16:49:17 adam Exp $
+@comment $NetBSD: PLIST,v 1.44 2016/09/07 13:13:36 adam Exp $
 bin/innochecksum
 bin/my_print_defaults
 bin/myisam_ftdump
@@ -1324,6 +1324,7 @@ share/mysql/test/std_data/bug16266.000001
 share/mysql/test/std_data/bug19371.MYD
 share/mysql/test/std_data/bug19371.MYI
 share/mysql/test/std_data/bug19371.frm
+share/mysql/test/std_data/bug20683959loaddata.txt
 share/mysql/test/std_data/bug30435_10k_items.txt
 share/mysql/test/std_data/bug30435_5k.txt
 share/mysql/test/std_data/bug33029-slave-relay-bin.000001
@@ -1476,6 +1477,7 @@ share/mysql/test/suite/binlog/r/binlog_bug23533.result
 share/mysql/test/suite/binlog/r/binlog_bug36391.result
 share/mysql/test/suite/binlog/r/binlog_database.result
 share/mysql/test/suite/binlog/r/binlog_delete_and_flush_index.result
+share/mysql/test/suite/binlog/r/binlog_dmls_on_tmp_tables_readonly.result
 share/mysql/test/suite/binlog/r/binlog_drop_if_exists.result
 share/mysql/test/suite/binlog/r/binlog_format_switch_in_tmp_table.result
 share/mysql/test/suite/binlog/r/binlog_grant.result
@@ -1554,6 +1556,7 @@ share/mysql/test/suite/binlog/t/binlog_bug36391-master.opt
 share/mysql/test/suite/binlog/t/binlog_bug36391.test
 share/mysql/test/suite/binlog/t/binlog_database.test
 share/mysql/test/suite/binlog/t/binlog_delete_and_flush_index.test
+share/mysql/test/suite/binlog/t/binlog_dmls_on_tmp_tables_readonly.test
 share/mysql/test/suite/binlog/t/binlog_drop_if_exists.test
 share/mysql/test/suite/binlog/t/binlog_format_switch_in_tmp_table.test
 share/mysql/test/suite/binlog/t/binlog_grant.test
@@ -3670,7 +3673,6 @@ share/mysql/test/suite/perfschema/include/privilege.inc
 share/mysql/test/suite/perfschema/include/setup_helper.inc
 share/mysql/test/suite/perfschema/include/start_server_common.inc
 share/mysql/test/suite/perfschema/include/upgrade_check.inc
-share/mysql/test/suite/perfschema/r/aggregate.result
 share/mysql/test/suite/perfschema/r/bad_option_1.result
 share/mysql/test/suite/perfschema/r/bad_option_2.result
 share/mysql/test/suite/perfschema/r/bad_option_3.result
@@ -3751,7 +3753,6 @@ share/mysql/test/suite/perfschema/r/start_server_off.result
 share/mysql/test/suite/perfschema/r/start_server_on.result
 share/mysql/test/suite/perfschema/r/tampered_perfschema_table1.result
 share/mysql/test/suite/perfschema/r/thread_cache.result
-share/mysql/test/suite/perfschema/t/aggregate.test
 share/mysql/test/suite/perfschema/t/bad_option_1.test
 share/mysql/test/suite/perfschema/t/bad_option_2.test
 share/mysql/test/suite/perfschema/t/bad_option_3.test

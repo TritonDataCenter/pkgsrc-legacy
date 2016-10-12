@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.88 2016/02/25 15:35:31 jperkin Exp $
+# $NetBSD: Makefile,v 1.91 2016/09/18 17:02:12 wiedi Exp $
 
 DISTNAME=	rpm-4.12.0.1
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	misc
 MASTER_SITES=	http://rpm.org/releases/rpm-4.12.x/
 EXTRACT_SUFX=	.tar.bz2
@@ -79,6 +79,7 @@ SUBST_SED.mkd+=		-e 's,${TOOLS_CMD.mkdir},${TOOLS_PATH.mkdir},'
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../devel/popt/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 .include "../../sysutils/file/buildlink3.mk" # for libmagic.
 
 .include "../../mk/bsd.pkg.mk"

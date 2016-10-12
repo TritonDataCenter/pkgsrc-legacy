@@ -1,4 +1,4 @@
-$NetBSD: patch-ab,v 1.5 2014/04/22 14:42:35 asau Exp $
+$NetBSD: patch-ab,v 1.7 2016/08/26 12:40:25 richard Exp $
 
 --- dist/configure.orig	2012-05-11 17:57:48.000000000 +0000
 +++ dist/configure

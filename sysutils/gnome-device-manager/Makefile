@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.42 2016/03/05 11:29:29 jperkin Exp $
+# $NetBSD: Makefile,v 1.44 2016/08/03 10:23:22 adam Exp $
 #
 
 DISTNAME=	gnome-device-manager-0.2
-PKGREVISION=	37
+PKGREVISION=	39
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 EXTRACT_SUFX=	.tar.bz2

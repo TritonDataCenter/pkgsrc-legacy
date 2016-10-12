@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.175 2016/06/16 02:29:27 kamil Exp $
+# $NetBSD: Makefile,v 1.178 2016/09/18 13:40:24 ryoon Exp $
 #
 
 COMMENT=	Editors
@@ -41,6 +41,8 @@ SUBDIR+=	emacs23
 SUBDIR+=	emacs23-nox11
 SUBDIR+=	emacs24
 SUBDIR+=	emacs24-nox11
+SUBDIR+=	emacs25
+SUBDIR+=	emacs25-nox11
 SUBDIR+=	ex
 SUBDIR+=	fe
 SUBDIR+=	gate
@@ -67,6 +69,7 @@ SUBDIR+=	kate
 SUBDIR+=	kdissert
 SUBDIR+=	kile
 SUBDIR+=	kile-kde3
+SUBDIR+=	kilo
 SUBDIR+=	leafpad
 SUBDIR+=	leim20
 SUBDIR+=	leim21

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.57 2016/05/26 09:02:16 wiz Exp $
+# $NetBSD: Makefile,v 1.64 2016/09/25 20:21:25 wiz Exp $
 
-DISTNAME=	mame-0.174
+DISTNAME=	mame-0.177
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mamedev/}
 GITHUB_TAG=	${DISTNAME:S/-//S/.//}
@@ -14,17 +14,13 @@ DOCDIR=			share/doc/mame
 SHAREDIR=		share/mame
 INSTALLATION_DIRS=	bin ${DOCDIR} ${PKGMANDIR}/man1 ${PKGMANDIR}/man6
 INSTALLATION_DIRS+=	${SHAREDIR}/artwork/bgfx/border_blur
-INSTALLATION_DIRS+=	${SHAREDIR}/artwork/bgfx/chains ${SHAREDIR}/hash
-
-RESTRICTED=		selling is not allowed
-NO_SRC_ON_CDROM=	${RESTRICTED}
-NO_BIN_ON_CDROM=	${RESTRICTED}
+INSTALLATION_DIRS+=	${SHAREDIR}/artwork/bgfx/chains/crt-geom ${SHAREDIR}/hash
 
 DEPENDS+=		liberation-ttf-[0-9]*:../../fonts/liberation-ttf
 
 USE_LANGUAGES=		c99 c++
 # 4.9 is enough, but doesn't build with SSP support on NetBSD
-GCC_REQD=		5.3
+GCC_REQD+=		5.3
 USE_TOOLS+=		bsdtar gmake pkg-config
 UNLIMIT_RESOURCES+=	datasize
 MAKE_FILE=		makefile
@@ -93,11 +89,12 @@ MAKE_ENV+=	BIGENDIAN=1
 .endif
 
 PYTHON_FOR_BUILD_ONLY=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 0.151
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 0.151
 
 post-extract:
 	# will be chosen in preference to /usr/include/signal.h, but does not provide kill()
 	${RM} ${WRKSRC}/3rdparty/bx/include/compat/freebsd/signal.h
+	${MV} ${WRKSRC}/3rdparty/genie/build/gmake.freebsd ${WRKSRC}/3rdparty/genie/build/gmake.bsd
 
 pre-build:
 	# problems with mame-specific png.h
@@ -116,8 +113,9 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/artwork/LICENSE ${DESTDIR}${PREFIX}/${SHAREDIR}/artwork
 	${INSTALL_DATA} ${WRKSRC}/artwork/*.* ${DESTDIR}${PREFIX}/${SHAREDIR}/artwork
 	${INSTALL_DATA} ${WRKSRC}/artwork/bgfx/border_blur/* ${DESTDIR}${PREFIX}/${SHAREDIR}/artwork/bgfx/border_blur
-	${INSTALL_DATA} ${WRKSRC}/artwork/bgfx/chains/* ${DESTDIR}${PREFIX}/${SHAREDIR}/artwork/bgfx/chains
-	${INSTALL_DATA} ${WRKSRC}/docs/*.txt ${DESTDIR}${PREFIX}/${DOCDIR}
+	${INSTALL_DATA} ${WRKSRC}/artwork/bgfx/chains/*.* ${DESTDIR}${PREFIX}/${SHAREDIR}/artwork/bgfx/chains
+	${INSTALL_DATA} ${WRKSRC}/artwork/bgfx/chains/crt-geom/* ${DESTDIR}${PREFIX}/${SHAREDIR}/artwork/bgfx/chains/crt-geom/
+	${INSTALL_DATA} ${WRKSRC}/docs/*.md ${DESTDIR}${PREFIX}/${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/hash/* ${DESTDIR}${PREFIX}/${SHAREDIR}/hash
 
 .include "../../lang/python/application.mk"

@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.27 2016/06/19 20:41:42 wiz Exp $
+$NetBSD: distinfo,v 1.29 2016/08/22 14:15:12 wiz Exp $
 
-SHA1 (vdirsyncer-0.11.2.tar.gz) = cf40020fb2621ee2a8d97e5c5d6a1a8c90afac31
-RMD160 (vdirsyncer-0.11.2.tar.gz) = 626717c478e9b22a5bc5e092e46294db9087bf94
-SHA512 (vdirsyncer-0.11.2.tar.gz) = bfd142d1b9f2a5ac87b538fdf4aa2d0b3a6d1aab1370907c74f024ebb7ed73606db0867330b8442bfc8daa45971b472d68754e927a02bff0d6056768259603a5
-Size (vdirsyncer-0.11.2.tar.gz) = 98819 bytes
+SHA1 (vdirsyncer-0.12.1.tar.gz) = 81bf4f656a13a872e9a34468add2e90c68540ce7
+RMD160 (vdirsyncer-0.12.1.tar.gz) = 97cee894aa32ee7791f6db8b3a6cd89f4e94af03
+SHA512 (vdirsyncer-0.12.1.tar.gz) = 1ac41caadd89e10d9aa3f9838daa0974cf79add1cbaf4959694ce1f9ebabed3863c67f656c3b2310d1e3143a0c442c9439fb79cf48ccaa52060cab7f90413030
+Size (vdirsyncer-0.12.1.tar.gz) = 99808 bytes

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2016/03/05 11:28:19 jperkin Exp $
+# $NetBSD: Makefile,v 1.7 2016/09/19 13:04:20 wiz Exp $
 
 PKGNAME=		${DISTNAME:S/sqlrelay/sqlrelay-freetds/}
 PKGREVISION=		1

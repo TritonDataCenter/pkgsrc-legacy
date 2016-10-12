@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.86 2016/05/05 11:45:39 jaapb Exp $
+# $NetBSD: Makefile,v 1.88 2016/09/18 05:48:59 dholland Exp $
 
 VERSION=		4.0.1
 PKGNAME=		camlimages-${VERSION}
-PKGREVISION=		50
+PKGREVISION=		51
 CATEGORIES=		graphics
 MASTER_SITES=		https://bitbucket.org/camlspotter/camlimages/get/
 DISTNAME=		v${VERSION}
@@ -25,7 +25,7 @@ SUBST_STAGE.omf=	post-patch
 SUBST_FILES.omf=	OMakefile
 SUBST_SED.omf=		-e 's,@PREFIX@,${PREFIX},g'
 SUBST_SED.omf+=		-e 's,@X11BASE@,${X11BASE},g'
-SUBST_SED.omf+=		-e 's%@LDFLAGS@%${LDFLAGS}%g'
+SUBST_SED.omf+=		-e s%@LDFLAGS@%${LDFLAGS:Q}%g
 SUBST_SED.omf+=		-e 's,@OCAMLFIND_DESTDIR@,${DESTDIR}${PREFIX}/lib/ocaml/site-lib,g'
 SUBST_SED.omf+=		-e 's,@OCAMLFIND_LDCONF@,/dev/null,g'
 SUBST_MESSAGE.omf=	Fixing vars in OMakefile

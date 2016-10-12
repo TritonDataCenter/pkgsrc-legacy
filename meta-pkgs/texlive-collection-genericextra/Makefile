@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.5 2016/06/16 04:03:13 markd Exp $
+# $NetBSD: Makefile,v 1.7 2016/09/20 13:40:12 markd Exp $
 
 DISTNAME=	collection-genericextra
-PKGNAME=	texlive-${DISTNAME}-2016pre1
+PKGNAME=	texlive-${DISTNAME}-2016pre3
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	39964
+TEXLIVE_REV=	41695
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.tug.org/texlive/
@@ -25,7 +25,7 @@ DEPENDS+=	texlive-collection-basic-[0-9]*:../../meta-pkgs/texlive-collection-bas
 # depend dirtree
 # depend docbytex
 # depend dowith
-# depend eijkhout
+DEPENDS+=	tex-eijkhout-[0-9]*:../../print/tex-eijkhout
 # depend encxvlna
 # depend epigram
 # depend fenixpar
@@ -46,8 +46,10 @@ DEPENDS+=	tex-mathdots-[0-9]*:../../print/tex-mathdots
 # depend midnight
 # depend navigator
 # depend ofs
+# depend olsak-misc
 # depend pdf-trans
 # depend plainpkg
+# depend randomlist
 # depend schemata
 # depend shade
 # depend systeme

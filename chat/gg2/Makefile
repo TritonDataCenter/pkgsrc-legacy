@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.57 2016/03/05 11:28:06 jperkin Exp $
+# $NetBSD: Makefile,v 1.59 2016/09/19 17:18:18 jperkin Exp $
 
 DISTNAME=	gg2-2.3.0
-PKGREVISION=	31
+PKGREVISION=	33
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=ggadu/}
 EXTRACT_SUFX=	.tar.bz2

@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.5 2016/05/05 11:45:39 jaapb Exp $
+# $NetBSD: Makefile,v 1.7 2016/07/02 09:17:54 jaapb Exp $
 
 GITHUB_PROJECT=	reactiveData
 DISTNAME=	${GITHUB_PROJECT}-0.2
 PKGNAME=	ocaml-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ocsigen/}
 
@@ -36,4 +36,5 @@ do-install:
 	done
 
 .include "../../devel/ocaml-react/buildlink3.mk"
+.include "../../devel/ocamlbuild/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.61 2016/05/05 11:45:41 jaapb Exp $
+# $NetBSD: Makefile,v 1.63 2016/07/09 13:04:08 wiz Exp $
 #
 # VERSION is set in version.mk as it is shared with other packages
 .include		"version.mk"
 
 DISTNAME=		xen-${VERSION}
 PKGNAME=		xentools41-${VERSION}
-PKGREVISION=		15
+PKGREVISION=		16
 CATEGORIES=		sysutils
 MASTER_SITES=	http://bits.xensource.com/oss-xen/release/${VERSION}/
 
@@ -28,7 +28,7 @@ BUILD_DEPENDS+= dev86-[0-9]*:../../devel/dev86 # needed to build firmware
 BUILD_DEPENDS+= acpica-utils-[0-9]*:../../sysutils/acpica-utils
 .endif
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-xml
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-xml
 
 PKG_SYSCONFSUBDIR=	xen
 

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.32 2016/04/11 19:02:06 ryoon Exp $
+# $NetBSD: Makefile,v 1.34 2016/08/17 00:06:46 ryoon Exp $
 
 .include "../../devel/xulrunner17/dist.mk"
 PKGNAME=	firefox17-${MOZ_BRANCH}
-PKGREVISION=	12
+PKGREVISION=	14
 CATEGORIES=	www
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

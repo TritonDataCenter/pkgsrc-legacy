@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2016/06/08 17:43:26 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2016/08/28 15:48:30 wiz Exp $
 
 DISTNAME=	nose-1.3.7
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
@@ -7,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_PYPI:=n/nose/}
 EXTRACT_USING=	bsdtar
 
 MAINTAINER=	kamel.derouiche@gmail.com
-HOMEPAGE=	http://code.google.com/p/python-nose/
+HOMEPAGE=	https://nose.readthedocs.io/
 COMMENT=	Unittest-based testing framework for python
 LICENSE=	gnu-lgpl-v2.1
 
@@ -15,7 +15,6 @@ LICENSE=	gnu-lgpl-v2.1
 #DEPENDS+=	${PYPKGPREFIX}-coverage>=3.0:../../devel/py-coverage
 
 USE_LANGUAGES=	# none
-PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
 
 SUBST_CLASSES+=		manpath
 SUBST_STAGE.manpath=	pre-build

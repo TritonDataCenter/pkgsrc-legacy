@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.39 2016/04/21 11:36:03 jperkin Exp $
+# $NetBSD: Makefile,v 1.43 2016/09/26 07:06:11 jperkin Exp $
 
-DISTNAME=	salt-2015.8.5
-PKGREVISION=	3
+DISTNAME=	salt-2016.3.3
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/salt/}
 
@@ -23,7 +22,7 @@ DEPENDS+= ${PYPKGPREFIX}-tornado>=4.3:../../www/py-tornado
 
 BUILD_DEFS+=	VARBASE
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-m2crypto
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-m2crypto
 
 PYSETUPINSTALLARGS+=	--salt-root-dir=${PREFIX}
 PYSETUPINSTALLARGS+=	--salt-config-dir=${PKG_SYSCONFDIR}
@@ -35,7 +34,8 @@ PYSETUPINSTALLARGS+=	--salt-base-master-roots-dir=${PKG_SYSCONFDIR}/salt-master
 PYSETUPINSTALLARGS+=	--salt-logs-dir=${VARBASE}/log/salt
 PYSETUPINSTALLARGS+=	--salt-pidfile-dir=${VARBASE}/run
 
-REPLACE_PYTHON=	*.py */*.py */*/*.py
+REPLACE_PYTHON=		*.py */*.py */*/*.py
+REPLACE_SH=		salt/templates/git/ssh-id-wrapper
 
 RCD_SCRIPTS+=		salt_master salt_minion salt_syndic
 SMF_INSTANCES=		master minion

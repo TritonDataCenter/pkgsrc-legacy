@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2016/05/04 02:54:46 tnn Exp $
+# $NetBSD: Makefile,v 1.8 2016/08/24 07:18:54 tnn Exp $
 
 DISTNAME=	libxshmfence-1.2
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	x11
 MASTER_SITES=	http://xorg.freedesktop.org/archive/individual/lib/
 EXTRACT_SUFX=	.tar.bz2
@@ -12,6 +12,7 @@ COMMENT=	Shared memory 'SyncFence' synchronization primitive
 LICENSE=	mit
 
 GNU_CONFIGURE=	yes
+TEST_TARGET=	check
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config autoconf automake autoreconf
 

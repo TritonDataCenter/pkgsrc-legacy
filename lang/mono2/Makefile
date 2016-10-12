@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.20 2016/04/11 19:01:35 ryoon Exp $
+# $NetBSD: Makefile,v 1.22 2016/08/15 10:24:31 richard Exp $
 
 DISTNAME=	mono-2.10.9
-PKGREVISION=	16
+PKGREVISION=	17
 CATEGORIES=	lang
 MASTER_SITES=	http://download.mono-project.com/sources/mono/
 EXTRACT_SUFX=	.tar.bz2
@@ -147,8 +147,13 @@ SUBST_SED.fix-libx11=		-e 's,@X11BASE@,${X11BASE},g'
 
 .include "../../mk/bsd.prefs.mk"
 
+OPSYSVARS+=	USE_LANGUAGES
+
 CPPFLAGS.NetBSD+=	-D_KMEMUSER
-CPPFLAGS.SunOS+=	-D__C99FEATURES__
+USE_LANGUAGES.SunOS+=	c99
+
+BUILDLINK_TRANSFORM.SunOS+=	opt:-D_XOPEN_SOURCE=500:-D_POSIX_C_SOURCE=200112L
+BUILDLINK_TRANSFORM.SunOS+=	rm:-D_XOPEN_SOURCE_EXTENDED=1
 
 .if !empty(MACHINE_PLATFORM:MSunOS-*-i386)
 ULIMIT_CMD_datasize=	ulimit -d 262144

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2015/11/10 11:35:30 jperkin Exp $
+# $NetBSD: Makefile,v 1.4 2016/09/19 06:57:49 ryoon Exp $
 
 # Note: This must be kept in sync with the oracle-jre8 package
 # Note: make sure you include sums for both the x86_64 and the x86_32
@@ -16,7 +16,7 @@ DEPENDS+=	${PKGNAME_NOREV:S/jdk/jre/}*:../../lang/oracle-jre8
 
 WRKSRC=		${WRKDIR}/jdk1.8.0_${UPDATE_NUMBER}
 JAVA_WRAPPERS=	appletviewer apt extcheck idlj jar jarsigner \
-		javac javadoc javah javap jdb rmic serialver jps
+		javac javadoc javah javap jcmd jdb rmic serialver jps
 
 MAKE_JOBS_SAFE=	no
 

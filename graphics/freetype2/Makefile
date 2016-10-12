@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.104 2016/04/07 10:02:13 adam Exp $
+# $NetBSD: Makefile,v 1.107 2016/09/12 18:06:44 wiz Exp $
 
-DISTNAME=	freetype-2.6.3
+DISTNAME=	freetype-2.7
 PKGNAME=	${DISTNAME:S/-/2-/}
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=freetype/} \
@@ -46,7 +46,7 @@ CONFIGURE_ENV+=		CC_BUILD=${NATIVE_CC:Q}
 .endif
 
 post-configure:
-	cd ${WRKSRC} && ${LN} -s builds/unix/unix.mk config.mk
+	cd ${WRKSRC} && ${LN} -f -s builds/unix/unix.mk config.mk
 .if ${OPSYS} == "IRIX"
 	${MKDIR} ${WRKSRC}/.libs
 .endif

@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.8 2016/06/08 21:33:18 markd Exp $
+# $NetBSD: Makefile,v 1.10 2016/08/21 10:53:17 wiz Exp $
 
-DISTNAME=	Mako-1.0.1
+DISTNAME=	Mako-1.0.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 CATEGORIES=	devel python
-MASTER_SITES=	${MASTER_SITE_PYPI:=M/Mako/} \
-		http://www.makotemplates.org/downloads/
+MASTER_SITES=	${MASTER_SITE_PYPI:=M/Mako/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.makotemplates.org/

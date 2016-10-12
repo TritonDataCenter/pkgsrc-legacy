@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.36 2015/12/05 21:25:34 adam Exp $
+# $NetBSD: Makefile,v 1.38 2016/08/11 00:26:12 mef Exp $
 
-DISTNAME=	diffuse-0.4.7
+DISTNAME=	diffuse-0.4.8
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=diffuse/}
 EXTRACT_SUFX=	.tar.bz2
@@ -11,7 +11,7 @@ COMMENT=	Graphical tool for merging and comparing text files
 LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	${PYPKGPREFIX}-gtk2>=2.10:../../x11/py-gtk2
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
 
 USE_TOOLS+=	msgfmt
 USE_LANGUAGES=	# none
@@ -29,6 +29,7 @@ do-install:
 		--prefix=${PREFIX} --sysconfdir=${PKG_SYSCONFDIR} \
 		--pythonbin=${PYTHONBIN} --files-only
 
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/omf-scrollkeeper.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"

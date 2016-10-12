@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.35 2015/02/22 23:04:13 gdt Exp $
+# $NetBSD: Makefile,v 1.37 2016/09/15 15:38:20 gdt Exp $
 
 DISTNAME=	guile-www-2.39
+PKGREVISION=	1
 CATEGORIES=	devel www
 MASTER_SITES=	http://download.savannah.nongnu.org/releases/guile-www/
 EXTRACT_SUFX=	.tar.xz
@@ -17,5 +18,5 @@ INFO_FILES=	YES
 
 TEST_TARGET=	check
 
-.include "../../lang/guile/buildlink3.mk"
+.include "../../lang/guile20/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

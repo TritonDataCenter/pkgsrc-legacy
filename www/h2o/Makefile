@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2016/05/12 18:04:06 adam Exp $
+# $NetBSD: Makefile,v 1.13 2016/09/17 11:10:23 mef Exp $
 
-DISTNAME=	h2o-1.7.2
+DISTNAME=	h2o-2.0.4
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=h2o/}
 

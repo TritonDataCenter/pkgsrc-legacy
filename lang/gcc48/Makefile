@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.24 2016/03/14 05:49:51 dbj Exp $
+# $NetBSD: Makefile,v 1.30 2016/09/15 17:56:23 maya Exp $
 
 GCC_PKGNAME=	gcc48
 .include	"version.mk"
-PKGREVISION=	1
 
 DISTNAME=	gcc-${GCC48_DIST_VERSION}
 PKGNAME=	${GCC_PKGNAME}-${GCC48_DIST_VERSION}
@@ -75,7 +74,15 @@ CONFIGURE_ARGS+=	--enable-languages=${LANGS:Q}
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--enable-long-long
 CONFIGURE_ARGS+=	--with-local-prefix=${GCC_PREFIX:Q}
+
+MAKE_ENV.NetBSD+=	ac_cv_func_gethostbyname_r=no
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-*)
+# use the native SSP code in netbsd libc
+CONFIGURE_ARGS+=	--disable-libssp
+.else
 CONFIGURE_ARGS+=	--enable-libssp
+.endif
+
 CONFIGURE_ARGS+=	--enable-threads=posix
 CONFIGURE_ARGS+=	--with-boot-ldflags=${BOOT_LDFLAGS:Q}
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.58 2016/04/08 13:17:48 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2016/07/09 13:04:09 wiz Exp $
 
 DISTNAME=	gtk-doc-1.21
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk-doc/${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=	.tar.xz
@@ -20,7 +20,7 @@ PKGCONFIG_OVERRIDE=	gtk-doc.pc.in
 CONFIGURE_ARGS+=	--with-xml-catalog=${XML_DEFAULT_CATALOG:Q}
 USE_TOOLS+=		gmake perl:run pkg-config:run msgfmt
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 1.21
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 1.21
 
 .include "../../lang/python/application.mk"
 .include "../../textproc/gnome-doc-utils/buildlink3.mk"

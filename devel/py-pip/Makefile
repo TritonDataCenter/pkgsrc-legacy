@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2016/06/08 17:43:26 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2016/08/28 15:48:30 wiz Exp $
 
-DISTNAME=	pip-7.1.2
+DISTNAME=	pip-8.1.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pip/}
@@ -9,9 +9,6 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.pip-installer.org/
 COMMENT=	Installs Python packages as an easy_install replacement
 LICENSE=	mit
-
-PLIST_SUBST+=	PYVERSSUFFIX="${PYVERSSUFFIX}"
-FILES_SUBST+=	PYVERSSUFFIX="${PYVERSSUFFIX}"
 
 REPLACE_PYTHON+=	pip/__init__.py pip/_vendor/requests/certs.py
 REPLACE_PYTHON+=	pip/_vendor/requests/packages/chardet/chardetect.py

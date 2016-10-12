@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.67 2016/04/11 19:01:41 ryoon Exp $
+# $NetBSD: Makefile,v 1.70 2016/09/08 15:19:16 joerg Exp $
 
 DISTNAME=		amarok-${VERSION}
 VERSION=		1.4.10
-PKGREVISION=		63
+PKGREVISION=		65
 CATEGORIES=		audio kde
 MASTER_SITES=		${MASTER_SITE_KDE:=amarok/${VERSION}/src/}
 EXTRACT_SUFX=		.tar.bz2
@@ -20,7 +20,7 @@ USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		yes
 SET_LIBDIR=		yes
 USE_LIBTOOL=		yes
-RUBY_VERSION_SUPPORTED=	18
+RUBY_VERSIONS_ACCEPTED=	18
 
 CONFIGURE_ARGS+=	--without-nmm
 CONFIGURE_ARGS+=	--without-mas

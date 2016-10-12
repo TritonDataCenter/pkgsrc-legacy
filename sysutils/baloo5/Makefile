@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/05/26 09:17:14 markd Exp $
+# $NetBSD: Makefile,v 1.3 2016/08/21 21:24:50 markd Exp $
 
 DISTNAME=	baloo-${KF5VER}
 PKGNAME=	baloo5-${KF5VER}

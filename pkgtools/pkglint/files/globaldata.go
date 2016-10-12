@@ -70,7 +70,7 @@ func (gd *GlobalData) loadDistSites() {
 	name2url := make(map[string]string)
 	url2name := make(map[string]string)
 	for _, line := range lines {
-		if m, varname, _, _, urls, _ := MatchVarassign(line.Text); m {
+		if m, varname, _, _, _, urls, _ := MatchVarassign(line.Text); m {
 			if hasPrefix(varname, "MASTER_SITE_") && varname != "MASTER_SITE_BACKUP" {
 				for _, url := range splitOnSpace(urls) {
 					if matches(url, `^(?:http://|https://|ftp://)`) {
@@ -114,7 +114,7 @@ func (gd *GlobalData) loadTools() {
 		fname := G.globalData.Pkgsrcdir + "/mk/tools/bsd.tools.mk"
 		lines := LoadExistingLines(fname, true)
 		for _, line := range lines {
-			if m, _, includefile := match2(line.Text, reMkInclude); m {
+			if m, _, _, includefile := match3(line.Text, reMkInclude); m {
 				if !contains(includefile, "/") {
 					toolFiles = append(toolFiles, includefile)
 				}
@@ -138,23 +138,7 @@ func (gd *GlobalData) loadTools() {
 		fname := G.globalData.Pkgsrcdir + "/mk/tools/" + basename
 		lines := LoadExistingLines(fname, true)
 		for _, line := range lines {
-			if m, varname, _, _, value, _ := MatchVarassign(line.Text); m {
-				if varname == "TOOLS_CREATE" && (value == "[" || matches(value, `^?[-\w.]+$`)) {
-					reg.Register(value)
-
-				} else if m, toolname := match1(varname, `^_TOOLS_VARNAME\.([-\w.]+|\[)$`); m {
-					reg.RegisterVarname(toolname, value)
-
-				} else if m, toolname := match1(varname, `^(?:TOOLS_PATH|_TOOLS_DEPMETHOD)\.([-\w.]+|\[)$`); m {
-					reg.Register(toolname)
-
-				} else if m, toolname := match1(varname, `_TOOLS\.(.*)`); m {
-					reg.Register(toolname)
-					for _, tool := range splitOnSpace(value) {
-						reg.Register(tool)
-					}
-				}
-			}
+			reg.ParseToolLine(line)
 		}
 	}
 
@@ -166,7 +150,7 @@ func (gd *GlobalData) loadTools() {
 		for _, line := range lines {
 			text := line.Text
 
-			if m, varname, _, _, value, _ := MatchVarassign(text); m {
+			if m, varname, _, _, _, value, _ := MatchVarassign(text); m {
 				if varname == "USE_TOOLS" {
 					if G.opts.Debug {
 						traceStep("[condDepth=%d] %s", condDepth, value)
@@ -516,6 +500,9 @@ func (gd *GlobalData) loadDeprecatedVars() {
 
 		// January 2016
 		"SUBST_POSTCMD.*": "Has been removed, as it seemed unused.",
+
+		// June 2016
+		"USE_CROSSBASE": "Has been removed.",
 	}
 }
 
@@ -575,5 +562,25 @@ func (tr *ToolRegistry) Trace() {
 
 	for _, toolname := range keys {
 		traceStep("tool %+v", tr.byName[toolname])
+	}
+}
+
+func (tr *ToolRegistry) ParseToolLine(line *Line) {
+	if m, varname, _, _, _, value, _ := MatchVarassign(line.Text); m {
+		if varname == "TOOLS_CREATE" && (value == "[" || matches(value, `^?[-\w.]+$`)) {
+			tr.Register(value)
+
+		} else if m, toolname := match1(varname, `^_TOOLS_VARNAME\.([-\w.]+|\[)$`); m {
+			tr.RegisterVarname(toolname, value)
+
+		} else if m, toolname := match1(varname, `^(?:TOOLS_PATH|_TOOLS_DEPMETHOD)\.([-\w.]+|\[)$`); m {
+			tr.Register(toolname)
+
+		} else if m, toolname := match1(varname, `_TOOLS\.(.*)`); m {
+			tr.Register(toolname)
+			for _, tool := range splitOnSpace(value) {
+				tr.Register(tool)
+			}
+		}
 	}
 }

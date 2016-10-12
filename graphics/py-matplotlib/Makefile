@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.43 2016/05/29 12:35:00 mef Exp $
+# $NetBSD: Makefile,v 1.45 2016/08/17 13:45:25 richard Exp $
 
-DISTNAME=		matplotlib-1.3.1
+DISTNAME=		matplotlib-1.5.2
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
 PKGREVISION=		1
 CATEGORIES=		graphics python
 MASTER_SITES=		${MASTER_SITE_GITHUB:=matplotlib/}
 GITHUB_PROJECT=		matplotlib
-# with Githubify, size changes little bit, so the following line, please 1delete for another update.
-DIST_SUBDIR=		matplotlib-1.3.1
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://matplotlib.org/
@@ -16,6 +15,7 @@ COMMENT=		Matlab-style plotting package for Python
 
 DEPENDS+=		${PYPKGPREFIX}-pytz>=2008b:../../time/py-pytz
 DEPENDS+=		${PYPKGPREFIX}-pyparsing>=1.5.6:../../devel/py-pyparsing
+DEPENDS+=		${PYPKGPREFIX}-cycler-[0-9]*:../../graphics/py-cycler
 
 PYTHON_VERSIONED_DEPENDENCIES=	dateutil
 
@@ -38,6 +38,16 @@ post-patch:
 	${ECHO} "gtkagg = False"; \
 	${ECHO} "tkagg = False"; \
 	${ECHO} "wxagg = False" ) > ${WRKSRC}/setup.cfg
+
+# It needs:
+# devel/py-nose
+# devel/py-mock
+do-test:
+	${ECHO} "backend      : GTKAgg" > ${WRKSRC}/matplotlibrc
+	${RUN} cd ${WRKSRC} && MPLCONFIGDIR=$PWD \
+	MATPLOTLIBDATA=${WRKSRC}/lib/matplotlib/mpl-data \
+	PYTHONPATH=${DESTDIR}${PREFIX}/${PYSITELIB} \
+	${PYTHONBIN} -c "import matplotlib; matplotlib.test()"
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"

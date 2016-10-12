@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.11 2016/05/15 01:18:57 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.13 2016/08/15 19:15:25 ryoon Exp $
 bin/libreoffice
 bin/lobase
 bin/localc
@@ -294,6 +294,7 @@ ${PKGNAME}/lib/libreoffice/program/msgbox.py
 ${PKGNAME}/lib/libreoffice/program/officehelper.py
 ${PKGNAME}/lib/libreoffice/program/oosplash
 ${PKGNAME}/lib/libreoffice/program/open-url
+${PKGNAME}/lib/libreoffice/program/opencl/cl-test.ods
 ${PKGNAME}/lib/libreoffice/program/opengl/areaHashCRC64TFragmentShader.glsl
 ${PKGNAME}/lib/libreoffice/program/opengl/areaScaleFastFragmentShader.glsl
 ${PKGNAME}/lib/libreoffice/program/opengl/areaScaleFragmentShader.glsl
@@ -303,6 +304,10 @@ ${PKGNAME}/lib/libreoffice/program/opengl/basicFragmentShader.glsl
 ${PKGNAME}/lib/libreoffice/program/opengl/basicVertexShader.glsl
 ${PKGNAME}/lib/libreoffice/program/opengl/blendedTextureFragmentShader.glsl
 ${PKGNAME}/lib/libreoffice/program/opengl/blendedTextureVertexShader.glsl
+${PKGNAME}/lib/libreoffice/program/opengl/combinedFragmentShader.glsl
+${PKGNAME}/lib/libreoffice/program/opengl/combinedTextureFragmentShader.glsl
+${PKGNAME}/lib/libreoffice/program/opengl/combinedTextureVertexShader.glsl
+${PKGNAME}/lib/libreoffice/program/opengl/combinedVertexShader.glsl
 ${PKGNAME}/lib/libreoffice/program/opengl/commonFragmentShader.glsl
 ${PKGNAME}/lib/libreoffice/program/opengl/commonVertexShader.glsl
 ${PKGNAME}/lib/libreoffice/program/opengl/convolutionFragmentShader.glsl

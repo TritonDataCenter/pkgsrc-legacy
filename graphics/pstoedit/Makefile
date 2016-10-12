@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.83 2016/05/16 20:17:10 adam Exp $
+# $NetBSD: Makefile,v 1.86 2016/09/16 14:52:53 jperkin Exp $
 
 DISTNAME=	pstoedit-3.70
+PKGREVISION=	2
 CATEGORIES=	converters graphics print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pstoedit/}
 
@@ -39,6 +40,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/readme.txt ${DESTDIR}${DOCDIR}
 
 .include "../../archivers/libzip/buildlink3.mk"
+.include "../../converters/libiconv/buildlink3.mk"
 .include "../../graphics/gd/buildlink3.mk"
 .include "../../graphics/GraphicsMagick/buildlink3.mk"
 # ImageMagick's v7 API is incompatible

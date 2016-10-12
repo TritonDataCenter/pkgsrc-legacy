@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.20 2016/01/07 17:53:58 bouyer Exp $
+# $NetBSD: Makefile,v 1.23 2016/09/08 15:41:01 bouyer Exp $
 
 VERSION=	4.2.5
 DISTNAME=	xen-${VERSION}
 PKGNAME=	xenkernel42-${VERSION}
-PKGREVISION=	10
+PKGREVISION=	12
 CATEGORIES=	sysutils
 MASTER_SITES=	http://bits.xensource.com/oss-xen/release/${VERSION}/
 
@@ -20,7 +20,7 @@ NO_CONFIGURE=	yes
 USE_TOOLS+=	gmake
 
 PYTHON_FOR_BUILD_ONLY=	YES
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 4.2.3
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 4.2.3
 
 MAKE_ENV+=	OCAML_TOOLS=no
 

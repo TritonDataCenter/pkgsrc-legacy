@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/05/26 09:09:24 markd Exp $
+# $NetBSD: Makefile,v 1.3 2016/08/21 21:23:15 markd Exp $
 
 DISTNAME=	kauth-${KF5VER}
 CATEGORIES=	security

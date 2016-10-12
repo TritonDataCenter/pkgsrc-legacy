@@ -1,11 +1,13 @@
-# $NetBSD: Makefile,v 1.2 2015/03/10 01:10:39 mef Exp $
+# $NetBSD: Makefile,v 1.5 2016/07/15 11:17:04 mef Exp $
 
-DISTNAME=	cwdiff-0.2.7
+VERSION=	0.4.0
+DISTNAME=	cwdiff-${VERSION}
 CATEGORIES=	textproc
-MASTER_SITES=	http://downloads.cj-overlay.googlecode.com/hg/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=junghans/}
+GITHUB_TAG=	v${VERSION}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://code.google.com/p/cj-overlay/
+HOMEPAGE=	https://github.com/junghans/cwdiff
 COMMENT=	Color wrapper for wdiff (word diff)
 LICENSE=	gnu-gpl-v2
 
@@ -19,7 +21,7 @@ AUTO_MKDIRS=	yes
 do-install:
 	(cd ${WRKSRC} ;\
 	${INSTALL_SCRIPT} cwdiff          ${DESTDIR}${PREFIX}/bin ;\
-	${INSTALL_DATA} hgrc.d/cwdiff.rc  ${DESTDIR}${PREFIX}/${INSTALLATION_DIRS} ;\
+	${INSTALL_DATA} cwdiff.rc  ${DESTDIR}${PREFIX}/${INSTALLATION_DIRS} ;\
 	)
 
 .include "../../mk/bsd.pkg.mk"

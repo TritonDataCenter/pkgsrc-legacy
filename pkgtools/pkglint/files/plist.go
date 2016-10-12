@@ -61,8 +61,8 @@ func (ck *PlistChecker) Check(plainLines []*Line) {
 		ck.checkline(pline)
 		pline.CheckTrailingWhitespace()
 	}
-
 	ChecklinesTrailingEmptyLines(plainLines)
+
 	if G.opts.WarnPlistSort {
 		sorter := NewPlistLineSorter(plines)
 		sorter.Sort()
@@ -246,6 +246,10 @@ func (ck *PlistChecker) checkpathLib(pline *PlistLine, dirname, basename string)
 	case G.Pkg != nil && G.Pkg.EffectivePkgbase != "" && hasPrefix(pline.text, "lib/"+G.Pkg.EffectivePkgbase+"/"):
 		return
 
+	case pline.text == "lib/charset.alias" && (G.Pkg == nil || G.Pkg.Pkgpath != "converters/libiconv"):
+		pline.line.Error0("Only the libiconv package may install lib/charset.alias.")
+		return
+
 	case hasPrefix(pline.text, "lib/locale/"):
 		pline.line.Error0("\"lib/locale\" must not be listed. Use ${PKGLOCALEDIR}/locale and set USE_PKGLOCALEDIR instead.")
 		return
@@ -326,7 +330,8 @@ func (ck *PlistChecker) checkpathSbin(pline *PlistLine) {
 func (ck *PlistChecker) checkpathShare(pline *PlistLine) {
 	line, text := pline.line, pline.text
 	switch {
-	case hasPrefix(text, "share/applications/") && hasSuffix(text, ".desktop"):
+	// Disabled due to PR 46570, item "10. It should stop".
+	case false && hasPrefix(text, "share/applications/") && hasSuffix(text, ".desktop"):
 		f := "../../sysutils/desktop-file-utils/desktopdb.mk"
 		if G.opts.WarnExtra && G.Pkg != nil && G.Pkg.included[f] == nil {
 			line.Warn1("Packages that install a .desktop entry should .include %q.", f)
@@ -468,8 +473,8 @@ func NewPlistLineSorter(plines []*PlistLine) *plistLineSorter {
 		} else {
 			s.plines = append(s.plines, pline)
 			s.lines = append(s.lines, pline.line)
+			prev = pline
 		}
-		prev = pline
 	}
 	return s
 }

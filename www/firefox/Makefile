@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.257 2016/06/16 20:06:26 ryoon Exp $
+# $NetBSD: Makefile,v 1.267 2016/09/20 20:01:41 ryoon Exp $
 
 FIREFOX_VER=	${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
-MOZ_BRANCH=	47.0
+MOZ_BRANCH=	49.0
 MOZ_BRANCH_MINOR=	
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
@@ -29,6 +29,7 @@ LDFLAGS.SunOS+=		-lm
 
 NOT_PAX_MPROTECT_SAFE+=	lib/firefox/firefox
 NOT_PAX_MPROTECT_SAFE+=	lib/firefox/firefox-bin
+NOT_PAX_MPROTECT_SAFE+=	lib/firefox/plugin-container
 
 ALL_ENV+=		MOZILLA_PKG_NAME=firefox
 
@@ -48,6 +49,8 @@ CHECK_INTERPRETER_SKIP+=lib/firefox-sdk/sdk/bin/typelib.py
 CHECK_INTERPRETER_SKIP+=lib/firefox-sdk/sdk/bin/xpidl.py
 CHECK_INTERPRETER_SKIP+=lib/firefox-sdk/sdk/bin/xpt.py
 
+CHECK_WRKREF_SKIP+=lib/firefox/chrome/toolkit/content/global/buildconfig.html
+
 MOZILLA=firefox
 MOZILLA_ICON=	${WRKSRC}/${OBJDIR}/dist/firefox/browser/chrome/icons/default/default48.png
 .if !empty(PKG_OPTIONS:Mofficial-mozilla-branding)
@@ -66,6 +69,7 @@ pre-configure:
 	cd ${WRKSRC} && autoconf
 	cd ${WRKSRC}/js/src && autoconf
 	cd ${WRKSRC} && mkdir ${OBJDIR}
+	cd ${WRKSRC}/${OBJDIR} && touch old-configure.vars
 
 post-build:
 	${SED} -e 's|@MOZILLA@|${MOZILLA}|g'				\

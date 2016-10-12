@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.5 2016/04/30 06:25:05 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2016/08/28 15:48:34 wiz Exp $
 
-DISTNAME=	borgbackup-1.0.2
+DISTNAME=	borgbackup-1.0.7
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_PYPI:=b/borgbackup/}
@@ -13,12 +13,10 @@ LICENSE=	modified-bsd
 BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
 DEPENDS+=	${PYPKGPREFIX}-msgpack>=0.4.6:../../devel/py-msgpack
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27 33
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 MAKE_ENV+=	BORG_OPENSSL_PREFIX=${SSLBASE:Q}
 MAKE_ENV+=	BORG_LZ4_PREFIX=${BUILDLINK_PREFIX.lz4}
-PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
-FILES_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && mv borg borg-${PYVERSSUFFIX}

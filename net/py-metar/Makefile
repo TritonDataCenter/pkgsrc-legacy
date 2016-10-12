@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.3 2015/12/05 21:25:54 adam Exp $
+# $NetBSD: Makefile,v 1.6 2016/08/30 03:25:40 maya Exp $
 
-DISTNAME=	pymetar-0.19
+DISTNAME=	pymetar-0.21
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	net python
 MASTER_SITES=	http://www.schwarzvogel.de/pkgs/
@@ -10,16 +10,13 @@ HOMEPAGE=	http://www.schwarzvogel.de/software-pymetar.shtml
 COMMENT=	Downloads weather reports
 LICENSE=	gnu-gpl-v2 # or later
 
-PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX:Q}
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 0.19
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 0.19
 
 SUBST_CLASSES+=		manpath
 SUBST_SED.manpath=	-e 's,share/man,${PKGMANDIR},'
 SUBST_FILES.manpath+=	setup.py
 SUBST_STAGE.manpath=	pre-configure
 SUBST_MESSAGE.manpath=	Fix man page installation path.
-
-CONFLICTS=	${PYPKGPREFIX}-pymetar-[0-9]*
 
 post-extract:
 	${MV} ${WRKSRC}/bin/pymetar ${WRKSRC}/bin/pymetar${PYVERSSUFFIX}

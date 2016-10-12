@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.51 2015/06/12 10:51:47 wiz Exp $
+# $NetBSD: Makefile,v 1.53 2016/07/09 13:10:15 rillig Exp $
 #
 
 DISTNAME=	waimea-0.4.0
-PKGREVISION=	29
+PKGREVISION=	30
 CATEGORIES=	wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=waimea/}
 
@@ -39,9 +39,9 @@ CONFIGURE_ARGS+=	--disable-shape
 .  endif
 .endif
 
-CONFIGURE_ARGS+=       --disable-randr
+CONFIGURE_ARGS+=	--disable-randr
 
-REPLACE_PERL = \
+REPLACE_PERL= \
 	data/scripts/filelist.pl \
 	data/scripts/procinfo.pl \
 	data/scripts/stylesdir.pl.in

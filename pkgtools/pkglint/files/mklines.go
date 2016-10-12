@@ -16,6 +16,7 @@ type MkLines struct {
 	buildDefs      map[string]bool    // Variables that are registered in BUILD_DEFS, to ensure that all user-defined variables are added to it.
 	plistVars      map[string]bool    // Variables that are registered in PLIST_VARS, to ensure that all user-defined variables are added to it.
 	tools          map[string]bool    // Set of tools that are declared to be used.
+	toolRegistry   ToolRegistry       // Tools defined in file scope.
 	SeenBsdPrefsMk bool
 	indentation    Indentation // Indentation depth of preprocessing directives
 }
@@ -42,6 +43,7 @@ func NewMkLines(lines []*Line) *MkLines {
 		make(map[string]bool),
 		make(map[string]bool),
 		tools,
+		NewToolRegistry(),
 		false,
 		Indentation{}}
 }
@@ -202,6 +204,8 @@ func (mklines *MkLines) determineDefinedVariables() {
 				defineVar(mkline, osvar)
 			}
 		}
+
+		mklines.toolRegistry.ParseToolLine(mkline.Line)
 	}
 }
 
@@ -291,7 +295,7 @@ func (va *VaralignBlock) Finish() {
 }
 
 func (va *VaralignBlock) fixalign(mkline *MkLine, prefix, oldalign string) {
-	if mkline.Value() == "" && mkline.Comment() == "" {
+	if mkline.Value() == "" && mkline.VarassignComment() == "" {
 		return
 	}
 
@@ -300,6 +304,11 @@ func (va *VaralignBlock) fixalign(mkline *MkLine, prefix, oldalign string) {
 		va.maxTabWidth != 0 &&
 		va.maxSpaceWidth > va.maxTabWidth &&
 		tabLength(prefix+oldalign) == va.maxSpaceWidth {
+		return
+	}
+
+	// Don’t warn about procedure parameters
+	if mkline.Op() == opAssignEval && matches(mkline.Varname(), `^[a-z]`) {
 		return
 	}
 

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.19 2016/06/17 11:56:24 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2016/08/20 13:40:30 bsiegert Exp $
 
-DISTNAME=	gnupg-2.1.13
+DISTNAME=	gnupg-2.1.14
 PKGNAME=	${DISTNAME:S/gnupg-/gnupg21-/}
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnupg.org/gcrypt/gnupg/
@@ -23,6 +23,8 @@ INFO_FILES=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-g13
 
+TEST_TARGET=		check
+
 # SunOS does have getaddrinfo() and the code knows how to use it
 CONFIGURE_ARGS.SunOS+=	ac_cv_func_getaddrinfo=yes
 
@@ -30,10 +32,14 @@ LDFLAGS.Darwin+=	-lresolv
 
 .include "options.mk"
 
-BUILDLINK_API_DEPENDS.libgpg-error+=	libgpg-error>=1.21
+BUILDLINK_API_DEPENDS.libgcrypt+=	libgcrypt>=1.7
+.include "../../security/libgcrypt/buildlink3.mk"
+.include "../../databases/sqlite3/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libgpg-error+=	libgpg-error>=1.24
 .include "../../security/libgpg-error/buildlink3.mk"
-BUILDLINK_API_DEPENDS.libassuan+=	libassuan>=2.4.1
+BUILDLINK_API_DEPENDS.libassuan+=	libassuan>=2.4.3
 .include "../../security/libassuan2/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libksba+=		libksba>=1.3.4
 .include "../../security/libksba/buildlink3.mk"
 BUILDLINK_API_DEPENDS.npth+=		npth>=0.91
 .include "../../devel/npth/buildlink3.mk"

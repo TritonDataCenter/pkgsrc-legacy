@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.30 2016/03/05 11:28:37 jperkin Exp $
+# $NetBSD: Makefile,v 1.32 2016/09/17 21:43:51 wiedi Exp $
 #
 
 DISTNAME=	gimmage-0.2.3
-PKGREVISION=	26
+PKGREVISION=	27
 CATEGORIES=	graphics
 MASTER_SITES=	http://download.berlios.de/gimmage/
 
@@ -23,6 +23,7 @@ post-install:
 
 .include "../../graphics/cairomm/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../sysutils/file/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../x11/gtkmm/buildlink3.mk"
 

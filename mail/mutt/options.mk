@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.21 2016/06/01 21:56:12 tonio Exp $
+# $NetBSD: options.mk,v 1.24 2016/09/28 08:04:05 wiz Exp $
 
 # Global and legacy options
 
@@ -8,12 +8,9 @@ PKG_OPTIONS_GROUP.display=	slang ncurses ncursesw curses
 PKG_SUPPORTED_OPTIONS=	debug gpgme idn ssl smime sasl
 PKG_SUPPORTED_OPTIONS+=	mutt-hcache tokyocabinet mutt-smtp
 PKG_SUPPORTED_OPTIONS+=	mutt-compressed-mbox
-PKG_SUPPORTED_OPTIONS+=	mutt-sidebar
 PKG_SUGGESTED_OPTIONS=	curses gpgme mutt-hcache mutt-smtp smime ssl
-PKG_SUGGESTED_OPTIONS+=	mutt-compressed-mbox
-# un-comment out the following lines whenever updating distinfo
-# and patches are up-to-date
-#PKG_SUGGESTED_OPTIONS+=	mutt-sidebar
+# patch does not apply
+#PKG_SUGGESTED_OPTIONS+=	mutt-compressed-mbox
 
 .include "../../mk/bsd.options.mk"
 
@@ -21,8 +18,8 @@ PKG_SUGGESTED_OPTIONS+=	mutt-compressed-mbox
 ### Slang
 ###
 .if !empty(PKG_OPTIONS:Mslang)
-.  include "../../devel/libslang/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-slang=${BUILDLINK_PREFIX.libslang}
+.  include "../../devel/libslang2/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-slang=${BUILDLINK_PREFIX.libslang2}
 .endif
 
 ###
@@ -120,7 +117,8 @@ CONFIGURE_ARGS+=	--disable-hcache
 ### Compressed mail boxes
 ###
 PLIST_VARS+=		compressed_mbox
-.if !empty(PKG_OPTIONS:Mmutt-compressed-mbox)
+.if !empty(PKG_OPTIONS:Mmutt-compressed-mbox)	\
+	|| make(distinfo) || make(mps) || make(makepatchsum)
 PLIST.compressed_mbox=	yes
 #PATCH_SITES+=		http://mutt.org.ua/download/${PKGNAME_NOREV}/
 #PATCHFILES+=		patch-${PKGVERSION_NOREV}.rr.compressed.gz
@@ -148,17 +146,6 @@ BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 CONFIGURE_ARGS+=	--enable-smtp
 .else
 CONFIGURE_ARGS+=	--disable-smtp
-.endif
-
-###
-### Sidebar support
-###
-.if !empty(PKG_OPTIONS:Mmutt-sidebar)
-# http://www.lunar-linux.org/mutt-sidebar/
-PATCH_SITES+=		http://lunar-linux.org/~tchan/mutt/
-PATCHFILES+=		patch-1.5.23.sidebar.20140412.txt
-PATCH_DIST_STRIP=	-p1
-PATCH_FUZZ_FACTOR=	-F1
 .endif
 
 ###

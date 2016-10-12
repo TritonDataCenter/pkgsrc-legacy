@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2016/03/09 21:51:45 fhajny Exp $
+# $NetBSD: Makefile,v 1.13 2016/09/15 06:05:08 jnemeth Exp $
 
 PKGNAME=		${DISTNAME:S/-gpl//}
 COMMENT=		MySQL Cluster 7.4, a free SQL clustered database

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile.common,v 1.122 2016/06/19 20:21:40 wiz Exp $
+# $NetBSD: Makefile.common,v 1.130 2016/09/12 07:30:58 wiz Exp $
 #
 # used by graphics/p5-PerlMagick/Makefile
 
-IM_MAJOR_VER=		7.0.2
+IM_MAJOR_VER=		7.0.3
 IM_MINOR_VER=		0
 IM_MAJOR_LIB_VER=	7
 
@@ -15,6 +15,11 @@ DISTSUFFIX=	${IM_MAJOR_VER}
 DISTNAME=	ImageMagick-${DISTSUFFIX}
 DISTVERSION=	${DISTSUFFIX:S/-/./}
 
+#
+# Please always run `upload-distfiles' after every update!
+# (upstream usually get rid of old version and only the latest stable versions
+# are available in the mirrors)
+#
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
 		ftp://ftp.nluug.nl/pub/ImageMagick/ \

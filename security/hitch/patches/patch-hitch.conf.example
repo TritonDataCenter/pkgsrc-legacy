@@ -1,0 +1,48 @@
+$NetBSD: patch-hitch.conf.example,v 1.1 2016/08/22 09:34:40 fhajny Exp $
+
+Sane default options.
+
+--- hitch.conf.example.orig	2016-08-15 13:51:51.000000000 +0000
++++ hitch.conf.example
+@@ -43,7 +43,7 @@ backend = "[127.0.0.1]:6081"
+ # only available for a specific listen endpoint.
+ #
+ # type: string
+-pem-file = ""
++pem-file = "@HITCH_CERTS@"
+ 
+ # OCSP settings
+ #
+@@ -120,12 +120,12 @@ chroot = ""
+ # Set uid after binding a socket
+ #
+ # type: string
+-user = ""
++user = "@HITCH_USER@"
+ 
+ # Set gid after binding a socket
+ #
+ # type: string
+-group = ""
++group = "@HITCH_GROUP@"
+ 
+ # Quiet execution, report only error messages
+ #
+@@ -135,7 +135,7 @@ quiet = off
+ # Use syslog for logging
+ #
+ # type: boolean
+-syslog = off
++syslog = on
+ 
+ # Syslog facility to use
+ #
+@@ -145,7 +145,7 @@ syslog-facility = "daemon"
+ # Run as daemon
+ #
+ # type: boolean
+-daemon = off
++daemon = on
+ 
+ # Report client address by writing IP before sending data
+ #

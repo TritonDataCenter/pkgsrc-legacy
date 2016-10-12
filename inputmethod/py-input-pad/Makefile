@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.37 2016/03/12 11:28:36 ryoon Exp $
+# $NetBSD: Makefile,v 1.39 2016/08/03 10:23:01 adam Exp $
 
 .include "../../inputmethod/input-pad/Makefile.common"
 
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	3
+PKGREVISION=	4
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Python wrapper for Input Pad
@@ -27,7 +27,7 @@ post-configure:
 	${LN} -s ${BUILDLINK_DIR}/lib/libinput-pad.la ${WRKSRC}/input-pad
 
 PY_PATCHPLIST=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
 
 BUILDLINK_API_DEPENDS.input-pad+=	input-pad>=${PKGVERSION_NOREV}
 .include "../../inputmethod/input-pad/buildlink3.mk"

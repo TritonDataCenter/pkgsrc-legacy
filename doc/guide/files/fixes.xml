@@ -1,4 +1,4 @@
-<!-- $NetBSD: fixes.xml,v 1.136 2016/06/11 13:12:38 rillig Exp $ -->
+<!-- $NetBSD: fixes.xml,v 1.144 2016/07/16 14:28:49 jakllsch Exp $ -->
 
 <chapter id="fixes"> <?dbhtml filename="fixes.html"?>
 <title>Making your package work</title>
@@ -76,9 +76,9 @@
     variable to define which stages need interaction. This should be
     done in the package's <filename>Makefile</filename>, e.g.:</para>
 
-    <programlisting>
+<programlisting>
 INTERACTIVE_STAGE=      configure install
-    </programlisting>
+</programlisting>
 
     <para>The user can then decide to skip this package by setting the
     <varname>BATCH</varname> variable. Packages that require interaction
@@ -88,81 +88,33 @@ INTERACTIVE_STAGE=      configure install
   <sect2 id="handling-licenses">
     <title>Handling licenses</title>
 
-    <para>Authors of software can choose the licence under which
-    software can be copied.  This is due to copyright law, and reasons
-    for license choices are outside the scope of pkgsrc.  The pkgsrc
-    system recognizes that there are a number of licenses which some
-    users may find objectionable or difficult or impossible to comply
-    with.  The Free Software Foundation has declared some licenses
-    "Free", and the Open Source Initiative has a definition of "Open
-    Source".  The pkgsrc system, as a policy choice, does not label
-    packages which have licenses that are Free or Open Source.
-    However, packages without a license meeting either of those tests
-    are labeled with a license tag denoting the license.  Note that a
-    package with no license to copy trivially does not meet either the
-    Free or Open Source test.</para>
+    <para>Authors of software can choose the licence under which software
+    can be copied.  The Free Software Foundation has declared some
+    licenses "Free", and the Open Source Initiative has a definition of
+    "Open Source".</para>
 
-    <para>For packages which are not Free or Open Source, pkgsrc will
-    not build the package unless the user has indicated to pkgsrc that
-    packages with that particular license may be built.  Note that
-    this documentation avoids the term "accepted the license".  The
-    pkgsrc system is merely providing a mechanism to avoid
-    accidentally building a package with a non-free license;
-    judgement and responsibility remain with the user.  (Installation
-    of binary packages are not currently subject to this mechanism;
-    this is a bug.)</para>
+    <para>By default, pkgsrc allows packages with Free or Open Source
+    licenses to be built.  To allow packages with other licenses to be
+    built as well, the pkgsrc user needs to add these licenses to the
+    <varname>ACCEPTABLE_LICENSES</varname> variable in &mk.conf;.  Note
+    that this variable only affects which packages may be
+    <emphasis>built</emphasis>, while the license terms often also
+    restrict the actual use of the package and its redistribution.</para>
 
     <para>One might want to only install packages with a BSD license,
     or the GPL, and not the other.  The free licenses are added to the
-    default <varname>ACCEPTABLE_LICENSES</varname> variable.  The
+    default <varname>ACCEPTABLE_LICENSES</varname> variable.  The pkgsrc
     user can override the default by setting the
     <varname>ACCEPTABLE_LICENSES</varname> variable with "=" instead
-    of "+=".  The licenses accepted by default are:
-    <programlisting>
-	apache-1.1 apache-2.0
-	arphic-public
-	artistic artistic-2.0
-	boost-license
-	cc-by-sa-v3.0
-	cc0-1.0-universal
-	cddl-1.0
-	cpl-1.0
-	epl-v1.0
-	gnu-fdl-v1.1 gnu-fdl-v1.2 gnu-fdl-v1.3
-	gnu-gpl-v1
-	gnu-gpl-v2 gnu-lgpl-v2 gnu-lgpl-v2.1
-	gnu-gpl-v3 gnu-lgpl-v3
-	ibm-public-license-1.0
-	ipafont
-	isc
-	lppl-1.3c
-	lucent
-	miros
-	mit
-	mpl-1.0 mpl-1.1 mpl-2.0
-	mplusfont
-	ofl-v1.0 ofl-v1.1
-	original-bsd modified-bsd 2-clause-bsd
-	php
-	png-license
-	postgresql-license
-	public-domain
-	python-software-foundation
-	qpl-v1.0
-	sgi-free-software-b-v2.0
-	sleepycat-public
-	unlicense
-	x11
-	zlib
-	zpl
-    </programlisting>
-    </para>
+    of "+=".  The licenses accepted by default are defined in the
+    <varname>DEFAULT_ACCEPTABLE_LICENSES</varname> variable in the file
+    <filename>pkgsrc/mk/license.mk</filename>.</para>
 
     <para>The license tag mechanism is intended to address
     copyright-related issues surrounding building, installing and
     using a package, and not to address redistribution issues (see
     <varname>RESTRICTED</varname> and
-    <varname>NO_SRC_ON_FTP</varname>, etc.).  
+    <varname>NO_SRC_ON_FTP</varname>, etc.).
     Packages with redistribution restrictions should set these
     tags.</para>
 
@@ -173,22 +125,22 @@ INTERACTIVE_STAGE=      configure install
     license, e.g. in <filename
     role="pkg">graphics/xv</filename>:</para>
 
-    <programlisting>
+<programlisting>
 LICENSE=        xv-license
-    </programlisting>
+</programlisting>
 
     <para>When trying to build, the user will get a notice that the
     package is covered by a license which has not been placed in the
     <varname>ACCEPTABLE_LICENSES</varname> variable:</para>
 
-    <programlisting>
+<programlisting>
 &cprompt; <userinput>make</userinput>
 ===> xv-3.10anb9 has an unacceptable license: xv-license.
 ===>     To view the license, enter "/usr/bin/make show-license".
 ===>     To indicate acceptance, add this line to your /etc/mk.conf:
 ===>     ACCEPTABLE_LICENSES+=xv-license
 *** Error code 1
-    </programlisting>
+</programlisting>
 
     <para>The license can be viewed with <command>make
     show-license</command>, and if the user so chooses, the line
@@ -196,31 +148,9 @@ LICENSE=        xv-license
     convey to pkgsrc that it should not in the future fail because of
     that license:</para>
 
-    <programlisting>
+<programlisting>
 ACCEPTABLE_LICENSES+=xv-license
-    </programlisting>
-
-    <para>When adding a package with a new license, the following steps
-    are required:</para>
-    <orderedlist>
-    <listitem><para>Check if the file can avoid the -license filename tag as described above by referencing <ulink url="http://www.gnu.org/licenses/license-list.html">Various Licenses and Comments about Them</ulink> and <ulink url="http://opensource.org/licenses/alphabetical">Licenses by Name | Open Source Initiative</ulink>.  If this is the case, additionally add the license filename to:</para>
-    <itemizedlist>
-    <listitem><para>DEFAULT_ACCEPTABLE_LICENSES in <filename>pkgsrc/mk/license.mk</filename></para></listitem>
-    <listitem><para>default_acceptable_licenses in <filename>pkgsrc/pkgtools/pkg_install/files/lib/license.c</filename></para></listitem>
-    <listitem><para>the ACCEPTABLE_LICENSES list in <filename>pkgsrc/doc/guide/files/fixes.xml</filename></para></listitem>
-    </itemizedlist>
-    <para>with the proper syntax as demonstrated in those files, respectively.</para></listitem>
-    <listitem><para>The license text should be added to <filename>pkgsrc/licenses</filename> for displaying.  A list of known licenses can be seen in this directory.</para></listitem>
-    </orderedlist>
-    <para>When the license changes (in a way other than formatting),
-    please make sure that the new license has a different name (e.g.,
-    append the version number if it exists, or the date).  Just
-    because a user told pkgsrc to build programs under a previous
-    version of a license does not mean that pkgsrc should build
-    programs under the new licenses.  The higher-level point is that
-    pkgsrc does not evaluate licenses for reasonableness; the only
-    test is a mechanistic test of whether a particular text has been
-    approved by either of two bodies.</para>
+</programlisting>
 
     <para>The use of <varname>LICENSE=shareware</varname>,
     <varname>LICENSE=no-commercial-use</varname>, and similar language
@@ -228,28 +158,70 @@ ACCEPTABLE_LICENSES+=xv-license
     license text.  Another problem with such usage is that it does not
     enable a user to tell pkgsrc to proceed for a single package
     without also telling pkgsrc to proceed for all packages with that
-    tag.</para> </sect2>
+    tag.</para>
+
+  <sect3 id="new-license">
+  <title>Adding a package with a new license</title>
+
+    <para>When adding a package with a new license, the following steps
+    are required:</para>
+    <orderedlist>
+
+    <listitem><para>Check whether the license qualifies as Free or Open
+    Source by referencing <ulink
+    url="http://www.gnu.org/licenses/license-list.en.html">Various Licenses
+    and Comments about Them</ulink> and <ulink
+    url="http://opensource.org/licenses/alphabetical">Licenses by Name |
+    Open Source Initiative</ulink>.  If this is the case, the filename in
+    <filename>pkgsrc/licenses/</filename> does not need the
+    <filename>-license</filename> suffix, and the license name should be
+    added to:</para>
+
+    <itemizedlist>
+    <listitem><para>DEFAULT_ACCEPTABLE_LICENSES in <filename>pkgsrc/mk/license.mk</filename></para></listitem>
+    <listitem><para>default_acceptable_licenses in <filename>pkgsrc/pkgtools/pkg_install/files/lib/license.c</filename></para></listitem>
+    </itemizedlist>
+    </listitem>
+    <listitem><para>The license text should be added to <filename>pkgsrc/licenses</filename> for displaying.  A list of known licenses can be seen in this directory.</para></listitem>
+    </orderedlist>
+  </sect3>
+
+  <sect3 id="change-license">
+  <title>Change to the license</title>
+
+    <para>When the license changes (in a way other than formatting),
+    make sure that the new license has a different name (e.g.,
+    append the version number if it exists, or the date).  Just
+    because a user told pkgsrc to build programs under a previous
+    version of a license does not mean that pkgsrc should build
+    programs under the new licenses.  The higher-level point is that
+    pkgsrc does not evaluate licenses for reasonableness; the only
+    test is a mechanistic test of whether a particular text has been
+    approved by either of two bodies (FSF or OSI).</para>
+  </sect3>
+  </sect2>
 
   <sect2 id="restricted-packages">
     <title>Restricted packages</title>
 
     <para>Some licenses restrict how software may be re-distributed.
-    Because a license tag is required unless the package is Free or
-    Open Source, all packages with restrictions should have license
-    tags.  By declaring the restrictions, package tools can
+    By declaring the restrictions, package tools can
     automatically refrain from e.g. placing binary packages on FTP
     sites.</para>
 
-    <para>There are four restrictions that may be encoded, which are
+    <para>There are four possible restrictions, which are
     the cross product of sources (distfiles) and binaries not being
     placed on FTP sites and CD-ROMs.  Because this is rarely the exact
     language in any license, and because non-Free licenses tend to be
     different from each other, pkgsrc adopts a definition of FTP and
-    CD-ROM.  Pkgsrc uses "FTP" to mean that the source or binary file
-    should not be made available over the Internet at no charge.
-    Pkgsrc uses "CD-ROM" to mean that the source or binary may not be
-    made available on some kind of media, together with other source
-    and binary packages, and which is sold for a distribution charge.
+    CD-ROM.
+
+    "FTP" means making the source or binary file available over the
+    Internet at no charge.
+
+    "CD-ROM" means making the source or binary available on some kind of
+    media, together with other source and binary packages, which is sold
+    for a distribution charge.
     </para>
 
     <para>In order to encode these restrictions, the package system
@@ -305,11 +277,11 @@ ACCEPTABLE_LICENSES+=xv-license
       </listitem>
     </itemizedlist>
 
-    <para>Please note that packages will to be removed from pkgsrc
-    when the distfiles are not distributable and cannot be obtained
-    for a period of one full quarter branch. Packages with manual /
-    interactive fetch must have a maintainer and it is his/her
-    responsibility to ensure this.</para>
+    <para>Please note that packages will be removed from pkgsrc when the
+    distfiles are not distributable and cannot be obtained for a period
+    of one full quarter branch. Packages with manual/interactive fetch
+    must have a maintainer and it is his/her responsibility to ensure
+    this.</para>
   </sect2>
 
 
@@ -339,9 +311,9 @@ ACCEPTABLE_LICENSES+=xv-license
     <para>The format for a <varname>BUILD_DEPENDS</varname> and a
     <varname>DEPENDS</varname> definition is:</para>
 
-    <programlisting>
+<programlisting>
 &lt;pre-req-package-name&gt;:../../&lt;category&gt;/&lt;pre-req-package&gt;
-    </programlisting>
+</programlisting>
 
     <para>Please note that the <quote>pre-req-package-name</quote>
     may include any of the wildcard version numbers recognized by
@@ -353,9 +325,9 @@ ACCEPTABLE_LICENSES+=xv-license
 	libraries to build and run, and if that package has a
 	<filename>buildlink3.mk</filename> file available, use it:</para>
 
-	<programlisting>
+<programlisting>
 .include "../../graphics/jpeg/buildlink3.mk"
-	</programlisting>
+</programlisting>
       </listitem>
 
       <listitem>
@@ -363,9 +335,9 @@ ACCEPTABLE_LICENSES+=xv-license
 	libraries only for building, and if that package has a
 	<filename>buildlink3.mk</filename> file available, use it:</para>
 
-	<programlisting>
+<programlisting>
 .include "../../graphics/jpeg/buildlink3.mk"
-	</programlisting>
+</programlisting>
 	<para>but set
 	<varname>BUILDLINK_DEPMETHOD.<replaceable>jpeg</replaceable>?=build</varname>
 	to make it a build dependency only. This case is rather
@@ -376,9 +348,9 @@ ACCEPTABLE_LICENSES+=xv-license
 	<para>If your package needs binaries from another package to build,
 	use the <varname>BUILD_DEPENDS</varname> definition:</para>
 
-	<programlisting>
+<programlisting>
 BUILD_DEPENDS+= scons-[0-9]*:../../devel/scons
-	</programlisting>
+</programlisting>
       </listitem>
 
       <listitem>
@@ -398,9 +370,9 @@ BUILD_DEPENDS+= scons-[0-9]*:../../devel/scons
 	be able to execute the latex binary from the teTeX package
 	when it runs, and that is specified:</para>
 
-	<programlisting>
+<programlisting>
 DEPENDS+=        teTeX-[0-9]*:../../print/teTeX
-	</programlisting>
+</programlisting>
       </listitem>
       <listitem>
 	<para>You can use wildcards in package dependencies. Note that
@@ -418,9 +390,9 @@ DEPENDS+=        teTeX-[0-9]*:../../print/teTeX
 	will only build against a certain minimum version of a
 	pre-requisite:</para>
 
-	<programlisting>
+<programlisting>
 DEPENDS+=       ImageMagick>=6.0:../../graphics/ImageMagick
-	</programlisting>
+</programlisting>
 
 	<para>This means that the package will build using version 6.0
 	of ImageMagick or newer. Such a dependency may be warranted
@@ -470,15 +442,15 @@ DEPENDS+=       ImageMagick>=6.0:../../graphics/ImageMagick
     use the same config file, you would set in
     <filename>foo/bar/Makefile</filename>:</para>
 
-    <programlisting>
+<programlisting>
 CONFLICTS=      baz-[0-9]*
-    </programlisting>
+</programlisting>
 
     <para>and in <filename>pkgsrc/foo/baz/Makefile</filename>:</para>
 
-    <programlisting>
+<programlisting>
 CONFLICTS=      bar-[0-9]*
-    </programlisting>
+</programlisting>
 
   </sect2>
 
@@ -497,7 +469,7 @@ CONFLICTS=      bar-[0-9]*
     (OS-version-platform) that can use glob-style
     wildcards.</para>
     <para>If a package is not appropriate for some platforms (as
-    oopposed to merely broken), a different set of variables should be
+    opposed to merely broken), a different set of variables should be
     used as this affects failure reporting and statistics.
     If the package is appropriate for most platforms, the exceptions
     should be noted with <varname>NOT_FOR_PLATFORM</varname>.  If
@@ -571,10 +543,10 @@ CONFLICTS=      bar-[0-9]*
     (2, ...). The <quote>nb</quote> is treated like a
     <quote>.</quote> by the package tools. e.g.</para>
 
-    <programlisting>
+<programlisting>
 DISTNAME=       foo-17.42
 PKGREVISION=    9
-    </programlisting>
+</programlisting>
 
     <para>will result in a <varname>PKGNAME</varname> of
     <quote>foo-17.42nb9</quote>. If you want to use the original
@@ -586,9 +558,9 @@ PKGREVISION=    9
     <varname>PKGREVISION</varname> should be removed, e.g. on a new
     minor release of the above package, things should be like:</para>
 
-    <programlisting>
+<programlisting>
 DISTNAME=       foo-17.43
-    </programlisting>
+</programlisting>
 
     <para><varname>PKGREVISION</varname> should be incremented for any
     non-trivial change in the resulting binary package.  Without a
@@ -633,7 +605,7 @@ DISTNAME=       foo-17.43
     easy-to-use interface for replacing text in files.
     Example:</para>
 
-    <programlisting>
+<programlisting>
 SUBST_CLASSES+=                 fix-paths
 SUBST_STAGE.fix-paths=          pre-configure
 SUBST_MESSAGE.fix-paths=        Fixing absolute paths.
@@ -641,7 +613,7 @@ SUBST_FILES.fix-paths=          src/*.c
 SUBST_FILES.fix-paths+=         scripts/*.sh
 SUBST_SED.fix-paths=            -e 's,"/usr/local,"${PREFIX},g'
 SUBST_SED.fix-paths+=           -e 's,"/var/log,"${VARBASE}/log,g'
-    </programlisting>
+</programlisting>
 
     <para><varname>SUBST_CLASSES</varname> is a list of identifiers
     that are used to identify the different SUBST blocks that are
@@ -713,11 +685,11 @@ SUBST_SED.fix-paths+=           -e 's,"/var/log,"${VARBASE}/log,g'
     <varname>FETCH_MESSAGE</varname> to a list of lines that are
     displayed to the user before aborting the build. Example:</para>
 
-    <programlisting>
+<programlisting>
 FETCH_MESSAGE=  "Please download the files"
 FETCH_MESSAGE+= "    "${DISTFILES:Q}
 FETCH_MESSAGE+= "manually from "${MASTER_SITES:Q}"."
-    </programlisting>
+</programlisting>
 
   </sect2>
 
@@ -735,17 +707,18 @@ FETCH_MESSAGE+= "manually from "${MASTER_SITES:Q}"."
     no trojan horse or so crept in.
     Please mention that the distfiles were compared and what was found
     in your commit message.</para>
-    <para>Then, the correct way to work around this is to
-    set <varname>DIST_SUBDIR</varname> to a unique directory name,
-    usually based on <varname>PKGNAME_NOREV</varname>. All
-    <varname>DISTFILES</varname> and
+    <para>Then, the correct way to work around this is to set
+    <varname>DIST_SUBDIR</varname> to a unique directory name, usually
+    based on <varname>PKGNAME_NOREV</varname> (but take care with
+    python or ruby packages, where <varname>PKGNAME</varname> includes
+    a variable prefix). All <varname>DISTFILES</varname> and
     <varname>PATCHFILES</varname> for this package will be put in that
-    subdirectory of the local distfiles directory.
-    (See <xref linkend="bumping-pkgrevision"/> for more details.)
-    In case this
+    subdirectory of the local distfiles directory. (See <xref
+    linkend="bumping-pkgrevision"/> for more details.) In case this
     happens more often, <varname>PKGNAME</varname> can be used (thus
-    including the <filename>nbX</filename> suffix) or a date stamp
-    can be appended, like <varname>${PKGNAME_NOREV}-YYYYMMDD</varname>.</para>
+    including the <filename>nbX</filename> suffix) or a date stamp can
+    be appended, like
+    <varname>${PKGNAME_NOREV}-YYYYMMDD</varname>.</para>
     <para><varname>DIST_SUBDIR</varname> is also used when a distfile's name does not contain a version and the distfile is apt to change. In cases where the likelihood of this is very small, <varname>DIST_SUBDIR</varname> might not be required. Additionally, <varname>DIST_SUBDIR</varname> must not be removed unless the distfile name changes, even if a package is being moved or renamed.</para>
     <para>Do not forget regenerating the <filename>distinfo</filename> file
     after that, since it contains the <varname>DIST_SUBDIR</varname>
@@ -764,7 +737,7 @@ FETCH_MESSAGE+= "manually from "${MASTER_SITES:Q}"."
       <para>
         If your distfile URL looks similar to <literal>http://github.com/username/exampleproject/archive/v1.0.zip</literal>, then you are packaging a tagged release.
       </para>
-      <programlisting>
+<programlisting>
 DISTNAME=       exampleproject-1.0
 MASTER_SITES=   ${MASTER_SITE_GITHUB:=username/}
 #GITHUB_PROJECT=        # can be omitted if same as DISTNAME
@@ -777,26 +750,26 @@ EXTRACT_SUFX=   .zip
       <para>
         If your distfile URL looks similar to <literal>http://github.com/example/example/archive/988881adc9fc3655077dc2d4d757d480b5ea0e11.tar.gz</literal>, then you are packaging a specific commit not tied to a release.
       </para>
-      <programlisting>
+<programlisting>
 DISTNAME=       example-1.0
 MASTER_SITES=   ${MASTER_SITE_GITHUB:=example/}
 #GITHUB_PROJECT=        # can be omitted if same as DISTNAME
 GITHUB_TAG=     988881adc9fc3655077dc2d4d757d480b5ea0e11
-      </programlisting>
+</programlisting>
     </sect3>
     <sect3 id="build.fetch.github.release">
       <title>Fetch based on release</title>
       <para>
         If your distfile URL looks similar to <literal>http://github.com/username/exampleproject/releases/download/rel-1.6/offensive-1.6.zip</literal>, then you are packaging a release.
       </para>
-      <programlisting>
+<programlisting>
 DISTNAME=       offensive-1.6
 PKGNAME=        ${DISTNAME:S/offensive/proper/}
 MASTER_SITES=   ${MASTER_SITE_GITHUB:=username/}
 GITHUB_PROJECT= exampleproject
 GITHUB_RELEASE= rel-${PKGVERSION_NOREV} # usually just set this to ${DISTNAME}
 EXTRACT_SUFX=   .zip
-      </programlisting>
+</programlisting>
     </sect3>
   </sect2>
 </sect1>
@@ -843,13 +816,13 @@ EXTRACT_SUFX=   .zip
 	<quote>ar</quote>, <quote>ranlib</quote>, and <quote>ld
 	-Bshareable</quote> commands, and instead use:</para>
 
-	<programlisting>
+<programlisting>
 ${LIBTOOL} --mode=link \
     ${CC} -o ${.TARGET:.a=.la} \
         ${OBJS:.o=.lo} \
         -rpath ${PREFIX}/lib \
         -version-info major:minor
-	</programlisting>
+</programlisting>
 
 	<para>Note that the library is changed to have a
 	<filename>.la</filename> extension, and the objects are
@@ -865,7 +838,7 @@ ${LIBTOOL} --mode=link \
 
 	<para>From the libtool manual:</para>
 
-	<programlisting>
+<programlisting>
 So, libtool library versions are described by three integers:
 
 CURRENT
@@ -882,7 +855,7 @@ AGE' to `CURRENT'.
 
 If two libraries have identical CURRENT and AGE numbers, then the
 dynamic linker chooses the library with the greater REVISION number.
-	</programlisting>
+</programlisting>
 
 	<para>The <quote>-release</quote> option will produce
 	different results for a.out and ELF (excluding symlinks)
@@ -923,15 +896,15 @@ dynamic linker chooses the library with the greater REVISION number.
 	expects you to change that argument to be the
 	<filename>.la</filename> file. e.g.</para>
 
-	<programlisting>
+<programlisting>
 ${LIBTOOL} --mode=link ${CC} -o someprog -L../somelib -lsomelib
-	</programlisting>
+</programlisting>
 
 	<para>should be changed to:</para>
 
-	<programlisting>
+<programlisting>
 ${LIBTOOL} --mode=link ${CC} -o <replaceable>someprog</replaceable> <replaceable>../somelib/somelib.la</replaceable>
-	</programlisting>
+</programlisting>
 
 	<para>and it will do the right thing with the libraries.</para>
       </listitem>
@@ -942,9 +915,9 @@ ${LIBTOOL} --mode=link ${CC} -o <replaceable>someprog</replaceable> <replaceable
 	--mode=install</quote>, and change the library name to
 	<filename>.la</filename>. e.g.</para>
 
-	<programlisting>
+<programlisting>
 ${LIBTOOL} --mode=install ${BSD_INSTALL_LIB} ${SOMELIB:.a=.la} ${PREFIX}/lib
-	</programlisting>
+</programlisting>
 
 	<para>This will install the static <filename>.a</filename>,
 	shared library, any needed symlinks, and run
@@ -1027,7 +1000,7 @@ ${LIBTOOL} --mode=install ${BSD_INSTALL_LIB} ${SOMELIB:.a=.la} ${PREFIX}/lib
 
     <para>For packages that need only autoconf:</para>
 
-    <programlisting>
+<programlisting>
 AUTOCONF_REQD=  2.50            # if default version is not good enough
 USE_TOOLS+=     autoconf        # use "autoconf213" for autoconf-2.13
 ...
@@ -1036,11 +1009,11 @@ pre-configure:
         cd ${WRKSRC} &amp;&amp; autoconf
 
 ...
-    </programlisting>
+</programlisting>
 
     <para>and for packages that need automake and autoconf:</para>
 
-    <programlisting>
+<programlisting>
 AUTOMAKE_REQD=  1.7.1           # if default version is not good enough
 USE_TOOLS+=     automake        # use "automake14" for automake-1.4
 ...
@@ -1050,7 +1023,7 @@ pre-configure:
         aclocal; autoheader; automake -a --foreign -i; autoconf
 
 ...
-    </programlisting>
+</programlisting>
 
     <para>Packages which use GNU Automake will almost certainly
     require GNU Make.</para>
@@ -1364,10 +1337,10 @@ of functions.</para>
     directory at a time. As such, you should call
     <literal>${INSTALL_*_DIR}</literal> like this:</para>
 
-    <programlisting>
+<programlisting>
 ${INSTALL_DATA_DIR} ${PREFIX}/dir1
 ${INSTALL_DATA_DIR} ${PREFIX}/dir2
-    </programlisting>
+</programlisting>
 
     <para>You can also just append <quote><literal>dir1
     dir2</literal></quote> to the
@@ -1435,15 +1408,15 @@ ${INSTALL_DATA_DIR} ${PREFIX}/dir2
     and <varname>SPECIAL_PERMS</varname> is used to install setgid the game
     binary:</para>
 
-    <programlisting>
-USE_GAMESGROUP=		yes
+<programlisting>
+USE_GAMESGROUP=         yes
 
-BUILD_DEFS+=		VARBASE
+BUILD_DEFS+=            VARBASE
 
-OWN_DIRS_PERMS+=	${VARBASE}/games/moon-buggy ${GAMEDIR_PERMS}
-REQD_FILES_PERMS+=	/dev/null ${VARBASE}/games/moon-buggy/mbscore ${GAMEDATA_PERMS}
-SPECIAL_PERMS+=		${PREFIX}/bin/moon-buggy ${SETGID_GAMES_PERMS}
-    </programlisting>
+OWN_DIRS_PERMS+=        ${VARBASE}/games/moon-buggy ${GAMEDIR_PERMS}
+REQD_FILES_PERMS+=      /dev/null ${VARBASE}/games/moon-buggy/mbscore ${GAMEDATA_PERMS}
+SPECIAL_PERMS+=         ${PREFIX}/bin/moon-buggy ${SETGID_GAMES_PERMS}
+</programlisting>
 
     <para>Various <varname>INSTALL_*</varname> variables are also available:
     <varname>INSTALL_GAME</varname> to install setgid game binaries,
@@ -1470,8 +1443,8 @@ SPECIAL_PERMS+=		${PREFIX}/bin/moon-buggy ${SETGID_GAMES_PERMS}
 
     <itemizedlist>
       <listitem><para><varname>PKG_DESTDIR_SUPPORT</varname> has to be
-      set to <quote>none</quote>, <quote>destdir</quote>, or
-      <quote>user-destdir</quote>. By default <varname>PKG_DESTDIR_SUPPORT</varname>
+      set to <quote>destdir</quote> or <quote>user-destdir</quote>.
+      By default <varname>PKG_DESTDIR_SUPPORT</varname>
       is set to <quote>user-destdir</quote> to help catching more
       potential packaging problems. If bsd.prefs.mk is included in the Makefile,
       <varname>PKG_DESTDIR_SUPPORT</varname> needs to be set before
@@ -1504,13 +1477,13 @@ SPECIAL_PERMS+=		${PREFIX}/bin/moon-buggy ${SETGID_GAMES_PERMS}
       following definitions in your <filename>Makefile</filename> (we
     shall use <command>tclsh</command> in this example):</para>
 
-    <programlisting>
+<programlisting>
 REPLACE_INTERPRETER+=   tcl
 REPLACE.tcl.old=        .*/bin/tclsh
 REPLACE.tcl.new=        ${PREFIX}/bin/tclsh
 REPLACE_FILES.tcl=      # list of tcl scripts which need to be fixed,
 # relative to ${WRKSRC}, just as in REPLACE_PERL
-    </programlisting>
+</programlisting>
 
     <note><para>Before March 2006, these variables were called
     <varname>_REPLACE.*</varname> and
@@ -1541,9 +1514,9 @@ REPLACE_FILES.tcl=      # list of tcl scripts which need to be fixed,
     (<varname>PERL5_INSTALLVENDORARCH</varname> by default),
     e.g.:</para>
 
-    <programlisting>
+<programlisting>
 PERL5_PACKLIST= auto/Pg/.packlist
-    </programlisting>
+</programlisting>
 
     <para>The perl5 config variables
     <varname>installarchlib</varname>,

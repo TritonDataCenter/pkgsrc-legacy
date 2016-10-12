@@ -1,5 +1,5 @@
 #! @PERL@
-# $NetBSD: url2pkg.pl,v 1.32 2016/06/10 21:43:04 rillig Exp $
+# $NetBSD: url2pkg.pl,v 1.34 2016/09/27 17:10:09 wiz Exp $
 #
 
 # Copyright (c) 2010 The NetBSD Foundation, Inc.
@@ -307,7 +307,7 @@ sub generate_initial_package($) {
 		if ($url =~ qr"^https?://github\.com/") {
 			if ($url =~ qr"^https?://github\.com/(.*)/(.*)/archive/(.*)(\.tar\.gz|\.zip)$") {
 				$master_sites = "\${MASTER_SITE_GITHUB:=$1/}";
-				$homepage = "https://github.com/$1/$2/}";
+				$homepage = "https://github.com/$1/$2/";
 				$gh_project = $2;
 				$gh_tag = $3;
 				if (index($gh_tag, $gh_project) == -1 ) {
@@ -318,7 +318,7 @@ sub generate_initial_package($) {
 				$found = true;
 			} elsif ($url =~ qr"^https?://github\.com/(.*)/(.*)/releases/download/(.*)/(.*)(\.tar\.gz|\.zip)$") {
 				$master_sites = "\${MASTER_SITE_GITHUB:=$1/}";
-				$homepage = "https://github.com/$1/$2/}";
+				$homepage = "https://github.com/$1/$2/";
 				if (index($4, $2) == -1) {
 					$gh_project = $2;
 					$dist_subdir = '${GITHUB_PROJECT}';

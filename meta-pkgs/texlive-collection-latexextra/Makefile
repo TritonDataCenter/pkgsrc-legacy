@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.15 2016/06/16 04:03:15 markd Exp $
+# $NetBSD: Makefile,v 1.22 2016/09/20 13:49:20 markd Exp $
 
 DISTNAME=	collection-latexextra
-PKGNAME=	texlive-${DISTNAME}-2016pre1
+PKGNAME=	texlive-${DISTNAME}-2016pre4
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	41304
+TEXLIVE_REV=	41662
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.tug.org/texlive/
@@ -60,7 +60,7 @@ DEPENDS+=	tex-appendix-[0-9]*:../../print/tex-appendix
 # depend autonum
 # depend autopdf
 # depend avremu
-# depend background
+DEPENDS+=	tex-background-[0-9]*:../../print/tex-background
 # depend bankstatement
 # depend bashful
 # depend basicarith
@@ -207,7 +207,7 @@ DEPENDS+=	tex-csquotes-[0-9]*:../../print/tex-csquotes
 # depend csvsimple
 DEPENDS+=	tex-cuisine-[0-9]*:../../print/tex-cuisine
 # depend currfile
-# depend currvita
+DEPENDS+=	tex-currvita-[0-9]*:../../print/tex-currvita
 # depend cutwin
 # depend cv
 # depend cv4tw
@@ -442,6 +442,7 @@ DEPENDS+=	tex-ftcap-[0-9]*:../../print/tex-ftcap
 # depend fundus-calligra
 # depend fundus-cyr
 # depend fundus-sueterlin
+# depend fvextra
 DEPENDS+=	tex-fwlw-[0-9]*:../../print/tex-fwlw
 DEPENDS+=	tex-g-brief-[0-9]*:../../print/tex-g-brief
 # depend gauss
@@ -452,6 +453,7 @@ DEPENDS+=	tex-g-brief-[0-9]*:../../print/tex-g-brief
 # depend getfiledate
 # depend getitems
 # depend ginpenc
+# depend gitfile-info
 # depend gitinfo
 # depend gitinfo2
 # depend gitlog
@@ -510,7 +512,7 @@ DEPENDS+=	tex-hyphenat-[0-9]*:../../print/tex-hyphenat
 # depend ifmslide
 DEPENDS+=	tex-ifmtarg-[0-9]*:../../print/tex-ifmtarg
 DEPENDS+=	tex-ifnextok-[0-9]*:../../print/tex-ifnextok
-# depend ifoddpage
+DEPENDS+=	tex-ifoddpage-[0-9]*:../../print/tex-ifoddpage
 DEPENDS+=	tex-ifplatform-[0-9]*:../../print/tex-ifplatform
 # depend ifthenx
 # depend iitem
@@ -582,7 +584,7 @@ DEPENDS+=	tex-listing-[0-9]*:../../print/tex-listing
 DEPENDS+=	tex-lkproof-[0-9]*:../../print/tex-lkproof
 # depend lmake
 # depend locality
-# depend localloc
+DEPENDS+=	tex-localloc-[0-9]*:../../print/tex-localloc
 # depend logbox
 # depend logical-markup-utils
 # depend logpap
@@ -618,6 +620,7 @@ DEPENDS+=	tex-manfnt-[0-9]*:../../fonts/tex-manfnt
 # depend manuscript
 # depend marginfix
 DEPENDS+=	tex-marginnote-[0-9]*:../../print/tex-marginnote
+# depend markdown
 # depend mathalfa
 # depend mathastext
 # depend mathexam
@@ -685,7 +688,7 @@ DEPENDS+=	tex-multirow-[0-9]*:../../print/tex-multirow
 # depend nameauth
 # depend namespc
 # depend ncclatex
-# depend ncctools
+DEPENDS+=	tex-ncctools-[0-9]*:../../print/tex-ncctools
 DEPENDS+=	tex-needspace-[0-9]*:../../print/tex-needspace
 # depend nestquot
 # depend newcommand
@@ -728,6 +731,7 @@ DEPENDS+=	tex-octavo-[0-9]*:../../print/tex-octavo
 # depend oldstyle
 DEPENDS+=	tex-onlyamsmath-[0-9]*:../../print/tex-onlyamsmath
 # depend opcit
+# depend optidef
 DEPENDS+=	tex-optional-[0-9]*:../../print/tex-optional
 # depend options
 # depend outline
@@ -852,6 +856,7 @@ DEPENDS+=	tex-rotfloat-[0-9]*:../../print/tex-rotfloat
 # depend rtkinenc
 # depend rulercompass
 # depend rvwrite
+# depend sanitize-umlaut
 DEPENDS+=	tex-sauerj-[0-9]*:../../print/tex-sauerj
 # depend savefnmark
 # depend savesym
@@ -877,7 +882,7 @@ DEPENDS+=	tex-selectp-[0-9]*:../../print/tex-selectp
 # depend sfmath
 DEPENDS+=	tex-shadethm-[0-9]*:../../print/tex-shadethm
 DEPENDS+=	tex-shadow-[0-9]*:../../print/tex-shadow
-# depend shadowtext
+DEPENDS+=	tex-shadowtext-[0-9]*:../../print/tex-shadowtext
 DEPENDS+=	tex-shapepar-[0-9]*:../../print/tex-shapepar
 # depend shdoc
 # depend shipunov
@@ -1069,10 +1074,12 @@ DEPENDS+=	tex-was-[0-9]*:../../print/tex-was
 # depend widetable
 # depend williams
 # depend withargs
+# depend wordcount
 # depend wordlike
 DEPENDS+=	tex-wrapfig-[0-9]*:../../print/tex-wrapfig
 DEPENDS+=	tex-xargs-[0-9]*:../../print/tex-xargs
 # depend xassoccnt
+# depend xcntperchap
 # depend xcolor-solarized
 DEPENDS+=	tex-xcomment-[0-9]*:../../print/tex-xcomment
 # depend xdoc

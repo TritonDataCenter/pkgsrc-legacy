@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.36 2016/06/10 10:12:49 tnn Exp $
+# $NetBSD: Makefile,v 1.41 2016/09/20 11:12:23 wiz Exp $
 
-DISTNAME=	openjdk-1.8.92-20160506
-PKGNAME=	openjdk8-1.8.92
-PKGREVISION=	2
+DISTNAME=	openjdk-1.8.102-20160811
+PKGNAME=	openjdk8-1.8.102
+PKGREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_LOCAL:=openjdk7/}
 EXTRACT_SUFX=	.tar.xz
@@ -20,7 +20,7 @@ DIST_SUBDIR=	openjdk7
 
 JAVA_NAME=	openjdk8
 JAVA_HOME=	${PREFIX}/java/${JAVA_NAME}
-JAVA_WRAPPERS=	jar java javac javadoc javah javap jps keytool orbd \
+JAVA_WRAPPERS=	jar java javac javadoc javah javap jcmd jps keytool orbd \
 		policytool rmid rmiregistry servertool tnameserv
 
 BUILD_DEPENDS+=		mozilla-rootcerts>=1.0.20140820nb2:../../security/mozilla-rootcerts
@@ -37,6 +37,7 @@ USE_TOOLS+=		bash gmake pax pkg-config unzip:run zip:run
 UNLIMIT_RESOURCES=	datasize stacksize
 WRKSRC=			${WRKDIR}/openjdk
 PLIST_SRC+=		${PLIST_SRC_DFLT}
+CHECK_SHLIBS_SKIP+=	java/openjdk8/jre/lib/${LIBDIR_ARCH}/libinstrument.so
 
 BUILDLINK_PASSTHRU_DIRS+=	${ALT_BOOTDIR}
 PREPEND_PATH+=			${ALT_BOOTDIR}/bin
@@ -47,7 +48,6 @@ CONFIGURE_ARGS+=	--build=${MACHINE_GNU_PLATFORM:Q}
 CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM:Q}
 CONFIGURE_ARGS+=	--with-boot-jdk=${ALT_BOOTDIR}
 CONFIGURE_ARGS+=	--with-zlib=system
-MAKEFLAGS+=		LIBZ="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.zlib}/lib -L${BUILDLINK_PREFIX.zlib}/lib -lz"
 CONFIGURE_ARGS+=	--with-giflib=bundled
 CONFIGURE_ARGS+=	--with-cups=${BUILDLINK_PREFIX.cups}
 CONFIGURE_ARGS+=	--with-freetype-lib=${BUILDLINK_PREFIX.freetype2}/lib
@@ -142,6 +142,11 @@ SUBST_FILES.fontpaths=		jdk/src/solaris/classes/sun/awt/fontconfigs/bsd.fontconf
 SUBST_FILES.fontpaths+=		jdk/src/solaris/native/sun/awt/fontpath.c
 SUBST_SED.fontpaths=		-e 's|@PREFIX@|${PREFIX}|g'
 SUBST_SED.fontpaths+=		-e 's|@BUILDLINK_PREFIX.fontconfig@|${BUILDLINK_PREFIX.fontconfig}|g'
+
+SUBST_CLASSES+=			zlibpath
+SUBST_STAGE.zlibpath=		pre-build
+SUBST_FILES.zlibpath=		jdk/make/CompileLaunchers.gmk jdk/make/lib/CoreLibraries.gmk
+SUBST_VARS.zlibpath=		COMPILER_RPATH_FLAG BUILDLINK_PREFIX.zlib
 
 PLIST_VARS+=	i386
 .if ${MACHINE_ARCH} == "i386"

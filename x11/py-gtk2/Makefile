@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.102 2015/12/05 21:26:08 adam Exp $
+# $NetBSD: Makefile,v 1.105 2016/08/26 17:14:57 joerg Exp $
 
 DISTNAME=	pygtk-2.24.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/pygtk/gtk2/}
-PKGREVISION=	19
+PKGREVISION=	20
 CATEGORIES=	x11 python
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pygtk/2.24/}
 EXTRACT_SUFX=	.tar.bz2
@@ -14,6 +14,9 @@ LICENSE=	gnu-lgpl-v2.1
 
 CONFLICTS=	${PYPKGPREFIX}-gtk<0.6.10
 
+# IOError: [Errno 2] No such file or directory: 'gtk-types.defs'
+MAKE_JOBS_SAFE=	no
+
 USE_LIBTOOL=	YES
 PKGCONFIG_OVERRIDE+=	pygtk-2.0.pc.in
 GNU_CONFIGURE=	YES
@@ -22,7 +25,7 @@ USE_TOOLS+=	gmake pkg-config
 
 PY_PATCHPLIST=	YES
 PYTHON_VERSIONED_DEPENDENCIES=	cairo:link
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 2.24.0
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 2.24.0
 
 REPLACE_PYTHON+=	examples/atk/atk-demo.py
 REPLACE_PYTHON+=	examples/glade/autoconnect.py

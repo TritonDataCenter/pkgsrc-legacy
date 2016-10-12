@@ -1,0 +1,27 @@
+@comment $NetBSD: PLIST,v 1.2 2016/08/21 11:28:58 wiz Exp $
+${PYSITELIB}/${EGG_FILE}
+${PYSITELIB}/ode.so
+${PYSITELIB}/xode/__init__.py
+${PYSITELIB}/xode/__init__.pyc
+${PYSITELIB}/xode/__init__.pyo
+${PYSITELIB}/xode/body.py
+${PYSITELIB}/xode/body.pyc
+${PYSITELIB}/xode/body.pyo
+${PYSITELIB}/xode/errors.py
+${PYSITELIB}/xode/errors.pyc
+${PYSITELIB}/xode/errors.pyo
+${PYSITELIB}/xode/geom.py
+${PYSITELIB}/xode/geom.pyc
+${PYSITELIB}/xode/geom.pyo
+${PYSITELIB}/xode/joint.py
+${PYSITELIB}/xode/joint.pyc
+${PYSITELIB}/xode/joint.pyo
+${PYSITELIB}/xode/node.py
+${PYSITELIB}/xode/node.pyc
+${PYSITELIB}/xode/node.pyo
+${PYSITELIB}/xode/parser.py
+${PYSITELIB}/xode/parser.pyc
+${PYSITELIB}/xode/parser.pyo
+${PYSITELIB}/xode/transform.py
+${PYSITELIB}/xode/transform.pyc
+${PYSITELIB}/xode/transform.pyo

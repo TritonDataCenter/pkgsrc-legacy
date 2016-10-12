@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.11 2016/05/22 18:20:49 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2016/08/17 00:06:47 ryoon Exp $
 #
 #
 
-PKGREVISION= 10
+PKGREVISION= 13
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
 VERSION=	0.1.31
@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
 
-CONFIGURE_ARGS =	--disable-raw-thumbnailer \
+CONFIGURE_ARGS=	--disable-raw-thumbnailer \
 			--disable-gstreamer-thumbnailer
 
 PKGCONFIG_OVERRIDE+=	tumbler/tumbler-1.pc.in
@@ -32,7 +32,7 @@ CONF_FILES=	${EGDIR}/tumbler.rc \
 	       ${PKG_SYSCONFDIR}/tumbler/tumbler.rc
 
 INSTALL_UNSTRIPPED=	yes
-CFLAGS+=	-g
+CFLAGS+=		-g
 
 .include "options.mk"
 

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.82 2016/06/10 21:43:04 rillig Exp $
+# $NetBSD: Makefile,v 1.86 2016/09/27 17:10:09 wiz Exp $
 
-PKGNAME=	url2pkg-2.26
+PKGNAME=	url2pkg-2.28
 CATEGORIES=	pkgtools
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -9,6 +9,7 @@ COMMENT=	Tool to automate initial steps in building a package
 LICENSE=	original-bsd
 
 WRKSRC=		${WRKDIR}
+NO_CHECKSUM=	yes
 NO_BUILD=	yes
 USE_LANGUAGES=	# none
 USE_TOOLS+=	perl:run

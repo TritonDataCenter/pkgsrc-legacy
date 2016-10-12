@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.16 2016/03/05 11:29:28 jperkin Exp $
+# $NetBSD: Makefile,v 1.18 2016/09/19 13:40:33 wiedi Exp $
 #
 
 DISTNAME=	boxbackup-0.11.1
 PKGNAME=	boxbackup-server-0.11.1
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=boxbackup/}
 EXTRACT_SUFX=	.tgz
@@ -19,7 +19,7 @@ MAKE_JOBS_SAFE=	no
 
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c++
-USE_TOOLS+=	perl:run
+USE_TOOLS+=	perl:run gmake
 
 REPLACE_PERL+=	bin/bbstored/bbstored-certs bin/bbstored/bbstored-config
 REPLACE_PERL+=	lib/raidfile/raidfile-config

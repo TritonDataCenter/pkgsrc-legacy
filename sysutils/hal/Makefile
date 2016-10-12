@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.76 2016/02/25 08:27:04 jperkin Exp $
+# $NetBSD: Makefile,v 1.78 2016/09/17 15:33:59 richard Exp $
 
 DISTNAME=		hal-0.5.14
-PKGREVISION=		17
+PKGREVISION=		18
 CATEGORIES=		sysutils
 MASTER_SITES=		http://hal.freedesktop.org/releases/
 EXTRACT_SUFX=		.tar.bz2
@@ -64,7 +64,13 @@ MAKE_DIRS+=		/etc/udev
 MAKE_DIRS+=		/etc/udev/rules.d
 CONF_FILES+=		${EGDIR}/90-hal.rules \
 			/etc/udev/rules.d/90-hal.rules
-
+PLIST_VARS+=	imac
+.if ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
+PLIST.imac=	yes
+CONFIGURE_ARGS+=	--with-imac
+.else
+CONFIGURE_ARGS+=	--without-imac
+.endif
 .else	# Unsupported systems
 # Pull in the dummy backend
 .include "../../devel/libvolume_id/buildlink3.mk"

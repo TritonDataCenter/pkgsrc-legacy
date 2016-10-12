@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.3 2015/12/05 21:25:45 adam Exp $
+# $NetBSD: Makefile,v 1.5 2016/08/17 12:37:34 richard Exp $
 
-DISTNAME=	pydot-1.0.28
+DISTNAME=	pydot-1.2.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	graphics python
-MASTER_SITES=	http://pydot.googlecode.com/files/
+MASTER_SITES=	${MASTER_SITE_PYPI:=p/pydot/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://code.google.com/p/pydot/
@@ -13,12 +13,9 @@ LICENSE=      	mit
 DEPENDS+=	${PYPKGPREFIX}-pyparsing-[0-9]*:../../devel/py-pyparsing
 DEPENDS+=	graphviz-[0-9]*:../../graphics/graphviz
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 1.0.28
-
 post-install:
-	${RM} ${DESTDIR}${PREFIX}/README
+	${RM} ${DESTDIR}${PREFIX}/README.md
 	${RM} ${DESTDIR}${PREFIX}/LICENSE
 
-.include "../../lang/python/application.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

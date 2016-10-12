@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.37 2015/12/06 12:13:12 taca Exp $
+# $NetBSD: Makefile,v 1.39 2016/09/11 17:03:27 taca Exp $
 #
 
 DISTNAME=	base-1.4.3.1
-PKGREVISION=	9
+PKGREVISION=	10
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=secureideas/}
 
@@ -28,7 +28,7 @@ DEPENDS+=	${PHP_PKG_PREFIX}-pear-Mail-[0-9]*:../../mail/pear-Mail
 DEPENDS+=	${PHP_PKG_PREFIX}-pear-Mail_Mime-[0-9]*:../../mail/pear-Mail_Mime
 DEPENDS+=	${APACHE_PKG_PREFIX}-${PHP_PKG_PREFIX}>=4.0.4:../../www/ap-php
 
-PHP_VERSIONS_ACCEPTED=	55 56
+PHP_VERSIONS_ACCEPTED=	56
 
 NO_BUILD=	YES
 #WRKSRC=		${WRKDIR}/base-php4

@@ -1,12 +1,13 @@
-# $NetBSD: Makefile,v 1.2 2016/03/05 11:28:19 jperkin Exp $
+# $NetBSD: Makefile,v 1.4 2016/08/07 11:44:42 nros Exp $
 
-DISTNAME=	qore-openldap-module-1.0
-PKGREVISION=	5
+DISTNAME=	qore-openldap-module-1.1
 CATEGORIES=	databases
-MASTER_SITES=   ${MASTER_SITE_SOURCEFORGE:=qore/}
+MASTER_SITES=   ${MASTER_SITE_GITHUB:=qorelanguage/}
 EXTRACT_SUFX=   .tar.bz2
+GITHUB_PROJECT=	module-openldap
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	nros@users.sourceforge.net
+MAINTAINER=	nros@NetBSD.org
 COMMENT=	Openldap module for Qore
 HOMEPAGE=	http://www.qore.org/
 LICENSE=	gnu-lgpl-v2.1
@@ -16,6 +17,8 @@ USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake pax
 PTHREAD_OPTS+=	native
+
+CONFIGURE_ARGS+=--with-libsuffix=""
 
 #install docs
 INSTALLATION_DIRS+=share/doc/${PKGBASE}

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2015/12/13 18:19:05 alnsn Exp $
+# $NetBSD: Makefile,v 1.9 2016/08/21 21:34:57 alnsn Exp $
 #
 
 DISTNAME=	LuaJIT-2.0.4
@@ -14,9 +14,21 @@ LICENSE=	mit
 
 USE_TOOLS+=	gmake
 
+NOT_PAX_MPROTECT_SAFE+=	bin/luajit
+
 # Address pkg/47587 lua not linked to pthread causes issues with modules
 PTHREAD_OPTS+=		native
 PTHREAD_AUTO_VARS=	yes
+
+.include "../../mk/bsd.prefs.mk"
+
+# Upstream doesn't support building shared libs on SunOS
+# http://www.freelists.org/post/luajit/LuaJIT-on-solaris-64
+PLIST_VARS+=		shared
+.if ${OPSYS} != "SunOS"
+PLIST.shared=		yes
+.endif
+PRINT_PLIST_AWK+=	{if ($$0 ~ /\.so/) {$$0 = "$${PLIST.shared}" $$0;}}
 
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

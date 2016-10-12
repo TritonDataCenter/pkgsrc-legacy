@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.295 2016/06/16 03:59:40 markd Exp $
+# $NetBSD: Makefile,v 1.299 2016/09/20 12:34:10 markd Exp $
 #
 
 COMMENT=	Fonts
@@ -171,6 +171,7 @@ SUBDIR+=	mozilla-fonts
 SUBDIR+=	mplayer-fonts
 SUBDIR+=	ms-ttf
 SUBDIR+=	nanum-ttf
+SUBDIR+=	noto-emoji-ttf
 SUBDIR+=	noto-ttf
 SUBDIR+=	ohruri-ttf
 SUBDIR+=	otf2bdf
@@ -314,6 +315,8 @@ SUBDIR+=	tex-cbfonts
 SUBDIR+=	tex-cbfonts-doc
 SUBDIR+=	tex-cbfonts-fd
 SUBDIR+=	tex-cbfonts-fd-doc
+SUBDIR+=	tex-cc-pl
+SUBDIR+=	tex-cc-pl-doc
 SUBDIR+=	tex-ccfonts
 SUBDIR+=	tex-ccfonts-doc
 SUBDIR+=	tex-ccicons
@@ -485,6 +488,7 @@ SUBDIR+=	tex-fontname-doc
 SUBDIR+=	tex-fontools
 SUBDIR+=	tex-fontools-doc
 SUBDIR+=	tex-fonts-tlwg
+SUBDIR+=	tex-fonts-tlwg-doc
 SUBDIR+=	tex-fontspec
 SUBDIR+=	tex-fontspec-doc
 SUBDIR+=	tex-fourier
@@ -553,6 +557,7 @@ SUBDIR+=	tex-jamtimes
 SUBDIR+=	tex-jamtimes-doc
 SUBDIR+=	tex-japanese-otf
 SUBDIR+=	tex-japanese-otf-doc
+SUBDIR+=	tex-jmn
 SUBDIR+=	tex-junicode
 SUBDIR+=	tex-junicode-doc
 SUBDIR+=	tex-kixfont
@@ -696,6 +701,8 @@ SUBDIR+=	tex-pxfonts
 SUBDIR+=	tex-pxfonts-doc
 SUBDIR+=	tex-pxtxalfa
 SUBDIR+=	tex-pxtxalfa-doc
+SUBDIR+=	tex-qpxqtx
+SUBDIR+=	tex-qpxqtx-doc
 SUBDIR+=	tex-quattrocento
 SUBDIR+=	tex-quattrocento-doc
 SUBDIR+=	tex-raleway

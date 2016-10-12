@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.57 2016/04/07 19:23:26 adam Exp $
+# $NetBSD: Makefile,v 1.59 2016/09/17 21:46:11 wiedi Exp $
 
 DISTNAME=	hugin-2016.0.0
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=hugin/}
 EXTRACT_SUFX=	.tar.bz2
@@ -29,6 +30,7 @@ SUBST_FILES.apple+=	src/hugin1/icpfind/CMakeLists.txt
 SUBST_FILES.apple+=	src/hugin1/stitch_project/CMakeLists.txt
 SUBST_SED.apple=	-e 's,(APPLE),(ELPPA),g'
 
+.include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/swig2/buildlink3.mk"

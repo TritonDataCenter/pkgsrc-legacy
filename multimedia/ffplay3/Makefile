@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2016/04/29 19:26:25 adam Exp $
+# $NetBSD: Makefile,v 1.5 2016/08/31 06:45:22 wiz Exp $
 
 PKGNAME=	${DISTNAME:S/ffmpeg/ffplay3/}
 MAINTAINER=	pkgsrc-users@NetBSD.org

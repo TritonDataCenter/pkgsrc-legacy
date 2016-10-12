@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2015/12/05 21:25:30 adam Exp $
+# $NetBSD: Makefile,v 1.27 2016/08/28 15:48:28 wiz Exp $
 
 DISTNAME=	pymol-v1.5.0.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/pymol-v/mol-/}
@@ -15,7 +15,7 @@ COMMENT=	Molecular Visualization System
 DEPENDS+=	${PYPKGPREFIX}-numpy-[0-9]*:../../math/py-numpy
 
 PYTHON_VERSIONED_DEPENDENCIES=	Pmw
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 1.5.0.1
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 1.5.0.1
 
 WRKSRC=		${WRKDIR}/pymol
 
@@ -32,8 +32,6 @@ REPLACE_PYTHON=	test/cyg test/run test/show test/win.py modules/pmg_tk/startup/a
 CHECK_PORTABILITY_SKIP+=	setup/*
 
 INSTALLATION_DIRS=	bin
-
-PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
 
 # Gross hack
 PYSETUPBUILDTARGET=	install ${_PYSETUPINSTALLARGS}

@@ -1,31 +1,44 @@
-# $NetBSD: Makefile,v 1.3 2016/06/08 17:43:33 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2016/09/07 13:36:35 richard Exp $
 
-DISTNAME=	obspy-0.10.2
+DISTNAME=	obspy-1.0.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	geography python
 MASTER_SITES=	${MASTER_SITE_PYPI:=o/obspy/}
 EXTRACT_SUFX=	.zip
 
-MAINTAINER=	wen@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.obspy.org/
 COMMENT=	Python framework for seismological observatories
 LICENSE=	gnu-lgpl-v3
 
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.12.0:../../math/py-scipy
-DEPENDS+=	${PYPKGPREFIX}-suds>=0.4:../../net/py-suds
 DEPENDS+=	${PYPKGPREFIX}-lxml>=3.2.3:../../textproc/py-lxml
+DEPENDS+=	${PYPKGPREFIX}-future>=0.12.4:../../devel/py-future
+DEPENDS+=	${PYPKGPREFIX}-requests>=0:../../devel/py-requests
+DEPENDS+=	${PYPKGPREFIX}-decorator>=0:../../devel/py-decorator
+DEPENDS+=	${PYPKGPREFIX}-sqlalchemy>=0:../../databases/py-sqlalchemy
 
 USE_LANGUAGES=	c fortran
 USE_TOOLS+=	bash:run
 
 REPLACE_BASH=	obspy/taup/tests/data/TauP_test_data/gendata.sh
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-suds
-
 pre-configure:
 	${FIND} ${WRKSRC} -type f -exec ${CHMOD} -x {} \;
 
+.include "../../lang/python/pyversion.mk"
+
+.if exists(${PYTHONBIN:Q})
+PYPLATFORM!=	${PYTHONBIN} -c 'import platform; print (platform.system() + "_" + platform.architecture()[0])'
+
+PLIST_SUBST+=		PYPLATFORM=${PYPLATFORM} PYPKGPREFIX=${PYPKGPREFIX}
+PRINT_PLIST_AWK+=       /^${PYPLATFORM:S|/|\\/|g}/ \
+                        { gsub(/${PYPLATFORM:S|/|\\/|g}/, "$${PYPLATFORM}") }
+.endif
+
 .include "../../graphics/py-matplotlib/buildlink3.mk"
-.include "../../lang/python/distutils.mk"
+.include "../../lang/python/egg.mk"
+.include "../../lang/python/tool.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

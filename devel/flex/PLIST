@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.9 2016/01/07 12:05:30 wiz Exp $
+@comment $NetBSD: PLIST,v 1.11 2016/08/12 10:12:23 mef Exp $
 bin/flex
 bin/flex++
 include/FlexLexer.h

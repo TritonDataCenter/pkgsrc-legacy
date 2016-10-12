@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.44 2015/12/05 21:25:31 adam Exp $
+# $NetBSD: Makefile,v 1.46 2016/08/03 10:22:35 adam Exp $
 
 DISTNAME=		gourmet-0.8.5.14
-PKGREVISION=		31
+PKGREVISION=		32
 CATEGORIES=		databases
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=grecipe-manager/}
 
@@ -10,7 +10,7 @@ HOMEPAGE=		http://grecipe-manager.sourceforge.net/
 COMMENT=		Recipe database
 
 USE_PKGLOCALEDIR=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-metakit, py-imaging, py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-metakit, py-imaging, py-gtk2
 
 REPLACE_PYTHON+=	build_rpms.py
 REPLACE_PYTHON+=	setup.py

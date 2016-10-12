@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.8 2016/06/16 04:03:16 markd Exp $
+# $NetBSD: Makefile,v 1.11 2016/09/20 13:42:15 markd Exp $
 
 DISTNAME=	collection-pictures
-PKGNAME=	texlive-${DISTNAME}-2016pre1
+PKGNAME=	texlive-${DISTNAME}-2016pre4
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	40656
+TEXLIVE_REV=	41694
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.tug.org/texlive/
@@ -18,6 +18,7 @@ DEPENDS+=	tex-asyfig-[0-9]*:../../graphics/tex-asyfig
 # depend asypictureb
 # depend autoarea
 # depend bardiag
+# depend binarytree
 # depend blochsphere
 # depend bloques
 # depend blox
@@ -30,7 +31,7 @@ DEPENDS+=	tex-asyfig-[0-9]*:../../graphics/tex-asyfig
 # depend celtic
 # depend chemfig
 # depend combinedgraphics
-# depend circuitikz
+DEPENDS+=	tex-circuitikz-[0-9]*:../../graphics/tex-circuitikz
 # depend curve
 # depend curve2e
 DEPENDS+=	tex-curves-[0-9]*:../../print/tex-curves
@@ -42,6 +43,7 @@ DEPENDS+=	tex-curves-[0-9]*:../../print/tex-curves
 # depend dratex
 # depend drs
 # depend duotenzor
+# depend ecgdraw
 DEPENDS+=	tex-eepic-[0-9]*:../../graphics/tex-eepic
 # depend ellipse
 # depend epspdf
@@ -113,7 +115,7 @@ DEPENDS+=	tex-pictex-[0-9]*:../../graphics/tex-pictex
 # depend smartdiagram
 # depend spath3
 # depend swimgraf
-# depend texdraw
+DEPENDS+=	tex-texdraw-[0-9]*:../../graphics/tex-texdraw
 # depend ticollege
 # depend tipfr
 DEPENDS+=	tex-tikz-3dplot-[0-9]*:../../graphics/tex-tikz-3dplot

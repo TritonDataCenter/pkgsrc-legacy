@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.797 2016/06/12 20:32:59 kamil Exp $
+# $NetBSD: Makefile,v 1.799 2016/09/20 08:01:07 wiz Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -269,6 +269,7 @@ SUBDIR+=	kded
 SUBDIR+=	kdelibdocs3
 SUBDIR+=	kdelibs3
 SUBDIR+=	kdelibs4
+SUBDIR+=	kdelibs4support
 SUBDIR+=	kdesignerplugin
 SUBDIR+=	keybinder
 SUBDIR+=	keylaunch
@@ -372,6 +373,7 @@ SUBDIR+=	mate-screensaver
 SUBDIR+=	mate-session-manager
 SUBDIR+=	mate-settings-daemon
 SUBDIR+=	mate-terminal
+SUBDIR+=	mcookie
 SUBDIR+=	mkcomposecache
 SUBDIR+=	mlterm
 SUBDIR+=	modeline

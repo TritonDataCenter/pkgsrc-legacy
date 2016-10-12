@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.16 2016/05/22 17:42:14 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2016/08/24 10:51:53 wiz Exp $
 
-DISTNAME=	lablgtk-2.18.4
+DISTNAME=	lablgtk-2.18.5
 PKGNAME=	ocaml-${DISTNAME}
 CATEGORIES=	x11
-MASTER_SITES=	https://forge.ocamlcore.org/frs/download.php/1602/
+MASTER_SITES=	https://forge.ocamlcore.org/frs/download.php/1627/
 
 MAINTAINER=	jaapb@NetBSD.org
 HOMEPAGE=	http://lablgtk.forge.ocamlcore.org/
@@ -15,6 +15,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-debug
 USE_TOOLS+=		gmake pkg-config
 OCAML_USE_FINDLIB=	yes
+OCAML_FINDLIB_DIRS=	lablgtk2
 
 MAKE_JOBS_SAFE=		no
 BUILD_TARGET=		world
@@ -27,7 +28,7 @@ SUPERSEDES=	lablgtk-[0-9]*
 .include "../../mk/bsd.prefs.mk"
 
 # Stub libraries for functions missing from base system.
-PLIST_VARS+=	stubs opt
+PLIST_VARS+=	stubs
 
 .if ${OPSYS} == "Darwin" || ${OPSYS} == "DragonFly" || \
     ${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD" || \
@@ -36,10 +37,6 @@ PLIST.stubs=	yes
 .endif
 
 .include "../../mk/ocaml.mk"
-
-.if ${OCAML_USE_OPT_COMPILER} == "yes"
-PLIST.opt=	yes
-.endif
 
 .include "options.mk"
 

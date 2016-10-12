@@ -13,15 +13,34 @@ import (
 type MkLine struct {
 	Line *Line
 
-	xtype      uint8
-	xmustexist bool
-	xop        MkOperator
-	xvalign    string
-	xs1        string
-	xs2        string
-	xs3        string
-	xvalue     string
-	xcomment   string
+	xtype uint8
+	data  interface{} // One of the following mkLine* types
+}
+type mkLineAssign struct {
+	varname    string
+	varcanon   string
+	varparam   string
+	op         MkOperator
+	valueAlign string
+	value      string
+	comment    string
+}
+type mkLineShell struct {
+	command string
+}
+type mkLineConditional struct {
+	indent    string
+	directive string
+	args      string
+}
+type mkLineInclude struct {
+	mustexist   bool
+	indent      string
+	includeFile string
+}
+type mkLineDependency struct {
+	targets string
+	sources string
 }
 
 func (mkline *MkLine) Error1(format, arg1 string)      { mkline.Line.Error1(format, arg1) }
@@ -44,32 +63,46 @@ func NewMkLine(line *Line) (mkline *MkLine) {
 			"white-space.")
 	}
 
-	if m, varname, op, valueAlign, value, comment := MatchVarassign(text); m {
+	if m, varname, spaceAfterVarname, op, valueAlign, value, comment := MatchVarassign(text); m {
+		if G.opts.WarnSpace && spaceAfterVarname != "" {
+			switch {
+			case hasSuffix(varname, "+") && op == "=":
+				break
+			case matches(varname, `^[a-z]`) && op == ":=":
+				break
+			default:
+				if !line.AutofixReplace(varname+spaceAfterVarname+op, varname+op) {
+					line.Warn1("Unnecessary space after variable name %q.", varname)
+				}
+			}
+		}
+
 		value = strings.Replace(value, "\\#", "#", -1)
 		varparam := varnameParam(varname)
 
 		mkline.xtype = 1
-		mkline.xs1 = varname
-		mkline.xs2 = varnameCanon(varname)
-		mkline.xs3 = varparam
-		mkline.xop = NewMkOperator(op)
-		mkline.xvalign = valueAlign
-		mkline.xvalue = value
-		mkline.xcomment = comment
+		mkline.data = mkLineAssign{
+			varname,
+			varnameCanon(varname),
+			varparam,
+			NewMkOperator(op),
+			valueAlign,
+			value,
+			comment}
 		mkline.Tokenize(value)
 		return
 	}
 
 	if hasPrefix(text, "\t") {
+		shellcmd := text[1:]
 		mkline.xtype = 2
-		mkline.xs1 = text[1:]
-		mkline.Tokenize(mkline.xs1)
+		mkline.data = mkLineShell{shellcmd}
+		mkline.Tokenize(shellcmd)
 		return
 	}
 
 	if index := strings.IndexByte(text, '#'); index != -1 && strings.TrimSpace(text[:index]) == "" {
 		mkline.xtype = 3
-		mkline.xcomment = text[index+1:]
 		return
 	}
 
@@ -80,30 +113,25 @@ func NewMkLine(line *Line) (mkline *MkLine) {
 
 	if m, indent, directive, args := matchMkCond(text); m {
 		mkline.xtype = 5
-		mkline.xs1 = indent
-		mkline.xs2 = directive
-		mkline.xs3 = args
+		mkline.data = mkLineConditional{indent, directive, args}
 		return
 	}
 
-	if m, directive, includefile := match2(text, reMkInclude); m {
+	if m, indent, directive, includefile := match3(text, reMkInclude); m {
 		mkline.xtype = 6
-		mkline.xmustexist = directive == "include"
-		mkline.xs1 = includefile
+		mkline.data = mkLineInclude{directive == "include", indent, includefile}
 		return
 	}
 
-	if m, directive, includefile := match2(text, `^\.\s*(s?include)\s+<([^>]+)>\s*(?:#.*)?$`); m {
+	if m, indent, directive, includefile := match3(text, `^\.(\s*)(s?include)\s+<([^>]+)>\s*(?:#.*)?$`); m {
 		mkline.xtype = 7
-		mkline.xmustexist = directive == "include"
-		mkline.xs1 = includefile
+		mkline.data = mkLineInclude{directive == "include", indent, includefile}
 		return
 	}
 
 	if m, targets, whitespace, sources := match3(text, `^([^\s:]+(?:\s*[^\s:]+)*)(\s*):\s*([^#]*?)(?:\s*#.*)?$`); m {
 		mkline.xtype = 8
-		mkline.xs1 = targets
-		mkline.xs2 = sources
+		mkline.data = mkLineDependency{targets, sources}
 		if whitespace != "" {
 			line.Warn0("Space before colon in dependency line.")
 		}
@@ -121,29 +149,35 @@ func NewMkLine(line *Line) (mkline *MkLine) {
 func (mkline *MkLine) String() string {
 	return fmt.Sprintf("%s:%s", mkline.Line.Fname, mkline.Line.linenos())
 }
-func (mkline *MkLine) IsVarassign() bool   { return mkline.xtype == 1 }
-func (mkline *MkLine) Varname() string     { return mkline.xs1 }
-func (mkline *MkLine) Varcanon() string    { return mkline.xs2 }
-func (mkline *MkLine) Varparam() string    { return mkline.xs3 }
-func (mkline *MkLine) Op() MkOperator      { return mkline.xop }
-func (mkline *MkLine) ValueAlign() string  { return mkline.xvalign }
-func (mkline *MkLine) Value() string       { return mkline.xvalue }
-func (mkline *MkLine) Comment() string     { return mkline.xcomment }
-func (mkline *MkLine) IsShellcmd() bool    { return mkline.xtype == 2 }
-func (mkline *MkLine) Shellcmd() string    { return mkline.xs1 }
-func (mkline *MkLine) IsComment() bool     { return mkline.xtype == 3 }
-func (mkline *MkLine) IsEmpty() bool       { return mkline.xtype == 4 }
-func (mkline *MkLine) IsCond() bool        { return mkline.xtype == 5 }
-func (mkline *MkLine) Indent() string      { return mkline.xs1 }
-func (mkline *MkLine) Directive() string   { return mkline.xs2 }
-func (mkline *MkLine) Args() string        { return mkline.xs3 }
-func (mkline *MkLine) IsInclude() bool     { return mkline.xtype == 6 }
-func (mkline *MkLine) MustExist() bool     { return mkline.xmustexist }
-func (mkline *MkLine) Includefile() string { return mkline.xs1 }
-func (mkline *MkLine) IsSysinclude() bool  { return mkline.xtype == 7 }
-func (mkline *MkLine) IsDependency() bool  { return mkline.xtype == 8 }
-func (mkline *MkLine) Targets() string     { return mkline.xs1 }
-func (mkline *MkLine) Sources() string     { return mkline.xs2 }
+func (mkline *MkLine) IsVarassign() bool        { return mkline.xtype == 1 }
+func (mkline *MkLine) IsShellcmd() bool         { return mkline.xtype == 2 }
+func (mkline *MkLine) IsComment() bool          { return mkline.xtype == 3 }
+func (mkline *MkLine) IsEmpty() bool            { return mkline.xtype == 4 }
+func (mkline *MkLine) IsCond() bool             { return mkline.xtype == 5 }
+func (mkline *MkLine) IsInclude() bool          { return mkline.xtype == 6 }
+func (mkline *MkLine) IsSysinclude() bool       { return mkline.xtype == 7 }
+func (mkline *MkLine) IsDependency() bool       { return mkline.xtype == 8 }
+func (mkline *MkLine) Varname() string          { return mkline.data.(mkLineAssign).varname }
+func (mkline *MkLine) Varcanon() string         { return mkline.data.(mkLineAssign).varcanon }
+func (mkline *MkLine) Varparam() string         { return mkline.data.(mkLineAssign).varparam }
+func (mkline *MkLine) Op() MkOperator           { return mkline.data.(mkLineAssign).op }
+func (mkline *MkLine) ValueAlign() string       { return mkline.data.(mkLineAssign).valueAlign }
+func (mkline *MkLine) Value() string            { return mkline.data.(mkLineAssign).value }
+func (mkline *MkLine) VarassignComment() string { return mkline.data.(mkLineAssign).comment }
+func (mkline *MkLine) Shellcmd() string         { return mkline.data.(mkLineShell).command }
+func (mkline *MkLine) Indent() string {
+	if mkline.IsCond() {
+		return mkline.data.(mkLineConditional).indent
+	} else {
+		return mkline.data.(mkLineInclude).indent
+	}
+}
+func (mkline *MkLine) Directive() string   { return mkline.data.(mkLineConditional).directive }
+func (mkline *MkLine) Args() string        { return mkline.data.(mkLineConditional).args }
+func (mkline *MkLine) MustExist() bool     { return mkline.data.(mkLineInclude).mustexist }
+func (mkline *MkLine) Includefile() string { return mkline.data.(mkLineInclude).includeFile }
+func (mkline *MkLine) Targets() string     { return mkline.data.(mkLineDependency).targets }
+func (mkline *MkLine) Sources() string     { return mkline.data.(mkLineDependency).sources }
 
 func (mkline *MkLine) Check() {
 	mkline.Line.CheckTrailingWhitespace()
@@ -171,6 +205,10 @@ func (mkline *MkLine) Check() {
 func (mkline *MkLine) checkInclude() {
 	if G.opts.Debug {
 		defer tracecall0()()
+	}
+
+	if mkline.Indent() != "" {
+		mkline.checkDirectiveIndentation()
 	}
 
 	includefile := mkline.Includefile()
@@ -217,7 +255,8 @@ func (mkline *MkLine) checkInclude() {
 }
 
 func (mkline *MkLine) checkCond(forVars map[string]bool) {
-	indent, directive, args := mkline.Indent(), mkline.Directive(), mkline.Args()
+	directive := mkline.Directive()
+	args := mkline.Args()
 	indentation := &G.Mk.indentation
 
 	switch directive {
@@ -229,12 +268,7 @@ func (mkline *MkLine) checkCond(forVars map[string]bool) {
 		}
 	}
 
-	// Check the indentation
-	if expected := strings.Repeat(" ", indentation.Depth()); indent != expected {
-		if G.opts.WarnSpace && !mkline.Line.AutofixReplace("."+indent, "."+expected) {
-			mkline.Line.Notef("This directive should be indented by %d spaces.", indentation.Depth())
-		}
-	}
+	mkline.checkDirectiveIndentation()
 
 	if directive == "if" && matches(args, `^!defined\([\w]+_MK\)$`) {
 		indentation.Push(indentation.Depth())
@@ -243,27 +277,23 @@ func (mkline *MkLine) checkCond(forVars map[string]bool) {
 		indentation.Push(indentation.Depth() + 2)
 	}
 
-	reDirectivesWithArgs := `^(?:if|ifdef|ifndef|elif|for|undef)$`
-	if matches(directive, reDirectivesWithArgs) && args == "" {
-		mkline.Error1("\".%s\" requires arguments.", directive)
-
-	} else if !matches(directive, reDirectivesWithArgs) && args != "" {
-		mkline.Error1("\".%s\" does not take arguments.", directive)
-
-		if directive == "else" {
-			mkline.Note0("If you meant \"else if\", use \".elif\".")
+	needsArgument := matches(directive, `^(?:if|ifdef|ifndef|elif|for|undef)$`)
+	if needsArgument != (args != "") {
+		if needsArgument {
+			mkline.Error1("\".%s\" requires arguments.", directive)
+		} else {
+			mkline.Error1("\".%s\" does not take arguments.", directive)
+			if directive == "else" {
+				mkline.Note0("If you meant \"else if\", use \".elif\".")
+			}
 		}
 
 	} else if directive == "if" || directive == "elif" {
 		mkline.CheckCond()
 
 	} else if directive == "ifdef" || directive == "ifndef" {
-		if matches(args, `\s`) {
-			mkline.Error1("The \".%s\" directive can only handle _one_ argument.", directive)
-		} else {
-			mkline.Line.Warnf("The \".%s\" directive is deprecated. Please use \".if %sdefined(%s)\" instead.",
-				directive, ifelseStr(directive == "ifdef", "", "!"), args)
-		}
+		mkline.Line.Warnf("The \".%s\" directive is deprecated. Please use \".if %sdefined(%s)\" instead.",
+			directive, ifelseStr(directive == "ifdef", "", "!"), args)
 
 	} else if directive == "for" {
 		if m, vars, values := match2(args, `^(\S+(?:\s*\S+)*?)\s+in\s+(.*)$`); m {
@@ -294,8 +324,8 @@ func (mkline *MkLine) checkCond(forVars map[string]bool) {
 				}
 			}
 
-			forLoopType := &Vartype{lkSpace, CheckvarUnchecked, []AclEntry{{"*", aclpAllRead}}, guessed}
-			forLoopContext := &VarUseContext{forLoopType, vucTimeParse, vucQuotFor, vucExtentWord}
+			forLoopType := &Vartype{lkSpace, BtUnknown, []AclEntry{{"*", aclpAllRead}}, guessed}
+			forLoopContext := &VarUseContext{forLoopType, vucTimeParse, vucQuotFor, false}
 			for _, forLoopVar := range mkline.extractUsedVariables(values) {
 				mkline.CheckVaruse(&MkVarUse{forLoopVar, nil}, forLoopContext)
 			}
@@ -306,6 +336,19 @@ func (mkline *MkLine) checkCond(forVars map[string]bool) {
 			if forVars[uvar] {
 				mkline.Note0("Using \".undef\" after a \".for\" loop is unnecessary.")
 			}
+		}
+	}
+}
+
+func (mkline *MkLine) checkDirectiveIndentation() {
+	if G.Mk == nil {
+		return
+	}
+	indent := mkline.Indent()
+	indentation := G.Mk.indentation
+	if expected := strings.Repeat(" ", indentation.Depth()); indent != expected {
+		if G.opts.WarnSpace && !mkline.Line.AutofixReplace("."+indent, "."+expected) {
+			mkline.Line.Notef("This directive should be indented by %d spaces.", indentation.Depth())
 		}
 	}
 }
@@ -430,7 +473,7 @@ func (mkline *MkLine) CheckVaruse(varuse *MkVarUse, vuc *VarUseContext) {
 		(vartype == nil || vartype.guessed) &&
 		!varIsUsed(varname) &&
 		!(G.Mk != nil && G.Mk.forVars[varname]) &&
-		!hasPrefix(varname, "${") {
+		!containsVarRef(varname) {
 		mkline.Warn1("%s is used but not defined. Spelling mistake?", varname)
 	}
 
@@ -640,7 +683,7 @@ func (mkline *MkLine) CheckVaruseShellword(varname string, vartype *Vartype, vuc
 
 	} else if needsQuoting == nqYes {
 		correctMod := strippedMod + ifelseStr(needMstar, ":M*:Q", ":Q")
-		if correctMod == mod+":Q" && vuc.extent == vucExtentWordpart && !vartype.IsShell() {
+		if correctMod == mod+":Q" && vuc.IsWordPart && !vartype.IsShell() {
 			mkline.Line.Warnf("The list variable %s should not be embedded in a word.", varname)
 			Explain(
 				"When a list variable has multiple elements, this expression expands",
@@ -744,7 +787,7 @@ func (mkline *MkLine) checkVarassign() {
 	varname := mkline.Varname()
 	op := mkline.Op()
 	value := mkline.Value()
-	comment := mkline.Comment()
+	comment := mkline.VarassignComment()
 	varcanon := varnameCanon(varname)
 
 	if G.opts.Debug {
@@ -848,12 +891,8 @@ func (mkline *MkLine) checkVarassignVaruseMk(vartype *Vartype, time vucTime) {
 		if token.Varuse != nil {
 			spaceLeft := i-1 < 0 || matches(tokens[i-1].Text, `\s$`)
 			spaceRight := i+1 >= len(tokens) || matches(tokens[i+1].Text, `^\s`)
-			extent := vucExtentWordpart
-			if spaceLeft && spaceRight {
-				extent = vucExtentWord
-			}
-
-			vuc := &VarUseContext{vartype, time, vucQuotPlain, extent}
+			isWordPart := !(spaceLeft && spaceRight)
+			vuc := &VarUseContext{vartype, time, vucQuotPlain, isWordPart}
 			mkline.CheckVaruse(token.Varuse, vuc)
 		}
 	}
@@ -864,27 +903,21 @@ func (mkline *MkLine) checkVarassignVaruseShell(vartype *Vartype, time vucTime) 
 		defer tracecall(vartype, time)()
 	}
 
-	extent := func(tokens []*ShAtom, i int) vucExtent {
-		if i-1 >= 0 {
-			typ := tokens[i-1].Type
-			if typ != shtSpace && typ != shtSemicolon && typ != shtParenOpen && typ != shtParenClose {
-				return vucExtentWordpart
-			}
+	isWordPart := func(tokens []*ShAtom, i int) bool {
+		if i-1 >= 0 && tokens[i-1].Type.IsWord() {
+			return true
 		}
-		if i+1 < len(tokens) {
-			typ := tokens[i+1].Type
-			if typ != shtSpace && typ != shtSemicolon && typ != shtParenOpen && typ != shtParenClose {
-				return vucExtentWordpart
-			}
+		if i+1 < len(tokens) && tokens[i+1].Type.IsWord() {
+			return true
 		}
-		return vucExtentWord
+		return false
 	}
 
 	atoms := NewShTokenizer(mkline.Line, mkline.Value(), false).ShAtoms()
 	for i, atom := range atoms {
 		if atom.Type == shtVaruse {
-			extent := extent(atoms, i)
-			vuc := &VarUseContext{vartype, time, atom.Quoting.ToVarUseContext(), extent}
+			isWordPart := isWordPart(atoms, i)
+			vuc := &VarUseContext{vartype, time, atom.Quoting.ToVarUseContext(), isWordPart}
 			mkline.CheckVaruse(atom.Data.(*MkVarUse), vuc)
 		}
 	}
@@ -925,7 +958,7 @@ func (mkline *MkLine) checkVarassignSpecific() {
 		mkline.checkVarassignPythonVersions(varname, value)
 	}
 
-	if mkline.Comment() == "# defined" && !hasSuffix(varname, "_MK") && !hasSuffix(varname, "_COMMON") {
+	if mkline.VarassignComment() == "# defined" && !hasSuffix(varname, "_MK") && !hasSuffix(varname, "_COMMON") {
 		mkline.Note0("Please use \"# empty\", \"# none\" or \"yes\" instead of \"# defined\".")
 		Explain(
 			"The value #defined says something about the state of the variable,",
@@ -999,61 +1032,6 @@ func (mkline *MkLine) checkVarassignPlistComment(varname, value string) {
 	}
 }
 
-const reVarnamePlural = `^(?:` +
-	`.*[Ss]` +
-	`|.*LIST` +
-	`|.*_AWK` +
-	`|.*_ENV` +
-	`|.*_OVERRIDE` +
-	`|.*_PREREQ` +
-	`|.*_REQD` +
-	`|.*_SED` +
-	`|.*_SKIP` +
-	`|.*_SRC` +
-	`|.*_SUBST` +
-	`|.*_TARGET` +
-	`|.*_TMPL` +
-	`|BROKEN_EXCEPT_ON_PLATFORM` +
-	`|BROKEN_ON_PLATFORM` +
-	`|BUILDLINK_DEPMETHOD` +
-	`|BUILDLINK_LDADD` +
-	`|BUILDLINK_TRANSFORM` +
-	`|COMMENT` +
-	`|CRYPTO` +
-	`|DEINSTALL_TEMPLATE` +
-	`|EVAL_PREFIX` +
-	`|EXTRACT_ONLY` +
-	`|FETCH_MESSAGE` +
-	`|FIX_RPATH` +
-	`|GENERATE_PLIST` +
-	`|INSTALL_TEMPLATE` +
-	`|INTERACTIVE_STAGE` +
-	`|LICENSE` +
-	`|MASTER_SITE_.*` +
-	`|MASTER_SORT_REGEX` +
-	`|NOT_FOR_COMPILER` +
-	`|NOT_FOR_PLATFORM` +
-	`|ONLY_FOR_COMPILER` +
-	`|ONLY_FOR_PLATFORM` +
-	`|PERL5_PACKLIST` +
-	`|PLIST_CAT` +
-	`|PLIST_PRE` +
-	`|PKG_FAIL_REASON` +
-	`|PKG_SKIP_REASON` +
-	`|PREPEND_PATH` +
-	`|PYTHON_VERSIONS_INCOMPATIBLE` +
-	`|REPLACE_INTERPRETER` +
-	`|REPLACE_PERL` +
-	`|REPLACE_RUBY` +
-	`|RESTRICTED` +
-	`|SITES_.+` +
-	`|TOOLS_ALIASES\..+` +
-	`|TOOLS_BROKEN` +
-	`|TOOLS_CREATE` +
-	`|TOOLS_GNU_MISSING` +
-	`|TOOLS_NOOP` +
-	`)$`
-
 func (mkline *MkLine) CheckVartype(varname string, op MkOperator, value, comment string) {
 	if G.opts.Debug {
 		defer tracecall(varname, op, value, comment)()
@@ -1063,22 +1041,16 @@ func (mkline *MkLine) CheckVartype(varname string, op MkOperator, value, comment
 		return
 	}
 
-	varbase := varnameBase(varname)
 	vartype := mkline.getVariableType(varname)
 
 	if op == opAssignAppend {
-		if vartype != nil {
-			if !vartype.MayBeAppendedTo() {
-				mkline.Warn0("The \"+=\" operator should only be used with lists.")
-			}
-		} else if !hasPrefix(varbase, "_") && !matches(varbase, reVarnamePlural) {
-			mkline.Warn1("As %s is modified using \"+=\", its name should indicate plural.", varname)
+		if vartype != nil && !vartype.MayBeAppendedTo() {
+			mkline.Warn0("The \"+=\" operator should only be used with lists.")
 		}
 	}
 
 	switch {
 	case vartype == nil:
-		// Cannot check anything if the type is not known.
 		if G.opts.Debug {
 			traceStep1("Unchecked variable assignment for %s.", varname)
 		}
@@ -1089,46 +1061,42 @@ func (mkline *MkLine) CheckVartype(varname string, op MkOperator, value, comment
 		}
 
 	case vartype.kindOfList == lkNone:
-		mkline.CheckVartypePrimitive(varname, vartype.checker, op, value, comment, vartype.IsConsideredList(), vartype.guessed)
+		mkline.CheckVartypePrimitive(varname, vartype.basicType, op, value, comment, vartype.guessed)
 
 	case value == "":
 		break
 
 	case vartype.kindOfList == lkSpace:
 		for _, word := range splitOnSpace(value) {
-			mkline.CheckVartypePrimitive(varname, vartype.checker, op, word, comment, true, vartype.guessed)
+			mkline.CheckVartypePrimitive(varname, vartype.basicType, op, word, comment, vartype.guessed)
 		}
 
 	case vartype.kindOfList == lkShell:
 		words, _ := splitIntoMkWords(mkline.Line, value)
 		for _, word := range words {
-			mkline.CheckVartypePrimitive(varname, vartype.checker, op, word, comment, true, vartype.guessed)
+			mkline.CheckVartypePrimitive(varname, vartype.basicType, op, word, comment, vartype.guessed)
 		}
 	}
 }
 
 // For some variables (like `BuildlinkDepth`), `op` influences the valid values.
 // The `comment` parameter comes from a variable assignment, when a part of the line is commented out.
-func (mkline *MkLine) CheckVartypePrimitive(varname string, checker *VarChecker, op MkOperator, value, comment string, isList bool, guessed bool) {
+func (mkline *MkLine) CheckVartypePrimitive(varname string, checker *BasicType, op MkOperator, value, comment string, guessed bool) {
 	if G.opts.Debug {
-		defer tracecall(varname, checker.name, op, value, comment, isList, guessed)()
+		defer tracecall(varname, checker.name, op, value, comment, guessed)()
 	}
 
-	valueNoVar := mkline.withoutMakeVariables(value, isList)
-	ctx := &VartypeCheck{mkline, mkline.Line, varname, op, value, valueNoVar, comment, isList, guessed}
+	valueNoVar := mkline.withoutMakeVariables(value)
+	ctx := &VartypeCheck{mkline, mkline.Line, varname, op, value, valueNoVar, comment, guessed}
 	checker.checker(ctx)
 }
 
-func (mkline *MkLine) withoutMakeVariables(value string, qModifierAllowed bool) string {
+func (mkline *MkLine) withoutMakeVariables(value string) string {
 	valueNovar := value
 	for {
 		var m []string
-		if m, valueNovar = replaceFirst(valueNovar, `\$\{([^{}]*)\}`, ""); m != nil {
-			varuse := m[1]
-			if !qModifierAllowed && hasSuffix(varuse, ":Q") {
-				mkline.Warn0("The :Q operator should only be used in lists and shell commands.")
-			}
-		} else {
+		m, valueNovar = replaceFirst(valueNovar, `\$\{[^{}]*\}`, "")
+		if m == nil {
 			return valueNovar
 		}
 	}
@@ -1259,7 +1227,7 @@ func (mkline *MkLine) rememberUsedVariables(cond *Tree) {
 	cond.Visit("compareVarVar", arg2varuse)
 }
 
-func (mkline *MkLine) CheckValidCharactersInValue(reValid string) {
+func (mkline *MkLine) CheckValidCharactersInValue(reValid RegexPattern) {
 	rest := regcomp(reValid).ReplaceAllString(mkline.Value(), "")
 	if rest != "" {
 		uni := ""
@@ -1380,7 +1348,7 @@ const (
 )
 
 func (nq NeedsQuoting) String() string {
-	return [...]string{"no", "yes", "doesn't matter", "don't known"}[nq]
+	return [...]string{"no", "yes", "doesn't matter", "don't know"}[nq]
 }
 
 func (mkline *MkLine) variableNeedsQuoting(varname string, vartype *Vartype, vuc *VarUseContext) (needsQuoting NeedsQuoting) {
@@ -1392,11 +1360,11 @@ func (mkline *MkLine) variableNeedsQuoting(varname string, vartype *Vartype, vuc
 		return nqDontKnow
 	}
 
-	if vartype.checker.IsEnum() || vartype.IsBasicSafe() {
+	if vartype.basicType.IsEnum() || vartype.IsBasicSafe() {
 		if vartype.kindOfList == lkNone {
 			return nqDoesntMatter
 		}
-		if vartype.kindOfList == lkShell && vuc.extent != vucExtentWordpart {
+		if vartype.kindOfList == lkShell && !vuc.IsWordPart {
 			return nqNo
 		}
 	}
@@ -1416,8 +1384,8 @@ func (mkline *MkLine) variableNeedsQuoting(varname string, vartype *Vartype, vuc
 	}
 
 	// A shell word may appear as part of a shell word, for example COMPILER_RPATH_FLAG.
-	if vuc.extent == vucExtentWordpart && vuc.quoting == vucQuotPlain {
-		if vartype.kindOfList == lkNone && vartype.checker == CheckvarShellWord {
+	if vuc.IsWordPart && vuc.quoting == vucQuotPlain {
+		if vartype.kindOfList == lkNone && vartype.basicType == BtShellWord {
 			return nqNo
 		}
 	}
@@ -1425,7 +1393,7 @@ func (mkline *MkLine) variableNeedsQuoting(varname string, vartype *Vartype, vuc
 	// Both of these can be correct, depending on the situation:
 	// 1. echo ${PERL5:Q}
 	// 2. xargs ${PERL5}
-	if vuc.extent == vucExtentWord && vuc.quoting == vucQuotPlain {
+	if !vuc.IsWordPart && vuc.quoting == vucQuotPlain {
 		if wantList && haveList {
 			return nqDontKnow
 		}
@@ -1436,7 +1404,7 @@ func (mkline *MkLine) variableNeedsQuoting(varname string, vartype *Vartype, vuc
 	if G.globalData.Tools.byVarname[varname] != nil {
 		switch vuc.quoting {
 		case vucQuotPlain:
-			if vuc.extent != vucExtentWordpart {
+			if !vuc.IsWordPart {
 				return nqNo
 			}
 		case vucQuotBackt:
@@ -1450,7 +1418,7 @@ func (mkline *MkLine) variableNeedsQuoting(varname string, vartype *Vartype, vuc
 	// to be quoted. An exception is in the case of backticks,
 	// because the whole backticks expression is parsed as a single
 	// shell word by pkglint.
-	if vuc.extent == vucExtentWordpart && vuc.vartype != nil && vuc.vartype.IsShell() && vuc.quoting != vucQuotBackt {
+	if vuc.IsWordPart && vuc.vartype != nil && vuc.vartype.IsShell() && vuc.quoting != vucQuotBackt {
 		return nqYes
 	}
 
@@ -1462,16 +1430,16 @@ func (mkline *MkLine) variableNeedsQuoting(varname string, vartype *Vartype, vuc
 	// Assigning lists to lists does not require any quoting, though
 	// there may be cases like "CONFIGURE_ARGS+= -libs ${LDFLAGS:Q}"
 	// where quoting is necessary.
-	if wantList && haveList && vuc.extent != vucExtentWordpart {
+	if wantList && haveList && !vuc.IsWordPart {
 		return nqDoesntMatter
 	}
 
 	if wantList != haveList {
 		if vuc.vartype != nil && vartype != nil {
-			if vuc.vartype.checker == CheckvarFetchURL && vartype.checker == CheckvarHomepage {
+			if vuc.vartype.basicType == BtFetchURL && vartype.basicType == BtHomepage {
 				return nqNo
 			}
-			if vuc.vartype.checker == CheckvarHomepage && vartype.checker == CheckvarFetchURL {
+			if vuc.vartype.basicType == BtHomepage && vartype.basicType == BtFetchURL {
 				return nqNo // Just for HOMEPAGE=${MASTER_SITE_*:=subdir/}.
 			}
 		}
@@ -1480,7 +1448,7 @@ func (mkline *MkLine) variableNeedsQuoting(varname string, vartype *Vartype, vuc
 
 	// Bad: LDADD += -l${LIBS}
 	// Good: LDADD += ${LIBS:@lib@-l${lib} @}
-	if wantList && haveList && vuc.extent == vucExtentWordpart {
+	if wantList && haveList && vuc.IsWordPart {
 		return nqYes
 	}
 
@@ -1514,11 +1482,11 @@ func (mkline *MkLine) getVariableType(varname string) *Vartype {
 				perms |= aclpUseLoadtime
 			}
 		}
-		return &Vartype{lkNone, CheckvarShellCommand, []AclEntry{{"*", perms}}, false}
+		return &Vartype{lkNone, BtShellCommand, []AclEntry{{"*", perms}}, false}
 	}
 
 	if m, toolvarname := match1(varname, `^TOOLS_(.*)`); m && G.globalData.Tools.byVarname[toolvarname] != nil {
-		return &Vartype{lkNone, CheckvarPathname, []AclEntry{{"*", aclpUse}}, false}
+		return &Vartype{lkNone, BtPathname, []AclEntry{{"*", aclpUse}}, false}
 	}
 
 	allowAll := []AclEntry{{"*", aclpAll}}
@@ -1529,35 +1497,35 @@ func (mkline *MkLine) getVariableType(varname string) *Vartype {
 	var gtype *Vartype
 	switch {
 	case hasSuffix(varbase, "DIRS"):
-		gtype = &Vartype{lkShell, CheckvarPathmask, allowRuntime, true}
-	case hasSuffix(varbase, "DIR"), hasSuffix(varname, "_HOME"):
-		gtype = &Vartype{lkNone, CheckvarPathname, allowRuntime, true}
+		gtype = &Vartype{lkShell, BtPathmask, allowRuntime, true}
+	case hasSuffix(varbase, "DIR") && !hasSuffix(varbase, "DESTDIR"), hasSuffix(varname, "_HOME"):
+		gtype = &Vartype{lkNone, BtPathname, allowRuntime, true}
 	case hasSuffix(varbase, "FILES"):
-		gtype = &Vartype{lkShell, CheckvarPathmask, allowRuntime, true}
+		gtype = &Vartype{lkShell, BtPathmask, allowRuntime, true}
 	case hasSuffix(varbase, "FILE"):
-		gtype = &Vartype{lkNone, CheckvarPathname, allowRuntime, true}
+		gtype = &Vartype{lkNone, BtPathname, allowRuntime, true}
 	case hasSuffix(varbase, "PATH"):
-		gtype = &Vartype{lkNone, CheckvarPathlist, allowRuntime, true}
+		gtype = &Vartype{lkNone, BtPathlist, allowRuntime, true}
 	case hasSuffix(varbase, "PATHS"):
-		gtype = &Vartype{lkShell, CheckvarPathname, allowRuntime, true}
+		gtype = &Vartype{lkShell, BtPathname, allowRuntime, true}
 	case hasSuffix(varbase, "_USER"):
-		gtype = &Vartype{lkNone, CheckvarUserGroupName, allowAll, true}
+		gtype = &Vartype{lkNone, BtUserGroupName, allowAll, true}
 	case hasSuffix(varbase, "_GROUP"):
-		gtype = &Vartype{lkNone, CheckvarUserGroupName, allowAll, true}
+		gtype = &Vartype{lkNone, BtUserGroupName, allowAll, true}
 	case hasSuffix(varbase, "_ENV"):
-		gtype = &Vartype{lkShell, CheckvarShellWord, allowRuntime, true}
+		gtype = &Vartype{lkShell, BtShellWord, allowRuntime, true}
 	case hasSuffix(varbase, "_CMD"):
-		gtype = &Vartype{lkNone, CheckvarShellCommand, allowRuntime, true}
+		gtype = &Vartype{lkNone, BtShellCommand, allowRuntime, true}
 	case hasSuffix(varbase, "_ARGS"):
-		gtype = &Vartype{lkShell, CheckvarShellWord, allowRuntime, true}
+		gtype = &Vartype{lkShell, BtShellWord, allowRuntime, true}
 	case hasSuffix(varbase, "_CFLAGS"), hasSuffix(varname, "_CPPFLAGS"), hasSuffix(varname, "_CXXFLAGS"):
-		gtype = &Vartype{lkShell, CheckvarCFlag, allowRuntime, true}
+		gtype = &Vartype{lkShell, BtCFlag, allowRuntime, true}
 	case hasSuffix(varname, "_LDFLAGS"):
-		gtype = &Vartype{lkShell, CheckvarLdFlag, allowRuntime, true}
+		gtype = &Vartype{lkShell, BtLdFlag, allowRuntime, true}
 	case hasSuffix(varbase, "_MK"):
-		gtype = &Vartype{lkNone, CheckvarUnchecked, allowAll, true}
+		gtype = &Vartype{lkNone, BtUnknown, allowAll, true}
 	case hasPrefix(varbase, "PLIST."):
-		gtype = &Vartype{lkNone, CheckvarYes, allowAll, true}
+		gtype = &Vartype{lkNone, BtYes, allowAll, true}
 	}
 
 	if G.opts.Debug {
@@ -1647,10 +1615,10 @@ func (mkline *MkLine) determineUsedVariables() (varnames []string) {
 //   checked against the variable type. For example, comparing OPSYS to
 //   x86_64 doesn’t make sense.
 type VarUseContext struct {
-	vartype *Vartype
-	time    vucTime
-	quoting vucQuoting
-	extent  vucExtent
+	vartype    *Vartype
+	time       vucTime
+	quoting    vucQuoting
+	IsWordPart bool // Example: echo ${LOCALBASE} LOCALBASE=${LOCALBASE}
 }
 
 type vucTime uint8
@@ -1694,21 +1662,12 @@ func (q vucQuoting) String() string {
 	return [...]string{"unknown", "plain", "dquot", "squot", "backt", "mk-for"}[q]
 }
 
-type vucExtent uint8
-
-const (
-	vucExtentWord     vucExtent = iota // Example: echo ${LOCALBASE}
-	vucExtentWordpart                  // Example: echo LOCALBASE=${LOCALBASE}
-)
-
-func (e vucExtent) String() string { return [...]string{"word", "wordpart"}[e] }
-
 func (vuc *VarUseContext) String() string {
 	typename := "no-type"
 	if vuc.vartype != nil {
 		typename = vuc.vartype.String()
 	}
-	return fmt.Sprintf("(%s time:%s quoting:%s extent:%s)", typename, vuc.time, vuc.quoting, vuc.extent)
+	return fmt.Sprintf("(%s time:%s quoting:%s wordpart:%v)", typename, vuc.time, vuc.quoting, vuc.IsWordPart)
 }
 
 type Indentation struct {

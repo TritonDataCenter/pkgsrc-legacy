@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.32 2016/03/05 11:29:12 jperkin Exp $
+# $NetBSD: Makefile,v 1.35 2016/09/27 13:21:30 tnn Exp $
 
-DISTNAME=		synergy-1.7.4
-PKGREVISION=		1
+DISTNAME=		synergy-1.8.3
 CATEGORIES=		net x11
-MASTER_SITES=		${MASTER_SITE_GITHUB:=synergy/}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=symless/}
 GITHUB_TAG=		v${PKGVERSION_NOREV}-stable
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -11,10 +10,9 @@ HOMEPAGE=		http://synergy-project.org/
 COMMENT=		Let a user share a mouse and keyboard among computers
 LICENSE=		gnu-gpl-v2
 
-EXTRACT_USING=		bsdtar
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		unzip
-# Main configuration is cmake, but subdirectories are gnu configure.
+# Main configuration is CMake, but subdirectories are GNU configure.
 # We need to set GNU_CONFIGURE=yes for config.{guess,sub} overrides to kick in.
 # Fortunately for us, cmake seems to take precedence in infrastructure.
 USE_CMAKE=		yes

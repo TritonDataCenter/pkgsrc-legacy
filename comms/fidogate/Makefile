@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.70 2015/06/12 10:48:29 wiz Exp $
+# $NetBSD: Makefile,v 1.73 2016/07/10 10:07:16 rillig Exp $
 #
 
 DISTNAME=	fidogate-4.4.10
-PKGREVISION=	9
+PKGREVISION=	10
 CATEGORIES=	comms
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=fidogate/}
 
@@ -13,14 +13,13 @@ COMMENT=	FidoNet (FTN) <-> Internet mail and news gateway
 MAKE_JOBS_SAFE=		no
 
 USE_TOOLS+=		gmake makeinfo perl:run yacc
-MAKE_ENV+=		DEBUG="${CFLAGS} -Werror"
-BUILDLINK_SETENV.CC=	CC="cc ${_STRIPFLAG_CC}"
+MAKE_ENV+=		DEBUG=${CFLAGS:Q}" -Werror"
 
-EGDIR=		${PREFIX}/share/examples/fidogate
-CONF_FILES=	${EGDIR}/fidogate.conf ${PKG_SYSCONFDIR}/fidogate/fidogate.conf
-RCD_SCRIPTS=	fidogate
-RCD_SCRIPT_SRC.fidogate=	${WRKSRC}/scripts/maintenance/rc.fidogate
-INFO_FILES=	yes # PLIST
+EGDIR=			${PREFIX}/share/examples/fidogate
+CONF_FILES=		${EGDIR}/fidogate.conf ${PKG_SYSCONFDIR}/fidogate/fidogate.conf
+RCD_SCRIPTS=		fidogate
+RCD_SCRIPT_SRC.fidogate= ${WRKSRC}/scripts/maintenance/rc.fidogate
+INFO_FILES=		yes # PLIST
 
 PKG_GROUPS=	news
 PKG_USERS=	news:news
@@ -31,21 +30,17 @@ NO_CONFIGURE=	yes
 
 SUBST_CLASSES+=		paths
 SUBST_FILES.paths=	config.make
-SUBST_SED.paths=	-e "s,@PREFIX@,"${PREFIX:Q}",g"
-SUBST_SED.paths+=	-e "s,@PKG_SYSCONFDIR@,"${PKG_SYSCONFDIR:Q}",g"
-SUBST_SED.paths+=	-e "s,@PKGINFODIR@,"${PKGINFODIR:Q}",g"
-SUBST_SED.paths+=	-e "s,@PERL@,"${TOOLS_PATH.perl:Q}",g"
+SUBST_SED.paths=	-e "s,@PREFIX@,${PREFIX},g"
+SUBST_SED.paths+=	-e "s,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g"
+SUBST_SED.paths+=	-e "s,@PKGINFODIR@,${PKGINFODIR},g"
+SUBST_SED.paths+=	-e "s,@PERL@,${TOOLS_PATH.perl},g"
 SUBST_STAGE.paths=	pre-build
 
 # Too many schar/uchar issues.
 BUILDLINK_TRANSFORM+=	rm:-Werror
 
 OWN_DIRS=		${PKG_SYSCONFDIR}/fidogate
-INSTALLATION_DIRS+=	${EGDIR}		lib/fidogate		\
-			lib/fidogate/bin	share/doc/fidogate	\
-			share/fidogate		share/fidogate/sendmail	\
-			${PKGINFODIR} \
-			share/fidogate/sendmail/mailer share/examples/rc.d
+AUTO_MKDIRS=		yes
 
 FIDOGATE_SUID_PERMS=	news news 4111
 SPECIAL_PERMS+=		${PREFIX}/lib/fidogate/ffx ${FIDOGATE_SUID_PERMS} \

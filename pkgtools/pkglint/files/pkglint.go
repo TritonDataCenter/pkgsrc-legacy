@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	reMkInclude = `^\.\s*(s?include)\s+\"([^\"]+)\"\s*(?:#.*)?$`
+	reMkInclude = `^\.(\s*)(s?include)\s+\"([^\"]+)\"\s*(?:#.*)?$`
 	rePkgname   = `^([\w\-.+]+)-(\d(?:\w|\.\d)*)$`
 )
 
@@ -202,7 +202,7 @@ func Checkfile(fname string) {
 		}
 
 	case st.Mode()&os.ModeSymlink != 0:
-		if !matches(basename, `^work`) {
+		if !hasPrefix(basename, "work") {
 			NewLineWhole(fname).Warn0("Unknown symlink name.")
 		}
 
@@ -284,6 +284,9 @@ func Checkfile(fname string) {
 	case matches(fname, `(?:^|/)files/[^/]*$`):
 		// Skip
 
+	case basename == "spec":
+		// Ok in regression tests
+
 	default:
 		NewLineWhole(fname).Warn0("Unexpected file found.")
 		if G.opts.CheckExtra {
@@ -303,7 +306,7 @@ func ChecklinesTrailingEmptyLines(lines []*Line) {
 	}
 }
 
-func MatchVarassign(text string) (m bool, varname, op, valueAlign, value, comment string) {
+func MatchVarassign(text string) (m bool, varname, spaceAfterVarname, op, valueAlign, value, comment string) {
 	i, n := 0, len(text)
 
 	for i < n && text[i] == ' ' {
@@ -376,6 +379,7 @@ func MatchVarassign(text string) (m bool, varname, op, valueAlign, value, commen
 
 	m = true
 	varname = text[varnameStart:varnameEnd]
+	spaceAfterVarname = text[varnameEnd:opStart]
 	op = text[opStart:opEnd]
 	valueAlign = text[0:valueStart]
 	value = strings.TrimSpace(string(valuebuf[:j]))

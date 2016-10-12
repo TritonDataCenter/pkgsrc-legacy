@@ -4,7 +4,7 @@ import (
 	check "gopkg.in/check.v1"
 )
 
-func (s *Suite) TestPkgnameFromDistname(c *check.C) {
+func (s *Suite) Test_Package_pkgnameFromDistname(c *check.C) {
 	pkg := NewPackage("dummy")
 	pkg.vardef["PKGNAME"] = NewMkLine(NewLine("Makefile", 5, "PKGNAME=dummy", nil))
 
@@ -14,11 +14,14 @@ func (s *Suite) TestPkgnameFromDistname(c *check.C) {
 	c.Check(pkg.pkgnameFromDistname("${DISTNAME:S|a|b|g}", "panama-0.13"), equals, "pbnbmb-0.13")
 	c.Check(pkg.pkgnameFromDistname("${DISTNAME:S|^lib||}", "libncurses"), equals, "ncurses")
 	c.Check(pkg.pkgnameFromDistname("${DISTNAME:S|^lib||}", "mylib"), equals, "mylib")
+	c.Check(pkg.pkgnameFromDistname("${DISTNAME:tl:S/-/./g:S/he/-/1}", "SaxonHE9-5-0-1J"), equals, "saxon-9.5.0.1j")
+	c.Check(pkg.pkgnameFromDistname("${DISTNAME:C/beta/.0./}", "fspanel-0.8beta1"), equals, "${DISTNAME:C/beta/.0./}")
+	c.Check(pkg.pkgnameFromDistname("${DISTNAME:S/-0$/.0/1}", "aspell-af-0.50-0"), equals, "aspell-af-0.50.0")
 
 	c.Check(s.Output(), equals, "")
 }
 
-func (s *Suite) TestChecklinesPackageMakefileVarorder(c *check.C) {
+func (s *Suite) Test_Package_ChecklinesPackageMakefileVarorder(c *check.C) {
 	s.UseCommandLine(c, "-Worder")
 	pkg := NewPackage("x11/9term")
 
@@ -43,7 +46,7 @@ func (s *Suite) TestChecklinesPackageMakefileVarorder(c *check.C) {
 		"WARN: Makefile:6: The canonical position for the required variable LICENSE is here.\n")
 }
 
-func (s *Suite) TestGetNbpart(c *check.C) {
+func (s *Suite) Test_Package_getNbpart(c *check.C) {
 	pkg := NewPackage("category/pkgbase")
 	pkg.vardef["PKGREVISION"] = NewMkLine(NewLine("Makefile", 1, "PKGREVISION=14", nil))
 
@@ -54,55 +57,7 @@ func (s *Suite) TestGetNbpart(c *check.C) {
 	c.Check(pkg.getNbpart(), equals, "")
 }
 
-func (s *Suite) TestMkLines_CheckForUsedComment(c *check.C) {
-	s.UseCommandLine(c, "--show-autofix")
-	s.NewMkLines("Makefile.common",
-		"# $"+"NetBSD$",
-		"",
-		"# used by sysutils/mc",
-	).checkForUsedComment("sysutils/mc")
-
-	c.Check(s.Output(), equals, "")
-
-	s.NewMkLines("Makefile.common").checkForUsedComment("category/package")
-
-	c.Check(s.Output(), equals, "")
-
-	s.NewMkLines("Makefile.common",
-		"# $"+"NetBSD$",
-	).checkForUsedComment("category/package")
-
-	c.Check(s.Output(), equals, "")
-
-	s.NewMkLines("Makefile.common",
-		"# $"+"NetBSD$",
-		"",
-	).checkForUsedComment("category/package")
-
-	c.Check(s.Output(), equals, "")
-
-	s.NewMkLines("Makefile.common",
-		"# $"+"NetBSD$",
-		"",
-		"VARNAME=\tvalue",
-	).checkForUsedComment("category/package")
-
-	c.Check(s.Output(), equals, ""+
-		"WARN: Makefile.common:2: Please add a line \"# used by category/package\" here.\n"+
-		"AUTOFIX: Makefile.common:2: Inserting a line \"# used by category/package\" before this line.\n")
-
-	s.NewMkLines("Makefile.common",
-		"# $"+"NetBSD$",
-		"#",
-		"#",
-	).checkForUsedComment("category/package")
-
-	c.Check(s.Output(), equals, ""+
-		"WARN: Makefile.common:3: Please add a line \"# used by category/package\" here.\n"+
-		"AUTOFIX: Makefile.common:3: Inserting a line \"# used by category/package\" before this line.\n")
-}
-
-func (s *Suite) TestPackage_DetermineEffectivePkgVars_Precedence(c *check.C) {
+func (s *Suite) Test_Package_determineEffectivePkgVars__precedence(c *check.C) {
 	pkg := NewPackage("category/pkgbase")
 	pkgnameLine := NewMkLine(NewLine("Makefile", 3, "PKGNAME=pkgname-1.0", nil))
 	distnameLine := NewMkLine(NewLine("Makefile", 4, "DISTNAME=distname-1.0", nil))
@@ -119,7 +74,7 @@ func (s *Suite) TestPackage_DetermineEffectivePkgVars_Precedence(c *check.C) {
 	c.Check(pkg.EffectivePkgversion, equals, "1.0")
 }
 
-func (s *Suite) TestPackage_CheckPossibleDowngrade(c *check.C) {
+func (s *Suite) Test_Package_checkPossibleDowngrade(c *check.C) {
 	G.Pkg = NewPackage("category/pkgbase")
 	G.CurPkgsrcdir = "../.."
 	G.Pkg.EffectivePkgname = "package-1.0nb15"
@@ -143,7 +98,7 @@ func (s *Suite) TestPackage_CheckPossibleDowngrade(c *check.C) {
 	c.Check(s.Output(), equals, "")
 }
 
-func (s *Suite) TestCheckdirPackage(c *check.C) {
+func (s *Suite) Test_checkdirPackage(c *check.C) {
 	s.CreateTmpFile(c, "Makefile", ""+
 		"# $"+"NetBSD$\n")
 	G.CurrentDir = s.tmpdir
@@ -157,7 +112,20 @@ func (s *Suite) TestCheckdirPackage(c *check.C) {
 		"WARN: ~/Makefile: No COMMENT given.\n")
 }
 
-func (s *Suite) Test_Package_Varuse_LoadTime(c *check.C) {
+func (s *Suite) Test_checkdirPackage__meta_package_without_license(c *check.C) {
+	s.CreateTmpFileLines(c, "Makefile",
+		"# $"+"NetBSD$",
+		"",
+		"META_PACKAGE=\tyes")
+	G.CurrentDir = s.tmpdir
+	G.globalData.InitVartypes()
+
+	checkdirPackage(s.tmpdir)
+
+	c.Check(s.Output(), equals, "WARN: ~/Makefile: No COMMENT given.\n") // No error about missing LICENSE.
+}
+
+func (s *Suite) Test_Package__varuse_at_load_time(c *check.C) {
 	s.CreateTmpFileLines(c, "doc/CHANGES-2016",
 		"# dummy")
 	s.CreateTmpFileLines(c, "doc/TODO",
@@ -217,4 +185,21 @@ func (s *Suite) Test_Package_Varuse_LoadTime(c *check.C) {
 		"WARN: ~/category/pkgbase/Makefile:9: To use the tool \"NICE\" at load time, bsd.prefs.mk has to be included before.\n"+
 		"WARN: ~/category/pkgbase/Makefile:10: To use the tool \"TRUE\" at load time, bsd.prefs.mk has to be included before.\n"+
 		"WARN: ~/category/pkgbase/Makefile:16: To use the tool \"NICE\" at load time, it has to be added to USE_TOOLS before including bsd.prefs.mk.\n")
+}
+
+func (s *Suite) Test_Package_loadPackageMakefile(c *check.C) {
+	makefile := s.CreateTmpFile(c, "category/package/Makefile", ""+
+		"# $"+"NetBSD$\n"+
+		"\n"+
+		"PKGNAME=pkgname-1.67\n"+
+		"DISTNAME=distfile_1_67\n"+
+		".include \"../../category/package/Makefile\"\n")
+	pkg := NewPackage("category/package")
+	G.CurrentDir = s.tmpdir + "/category/package"
+	G.CurPkgsrcdir = "../.."
+	G.Pkg = pkg
+
+	pkg.loadPackageMakefile(makefile)
+
+	c.Check(s.Output(), equals, "")
 }

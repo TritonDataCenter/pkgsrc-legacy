@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2015/12/05 21:25:29 adam Exp $
+# $NetBSD: Makefile,v 1.16 2016/08/17 00:06:41 ryoon Exp $
 
 DISTNAME=	quodlibet-2.6.3
-PKGREVISION=	7
+PKGREVISION=	9
 CATEGORIES=	audio
 MASTER_SITES=	https://bitbucket.org/lazka/quodlibet-files/raw/default/releases/
 
@@ -20,7 +20,7 @@ USE_PKGLOCALEDIR=	yes
 #BUILD_TARGET=		_trayicon.so _mmkeys.so
 
 PYDISTUTILSPKG= yes
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-gtk2, py-gstreamer0.10
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2, py-gstreamer0.10
 REPLACE_PYTHON=	exfalso.py quodlibet.py operon.py
 
 .include "../../devel/py-gobject/buildlink3.mk"

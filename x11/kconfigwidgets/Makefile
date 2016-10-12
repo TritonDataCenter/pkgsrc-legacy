@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2016/06/09 23:37:20 markd Exp $
+# $NetBSD: Makefile,v 1.4 2016/08/21 21:29:45 markd Exp $
 
 DISTNAME=	kconfigwidgets-${KF5VER}
 CATEGORIES=	x11

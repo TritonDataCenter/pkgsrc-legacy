@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.476 2016/04/17 18:27:45 ryoon Exp $
+# $NetBSD: Makefile,v 1.481 2016/09/13 16:04:51 taca Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -69,7 +69,12 @@ SUBDIR+=	dot-forward
 SUBDIR+=	dovecot
 SUBDIR+=	dovecot2
 SUBDIR+=	dovecot2-antispam-plugin
+SUBDIR+=	dovecot2-gssapi
+SUBDIR+=	dovecot2-ldap
+SUBDIR+=	dovecot2-mysql
+SUBDIR+=	dovecot2-pgsql
 SUBDIR+=	dovecot2-pigeonhole
+SUBDIR+=	dovecot2-sqlite
 SUBDIR+=	drac
 SUBDIR+=	dspam
 SUBDIR+=	elm
@@ -164,7 +169,7 @@ SUBDIR+=	mpop
 SUBDIR+=	msmtp
 SUBDIR+=	mush
 SUBDIR+=	mutt
-SUBDIR+=	mutt-kz
+SUBDIR+=	neomutt
 SUBDIR+=	netbiff
 SUBDIR+=	newmail
 SUBDIR+=	newspipe
@@ -302,6 +307,9 @@ SUBDIR+=	relay-ctrl
 SUBDIR+=	ripmime
 SUBDIR+=	rmail-mime
 SUBDIR+=	roundcube
+SUBDIR+=	roundcube-plugin-enigma
+SUBDIR+=	roundcube-plugin-password
+SUBDIR+=	roundcube-plugin-zipdownload
 SUBDIR+=	rspamd
 SUBDIR+=	rss2email
 SUBDIR+=	ruby-actionmailer32
@@ -309,6 +317,7 @@ SUBDIR+=	ruby-mail
 SUBDIR+=	ruby-mail25
 SUBDIR+=	ruby-mailfactory
 SUBDIR+=	ruby-mime-types
+SUBDIR+=	ruby-mime-types-data
 SUBDIR+=	ruby-mime-types1
 SUBDIR+=	ruby-mime-types2
 SUBDIR+=	ruby-tmail

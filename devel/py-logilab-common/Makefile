@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.11 2016/06/08 17:43:25 wiz Exp $
+# $NetBSD: Makefile,v 1.15 2016/08/29 15:50:06 wiz Exp $
 
-DISTNAME=	logilab-common-0.63.2
+DISTNAME=	logilab-common-1.2.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=l/logilab-common/}
@@ -18,9 +18,6 @@ DEPENDS+=	${PYPKGPREFIX}-six>=1.4.0:../../lang/py-six
 DEPENDS+=	${PYPKGPREFIX}-colorama-[0-9]*:../../comms/py-colorama
 .endif
 
-PLIST_SUBST+=			PYVERSSUFFIX=${PYVERSSUFFIX}
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-mxDateTime
-
 INSTALLATION_DIRS=	${PKGMANDIR}/man1
 
 post-extract:
@@ -31,5 +28,4 @@ post-install:
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/pytest${PYVERSSUFFIX}.1
 
 .include "../../lang/python/egg.mk"
-.include "../../time/py-mxDateTime/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

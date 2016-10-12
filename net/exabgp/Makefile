@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.16 2015/12/05 21:25:52 adam Exp $
+# $NetBSD: Makefile,v 1.18 2016/07/09 13:03:58 wiz Exp $
 
 VERSION=	3.4.11
 DISTNAME=	${VERSION}
 PKGNAME=	exabgp-${VERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 EGG_NAME=	exabgp-${VERSION}
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Exa-Networks/exabgp/archive/}
@@ -36,7 +36,7 @@ REPLACE_PYTHON+=	lib/exabgp/netlink/old.py
 REPLACE_PYTHON+=	lib/exabgp/netlink/route.py
 REPLACE_PYTHON+=	lib/exabgp/reactor/api/encoding.py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 3.2.19
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 3.2.19
 
 USE_LANGUAGES=  # none
 

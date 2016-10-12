@@ -1,5 +1,8 @@
-@comment $NetBSD: PLIST,v 1.8 2013/05/04 23:52:45 wiz Exp $
-${PYSITELIB}/${EGG_FILE}
+@comment $NetBSD: PLIST,v 1.10 2016/07/24 19:44:16 wiz Exp $
+${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
+${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
+${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
+${PYSITELIB}/${EGG_INFODIR}/top_level.txt
 ${PYSITELIB}/psycopg2/__init__.py
 ${PYSITELIB}/psycopg2/__init__.pyc
 ${PYSITELIB}/psycopg2/__init__.pyo
@@ -58,6 +61,9 @@ ${PYSITELIB}/psycopg2/tests/test_cursor.pyo
 ${PYSITELIB}/psycopg2/tests/test_dates.py
 ${PYSITELIB}/psycopg2/tests/test_dates.pyc
 ${PYSITELIB}/psycopg2/tests/test_dates.pyo
+${PYSITELIB}/psycopg2/tests/test_errcodes.py
+${PYSITELIB}/psycopg2/tests/test_errcodes.pyc
+${PYSITELIB}/psycopg2/tests/test_errcodes.pyo
 ${PYSITELIB}/psycopg2/tests/test_extras_dictcursor.py
 ${PYSITELIB}/psycopg2/tests/test_extras_dictcursor.pyc
 ${PYSITELIB}/psycopg2/tests/test_extras_dictcursor.pyo

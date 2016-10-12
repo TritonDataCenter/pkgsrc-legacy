@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.47 2016/03/05 11:28:46 jperkin Exp $
+# $NetBSD: Makefile,v 1.50 2016/09/19 13:04:23 wiz Exp $
 #
 
 PLUGIN_NAME=		spam_report

@@ -1,0 +1,53 @@
+$NetBSD: patch-pkgs_thread2.8.0_configure,v 1.1 2016/09/03 11:58:01 adam Exp $
+
+Add support for DragonFly.
+
+--- pkgs/thread2.8.0/configure.orig	2016-07-05 13:37:40.000000000 +0000
++++ pkgs/thread2.8.0/configure
+@@ -7520,7 +7520,7 @@ fi
+ fi
+ 		LD_SEARCH_FLAGS=${CC_SEARCH_FLAGS}
+ 		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.so${SHLIB_VERSION}'
+-		LDFLAGS="-Wl,-export-dynamic"
++		LDFLAGS="-Wl,--export-dynamic"
+ 		;;
+ 	    esac
+ 	    case "$arch" in
+@@ -7540,8 +7540,6 @@ fi
+ 
+ fi
+ 	    # OpenBSD doesn't do version numbers with dots.
+-	    UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
+-	    TCL_LIB_VERSIONS_OK=nodots
+ 	    ;;
+ 	NetBSD-*)
+ 	    # NetBSD has ELF and can use 'cc -shared' to build shared libs
+@@ -7563,7 +7561,7 @@ fi
+ 
+ fi
+ 	    ;;
+-	FreeBSD-*)
++	FreeBSD-*|DragonFly-*)
+ 	    # This configuration from FreeBSD Ports.
+ 	    SHLIB_CFLAGS="-fPIC"
+ 	    SHLIB_LD="${CC} -shared"
+@@ -7585,10 +7583,6 @@ fi
+ 	    case $system in
+ 	    FreeBSD-3.*)
+ 		# Version numbers are dot-stripped by system policy.
+-		TCL_TRIM_DOTS=`echo ${PACKAGE_VERSION} | tr -d .`
+-		UNSHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}.a'
+-		SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}\$\{DBGX\}.so.1'
+-		TCL_LIB_VERSIONS_OK=nodots
+ 		;;
+ 	    esac
+ 	    ;;
+@@ -8199,7 +8193,7 @@ fi
+ 	    BSD/OS*) ;;
+ 	    CYGWIN_*|MINGW32_*) ;;
+ 	    IRIX*) ;;
+-	    NetBSD-*|FreeBSD-*|OpenBSD-*) ;;
++	    NetBSD-*|FreeBSD-*|OpenBSD-*|DragonFly-*) ;;
+ 	    Darwin-*) ;;
+ 	    SCO_SV-3.2*) ;;
+ 	    windows) ;;

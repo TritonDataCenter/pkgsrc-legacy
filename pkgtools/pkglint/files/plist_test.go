@@ -4,7 +4,7 @@ import (
 	check "gopkg.in/check.v1"
 )
 
-func (s *Suite) TestChecklinesPlist(c *check.C) {
+func (s *Suite) Test_ChecklinesPlist(c *check.C) {
 	s.UseCommandLine(c, "-Wall")
 	G.Pkg = NewPackage("category/pkgbase")
 	lines := s.NewLines("PLIST",
@@ -46,7 +46,7 @@ func (s *Suite) TestChecklinesPlist(c *check.C) {
 		"ERROR: PLIST:16: Duplicate filename \"share/tzinfo\", already appeared in line 15.\n")
 }
 
-func (s *Suite) TestChecklinesPlist_empty(c *check.C) {
+func (s *Suite) Test_ChecklinesPlist__empty(c *check.C) {
 	lines := s.NewLines("PLIST",
 		"@comment $"+"NetBSD$")
 
@@ -55,7 +55,7 @@ func (s *Suite) TestChecklinesPlist_empty(c *check.C) {
 	c.Check(s.Output(), equals, "WARN: PLIST:1: PLIST files shouldn't be empty.\n")
 }
 
-func (s *Suite) TestChecklinesPlist_commonEnd(c *check.C) {
+func (s *Suite) Test_ChecklinesPlist__commonEnd(c *check.C) {
 	s.CreateTmpFile(c, "PLIST.common", ""+
 		"@comment $"+"NetBSD$\n"+
 		"bin/common\n")
@@ -68,7 +68,7 @@ func (s *Suite) TestChecklinesPlist_commonEnd(c *check.C) {
 	c.Check(s.Output(), equals, "")
 }
 
-func (s *Suite) TestChecklinesPlist_conditional(c *check.C) {
+func (s *Suite) Test_ChecklinesPlist__conditional(c *check.C) {
 	G.Pkg = NewPackage("category/pkgbase")
 	G.Pkg.plistSubstCond["PLIST.bincmds"] = true
 	lines := s.NewLines("PLIST",
@@ -80,7 +80,7 @@ func (s *Suite) TestChecklinesPlist_conditional(c *check.C) {
 	c.Check(s.Output(), equals, "WARN: PLIST:2: The bin/ directory should not have subdirectories.\n")
 }
 
-func (s *Suite) TestChecklinesPlist_sorting(c *check.C) {
+func (s *Suite) Test_ChecklinesPlist__sorting(c *check.C) {
 	s.UseCommandLine(c, "-Wplist-sort")
 	lines := s.NewLines("PLIST",
 		"@comment $"+"NetBSD$",
@@ -97,7 +97,7 @@ func (s *Suite) TestChecklinesPlist_sorting(c *check.C) {
 		"WARN: PLIST:6: \"bin/cat\" should be sorted before \"bin/otherprogram\".\n")
 }
 
-func (s *Suite) TestPlistChecker_sort(c *check.C) {
+func (s *Suite) Test_PlistLineSorter_Sort(c *check.C) {
 	s.UseCommandLine(c, "--autofix")
 	tmpfile := s.CreateTmpFile(c, "PLIST", "dummy\n")
 	ck := &PlistChecker{nil, nil, ""}
@@ -144,7 +144,10 @@ func (s *Suite) TestPlistChecker_sort(c *check.C) {
 		"sbin/program\n")
 }
 
-func (s *Suite) TestPlistChecker_checkpathShare_Desktop(c *check.C) {
+func (s *Suite) Test_PlistChecker_checkpathShare_Desktop(c *check.C) {
+	// Disabled due to PR 46570, item "10. It should stop".
+	return
+
 	s.UseCommandLine(c, "-Wextra")
 	G.Pkg = NewPackage("category/pkgpath")
 
@@ -155,7 +158,7 @@ func (s *Suite) TestPlistChecker_checkpathShare_Desktop(c *check.C) {
 	c.Check(s.Output(), equals, "WARN: PLIST:2: Packages that install a .desktop entry should .include \"../../sysutils/desktop-file-utils/desktopdb.mk\".\n")
 }
 
-func (s *Suite) TestPlistChecker_checkpathMan_gz(c *check.C) {
+func (s *Suite) Test_PlistChecker_checkpathMan_gz(c *check.C) {
 	G.Pkg = NewPackage("category/pkgbase")
 
 	ChecklinesPlist(s.NewLines("PLIST",
@@ -163,4 +166,45 @@ func (s *Suite) TestPlistChecker_checkpathMan_gz(c *check.C) {
 		"man/man3/strerror.3.gz"))
 
 	c.Check(s.Output(), equals, "NOTE: PLIST:2: The .gz extension is unnecessary for manual pages.\n")
+}
+
+func (s *Suite) Test_PlistChecker__autofix(c *check.C) {
+	s.UseCommandLine(c, "-Wall")
+
+	fname := s.CreateTmpFileLines(c, "PLIST",
+		"@comment $"+"NetBSD$",
+		"lib/libvirt/connection-driver/libvirt_driver_storage.la",
+		"${PLIST.hal}lib/libvirt/connection-driver/libvirt_driver_nodedev.la",
+		"${PLIST.xen}lib/libvirt/connection-driver/libvirt_driver_libxl.la",
+		"lib/libvirt/lock-driver/lockd.la",
+		"share/augeas/lenses/virtlockd.aug",
+		"share/doc/${PKGNAME}/html/32favicon.png",
+		"share/doc/${PKGNAME}/html/404.html",
+		"share/doc/${PKGNAME}/html/acl.html",
+		"share/doc/${PKGNAME}/html/aclpolkit.html",
+		"share/doc/${PKGNAME}/html/windows.html",
+		"share/examples/libvirt/libvirt.conf",
+		"share/locale/zh_CN/LC_MESSAGES/libvirt.mo",
+		"share/locale/zh_TW/LC_MESSAGES/libvirt.mo",
+		"share/locale/zu/LC_MESSAGES/libvirt.mo",
+		"@pkgdir share/examples/libvirt/nwfilter",
+		"@pkgdir        etc/libvirt/qemu/networks/autostart",
+		"@pkgdir        etc/logrotate.d",
+		"@pkgdir        etc/sasl2")
+	lines := LoadExistingLines(fname, false)
+	ChecklinesPlist(lines)
+
+	c.Check(s.Output(), equals, ""+
+		"WARN: ~/PLIST:3: \"lib/libvirt/connection-driver/libvirt_driver_nodedev.la\" should be sorted before \"lib/libvirt/connection-driver/libvirt_driver_storage.la\".\n"+
+		"WARN: ~/PLIST:4: \"lib/libvirt/connection-driver/libvirt_driver_libxl.la\" should be sorted before \"lib/libvirt/connection-driver/libvirt_driver_nodedev.la\".\n")
+
+	s.UseCommandLine(c, "-Wall", "--autofix")
+	ChecklinesPlist(lines)
+
+	fixedLines := LoadExistingLines(fname, false)
+
+	c.Check(s.Output(), equals, ""+
+		"AUTOFIX: ~/PLIST:1: Sorting the whole file.\n"+
+		"AUTOFIX: ~/PLIST: Has been auto-fixed. Please re-run pkglint.\n")
+	c.Check(len(lines), equals, len(fixedLines))
 }

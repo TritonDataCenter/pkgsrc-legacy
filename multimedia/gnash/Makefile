@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.96 2016/03/05 11:29:00 jperkin Exp $
+# $NetBSD: Makefile,v 1.99 2016/08/17 00:06:43 ryoon Exp $
 
 DISTNAME=		gnash-0.8.10
-PKGREVISION=		44
+PKGREVISION=		46
 CATEGORIES=		multimedia
 MASTER_SITES=		${MASTER_SITE_GNU:=gnash/${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=		.tar.bz2
@@ -33,6 +33,8 @@ CONF_FILES+=		${EGDIR}/gnashpluginrc ${PKG_SYSCONFDIR}/gnashpluginrc
 CONF_FILES+=		${EGDIR}/gnashrc ${PKG_SYSCONFDIR}/gnashrc
 
 .include "options.mk"
+
+CPPFLAGS.SunOS+=	-DBSD_COMP
 
 #ld: .libs/libgnashplugin_la-plugin.o(.text+0x5564): unresolvable relocation
 # against symbol `_ZNKSs5c_strEv'

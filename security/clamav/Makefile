@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2016/06/12 16:06:01 taca Exp $
+# $NetBSD: Makefile,v 1.33 2016/09/10 23:23:21 szptvlfn Exp $
 
 .include "Makefile.common"
 
@@ -6,6 +6,7 @@ COMMENT=	Anti-virus toolkit
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_TOOLS+=		gsed
 GNU_CONFIGURE=		yes
 SET_LIBDIR=		yes
 CONFIGURE_ARGS+=	--disable-clamav
@@ -35,6 +36,7 @@ CONFIGURE_ARGS+=	--enable-readdir_r
 .endif
 
 NOT_PAX_MPROTECT_SAFE+=	sbin/clamd
+NOT_PAX_MPROTECT_SAFE+=	bin/clamscan
 NOT_PAX_MPROTECT_SAFE+=	bin/freshclam
 
 CFLAGS.SunOS+=		-D__EXTENSIONS__

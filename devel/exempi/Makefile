@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.22 2015/09/27 19:03:58 wiz Exp $
+# $NetBSD: Makefile,v 1.24 2016/09/16 15:43:26 richard Exp $
 
-DISTNAME=	exempi-2.2.2
+DISTNAME=	exempi-2.3.0
 CATEGORIES=	devel graphics
 MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 EXTRACT_SUFX=	.tar.bz2
@@ -18,6 +18,8 @@ USE_LANGUAGES=	c c++
 
 CONFIGURE_ARGS+=	LIBS=${BUILDLINK_LDADD.iconv:Q}
 
+PTHREAD_AUTO_VARS=	yes
+
 PKGCONFIG_OVERRIDE+=	exempi/exempi-2.0.pc.in
 
 .include "options.mk"
@@ -25,4 +27,5 @@ PKGCONFIG_OVERRIDE+=	exempi/exempi-2.0.pc.in
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
+.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

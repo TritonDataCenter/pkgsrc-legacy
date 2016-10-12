@@ -1,13 +1,14 @@
-@comment $NetBSD: PLIST,v 1.3 2014/10/09 19:48:40 jaapb Exp $
-@unexec %D/libexec/ocaml-findlib-register del %D/lib/ocaml/site-lib/sqlite3
-lib/ocaml/site-lib/sqlite3/META
-lib/ocaml/site-lib/sqlite3/dllsqlite3_stubs.so
-lib/ocaml/site-lib/sqlite3/libsqlite3_stubs.a
-${PLIST.ocaml-opt}lib/ocaml/site-lib/sqlite3/sqlite3.a
-lib/ocaml/site-lib/sqlite3/sqlite3.cma
-lib/ocaml/site-lib/sqlite3/sqlite3.cmi
-${PLIST.ocaml-opt}lib/ocaml/site-lib/sqlite3/sqlite3.cmx
-${PLIST.ocaml-opt}lib/ocaml/site-lib/sqlite3/sqlite3.cmxa
-${PLIST.ocaml-opt}lib/ocaml/site-lib/sqlite3/sqlite3.cmxs
-lib/ocaml/site-lib/sqlite3/sqlite3.mli
-@exec %D/libexec/ocaml-findlib-register add %D/lib/ocaml/site-lib/sqlite3
+@comment $NetBSD: PLIST,v 1.5 2016/08/17 15:39:43 jaapb Exp $
+${OCAML_SITELIB}/sqlite3/META
+${OCAML_SITELIB}/sqlite3/dllsqlite3_stubs.so
+${OCAML_SITELIB}/sqlite3/libsqlite3_stubs.a
+${PLIST.ocaml-opt}${OCAML_SITELIB}/sqlite3/sqlite3.a
+${OCAML_SITELIB}/sqlite3/sqlite3.annot
+${OCAML_SITELIB}/sqlite3/sqlite3.cma
+${OCAML_SITELIB}/sqlite3/sqlite3.cmi
+${OCAML_SITELIB}/sqlite3/sqlite3.cmt
+${OCAML_SITELIB}/sqlite3/sqlite3.cmti
+${PLIST.ocaml-opt}${OCAML_SITELIB}/sqlite3/sqlite3.cmx
+${PLIST.ocaml-opt}${OCAML_SITELIB}/sqlite3/sqlite3.cmxa
+${PLIST.ocaml-opt}${OCAML_SITELIB}/sqlite3/sqlite3.cmxs
+${OCAML_SITELIB}/sqlite3/sqlite3.mli

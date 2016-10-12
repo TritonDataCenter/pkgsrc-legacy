@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2016/06/17 16:39:55 prlw1 Exp $
+# $NetBSD: Makefile,v 1.3 2016/06/23 15:05:38 prlw1 Exp $
 
 DISTNAME=	libecap-1.0.1
+PKGREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://www.measurement-factory.com/tmp/ecap/
 
@@ -13,6 +14,8 @@ GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
+
+CXXFLAGS+=	-std=c++11
 
 PKGCONFIG_OVERRIDE+=	libecap.pc.in
 

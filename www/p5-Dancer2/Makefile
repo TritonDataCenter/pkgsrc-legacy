@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.34 2016/06/08 19:25:01 wiz Exp $
+# $NetBSD: Makefile,v 1.37 2016/08/26 07:37:30 wen Exp $
 
-DISTNAME=	Dancer2-0.200000
+DISTNAME=	Dancer2-0.203000
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	www perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/X/XS/XSAWYERX/}
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/C/CR/CROMEDOME/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://search.cpan.org/dist/Dancer2/
@@ -14,6 +13,7 @@ LICENSE=	${PERL5_LICENSE}
 USE_LANGUAGES=	# empty
 PERL5_PACKLIST= auto/Dancer2/.packlist
 
+BUILD_DEPENDS+=	p5-ExtUtils-MakeMaker>=7.12:../../devel/p5-ExtUtils-MakeMaker
 BUILD_DEPENDS+=	p5-Test-Memory-Cycle>=0:../../devel/p5-Test-Memory-Cycle
 BUILD_DEPENDS+=	p5-Test-MockTime>=0:../../time/p5-Test-MockTime
 BUILD_DEPENDS+=	p5-Test-TCP>=0:../../net/p5-Test-TCP
@@ -44,7 +44,7 @@ DEPENDS+=	p5-Role-Tiny>=2.000000:../../devel/p5-Role-Tiny
 DEPENDS+=	p5-Safe-Isa>=0:../../devel/p5-Safe-Isa
 DEPENDS+=	p5-Template-Tiny>=0:../../textproc/p5-Template-Tiny
 DEPENDS+=	p5-Template-Toolkit>=0:../../www/p5-Template-Toolkit
-DEPENDS+=	p5-Type-Tiny>=0.008:../../devel/p5-Type-Tiny
+#DEPENDS+=	p5-Type-Tiny>=0.008:../../devel/p5-Type-Tiny
 DEPENDS+=	p5-URI>=0:../../www/p5-URI
 DEPENDS+=	p5-YAML>=0:../../textproc/p5-YAML
 DEPENDS+=	p5-YAML-LibYAML>=0:../../textproc/p5-YAML-LibYAML

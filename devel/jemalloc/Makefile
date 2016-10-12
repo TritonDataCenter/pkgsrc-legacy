@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2016/02/18 15:51:59 gson Exp $
+# $NetBSD: Makefile,v 1.4 2016/07/09 06:38:08 wiz Exp $
 
-DISTNAME=	jemalloc-4.0.4
+DISTNAME=	jemalloc-4.2.1
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=jemalloc/}
 GITHUB_PROJECT=	jemalloc
@@ -24,6 +25,8 @@ CONFIGURE_ARGS+=        --with-xslroot=${PREFIX}/share/xsl/docbook/
 
 USE_TOOLS+=		perl:run
 REPLACE_PERL=		bin/jeprof.in
+
+PKGCONFIG_OVERRIDE=	jemalloc.pc.in
 
 BUILD_TARGET=		all dist
 

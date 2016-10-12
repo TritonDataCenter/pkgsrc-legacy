@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/05/26 09:01:44 markd Exp $
+# $NetBSD: Makefile,v 1.3 2016/08/21 21:22:06 markd Exp $
 
 DISTNAME=	knewstuff-${KF5VER}
 CATEGORIES=	net

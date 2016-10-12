@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.37 2015/12/05 21:26:08 adam Exp $
+# $NetBSD: Makefile,v 1.39 2016/08/03 10:23:37 adam Exp $
 
 DISTNAME=	kiwi-1.9.29
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	15
+PKGREVISION=	16
 CATEGORIES=	x11 python
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/kiwi/1.9/}
 EXTRACT_SUFX=	.tar.bz2
@@ -15,7 +15,7 @@ LICENSE=	gnu-lgpl-v2.1 # or later
 USE_LANGUAGES=		#none
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		msgfmt
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
 
 SUBST_CLASSES+=		localedir
 SUBST_STAGE.localedir=	pre-configure

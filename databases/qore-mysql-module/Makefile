@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2016/03/05 11:27:44 jperkin Exp $
+# $NetBSD: Makefile,v 1.4 2016/08/07 11:44:42 nros Exp $
 
 DISTNAME=	qore-mysql-module-2.0.1
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=qore/}
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	nros@users.sourceforge.net
+MAINTAINER=	nros@NetBSD.org
 HOMEPAGE=	http://www.qore.org/
 COMMENT=	MySQL DB driver for Qore
 LICENSE=	gnu-gpl-v2

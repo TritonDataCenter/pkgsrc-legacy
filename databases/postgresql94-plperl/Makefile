@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2016/04/09 12:51:49 adam Exp $
+# $NetBSD: Makefile,v 1.8 2016/08/14 16:56:30 is Exp $
 
 PKGNAME=	${DISTNAME:C/-/94-plperl-/}
+PKGREVISION=	#
 COMMENT=	PL/Perl procedural language for the PostgreSQL backend
 
 DEPENDS+=	postgresql94-server>=${PKGVERSION_NOREV}:../../databases/postgresql94-server

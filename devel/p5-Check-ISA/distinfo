@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.2 2015/11/03 03:28:00 agc Exp $
+$NetBSD: distinfo,v 1.4 2016/09/17 03:56:58 mef Exp $
 
-SHA1 (Check-ISA-0.04.tar.gz) = 0366dd7f74c3c980fc7b33f7027a24d43852194e
-RMD160 (Check-ISA-0.04.tar.gz) = 622c5daf2c3bc3ec78d708e1b91e9ccb91054c30
-SHA512 (Check-ISA-0.04.tar.gz) = 2c9bd53bed54317dc000b6d10b92c71dbbcdd82e4982e849702622540ef7cc8678dcccd793bb5fd17d25abf01c3809620bc4a2d426ec21e516f5dbf240e90fa7
-Size (Check-ISA-0.04.tar.gz) = 5552 bytes
+SHA1 (Check-ISA-0.09.tar.gz) = b388369915a81a24730859269960d582ec877efc
+RMD160 (Check-ISA-0.09.tar.gz) = 3a806735e6e199f55f24f176db3b16ffe9b3c42d
+SHA512 (Check-ISA-0.09.tar.gz) = e0a14bee2504ed479a7bfdcd2b59aa6e5ea968f9c453e77ebfc8b707aa26a79168221d94137d4ba51ea50c65323130120f5eea8d8607ffdae1a097c647bcc495
+Size (Check-ISA-0.09.tar.gz) = 13828 bytes

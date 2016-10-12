@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.33 2015/05/04 21:02:58 roy Exp $
+# $NetBSD: Makefile,v 1.35 2016/09/20 12:36:09 mef Exp $
 
-DISTNAME=	keychain-2.7.1
-PKGREVISION=	3
+DISTNAME=	keychain-2.8.3
 CATEGORIES=	security
 MASTER_SITES=	http://www.funtoo.org/archive/keychain/
 EXTRACT_SUFX=	.tar.bz2
@@ -23,7 +22,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/keychain ${DESTDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/keychain.1 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
-	${INSTALL_DATA} ${WRKSRC}/README.rst \
+	${INSTALL_DATA} ${WRKSRC}/README.md \
 		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
 .include "../../mk/bsd.pkg.mk"

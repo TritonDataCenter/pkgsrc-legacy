@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.6 2014/06/18 09:26:12 wiz Exp $
+# $NetBSD: options.mk,v 1.8 2016/08/30 08:00:14 richard Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.qt4
 PKG_SUPPORTED_OPTIONS=	cups debug gtk2

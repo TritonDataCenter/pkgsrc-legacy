@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2016/06/19 15:46:47 joerg Exp $
+# $NetBSD: Makefile,v 1.4 2016/08/21 21:17:57 markd Exp $
 
 DISTNAME=	kdeclarative-${KF5VER}
 CATEGORIES=	devel

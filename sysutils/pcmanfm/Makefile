@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.31 2016/05/22 22:51:44 youri Exp $
+# $NetBSD: Makefile,v 1.33 2016/08/03 10:23:25 adam Exp $
 #
 
 DISTNAME=	pcmanfm-1.2.4
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pcmanfm/}
 EXTRACT_SUFX=	.tar.xz
@@ -17,6 +18,8 @@ USE_TOOLS+=		intltool pkg-config
 
 CONF=			share/examples/pcmanfm
 CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/${CONF}
+
+LIBS.SunOS+=		-lsocket -lnsl
 
 PKG_SYSCONFSUBDIR=	xdg
 MAKE_DIRS=		${PKG_SYSCONFDIR}/pcmanfm/default

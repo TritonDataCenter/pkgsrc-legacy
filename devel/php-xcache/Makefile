@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2015/12/19 14:27:13 taca Exp $
+# $NetBSD: Makefile,v 1.5 2016/09/11 17:03:26 taca Exp $
 
 MODNAME=	xcache
 PECL_VERSION=	3.2.0
@@ -14,7 +14,7 @@ LICENSE=	modified-bsd
 
 BUILD_DEPENDS+=	re2c>=0.13.0.4:../../devel/re2c
 
-PHP_VERSIONS_ACCEPTED=	55 56
+PHP_VERSIONS_ACCEPTED=	56
 
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		gawk gm4 gsed pax
@@ -37,7 +37,6 @@ MESSAGE_SUBST=		PHP_PKG_PREFIX=${PHP_PKG_PREFIX}
 .include "options.mk"
 
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/xcache.ini ${DESTDIR}${PREFIX}/${EGDIR}
 	${INSTALL_DATA} ${WRKSRC}/htdocs/*.php ${DESTDIR}${PREFIX}/${XCACHE_DIR}
 	for i in cacher common coverager diagnosis; do \
 		${INSTALL_DATA} ${WRKSRC}/htdocs/$$i/*.* \

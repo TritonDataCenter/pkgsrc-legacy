@@ -1,23 +1,24 @@
-# $NetBSD: Makefile,v 1.6 2015/12/05 21:25:39 adam Exp $
+# $NetBSD: Makefile,v 1.8 2016/08/06 11:45:24 kamil Exp $
 
 .include "../../devel/protobuf/Makefile.common"
 
-PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	devel
+DISTNAME=	protobuf-python-${PROTOBUFVER}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/-python//}
+CATEGORIES+=	python
 
 MAINTAINER=	khorben@defora.org
-HOMEPAGE=	http://code.google.com/p/protobuf/
-COMMENT=	Google protocol buffers
-LICENSE=	modified-bsd
+COMMENT=	Python bindings for protobuf
 
 PYSETUPSUBDIR=	python
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35
 
 BUILD_DEPENDS+=	${PYPKGPREFIX}-gflags-[0-9]*:../../devel/py-gflags
 BUILD_DEPENDS+=	${PYPKGPREFIX}-google-apputils-[0-9]*:../../devel/py-google-apputils
 BUILD_DEPENDS+=	${PYPKGPREFIX}-dateutil-[0-9]*:../../time/py-dateutil
 BUILD_DEPENDS+=	${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
+
+EGG_NAME=	protobuf-${PKGVERSION_NOREV}
 
 .include "../../devel/protobuf/buildlink3.mk"
 .include "../../lang/python/egg.mk"

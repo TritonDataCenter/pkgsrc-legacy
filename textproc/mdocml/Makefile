@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.54 2016/04/11 19:02:04 ryoon Exp $
+# $NetBSD: Makefile,v 1.58 2016/09/07 18:50:05 wiz Exp $
 
-DISTNAME=	mdocml-1.13.3
-PKGREVISION=	5
+DISTNAME=	mdocml-1.13.4
+PKGREVISION=	1
 CATEGORIES=	textproc devel
 MASTER_SITES=	http://mdocml.bsd.lv/snapshots/
 
@@ -26,17 +26,24 @@ post-extract:
 	${ECHO} PREFIX=${PREFIX} > ${WRKSRC}/configure.local
 	${ECHO} MANDIR=${PREFIX}/${PKGMANDIR} >> ${WRKSRC}/configure.local
 	${ECHO} CFLAGS=\"${CFLAGS:Q}\" >> ${WRKSRC}/configure.local
-	${ECHO} DBLIB=\"${LDFLAGS} -lsqlite3\" >> ${WRKSRC}/configure.local
+	${ECHO} LDFLAGS=\"${LDFLAGS:Q}\" >> ${WRKSRC}/configure.local
+	${ECHO} LD_SQLITE3=\"${LDFLAGS} -lsqlite3\" >> ${WRKSRC}/configure.local
 	${ECHO} INSTALL=\"${INSTALL:Q}\" >> ${WRKSRC}/configure.local
 	${ECHO} INSTALL_PROGRAM=\"${INSTALL_PROGRAM:Q}\" >> ${WRKSRC}/configure.local
 	${ECHO} INSTALL_LIB=\"${INSTALL_DATA:Q}\" >> ${WRKSRC}/configure.local
 	${ECHO} INSTALL_MAN=\"${INSTALL_MAN:Q}\" >> ${WRKSRC}/configure.local
 	${ECHO} INSTALL_DATA=\"${INSTALL_DATA:Q}\" >> ${WRKSRC}/configure.local
 	${ECHO} MANM_ROFF="mandoc-roff" >> ${WRKSRC}/configure.local
+	${ECHO} BINM_SOELIM="msoelim" >> ${WRKSRC}/configure.local
+# Need -lrt for nanosleep(2) on Solaris.
+.if ${OPSYS} == "SunOS"
+	${ECHO} LDADD=\"-lrt\" >> ${WRKSRC}/configure.local
+.endif
 # Mac OS X and Solaris 10 and newer do not support static binaries.
 .if ${OPSYS} == "Darwin" || ${OPSYS} == "SunOS"
 	${ECHO} STATIC= >> ${WRKSRC}/configure.local
 .endif
 
 .include "../../databases/sqlite3/buildlink3.mk"
+.include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

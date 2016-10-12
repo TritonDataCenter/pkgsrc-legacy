@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2016/05/22 18:20:48 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2016/08/03 10:23:20 adam Exp $
 
 DISTNAME=	pypoppler-0.12.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
-PKGREVISION=	14
+PKGREVISION=	16
 CATEGORIES=	print
 MASTER_SITES=	https://launchpad.net/poppler-python/trunk/development/+download/
 
@@ -16,7 +16,7 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	pkg-config
 PY_PATCHPLIST=	yes
 PYTHON_VERSIONED_DEPENDENCIES=	cairo:link
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
 
 .include "../../lang/python/extension.mk"
 .include "../../devel/atk/buildlink3.mk"

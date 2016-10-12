@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2016/06/16 09:21:11 fhajny Exp $
+# $NetBSD: Makefile,v 1.3 2016/09/15 10:48:01 fhajny Exp $
 #
 
-DISTNAME=		mbedtls-1.3.16-gpl
+DISTNAME=		mbedtls-1.3.17-gpl
 PKGNAME=		${DISTNAME:-gpl=}
 CATEGORIES=		security devel
 MASTER_SITES=		https://tls.mbed.org/download/

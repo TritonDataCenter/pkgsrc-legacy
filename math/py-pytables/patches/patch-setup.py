@@ -1,31 +1,28 @@
-$NetBSD: patch-setup.py,v 1.1 2014/09/20 17:56:36 wiz Exp $
+$NetBSD: patch-setup.py,v 1.3 2016/08/18 20:30:02 wiz Exp $
 
-Fix build with cython-0.20++.
-
---- setup.py.orig	2014-03-25 20:49:03.000000000 +0000
+--- setup.py.orig	2016-07-03 11:46:48.000000000 +0000
 +++ setup.py
-@@ -122,21 +122,21 @@ if not has_setuptools:
+@@ -793,23 +793,6 @@ if 'BLOSC' not in optional_libs:
+         finally:
+             os.remove(fd.name)
  
- # Check if Cython is installed or not (requisite)
- try:
-+    from Cython import __version__ as CythonVersion
-     from Cython.Distutils import build_ext
--    from Cython.Compiler.Main import Version
-     cmdclass['build_ext'] = build_ext
- except ImportError:
-     exit_with_error(
-         "You need %(pkgname)s %(pkgver)s or greater to compile PyTables!"
-         % {'pkgname': 'Cython', 'pkgver': min_cython_version})
- 
--if Version.version < min_cython_version:
-+if CythonVersion < min_cython_version:
-     exit_with_error(
-         "At least Cython %s is needed so as to generate extensions!"
-         % (min_cython_version))
+-    # Detection code for SSE2/AVX2 only works for gcc/clang, not for MSVC yet
+-    # SSE2
+-    if ('sse2' in cpu_info['flags'] and
+-        compiler_has_flags(compiler, ["-msse2"])):
+-        print('SSE2 detected')
+-        CFLAGS.append('-DSHUFFLE_SSE2_ENABLED')
+-        CFLAGS.append('-msse2')
+-        blosc_sources += [f for f in glob.glob('c-blosc/blosc/*.c')
+-                          if 'sse2' in f]
+-    # AVX2
+-    if ('avx2' in cpu_info['flags'] and
+-        compiler_has_flags(compiler, ["-mavx2"])):
+-        print('AVX2 detected')
+-        CFLAGS.append('-DSHUFFLE_AVX2_ENABLED')
+-        CFLAGS.append('-mavx2')
+-        blosc_sources += [f for f in glob.glob('c-blosc/blosc/*.c')
+-                          if 'avx2' in f]
  else:
-     print("* Found %(pkgname)s %(pkgver)s package installed."
--          % {'pkgname': 'Cython', 'pkgver': Version.version})
-+          % {'pkgname': 'Cython', 'pkgver': CythonVersion})
- 
- VERSION = open('VERSION').read().strip()
+     ADDLIBS += ['blosc']
  

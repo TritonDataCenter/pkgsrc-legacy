@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.38 2016/04/09 14:43:15 abs Exp $
+# $NetBSD: Makefile,v 1.40 2016/09/07 23:31:40 markd Exp $
 
 DISTNAME=	kdenlive-0.9.10
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_KDE:=kdenlive/0.9.10/src/}
 EXTRACT_SUFX=	.tar.bz2
@@ -21,7 +22,7 @@ USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	msgfmt perl pkg-config
 
-CMAKE_ARGS+=	-DWITH_V4L=OFF
+CMAKE_ARGS+=	-DWITH_LibV4L2=OFF
 
 post-install:
 	${RM} ${DESTDIR}${PREFIX}/share/icons/oxygen/*/mimetypes/application-x-kdenlivetitle.png

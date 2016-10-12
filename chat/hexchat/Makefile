@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.8 2016/06/08 19:22:16 wiz Exp $
+# $NetBSD: Makefile,v 1.10 2016/08/16 08:30:14 tnn Exp $
 
-DISTNAME=	hexchat-2.10.2
-PKGREVISION=	7
+DISTNAME=	hexchat-2.12.1
 CATEGORIES=	chat
 MASTER_SITES=	http://dl.hexchat.net/hexchat/
 EXTRACT_SUFX=	.tar.xz

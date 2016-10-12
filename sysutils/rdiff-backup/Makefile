@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.49 2015/12/05 21:25:59 adam Exp $
+# $NetBSD: Makefile,v 1.51 2016/09/01 16:18:07 wiz Exp $
 
 DISTNAME=	rdiff-backup-1.2.8
-PKGREVISION=	7
+PKGREVISION=	8
 CATEGORIES=	sysutils net
 MASTER_SITES=	http://savannah.nongnu.org/download/rdiff-backup/
 
@@ -9,7 +9,7 @@ MAINTAINER=	snj@NetBSD.org
 HOMEPAGE=	http://www.nongnu.org/rdiff-backup/
 COMMENT=	Remote incremental backup utility
 
-PYTHON_VERSIONS_INCOMPATIBLE=  33 34 35 # not yet ported as of 1.2.8
+PYTHON_VERSIONS_INCOMPATIBLE=  34 35 # not yet ported as of 1.2.8
 
 SUBST_CLASSES+=		path
 SUBST_STAGE.path=	post-patch

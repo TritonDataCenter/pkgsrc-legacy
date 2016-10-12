@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.41 2015/08/19 10:18:26 leot Exp $
+# $NetBSD: Makefile,v 1.43 2016/09/08 14:53:18 jperkin Exp $
 
 DISTNAME=		trn-4.0-test77
 PKGNAME=		trn-4.77
+PKGREVISION=		1
 CATEGORIES=		news
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=trn/}
 
@@ -46,7 +47,7 @@ CONFIGURE_ARGS+=	-d -e -D bin=${PREFIX:Q}/bin \
 			-D filexp=${PREFIX:Q}'/share/trn/filexp' \
 			-D hostbits=${TRN_HOSTBITS:Q} \
 			-D installbin=${DESTDIR:Q}${PREFIX:Q}'/bin' \
-			-D installmansrc=${DESTDIR:Q}${PREFIX:Q}'/man/man1' \
+			-D installmansrc=${DESTDIR:Q}${PREFIX:Q}/${PKGMANDIR:Q}/man1 \
 			-D installprivlib=${DESTDIR:Q}${PREFIX:Q}'/share/trn' \
 			-D libpth=${PREFIX:Q}'/lib /usr/lib' \
 			-D mansrc=${PREFIX:Q}/${PKGMANDIR:Q}'/man1' \

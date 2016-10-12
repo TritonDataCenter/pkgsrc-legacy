@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.22 2015/12/05 21:25:45 adam Exp $
+# $NetBSD: Makefile,v 1.24 2016/08/03 10:22:54 adam Exp $
 
 DISTNAME=	mypaint-1.1.0
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://download.gna.org/mypaint/
 EXTRACT_SUFX=	.tar.bz2
@@ -19,7 +19,7 @@ USE_LANGUAGES=	c c++
 USE_TOOLS+=	bash:run msgfmt pkg-config
 
 PYTHON_VERSIONED_DEPENDENCIES=	cairo
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
 
 USE_PKGLOCALEDIR=	yes
 

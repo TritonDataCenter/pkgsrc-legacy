@@ -1,25 +1,27 @@
-# $NetBSD: Makefile,v 1.16 2015/12/05 21:26:02 adam Exp $
+# $NetBSD: Makefile,v 1.19 2016/08/28 15:48:35 wiz Exp $
 
-DISTNAME=	vobject-0.8.1c
+DISTNAME=	vobject-0.9.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	2
 CATEGORIES=	textproc python
-MASTER_SITES=	http://vobject.skyhouseconsulting.com/
+MASTER_SITES=	${MASTER_SITE_PYPI:=v/vobject/}
 
 MAINTAINER=	kleink@NetBSD.org
-HOMEPAGE=	http://vobject.skyhouseconsulting.com/
+HOMEPAGE=	https://eventable.github.io/vobject/
 COMMENT=	Python iCalendar (ics) and vCard library
 LICENSE=	apache-2.0
 
-PYTHON_VERSIONED_DEPENDENCIES=	dateutil
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 0.8.1c
+DEPENDS+=	${PYPKGPREFIX}-dateutil-[0-9]*:../../time/py-dateutil
+DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 
-PYTHON_SELF_CONFLICT=	yes
-EGG_NAME=	${DISTNAME:S/1c/1rc0/}
+post-install:
+	cd ${DESTDIR}${PREFIX}/bin && \
+		${MV} change_tz change_tz-${PYVERSSUFFIX} && \
+		${MV} ics_diff ics_diff-${PYVERSSUFFIX}
 
-PYDISTUTILSPKG=	yes
-PY_PATCHPLIST=	yes
+# tests.py is missing in 0.9.3 tarball
+# https://github.com/eventable/vobject/issues/38
+do-test:
+	cd ${WRKSRC} && ${PYTHONBIN} tests.py
 
 .include "../../lang/python/egg.mk"
-.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

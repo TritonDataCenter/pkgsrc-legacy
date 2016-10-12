@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2016/06/19 16:51:02 joerg Exp $
+# $NetBSD: Makefile,v 1.4 2016/07/03 16:37:56 cheusov Exp $
 #
 
-DISTNAME=	jrep-0.6.0
+DISTNAME=	jrep-0.6.1
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=cheusov/}
 GITHUB_PROJECT= jrep
@@ -22,11 +22,11 @@ USE_TOOLS+=	pod2man
 
 TEST_TARGET=	test
 
-MAKE_ENV+=	MANDIR=${PREFIX}/${PKGMANDIR}
+MAKE_ENV+=	MANDIR=${PREFIX}/${PKGMANDIR} MAVEN_OPTS=${MAVEN_OPTS:Q}
 
-MAVEN_FLAGS+=	-Duser.home=${FAKEHOMEDIR}
-MAVEN_FLAGS+=	-Dmaven.repo.local=${WRKDIR}/deps
-MAVEN_FLAGS+=	--offline
+MAVEN_OPTS+=	-Duser.home=${FAKEHOMEDIR}
+#MAVEN_OPTS+=	-Dmaven.repo.local=${WRKDIR}/deps
+#MAVEN_OPTS+=	--offline
 
 .include "../../devel/mk-configure/mk-c.mk"
 .include "../../mk/java-vm.mk"

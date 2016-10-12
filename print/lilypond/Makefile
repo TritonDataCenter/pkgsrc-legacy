@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.107 2016/01/09 00:22:57 wiz Exp $
+# $NetBSD: Makefile,v 1.111 2016/09/15 17:14:19 gdt Exp $
 
 DISTNAME=	lilypond-2.18.2
-PKGREVISION=	5
+PKGREVISION=	7
 CATEGORIES=	print
 MASTER_SITES=	http://download.linuxaudio.org/lilypond/sources/v2.18/
 
@@ -54,7 +54,7 @@ CONFIGURE_ARGS+=	--with-ncsb-dir=${PREFIX}/share/fonts/urw
 CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
 
 REPLACE_PYTHON+= scripts/build/yyout2grammar.py
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 2.18.0
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 2.18.0
 PLIST_SUBST+=	PKGVERSION=${PKGVERSION:S/nb${PKGREVISION}//}
 
 # needs FlexLexer.h
@@ -64,6 +64,7 @@ BUILDLINK_API_DEPENDS.flex+=	flex>=2.6.0
 .include "../../devel/flex/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
+# lilypond's configure rejects guile2
 .include "../../lang/guile/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/omf-scrollkeeper.mk"

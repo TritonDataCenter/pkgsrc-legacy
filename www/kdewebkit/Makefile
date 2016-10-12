@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/05/26 09:31:43 markd Exp $
+# $NetBSD: Makefile,v 1.3 2016/08/21 21:27:03 markd Exp $
 
 DISTNAME=	kdewebkit-${KF5VER}
 CATEGORIES=	www

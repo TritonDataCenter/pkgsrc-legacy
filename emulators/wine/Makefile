@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.192 2016/06/09 15:26:35 fhajny Exp $
+# $NetBSD: Makefile,v 1.194 2016/09/19 13:04:21 wiz Exp $
 
 DISTNAME=	wine-1.6.2
-PKGREVISION=	10
+PKGREVISION=	12
 CATEGORIES=	emulators
 MASTER_SITES=	http://ibiblio.org/pub/linux/system/emulators/wine/ \
 		${MASTER_SITE_SOURCEFORGE:=wine/}
@@ -50,6 +50,11 @@ CONFIGURE_ENV+=		ac_cv_prog_LD=${LD:Q}\ -m\ elf_i386
 .if ${MACHINE_ARCH} == "x86_64"
 CONFIGURE_ARGS+=	--disable-win16
 CONFIGURE_ARGS+=	--enable-win64
+.endif
+
+.if ${OPSYS} == "NetBSD"
+# gethostbyname_r is in libc, but has a different calling convention
+CONFIGURE_ARGS+=	wine_cv_linux_gethostbyname_r_6=no
 .endif
 
 .include "options.mk"

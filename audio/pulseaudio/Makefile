@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.108 2016/06/04 16:25:04 youri Exp $
+# $NetBSD: Makefile,v 1.113 2016/09/04 18:33:03 maya Exp $
 
-DISTNAME=	pulseaudio-8.0
-PKGREVISION=	1
+DISTNAME=	pulseaudio-9.0
 CATEGORIES=	audio
 MASTER_SITES=	http://freedesktop.org/software/pulseaudio/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -12,6 +11,7 @@ COMMENT=	Sound server for POSIX and Win32 systems
 LICENSE=	gnu-lgpl-v2.1 AND gnu-gpl-v2
 
 LIBTOOL_REQD=	2.4
+GCC_REQD+=	4.8
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
@@ -21,10 +21,13 @@ USE_LANGUAGES=	c c++
 REPLACE_BASH=	shell-completion/bash/pulseaudio git-version-gen
 
 .include "../../mk/bsd.prefs.mk"
+
 # Some tests are incompatible for NetBSD at least
 CONFIGURE_ARGS.NetBSD+=	--disable-default-build-tests
-.if ${OPSYS} == "NetBSD" && !empty(OS_VERSION:M[45].*)
+
 # broken test for TLS
+.if ((${OPSYS} == "NetBSD" && !empty(OS_VERSION:M[45].*)) || \
+     (${OPSYS} == "Darwin" && ${PKGSRC_COMPILER} == "clang"))
 CONFIGURE_ENV+=		ac_cv_tls=none
 .endif
 
@@ -89,6 +92,7 @@ CONF_FILES+=	${EGDIR}/pulseaudio-system.conf \
 PLIST_VARS+=		alsa bonjour coreaudio evdev oss sun
 
 .if ${OPSYS} == "SunOS"
+USE_LANGUAGES+=		c99
 PLIST.sun=		yes
 .  if ${OS_VERSION} == "5.11"
 PLIST.oss=		yes

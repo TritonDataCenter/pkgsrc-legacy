@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.99 2016/06/12 14:32:27 wiz Exp $
+# $NetBSD: Makefile,v 1.110 2016/09/18 22:10:44 wiz Exp $
 
-DISTNAME=		setuptools-23.0.0
+DISTNAME=		setuptools-27.2.0
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=		devel python
 MASTER_SITES=		${MASTER_SITE_PYPI:=s/setuptools/}
@@ -14,7 +14,6 @@ DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 # not sure if this would introduce a dependency cycle
 #BUILD_DEPENDS+=		${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
-PLIST_SUBST+=		PYVERSSUFFIX=${PYVERSSUFFIX}
 PLIST_SUBST+=		EGG_INFODIR=${EGG_NAME}-py${PYVERSSUFFIX}.egg-info
 
 REPLACE_PYTHON+=	setuptools/command/easy_install.py

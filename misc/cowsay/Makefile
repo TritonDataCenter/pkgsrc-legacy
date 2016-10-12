@@ -1,13 +1,16 @@
-# $NetBSD: Makefile,v 1.19 2015/06/12 10:50:33 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2016/07/09 06:38:35 wiz Exp $
 
-DISTNAME=		cowsay-3.03
-PKGREVISION=		5
+DISTNAME=		cowsay-3.04
+PKGREVISION=		1
 CATEGORIES=		misc
-MASTER_SITES=		# ftp://ftp.nog.net/pub/tony/cowsay/
+MASTER_SITES=		${MASTER_SITE_GITHUB:=tnalpgge/}
+GITHUB_PROJECT=		rank-amateur-cowsay
+GITHUB_TAG=		${PKGNAME_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://www.nog.net/~tony/warez/cowsay.shtml
+HOMEPAGE=		https://github.com/tnalpgge/rank-amateur-cowsay
 COMMENT=		Configurable talking cow
+LICENSE=		gnu-gpl-v3
 
 USE_TOOLS+=		perl:run
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.470 2016/06/09 09:51:36 youri Exp $
+# $NetBSD: Makefile,v 1.474 2016/09/13 20:42:12 bsiegert Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -83,6 +83,7 @@ SUBDIR+=	gnome-devel-docs
 SUBDIR+=	gnome-user-docs
 SUBDIR+=	gnome-utils
 SUBDIR+=	gnuls
+SUBDIR+=	go-genproto
 SUBDIR+=	goffice0.10
 SUBDIR+=	goffice0.6
 SUBDIR+=	goffice0.8
@@ -206,6 +207,7 @@ SUBDIR+=	mousetweaks
 SUBDIR+=	mtail
 SUBDIR+=	multitail
 SUBDIR+=	nxtvepg
+SUBDIR+=	nyancat
 SUBDIR+=	ocaml-cudf
 SUBDIR+=	ocaml-opam
 SUBDIR+=	open2300
@@ -248,6 +250,7 @@ SUBDIR+=	ppower
 SUBDIR+=	pty-redir
 SUBDIR+=	py-anita
 SUBDIR+=	py-anki2
+SUBDIR+=	py-ansi
 SUBDIR+=	py-carddav
 SUBDIR+=	py-stdnum
 SUBDIR+=	py-trytond-company
@@ -328,6 +331,7 @@ SUBDIR+=	tellico
 SUBDIR+=	tellico-kde3
 SUBDIR+=	teseq
 SUBDIR+=	tmux
+SUBDIR+=	todoman
 SUBDIR+=	toilet
 SUBDIR+=	topless
 SUBDIR+=	ttyrec

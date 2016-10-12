@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2015/11/25 12:51:16 jperkin Exp $
+# $NetBSD: Makefile,v 1.23 2016/09/12 18:42:04 maya Exp $
 
 GCC_PKGNAME=	gcc48
 .include	"../../lang/${GCC_PKGNAME}/version.mk"

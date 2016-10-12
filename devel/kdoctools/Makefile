@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/05/26 08:29:05 markd Exp $
+# $NetBSD: Makefile,v 1.3 2016/08/21 21:17:57 markd Exp $
 
 DISTNAME=	kdoctools-${KF5VER}
 CATEGORIES=	devel

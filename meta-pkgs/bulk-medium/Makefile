@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.35 2016/03/20 22:10:50 wiz Exp $
+# $NetBSD: Makefile,v 1.38 2016/09/11 17:12:02 taca Exp $
 
-DISTNAME=	bulk-medium-20160314
+DISTNAME=	bulk-medium-20160911
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -10,7 +10,7 @@ COMMENT=	Meta-package for a standard medium-sized limited bulk build
 
 META_PACKAGE=	yes
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-matplotlib-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-matplotlib-gtk2
 
 RESTRICTED=		Just for test build purpose
 NO_BIN_ON_CDROM=	${RESTRICTED}
@@ -82,16 +82,16 @@ BUILD_DEPENDS+=	netpbm-[0-9]*:../../graphics/netpbm
 BUILD_DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 BUILD_DEPENDS+=	${PYPKGPREFIX}-matplotlib-gtk-[0-9]*:../../graphics/py-matplotlib-gtk2
 BUILD_DEPENDS+=	gawk-[0-9]*:../../lang/gawk
-BUILD_DEPENDS+=	php>=5.5<5.6:../../lang/php55
 BUILD_DEPENDS+=	php>=5.6<5.7:../../lang/php56
 BUILD_DEPENDS+=	ruby18-base-[0-9]*:../../lang/ruby18-base
 BUILD_DEPENDS+=	ruby21-base-[0-9]*:../../lang/ruby21-base
 BUILD_DEPENDS+=	ruby22-base-[0-9]*:../../lang/ruby22-base
+BUILD_DEPENDS+=	ruby23-base-[0-9]*:../../lang/ruby23-base
 BUILD_DEPENDS+=	sun-jdk6-[0-9]*:../../lang/sun-jdk6
 BUILD_DEPENDS+=	sun-jre6-[0-9]*:../../lang/sun-jre6
 BUILD_DEPENDS+=	openjdk7-[0-9]*:../../lang/openjdk7
 BUILD_DEPENDS+=	openjdk8-[0-9]*:../../lang/openjdk8
-BUILD_DEPENDS+=	python33-[0-9]*:../../lang/python33
+BUILD_DEPENDS+=	python35-[0-9]*:../../lang/python35
 BUILD_DEPENDS+=	tcl-[0-9]*:../../lang/tcl
 BUILD_DEPENDS+=	fetchmail-[0-9]*:../../mail/fetchmail
 BUILD_DEPENDS+=	imap-uw-[0-9]*:../../mail/imap-uw

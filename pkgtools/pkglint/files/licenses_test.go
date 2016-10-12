@@ -4,30 +4,43 @@ import (
 	check "gopkg.in/check.v1"
 )
 
-func (s *Suite) TestParseLicenses(c *check.C) {
-	c.Check(parseLicenses("gnu-gpl-v2"), check.DeepEquals, []string{"gnu-gpl-v2"})
-	c.Check(parseLicenses("AND artistic"), check.DeepEquals, []string{"artistic"})
+func (s *Suite) Test_parseLicenses(c *check.C) {
+	c.Check(parseLicenses("gnu-gpl-v2"), check.DeepEquals, &LicenseCondition{Name: "gnu-gpl-v2"})
+	c.Check(parseLicenses("AND artistic"), check.IsNil)
 }
 
-func (s *Suite) TestChecklineLicense(c *check.C) {
+func (s *Suite) Test_checklineLicense(c *check.C) {
 	s.CreateTmpFile(c, "licenses/gnu-gpl-v2", "Most software \u2026")
 	mkline := NewMkLine(NewLine("Makefile", 7, "LICENSE=dummy", nil))
 	G.globalData.Pkgsrcdir = s.tmpdir
 	G.CurrentDir = s.tmpdir
 
-	checklineLicense(mkline, "gpl-v2")
+	licenseChecker := &LicenseChecker{mkline}
+	licenseChecker.Check("gpl-v2", opAssign)
 
 	c.Check(s.Output(), equals, "WARN: Makefile:7: License file ~/licenses/gpl-v2 does not exist.\n")
 
-	checklineLicense(mkline, "no-profit shareware")
+	licenseChecker.Check("no-profit shareware", opAssign)
+
+	c.Check(s.Output(), equals, "ERROR: Makefile:7: Parse error for license condition \"no-profit shareware\".\n")
+
+	licenseChecker.Check("no-profit AND shareware", opAssign)
 
 	c.Check(s.Output(), equals, ""+
 		"WARN: Makefile:7: License file ~/licenses/no-profit does not exist.\n"+
-		"WARN: Makefile:7: License \"no-profit\" is deprecated.\n"+
+		"ERROR: Makefile:7: License \"no-profit\" must not be used.\n"+
 		"WARN: Makefile:7: License file ~/licenses/shareware does not exist.\n"+
-		"WARN: Makefile:7: License \"shareware\" is deprecated.\n")
+		"ERROR: Makefile:7: License \"shareware\" must not be used.\n")
 
-	checklineLicense(mkline, "gnu-gpl-v2")
+	licenseChecker.Check("gnu-gpl-v2", opAssign)
+
+	c.Check(s.Output(), equals, "")
+
+	licenseChecker.Check("gnu-gpl-v2 AND gnu-gpl-v2 OR gnu-gpl-v2", opAssign)
+
+	c.Check(s.Output(), equals, "ERROR: Makefile:7: AND and OR operators in license conditions can only be combined using parentheses.\n")
+
+	licenseChecker.Check("(gnu-gpl-v2 OR gnu-gpl-v2) AND gnu-gpl-v2", opAssign)
 
 	c.Check(s.Output(), equals, "")
 }

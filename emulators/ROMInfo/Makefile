@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2012/10/03 12:55:09 asau Exp $
+# $NetBSD: Makefile,v 1.20 2016/09/12 13:49:46 mef Exp $
 #
 
-DISTNAME=		rinfo27
-PKGNAME=		ROMInfo-2.7
+DISTNAME=		rinfo28
+PKGNAME=		ROMInfo-2.8
 CATEGORIES=		emulators
 MASTER_SITES=		http://www.logiqx.com/Tools/ROMInfo/
 EXTRACT_SUFX=		.zip
@@ -16,14 +16,13 @@ WRKSRC=			${WRKDIR}
 MAKE_FILE=		makefile
 BUILD_TARGET=		rominfo
 EXTRACT_OPTS_ZIP=	-aaqo
-INSTALLATION_DIRS=	bin
+INSTALLATION_DIRS=	bin share/doc/ROMInfo
 
 post-extract:
 	${MKDIR} ${WRKSRC}/obj
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/rominfo ${DESTDIR}${PREFIX}/bin
-	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/doc/ROMInfo
 	${INSTALL_DATA} ${WRKSRC}/readme.txt \
 		${DESTDIR}${PREFIX}/share/doc/ROMInfo
 

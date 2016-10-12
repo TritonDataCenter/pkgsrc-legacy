@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/02/08 01:53:48 markd Exp $
+# $NetBSD: Makefile,v 1.3 2016/07/25 15:28:27 jperkin Exp $
 #
 
 DISTNAME=	openal-soft-1.17.2
@@ -25,7 +25,6 @@ CMAKE_ARGS+=	-DALSOFT_BACKEND_ALSA:BOOL=OFF
 .include "../../audio/alsa-lib/buildlink3.mk"
 .endif
 
-CMAKE_ARGS+=	-DALSOFT_REQUIRE_OSS:BOOL=ON
 CMAKE_ARGS+=	-DALSOFT_REQUIRE_SOLARIS:BOOL=OFF
 CMAKE_ARGS+=	-DALSOFT_REQUIRE_SNDIO:BOOL=OFF
 CMAKE_ARGS+=	-DALSOFT_REQUIRE_QSA:BOOL=OFF
@@ -38,12 +37,19 @@ CMAKE_ARGS+=	-DALSOFT_BACKEND_PULSEAUDIO:BOOL=OFF
 
 .include "../../mk/oss.buildlink3.mk"
 
+.if ${OSS_TYPE} == "none"
+CMAKE_ARGS+=	-DALSOFT_REQUIRE_OSS:BOOL=OFF
+.else
+CMAKE_ARGS+=	-DALSOFT_REQUIRE_OSS:BOOL=ON
+.endif
+
 .if !empty(BUILTIN_LIB_FOUND.ossaudio:M[Yy][Ee][Ss])
 CMAKE_ARGS+=	-DEXTRA_LIBS=${LIBOSSAUDIO:Q}
 .endif
 
 CFLAGS+= -DSYS_CONF_DIR="\"${PKG_SYSCONFDIR}\""
 CFLAGS.NetBSD+=	-D_NETBSD_SOURCE
+CFLAGS.SunOS+=	-D__EXTENSIONS__
 
 CONF_FILES+= ${PREFIX}/share/openal/alsoftrc.sample ${PKG_SYSCONFDIR}/alsoft.conf
 

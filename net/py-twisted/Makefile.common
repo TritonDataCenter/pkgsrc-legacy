@@ -1,9 +1,9 @@
-# $NetBSD: Makefile.common,v 1.28 2016/05/23 16:54:19 wiz Exp $
+# $NetBSD: Makefile.common,v 1.33 2016/09/20 14:45:56 wiz Exp $
 #
 # used by net/py-twisted/Makefile
 # used by net/py-twisted-docs/Makefile
 
-DISTNAME=	Twisted-16.2.0
+DISTNAME=	Twisted-16.4.1
 CATEGORIES=	net python
 MASTER_SITES=	http://twistedmatrix.com/Releases/Twisted/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.bz2
@@ -15,4 +15,4 @@ LICENSE=	mit
 DISTINFO_FILE?=		${.CURDIR}/../py-twisted/distinfo
 PATCHDIR?=		${.CURDIR}/../py-twisted/patches
 
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # most parts not yet ported as of 14.0.0
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # most parts not yet ported as of 16.4.1 (PLIST: 2000/2500)

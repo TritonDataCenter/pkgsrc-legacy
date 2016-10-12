@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2016/05/26 09:49:48 markd Exp $
+# $NetBSD: Makefile,v 1.3 2016/08/21 21:29:45 markd Exp $
 
 DISTNAME=	kactivities-stats-${KF5VER}
 CATEGORIES=	x11

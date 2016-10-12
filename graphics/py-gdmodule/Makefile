@@ -1,25 +1,29 @@
-# $NetBSD: Makefile,v 1.6 2015/12/05 21:25:45 adam Exp $
+# $NetBSD: Makefile,v 1.10 2016/09/08 14:42:20 darcy Exp $
 
-DISTNAME=	v0.58
-PKGNAME=	${PYPKGPREFIX}-gdmodule-${DISTNAME:S/v//}
-PKGREVISION=	2
+DISTNAME=	gdmodule-0.59
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	graphics python
-MASTER_SITES=	https://github.com/Solomoriah/gdmodule/archive/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=Solomoriah/}
+GITHUB_PROJECT=	gdmodule
+GITHUB_TAG=	v0.59
 
 MAINTAINER=	darcy@NetBSD.org
 HOMEPAGE=	https://github.com/Solomoriah/gdmodule
 COMMENT=	Python interface to gd graphics library
 LICENSE=	original-bsd
 
-DIST_SUBDIR=	py-gdmodule
-WRKSRC=		${WRKDIR}/gdmodule-${DISTNAME:S/v//}
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 0.59
 
-EGG_NAME=	gdmodule-${DISTNAME:S/v//}
-
-PYSETUP=	Setup.py
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 0.58
+SUBST_CLASSES+=		pkgpath
+SUBST_STAGE.pkgpath=	pre-configure
+SUBST_MESSAGE.pkgpath=	Use correct pkgsrc prefix.
+SUBST_FILES.pkgpath=	setup.py
+SUBST_SED.pkgpath=	-e 's,"/usr/local,"${PREFIX},g'
+SUBST_SED.pkgpath+=	-e 's,"png","png16",g'
 
 BUILDLINK_API_DEPENDS.gd+=	gd>=2.0.23
 .include "../../graphics/gd/buildlink3.mk"
+.include "../../graphics/giflib/buildlink3.mk"
+.include "../../x11/Xaw-Xpm/buildlink3.mk"
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

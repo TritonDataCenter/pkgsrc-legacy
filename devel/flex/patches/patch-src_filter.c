@@ -1,4 +1,4 @@
-$NetBSD: patch-src_filter.c,v 1.1 2016/01/07 12:05:31 wiz Exp $
+$NetBSD: patch-src_filter.c,v 1.3 2016/08/12 10:12:23 mef Exp $
 
 Improve stdin-to-pipe hack on NetBSD
 https://sourceforge.net/p/flex/bugs/198/

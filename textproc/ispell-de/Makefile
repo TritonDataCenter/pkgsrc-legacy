@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2016/02/03 12:44:40 mef Exp $
+# $NetBSD: Makefile,v 1.8 2016/07/30 12:54:52 mef Exp $
 #
 
-DISTNAME=	igerman98-20151222
+DISTNAME=	igerman98-20160407
 PKGNAME=	${DISTNAME:S/german98/spell-de/1}
-PKGREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	http://j3e.de/ispell/igerman98/dict/
 EXTRACT_SUFX=	.tar.bz2

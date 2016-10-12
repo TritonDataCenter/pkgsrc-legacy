@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2016/04/14 22:10:06 dholland Exp $
+# $NetBSD: Makefile,v 1.34 2016/07/03 19:38:27 dholland Exp $
 #
 
 DISTNAME=	boot.${BOX}-unix
@@ -31,7 +31,7 @@ HOMEPAGE=	http://www.smlnj.org/index.html
 COMMENT=	Popular functional language from Bell Labs
 
 SML_VERSION=	110.73
-PKGREVISION=	1
+PKGREVISION=	2
 
 WRKSRC=		${WRKDIR}
 DIST_SUBDIR=	smlnj-${SML_VERSION}
@@ -45,53 +45,96 @@ SML_LIBDIR=	${SML_BASE}/lib
 SML_BINDIR=	${SML_BASE}/bin
 SML_SCRIPTS=	_link-sml _run-sml _ml-build _ml-makedepend
 
+# while building, the work directory is the "installation"
+BUILD_ENV+=	SMLNJ_HOME="${WRKDIR}"
+
+# the build uses patch directly (yuk)
+BUILD_ENV+=	PATCH=${PATCH:Q} PATCH_ARGS=${PATCH_ARGS:Q}
+
+# useful for debugging
+#CFLAGS+=	-Wall
+
+# note that this includes bsd.prefs.mk
 .include "../../lang/smlnj/Makefile.common"
 
-# create parent directory for the runtime system
+#
+# For smlnj reasons the runtime system needs to be unpacked twice, once
+# in work/src and once in work/base.
+#
+# As of 20160624, instead of inconsistently patching one copy or the
+# other and hoping, or patching both and duplicating all the patches,
+# we'll patch only work/src, and then *after* patching clone work/src
+# into work/base.
+#
+
+# create parent directories for the runtime system
 pre-extract:
 	${MKDIR} ${WRKDIR}/src || ${TRUE}
+	${MKDIR} ${WRKDIR}/base || ${TRUE}
 
 # make it easier to patch the runtime system
 do-extract:
-	${RUN} extract_file="${_DISTDIR}/config.tgz"; export extract_file;	\
+	${RUN} extract_file="${_DISTDIR}/config.tgz";	\
+		export extract_file;			\
 		cd ${WRKDIR}; ${EXTRACT_CMD}
-	${RUN} extract_file="${_DISTDIR}/runtime.tgz"; export extract_file;	\
+	${RUN} extract_file="${_DISTDIR}/runtime.tgz";	\
+		export extract_file;			\
 		cd ${WRKDIR}/src; ${EXTRACT_CMD}
-	${RUN} extract_file="${_DISTDIR}/runtime.tgz"; export extract_file;	\
-		mkdir ${WRKDIR}/base; cd ${WRKDIR}/base; ${EXTRACT_CMD}
 
-# make symlinks to the dist files
+# symlink the rest of the distfiles
+# also copy in new configs 
 post-extract:
-	cd ${WRKDIR} && ${LN} -sf ${_DISTDIR}/*  .
+	cd ${WRKDIR} && ${LN} -sf ${_DISTDIR}/* .
+	cp ${FILESDIR}/mk.* ${WRKDIR}/src/runtime/objs/
 
-# resolve definition of SML_BASE, CFLAGS in patched files
+# make the necessary copy of the runtime, _after_ patching src
+post-patch:
+	cd ${WRKDIR}/src && pax -rw runtime ${WRKDIR}/base/
+
+# Turn of nlffi on powerpc (I guess it doesn't work?)
+#
+# XXX: this switch doesn't work any more as the line in question doesn't
+# exist in the current version. Someone with a PPC build machine,
+# please check it out and either change it to match the file if still
+# needed, or get rid of it.
+.if ${MACHINE_ARCH} == "powerpc"
+SUBST_CLASSES+=		nlffi
+SUBST_STAGE.nlffi=	pre-configure
+SUBST_MESSAGE.nlffi=	Turning off nlffi
+SUBST_FILES.nlffi=	config/targets
+SUBST_SED.nlffi=	-e '/^request nlffi$$/d'
+.endif # powerpc
+
+# resolve definition of SML_BASE
+SUBST_CLASSES+=		smlbase
+SUBST_STAGE.smlbase=	pre-configure
+SUBST_MESSAGE.smlbase=	Setting SML_BASE
+SUBST_FILES.smlbase=	${SML_SCRIPTS:S/^/config\//}
+SUBST_VARS.smlbase=	SML_BASE
+
+# resolve definition of CFLAGS in patched files
+# (note that we need to do this in both src/runtime and base/runtime)
+SUBST_CLASSES+=		cflags
+SUBST_STAGE.cflags=	pre-configure
+SUBST_MESSAGE.cflags=	Setting CFLAGS
+SUBST_FILES.cflags=	src/runtime/objs/* base/runtime/objs/*
+SUBST_VARS.cflags=	CFLAGS
+
+# use the proper shell
+SUBST_CLASSES+=		shell
+SUBST_STAGE.shell=	pre-configure
+SUBST_MESSAGE.shell=	Choosing the right shell
+SUBST_FILES.shell=	config/install.sh
+SUBST_VARS.shell=	CONFIG_SHELL
+
+# nothing here any more
 do-configure:
-	set -e;							\
-	if [ ${MACHINE_ARCH} = "powerpc" ]; then		\
-		${AWK} '(! /^request nlffi$$/) { print }'	\
-		< ${WRKDIR}/config/targets			\
-		> ${WRKDIR}/temp;				\
-		${MV} ${WRKDIR}/temp ${WRKDIR}/config/targets;	\
-	fi
-	set -e;						\
-	cd ${WRKDIR}/config;				\
-	for f in ${SML_SCRIPTS}; do			\
-		${CP} "$${f}" "$${f}.tmp";		\
-		${SED} -e 's|@SML_BASE@|${SML_BASE}|g'	\
-			< "$${f}.tmp" > "$${f}";	\
-	done;						\
-	cd ${WRKDIR}/src/runtime/objs;			\
-	for f in *; do					\
-		${CP} "$${f}" "$${f}.tmp";		\
-		${SED} -e 's|@CFLAGS@|'${CFLAGS:Q}'|g'	\
-			< "$${f}.tmp" > "$${f}";	\
-	done
+	${DO_NADA}
 
 # The build target needs to run $WRKDIR/config/install.sh
 do-build:
-	cd ${WRKDIR} && unset PWD && \
-	FILESDIR=${FILESDIR} PATCH=${PATCH:Q} PATCH_ARGS=${PATCH_ARGS:Q} \
-		SMLNJ_HOME="${WRKDIR}" ./config/install.sh
+	cd ${WRKDIR} && unset PWD && ${SETENV} ${BUILD_ENV} \
+		${CONFIG_SHELL} ./config/install.sh
 
 # install target
 # (see ftp://ftp.research.bell-labs.com/dist/smlnj/working/110.38/INSTALL)

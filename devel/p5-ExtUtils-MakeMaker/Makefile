@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.41 2016/06/08 19:22:54 wiz Exp $
+# $NetBSD: Makefile,v 1.44 2016/08/26 14:37:11 mef Exp $
 
-DISTNAME=	ExtUtils-MakeMaker-7.18
+DISTNAME=	ExtUtils-MakeMaker-7.24
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/B/BI/BINGOS/}
 

@@ -1,10 +1,19 @@
-$NetBSD: patch-salt_utils_network.py,v 1.1 2016/02/16 01:52:34 khorben Exp $
+$NetBSD: patch-salt_utils_network.py,v 1.3 2016/09/19 13:34:37 jperkin Exp $
 
 Use sockstat(1) on NetBSD
 
---- salt/utils/network.py.orig	2016-02-01 19:40:31.000000000 +0000
+--- salt/utils/network.py.orig	2016-08-26 18:55:37.000000000 +0000
 +++ salt/utils/network.py
-@@ -1180,6 +1180,65 @@ def _freebsd_remotes_on(port, which_end)
+@@ -1086,6 +1086,8 @@ def _remotes_on(port, which_end):
+             return _sunos_remotes_on(port, which_end)
+         if salt.utils.is_freebsd():
+             return _freebsd_remotes_on(port, which_end)
++        if salt.utils.is_netbsd():
++            return _netbsd_remotes_on(port, which_end)
+         if salt.utils.is_openbsd():
+             return _openbsd_remotes_on(port, which_end)
+         if salt.utils.is_windows():
+@@ -1208,6 +1210,65 @@ def _freebsd_remotes_on(port, which_end)
      return remotes
  
  
@@ -70,21 +79,3 @@ Use sockstat(1) on NetBSD
  def _openbsd_remotes_on(port, which_end):
      '''
      OpenBSD specific helper function.
-@@ -1277,6 +1336,8 @@ def remotes_on_local_tcp_port(port):
-         return _sunos_remotes_on(port, 'local_port')
-     if salt.utils.is_freebsd():
-         return _freebsd_remotes_on(port, 'local_port')
-+    if salt.utils.is_netbsd():
-+        return _netbsd_remotes_on(port, 'local_port')
-     if salt.utils.is_openbsd():
-         return _openbsd_remotes_on(port, 'local_port')
-     if salt.utils.is_windows():
-@@ -1332,6 +1393,8 @@ def remotes_on_remote_tcp_port(port):
-         return _sunos_remotes_on(port, 'remote_port')
-     if salt.utils.is_freebsd():
-         return _freebsd_remotes_on(port, 'remote_port')
-+    if salt.utils.is_netbsd():
-+        return _netbsd_remotes_on(port, 'remote_port')
-     if salt.utils.is_openbsd():
-         return _openbsd_remotes_on(port, 'remote_port')
-     if salt.utils.is_windows():

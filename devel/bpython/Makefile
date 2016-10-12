@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2015/12/05 21:25:33 adam Exp $
+# $NetBSD: Makefile,v 1.16 2016/08/03 10:22:36 adam Exp $
 
 DISTNAME=	bpython-0.12
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	devel
 MASTER_SITES=	http://bpython-interpreter.org/releases/
 
@@ -26,7 +26,7 @@ PKG_SUGGESTED_OPTIONS=  # empty
 .if !empty(PKG_OPTIONS:Mgtk)
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../x11/py-gtk2/buildlink3.mk"
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # py-gtk2
 .endif
 
 .include "../../lang/python/distutils.mk"

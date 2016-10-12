@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.33 2016/05/22 18:20:49 wiz Exp $
+# $NetBSD: Makefile,v 1.36 2016/09/19 12:15:35 wiedi Exp $
 
 VER=		0.4.16
 DISTNAME=	qpdfview-${VER}
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	print
 MASTER_SITES=	https://launchpad.net/qpdfview/trunk/${VER}/+download/
 
@@ -34,4 +34,5 @@ do-configure:
 .include "../../x11/qt4-qdbus/buildlink3.mk"
 .include "../../x11/qt4-tools/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../sysutils/file/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

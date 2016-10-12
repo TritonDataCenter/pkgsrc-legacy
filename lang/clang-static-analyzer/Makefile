@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2016/03/10 15:01:52 tnn Exp $
+# $NetBSD: Makefile,v 1.6 2016/07/26 12:43:51 wiz Exp $
 
 PKGNAME=	${DISTNAME:S/cfe/clang-static-analyzer/:S/.src//}
 
@@ -13,7 +13,7 @@ INSTALL_DIRS=	../build/tools/clang-check ../build/tools/scan-build ../build/tool
 CMAKE_ARGS+=	-DCLANG_ENABLE_STATIC_ANALYZER=ON
 
 REPLACE_PYTHON=	# empty
-PYTHON_VERSIONS_INCOMPATIBLE=	33 34 35 # not yet ported as of 3.5
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 # not yet ported as of 3.5
 
 .include "../../lang/python/application.mk"
 .include "../../lang/clang/Makefile.common"

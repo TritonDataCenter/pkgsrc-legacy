@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.36 2016/02/25 14:42:56 jperkin Exp $
+# $NetBSD: Makefile,v 1.40 2016/09/06 16:28:48 maya Exp $
 
 GCC_PKGNAME=		gcc47
 .include		"version.mk"
@@ -8,7 +8,7 @@ PKGNAME=	${GCC_PKGNAME}-${GCC47_DIST_VERSION}
 ## When bumping the PKGREVISION of this package the PKGREVISION of
 ## lang/gcc47-libs needs to be bump to be at least 1 more than the
 ## PKGREVISION of this package!
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC47_DIST_VERSION}/}
 EXTRACT_SUFX=	.tar.bz2
@@ -68,11 +68,22 @@ CHECK_SHLIBS_SKIP+=	${GCC_PKGNAME}/lib*/libgcj_bc.so*
 ## For target librarys and libjava programs.
 CONFIGURE_ENV+=		LDFLAGS_FOR_TARGET=${LDFLAGS_FOR_TARGET:Q}
 
+# "checking for compiler with PCH support" hangs with ASLR enabled
+.if !empty(MACHINE_PLATFORM:MNetBSD-*)
+CONFIGURE_ARGS+=	--disable-libstdcxx-pch
+.endif
+
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-*)
+# on NetBSD, use the native SSP code in libc
+CONFIGURE_ARGS+=        --disable-libssp
+.else
+CONFIGURE_ARGS+=        --enable-libssp
+.endif
+
 CONFIGURE_ARGS+=	--enable-languages=${LANGS:Q}
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--enable-long-long
 CONFIGURE_ARGS+=	--with-local-prefix=${GCC_PREFIX:Q}
-CONFIGURE_ARGS+=	--enable-libssp
 CONFIGURE_ARGS+=	--enable-threads=posix
 CONFIGURE_ARGS+=	--with-boot-ldflags=${BOOT_LDFLAGS:Q}
 

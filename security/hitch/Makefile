@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2016/05/25 20:15:35 fhajny Exp $
+# $NetBSD: Makefile,v 1.3 2016/09/19 09:33:57 fhajny Exp $
 
-DISTNAME=	hitch-1.2.0
+DISTNAME=	hitch-1.4.0
 CATEGORIES=	security
 MASTER_SITES=	https://hitch-tls.org/source/
 
@@ -19,7 +19,7 @@ USE_TOOLS+=	pkg-config
 CONFIGURE_ARGS+=	--with-rst2man=${PREFIX}/bin/rst2man.py${PYVERSSUFFIX}
 
 CPPFLAGS.SunOS+=	-D__EXTENSIONS__
-LIBS.SunOS+=		-lsocket
+LIBS.SunOS+=		-lnsl -lsocket
 
 BUILD_DEFS+=		HITCH_USER HITCH_GROUP HITCH_CERTS
 
@@ -37,18 +37,18 @@ MESSAGE_SUBST+=		HITCH_CERTS=${HITCH_CERTS}
 
 SUBST_CLASSES+=		dir
 SUBST_STAGE.dir=	pre-configure
-SUBST_FILES.dir=	hitch.conf.ex
+SUBST_FILES.dir=	hitch.conf.example
 SUBST_VARS.dir=		HITCH_USER HITCH_GROUP HITCH_CERTS
 SUBST_MESSAGE.dir=	Setting default configuration values
 
 PKG_SYSCONFSUBDIR=	hitch
-CONF_FILES+=		share/examples/hitch/hitch.conf.ex \
+CONF_FILES+=		share/examples/hitch/hitch.conf.example \
 			${PKG_SYSCONFDIR}/hitch.conf
 
 INSTALLATION_DIRS+=	share/examples/hitch
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/share/doc/hitch/hitch.conf.ex \
+	${MV} ${DESTDIR}${PREFIX}/share/doc/hitch/hitch.conf.example \
 		${DESTDIR}${PREFIX}/share/examples/hitch
 
 PYTHON_FOR_BUILD_ONLY=	yes

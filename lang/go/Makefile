@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.41 2016/04/13 07:12:00 bsiegert Exp $
+# $NetBSD: Makefile,v 1.47 2016/09/17 15:56:58 bsiegert Exp $
 
 .include "version.mk"
 
 DISTNAME=	go${GO_VERSION}.src
 PKGNAME=	go-${GO_VERSION}
+PKGREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://storage.googleapis.com/golang/
 
@@ -31,7 +32,7 @@ REPLACE_BASH+=	lib/time/update.bash
 REPLACE_BASH+=	misc/arm/a
 REPLACE_BASH+=	misc/benchcmp
 REPLACE_BASH+=	misc/cgo/errors/test.bash
-REPLACE_BASH+=	misc/cgo/testcarchive/test.bash
+REPLACE_BASH+=	misc/cgo/fortran/test.bash
 REPLACE_BASH+=	misc/cgo/testcshared/test.bash
 REPLACE_BASH+=	misc/cgo/testgodefs/test.bash
 REPLACE_BASH+=	misc/cgo/testsanitizers/test.bash
@@ -48,6 +49,7 @@ REPLACE_BASH+=	src/cmd/dist/mkdeps.bash
 REPLACE_BASH+=	src/cmd/go/mkalldocs.sh
 REPLACE_BASH+=	src/iostest.bash
 REPLACE_BASH+=	src/make.bash
+REPLACE_BASH+=	src/naclmake.bash
 REPLACE_BASH+=	src/nacltest.bash
 REPLACE_BASH+=	src/race.bash
 REPLACE_BASH+=	src/run.bash
@@ -70,6 +72,14 @@ CHECK_INTERPRETER_SKIP+=	go/src/run.rc
 
 BUILD_DEPENDS+=		go14-1.4*:../../lang/go14
 GOROOT_BOOTSTRAP=	${PREFIX}/go14
+
+.include "../../mk/bsd.prefs.mk"
+
+PLIST_VARS+=	route
+
+.if ${OPSYS} != "Linux" && ${OPSYS} != "SunOS"
+PLIST.route=	yes
+.endif
 
 pre-build:
 	cd ${WRKSRC}/src/syscall && \

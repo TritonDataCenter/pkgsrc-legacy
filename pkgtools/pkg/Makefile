@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2015/07/04 14:37:25 khorben Exp $
+# $NetBSD: Makefile,v 1.4 2016/08/27 21:57:05 khorben Exp $
 
-VERSION=	1.5.4
+VERSION=	1.8.7
 DISTNAME=	${VERSION}
 PKGNAME=	pkg-${VERSION}
 CATEGORIES=	pkgtools

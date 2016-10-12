@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.36 2015/04/25 14:23:31 tnn Exp $
+# $NetBSD: Makefile,v 1.38 2016/09/18 16:47:44 wiedi Exp $
 #
 
 DISTNAME=		blccc-1.99
-PKGREVISION=		26
+PKGREVISION=		27
 CATEGORIES=		misc
 MASTER_SITES=		http://sven.gimp.org/blinkenlights/
 
@@ -18,6 +18,8 @@ SHLIBTOOL_OVERRIDE=	# empty
 EGDIR=			${PREFIX}/share/examples/blccc
 
 INSTALLATION_DIRS=	${EGDIR}/movies ${EGDIR}/on-demand
+
+CPPFLAGS.SunOS+=	-Du_int16_t=uint16_t -Du_int32_t=uint32_t
 
 .include "../../devel/blib/buildlink3.mk"
 
