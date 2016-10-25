@@ -1,0 +1,15 @@
+@comment $NetBSD$
+bin/policyd-spf
+${PYSITELIB}/policydspfsupp.py
+${PYSITELIB}/policydspfsupp.pyc
+${PYSITELIB}/policydspfsupp.pyo
+${PYSITELIB}/policydspfuser.py
+${PYSITELIB}/policydspfuser.pyc
+${PYSITELIB}/policydspfuser.pyo
+${PYSITELIB}/${EGG_FILE}
+man/man1/policyd-spf.1
+man/man5/policyd-spf.conf.5
+man/man5/policyd-spf.peruser.5
+share/man/man1/policyd-spf.1
+share/man/man5/policyd-spf.conf.5
+share/man/man5/policyd-spf.peruser.5
