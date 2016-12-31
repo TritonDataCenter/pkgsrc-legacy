@@ -1,7 +1,6 @@
-$NetBSD: patch-lib__gm_protocol_dr.c,v 1.1 2012/03/13 12:36:25 fhajny Exp $
+$NetBSD$
 
-Use INT32 macros, LONG ones were taken out of LP64 on Solaris.
---- lib/gm_protocol_xdr.c.orig	2009-01-28 23:23:20.000000000 +0000
+--- lib/gm_protocol_xdr.c.orig	2015-07-01 19:49:35.000000000 +0000
 +++ lib/gm_protocol_xdr.c
 @@ -53,9 +53,9 @@ xdr_Ganglia_metadata_message (XDR *xdrs,
  				 return FALSE;
