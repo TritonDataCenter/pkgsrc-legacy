@@ -4,6 +4,5 @@ SHA1 (salt-2016.3.3.tar.gz) = 9c52a7401c0600cc422ccaa2406909bd6ac71db0
 RMD160 (salt-2016.3.3.tar.gz) = 66f5b1615d59d200f82184a142a1a0597fe877ff
 SHA512 (salt-2016.3.3.tar.gz) = 46a8f8b3213e4cc02eaed95e7fc28ce224fe07fe2aea39b68ff3e97043021951558f04690f7043510c8dfb62d76fe82192d67de6151c7f1076a23c0f8d796c9e
 Size (salt-2016.3.3.tar.gz) = 7952361 bytes
-SHA1 (patch-salt_modules_status.py) = 4b2bec94a8554c656baa227ad973b71d2a56d48d
 SHA1 (patch-salt_utils_____init____.py) = 61f11da63f26af69334f3eca957d596486396ab0
 SHA1 (patch-salt_utils_network.py) = 13db1609939b8e8390656904af86ba92408bb44a
