@@ -1,4 +1,4 @@
-# $NetBSD: egg.mk,v 1.24 2016/08/28 09:40:35 richard Exp $
+# $NetBSD: egg.mk,v 1.26 2017/02/04 21:39:05 wiz Exp $
 #
 # Common logic to handle Python Eggs
 #

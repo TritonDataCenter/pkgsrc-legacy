@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.65 2017/01/20 15:01:23 ryoon Exp $
+$NetBSD: distinfo,v 1.67 2017/02/05 02:41:13 ryoon Exp $
 
 SHA1 (nss-3.28.1.tar.gz) = 75f220c1c20d8346cde43fb96726d3447c11cf22
 RMD160 (nss-3.28.1.tar.gz) = 816595c4005f2d2ad456946d8cb2000eca06361c

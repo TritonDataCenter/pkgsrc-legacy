@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.33 2016/12/03 11:30:28 ryoon Exp $
+# $NetBSD: options.mk,v 1.35 2017/02/04 11:14:27 maya Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.firefox
 PKG_SUPPORTED_OPTIONS=	official-mozilla-branding
@@ -10,6 +10,10 @@ PLIST_VARS+=		gnome jemalloc debug
 PKG_SUGGESTED_OPTIONS+=	alsa mozilla-jemalloc dbus
 .elif ${OPSYS} == "NetBSD"
 PKG_SUGGESTED_OPTIONS+=	alsa dbus
+.elif ${OPSYS} == "FreeBSD"
+PKG_SUGGESTED_OPTIONS+=	oss dbus
+.elif ${OPSYS} == "DragonFly"
+PKG_SUGGESTED_OPTIONS+=	oss dbus
 .else
 PKG_SUGGESTED_OPTIONS+= dbus pulseaudio
 .endif
@@ -53,7 +57,6 @@ O0TRACKING=-fvar-tracking-assignments -fvar-tracking
 
 .if !empty(PKG_OPTIONS:Mdebug)
 CONFIGURE_ARGS+=	--enable-debug="-g -O0 ${O0TRACKING}"
-CONFIGURE_ARGS+=	--enable-debug-symbols
 CONFIGURE_ARGS+=	--disable-optimize
 CONFIGURE_ARGS+=	--enable-debug-js-modules
 CONFIGURE_ARGS+=	--disable-install-strip
