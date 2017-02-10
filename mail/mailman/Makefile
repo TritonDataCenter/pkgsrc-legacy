@@ -1,10 +1,10 @@
 # $NetBSD: Makefile,v 1.69 2014/01/25 10:45:19 wiz Exp $
 
-DISTNAME=	mailman-2.1.14-1
-PKGNAME=	mailman-2.1.14.1
-PKGREVISION=	4
+DISTNAME=	mailman-2.1.18-1
+PKGNAME=	mailman-2.1.18.1
+PKGREVISION=	0
 CATEGORIES=	mail www
-MASTER_SITES=	http://launchpad.net/mailman/2.1/2.1.14/+download/
+MASTER_SITES=	http://launchpad.net/mailman/2.1/2.1.18-1/+download/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

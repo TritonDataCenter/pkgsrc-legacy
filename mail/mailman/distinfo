@@ -1,8 +1,8 @@
 $NetBSD: distinfo,v 1.21 2011/12/22 11:06:40 fhajny Exp $
 
-SHA1 (mailman-2.1.14-1.tgz) = 390874c1059878b33be9ab4cf57fdb719eac1819
-RMD160 (mailman-2.1.14-1.tgz) = 0d86e766e28aaab9703bfe530b72316a5b02beda
-Size (mailman-2.1.14-1.tgz) = 8201308 bytes
+SHA1 (mailman-2.1.18-1.tgz) = 1e1ac7288d679c7fb8e871a7585c7aafaacd1d6c
+RMD160 (mailman-2.1.18-1.tgz) = 438d319858a89f61032b96201d39d6b2a1968c14
+Size (mailman-2.1.18-1.tgz) = 9095511 bytes
 SHA1 (patch-aa) = 9684b1caeb52f31ee6967eae3f9a464de214879e
 SHA1 (patch-ab) = 39f6294e53110bd1fd09b1e90ab46820f4d48e3f
 SHA1 (patch-ad) = 665884b9dd1789e4abd430c762bdbfd707d48d30
