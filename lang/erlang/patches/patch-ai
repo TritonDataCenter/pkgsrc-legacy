@@ -1,8 +1,10 @@
 $NetBSD: patch-ai,v 1.4 2012/04/12 12:14:13 asau Exp $
 
---- lib/gs/src/tool_utils.erl.orig	2011-12-14 14:22:11.000000000 +0400
-+++ lib/gs/src/tool_utils.erl	2012-01-05 04:38:39.000000000 +0400
-@@ -40,6 +40,9 @@
+Improves browser detection instead of depending on netscape.
+
+--- lib/gs/src/tool_utils.erl.orig	2014-08-12 00:10:38.769873013 +0000
++++ lib/gs/src/tool_utils.erl	2014-08-12 00:13:56.744314019 +0000
+@@ -45,6 +45,9 @@
  	       }).
  
  
@@ -12,7 +14,7 @@ $NetBSD: patch-ai,v 1.4 2012/04/12 12:14:13 asau Exp $
  %%----------------------------------------------------------------------
  %% open_help(Parent, File)
  %%   Parent = gsobj()  (GS root object or parent window)
-@@ -80,7 +83,7 @@
+@@ -85,7 +88,7 @@
  		      {unix,Type} ->
                            case Type of
                                 darwin -> "open " ++ File;
@@ -21,7 +23,7 @@ $NetBSD: patch-ai,v 1.4 2012/04/12 12:14:13 asau Exp $
  			  end;
  		      {win32,_AnyType} ->
  			  "start " ++ filename:nativename(File);
-@@ -95,7 +98,7 @@
+@@ -100,7 +103,7 @@
  		      {unix,Type} ->
                            case Type of
                                 darwin -> "open " ++ File;
@@ -30,7 +32,7 @@ $NetBSD: patch-ai,v 1.4 2012/04/12 12:14:13 asau Exp $
  			  end;
  		      {win32,_AnyType} ->
  			  "netscape.exe -h " ++
-@@ -430,3 +433,53 @@
+@@ -435,3 +438,41 @@
      [Last];
  insert_newlines(Other) ->
      Other.
@@ -66,21 +68,9 @@ $NetBSD: patch-ai,v 1.4 2012/04/12 12:14:13 asau Exp $
 +		false ->
 +		    "";
 +		Browser ->
-+		    case regexp:gsub(Template, "BROWSER", Browser) of
-+			{ok, Command, 0} ->
-+			    %% Template does not contain "BROWSER" placeholder
-+			    "";
-+			{ok, Command, _} ->
-+			    Command
-+		    end
++		    re:replace(Template, "BROWSER", Browser, [global]) 
 +	    end;
 +
 +	Value ->
-+	    case regexp:gsub(Template, "BROWSER", Value) of
-+		{ok, Command2, 0} ->
-+		    %% no placeholder
-+		    "";
-+		{ok, Command2, _} ->
-+		    Command2
-+	    end
++	    re:replace(Template, "BROWSER", Value, [global])
 +    end.

@@ -1,80 +1,75 @@
 # $NetBSD: Makefile.versions,v 1.17 2013/10/20 18:37:49 asau Exp $
 
-ERLANG_VERSION=			16.1.2
-DIST_VERSION_MAJOR=		R16B02
+ERLANG_VERSION=			17.1
+DIST_VERSION_MAJOR=		17.1
+REL_VERSION=			17
 #DIST_VERSION_MINOR=		1
 
-_VERSIONS=					\
-	appmon			2.1.14.2	\
-	asn1			2.0.3		\
-	common_test		1.7.3		\
-	compiler		4.9.3		\
-	cosEvent		2.1.14		\
-	cosEventDomain		1.1.13		\
-	cosFileTransfer		1.1.15		\
-	cosNotification		1.1.20		\
-	cosProperty		1.1.16		\
-	cosTime			1.1.13		\
-	cosTransactions		1.2.13		\
-	crypto			3.1		\
-	debugger		3.2.12		\
-	dialyzer		2.6.1		\
-	diameter		1.4.3		\
-	docbuilder		0.9.8.10	\
-	edoc			0.7.12.1	\
-	eldap			1.0.1		\
-	erl_docgen		0.3.4.1		\
-	erl_interface		3.7.14		\
-	erts			5.10.3		\
-	et			1.4.4.5		\
-	eunit			2.2.5		\
-	gs			1.5.15.2	\
-	hipe			3.10.2.1	\
-	ic			4.3.3		\
-	inets			5.9.6		\
-	jinterface		1.5.8		\
-	kernel			2.16.3		\
-	megaco			3.17.0.2	\
-	mnesia			4.10		\
-	observer		1.3.1.1		\
-	odbc			2.10.17		\
-	orber			3.6.26.1	\
-	os_mon			2.2.13		\
-	otp_mibs		1.0.8		\
-	parsetools		2.0.10		\
-	percept			0.8.8.2		\
-	pman			2.7.1.4		\
-	public_key		0.20		\
-	reltool			0.6.4.1		\
-	runtime_tools		1.8.12		\
-	sasl			2.3.3		\
-	snmp			4.24.2		\
-	ssh			2.1.8		\
-	ssl			5.3.1		\
-	stdlib			1.19.3		\
-	syntax_tools		1.6.11		\
-	test_server		3.6.3		\
-	toolbar			1.4.2.3		\
-	tools			2.6.12		\
-	tv			2.1.4.10	\
-	typer			0.9.5		\
-	webtool			0.8.9.2		\
-	wx			1.1		\
-	xmerl			1.3.4
+ERL_PKG_VERSIONS=				\
+	asn1			3.0.1		\
+	common_test		1.8.1		\
+	compiler		5.0.1		\
+	cosEvent		2.1.15		\
+	cosEventDomain		1.1.14		\
+	cosFileTransfer		1.1.16		\
+	cosNotification		1.1.21		\
+	cosProperty		1.1.17		\
+	cosTime			1.1.14		\
+	cosTransactions		1.2.14		\
+	crypto			3.4		\
+	debugger		4.0.1		\
+	dialyzer		2.7.1		\
+	diameter		1.7		\
+	edoc			0.7.13		\
+	eldap			1.0.3		\
+	erl_docgen		0.3.5		\
+	erl_interface		3.7.17		\
+	erts			6.1		\
+	et			1.5		\
+	eunit			2.2.7		\
+	gs			1.5.16		\
+	hipe			3.11		\
+	ic			4.3.5		\
+	inets			5.10.2		\
+	kernel			3.0.1		\
+	megaco			3.17.1		\
+	mnesia			4.12.1		\
+	observer		2.0.1		\
+	orber			3.6.27		\
+	os_mon			2.2.15		\
+	ose			1.0		\
+	otp_mibs		1.0.9		\
+	parsetools		2.0.11		\
+	percept			0.8.9		\
+	public_key		0.22		\
+	reltool			0.6.6		\
+	runtime_tools		1.8.14		\
+	sasl			2.4		\
+	snmp			4.25.1		\
+	ssh			3.0.3		\
+	ssl			5.3.5		\
+	stdlib			2.1		\
+	syntax_tools		1.6.15		\
+	test_server		3.7.1		\
+	tools			2.6.15		\
+	typer			0.9.8		\
+	webtool			0.8.10		\
+	wx			1.3		\
+	xmerl			1.3.7
 
-PLIST_SUBST+=	VERSION=${DIST_VERSION_MAJOR}
+PLIST_SUBST+=	VERSION=${REL_VERSION}
 
-.for name version in ${_VERSIONS}
+.for name version in ${ERL_PKG_VERSIONS}
 VERSION.${name}=${version}
 PLIST_SUBST+=	VERSION.${name}=${version}
 .endfor
 
 # Generate PLIST
-.for _pkg_ _version_ in $(_VERSIONS)
-PRINT_PLIST_AWK+=	{if ($$0 ~ /\/$(_pkg_)-$(_version_)\//) {sub(/\/$(_pkg_)-$(_version_)\//,"/$(_pkg_)-$${VERSION.$(_pkg_)}/", $$0);}}
+.for erl_pkg_ erl__version_ in $(_VERSIONS)
+PRINT_PLIST_AWK+=	{if ($$0 ~ /\/$(erl_pkg_)-$(erl__version_)\//) {sub(/\/$(erl_pkg_)-$(erl__version_)\//,"/$(erl_pkg_)-$${VERSION.$(erl_pkg_)}/", $$0);}}
 # documentation:
-PRINT_PLIST_AWK+=	{gsub(/\/$(_pkg_)-$(_version_)\.pdf/,"/$(_pkg_)-$${VERSION.$(_pkg_)}.pdf", $$0);}
+PRINT_PLIST_AWK+=	{gsub(/\/$(erl_pkg_)-$(erl__version_)\.pdf/,"/$(erl_pkg_)-$${VERSION.$(erl_pkg_)}.pdf", $$0);}
 .endfor
-PRINT_PLIST_AWK+=	{if ($$0 ~ /\/releases\/${DIST_VERSION_MAJOR}\//) {sub(/\/releases\/${DIST_VERSION_MAJOR}\//,"/releases/$${VERSION}/", $$0);}}
+PRINT_PLIST_AWK+=       {if ($$0 ~ /\/releases\/${DIST_VERSION_MAJOR}\//) {sub(/\/releases\/${DIST_VERSION_MAJOR}\//,"/releases/$${VERSION}/", $$0);}}
 # documentation:
 PRINT_PLIST_AWK+=	{gsub(/\/otp-system-documentation-$(VERSION.erts)\.pdf/,"/otp-system-documentation-$${VERSION.erts}.pdf", $$0);}

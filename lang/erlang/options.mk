@@ -12,7 +12,8 @@ PKG_SUGGESTED_OPTIONS=	# empty
 ###
 .if (${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64") &&	\
     (${OPSYS} == "FreeBSD" || ${OPSYS} == "Linux" ||			\
-     ${OPSYS} == "NetBSD"  || ${OPSYS} == "OpenBSD")
+     ${OPSYS} == "NetBSD"  || ${OPSYS} == "OpenBSD" ||			\
+     ${OPSYS} == "SunOS")
 PKG_SUGGESTED_OPTIONS+=	erlang-hipe
 .endif
 

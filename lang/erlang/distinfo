@@ -1,12 +1,12 @@
 $NetBSD: distinfo,v 1.33 2013/10/20 18:37:49 asau Exp $
 
-SHA1 (erlang/otp_src_R16B02.tar.gz) = 16accc21afaebf2bd9507c5a2610aecf8d6f8243
-RMD160 (erlang/otp_src_R16B02.tar.gz) = d10ad82b3bddf16d1cf52babd56965537b64faeb
-Size (erlang/otp_src_R16B02.tar.gz) = 66023455 bytes
+SHA1 (erlang/otp_src_17.1.tar.gz) = 3f5756c6ea4a6af5240412250224bd6e1c774f55
+RMD160 (erlang/otp_src_17.1.tar.gz) = ad212aff93b2dea5c4d0c245cc9182bdd77cceb8
+Size (erlang/otp_src_17.1.tar.gz) = 66912681 bytes
 SHA1 (patch-ab) = 5f1602f3a49c05fd4c45884a7cd6be8d3f287ac3
-SHA1 (patch-ai) = 203d1208b3a8a6aa248cfe0e16c9c19ae25fe0ad
-SHA1 (patch-am) = 11ff769b6954f950d6447e69b033cdc0bfa767e9
-SHA1 (patch-ao) = a4ee17b0a81415d541cb55d76b3c1ecc3148c2c2
-SHA1 (patch-ay) = 7d1a7f79e8c3ea909b2f4476d9ff271ed1318234
-SHA1 (patch-configure) = 8bf08197747cbca07fcb7edba6782389787d7a1f
-SHA1 (patch-configure.in) = 4a36245a6a6b6dc4804cbb899c7e824ec1fe61e0
+SHA1 (patch-ai) = 032a7c1bd8181ff3d080ca8664c2901e54cda65c
+SHA1 (patch-am) = b509341af1f7dbdd65e58a3d658e6e70775dc7f8
+SHA1 (patch-ao) = d3e3838ad23aef2b9047715681af00c23f47704b
+SHA1 (patch-ay) = 507b83ab266bf90b870ede1ac0b8a2e4e9903327
+SHA1 (patch-configure) = 7679fd5b96a0aacfc5fa1d72610d546bf2e63753
+SHA1 (patch-configure.in) = 7228f33107e95f66cb24243ada41926332596f6c
