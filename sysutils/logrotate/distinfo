@@ -7,3 +7,4 @@ Size (ca742b9dd72b7815e87cb53331f08d46fe21d86c.tar.gz) = 78769 bytes
 SHA1 (patch-examples_logrotate-default) = 57fc602caa5eeaa830f5d2dc0667e11330bcd1e8
 SHA1 (patch-examples_logrotate.cron) = 02981cb2b49e3f3f500fcb3db9b5dcb5fe62bddc
 SHA1 (patch-logrotate.8) = 0bf7d9cfbc2f5dfff42a82b523926b9c8d0362a0
+SHA1 (patch-logrotate.c) = b469438fb1198bcec426f215427449b7ea255586
