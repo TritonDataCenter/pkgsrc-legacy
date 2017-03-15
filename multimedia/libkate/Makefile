@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.11 2016/08/03 10:23:12 adam Exp $
+# $NetBSD: Makefile,v 1.13 2017/02/12 06:25:47 ryoon Exp $
 #
 
 DISTNAME=	libkate-0.4.1
-PKGREVISION=	9
+PKGREVISION=	11
 CATEGORIES=	multimedia
 MASTER_SITES=	http://libkate.googlecode.com/files/
 

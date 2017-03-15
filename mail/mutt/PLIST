@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.19 2016/10/13 17:53:36 tron Exp $
+@comment $NetBSD: PLIST,v 1.22 2017/03/08 10:05:34 wiz Exp $
 bin/flea
 bin/mutt
 bin/mutt_dotlock
@@ -13,8 +13,8 @@ man/man1/muttbug.1
 man/man1/pgpewrap.1
 man/man1/pgpring.1
 man/man1/smime_keys.1
+man/man5/mmdf.5
 man/man5/mutt-mbox.5
-man/man5/mutt-mmdf.5
 man/man5/muttrc.5
 share/doc/mutt/COPYRIGHT
 share/doc/mutt/ChangeLog
@@ -28,7 +28,6 @@ share/doc/mutt/README.SSL
 share/doc/mutt/TODO
 share/doc/mutt/advancedusage.html
 share/doc/mutt/applying-patches.txt
-${PLIST.compressed_mbox}share/doc/mutt/compressed-folders.html
 share/doc/mutt/configuration.html
 share/doc/mutt/devel-notes.txt
 share/doc/mutt/gettingstarted.html
@@ -79,6 +78,7 @@ share/examples/mutt/pgp5.rc
 share/examples/mutt/pgp6.rc
 share/examples/mutt/sample.mailcap
 share/examples/mutt/sample.muttrc
+share/examples/mutt/sample.muttrc-compress
 share/examples/mutt/sample.muttrc-sidebar
 share/examples/mutt/sample.muttrc-tlr
 share/examples/mutt/sample.vimrc-sidebar

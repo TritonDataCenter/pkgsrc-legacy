@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.76 2017/01/22 14:44:15 leot Exp $
+# $NetBSD: Makefile,v 1.79 2017/02/20 10:33:35 wiz Exp $
 
-DISTNAME=		meld-3.16.4
-PKGREVISION=		1
+DISTNAME=		meld-3.17.0
 CATEGORIES=		devel
-MASTER_SITES=		${MASTER_SITE_GNOME:=sources/meld/3.16/}
+MASTER_SITES=		${MASTER_SITE_GNOME:=sources/meld/3.17/}
 EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		wiz@NetBSD.org
@@ -18,7 +17,7 @@ DEPENDS+=		dconf-[0-9]*:../../devel/dconf
 
 USE_TOOLS+=		intltool msgfmt
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 3.16
+PYTHON_VERSIONS_INCOMPATIBLE=	27 # not supported any longer
 
 SUBST_CLASSES+=		man
 SUBST_FILES.man=	setup.py

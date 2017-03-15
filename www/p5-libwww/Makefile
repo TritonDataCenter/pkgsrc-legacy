@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.99 2017/01/22 13:09:10 wiz Exp $
+# $NetBSD: Makefile,v 1.105 2017/03/08 11:46:09 wiz Exp $
 
-DISTNAME=	libwww-perl-6.16
+DISTNAME=	libwww-perl-6.23
 PKGNAME=	p5-${DISTNAME:S/-perl-/-/}
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/O/OA/OALDERS/}
@@ -40,9 +40,13 @@ DEPENDS+=	p5-HTML-Parser>=3.33:../../www/p5-HTML-Parser
 DEPENDS+=	p5-HTML-Tagset-[0-9]*:../../www/p5-HTML-Tagset
 DEPENDS+=	p5-IO-Socket-SSL-[0-9]*:../../security/p5-IO-Socket-SSL
 
+# TEST_DEPENDS
+BUILD_DEPENDS+=	p5-Test-Fatal-[0-9]*:../../devel/p5-Test-Fatal
+BUILD_DEPENDS+=	p5-Test-RequiresInternet-[0-9]*:../../net/p5-Test-RequiresInternet
+
 USE_LANGUAGES=		# empty
 
-PERL5_PACKLIST=		auto/LWP/.packlist
+PERL5_PACKLIST=		auto/libwww/perl/.packlist
 MAKE_ENV+=		PERL_MM_USE_DEFAULT=1
 
 .include "../../mk/bsd.prefs.mk"

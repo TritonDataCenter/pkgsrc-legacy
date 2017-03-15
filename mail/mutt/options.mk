@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.26 2017/01/04 16:13:20 roy Exp $
+# $NetBSD: options.mk,v 1.28 2017/03/07 20:42:28 elric Exp $
 
 # Global and legacy options
 
@@ -6,14 +6,23 @@ PKG_OPTIONS_VAR=	PKG_OPTIONS.mutt
 PKG_OPTIONS_REQUIRED_GROUPS=	display
 PKG_OPTIONS_GROUP.display=	curses wide-curses slang
 PKG_SUPPORTED_OPTIONS=	debug gpgme idn ssl smime sasl
+# TODO: add kyoto cabinet and lmdb backend options for header cache
 PKG_SUPPORTED_OPTIONS+=	mutt-hcache tokyocabinet mutt-smtp
-PKG_SUPPORTED_OPTIONS+=	mutt-compressed-mbox
+PKG_SUPPORTED_OPTIONS+=	gssapi
 PKG_SUGGESTED_OPTIONS=	curses gpgme mutt-hcache mutt-smtp smime ssl
-# patch does not apply
-#PKG_SUGGESTED_OPTIONS+=	mutt-compressed-mbox
+PKG_SUGGESTED_OPTIONS+= gssapi
 PKG_OPTIONS_LEGACY_OPTS+=	ncurses:curses ncursesw:wide-curses
 
 .include "../../mk/bsd.options.mk"
+
+###
+### GSSAPI
+###
+
+.if !empty(PKG_OPTIONS:Mgssapi)
+.  include "../../mk/krb5.buildlink3.mk"
+CONFIGURE_ARGS+= --with-gss=${KRB5BASE}
+.endif
 
 ### curses
 ###
@@ -93,29 +102,6 @@ CONFIGURE_ENV+=		BDB_LIB=${BDB_LIBS:S/^-l//:M*:Q}
 .  endif
 .else
 CONFIGURE_ARGS+=	--disable-hcache
-.endif
-
-###
-### Compressed mail boxes
-###
-PLIST_VARS+=		compressed_mbox
-.if !empty(PKG_OPTIONS:Mmutt-compressed-mbox)	\
-	|| make(distinfo) || make(mps) || make(makepatchsum)
-PLIST.compressed_mbox=	yes
-PATCH_SITES+=		http://mutt.org.ua/download/${PKGNAME_NOREV}/
-PATCHFILES+=		patch-${PKGVERSION_NOREV}.rr.compressed.gz
-PATCH_DIST_STRIP=	-p1
-CONFIGURE_ARGS+=	--enable-compressed
-SUBST_CLASSES+=		compress
-SUBST_MESSAGE.compress=	Patch Makefile.in to avoid autoreconf for compress
-SUBST_STAGE.compress=	post-patch
-SUBST_FILES.compress=	Makefile.in
-SUBST_SED.compress=	-e 's,^mutt_SOURCES = ,mutt_SOURCES = compress.c ,'
-SUBST_SED.compress+=	-e 's,^EXTRA_DIST = ,EXTRA_DIST = compress.h ,'
-SUBST_SED.compress+=	-e 's,^mutt_OBJECTS = ,mutt_OBJECTS = compress.o ,'
-# add xsltproc to be able to regenerate the documentation
-BUILD_DEPENDS+=		libxslt-[0-9]*:../../textproc/libxslt
-BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 .endif
 
 ###

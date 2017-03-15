@@ -1,6 +1,7 @@
-$NetBSD: patch-media_libcubeb_src_cubeb__alsa.c,v 1.18 2017/01/25 13:24:51 ryoon Exp $
+$NetBSD: patch-media_libcubeb_src_cubeb__alsa.c,v 1.20 2017/02/11 08:27:33 ryoon Exp $
 
 * Support alsa audio under NetBSD
+* Avoid https://github.com/kinetiknz/cubeb/issues/226
 
 --- media/libcubeb/src/cubeb_alsa.c.orig	2016-10-31 20:15:39.000000000 +0000
 +++ media/libcubeb/src/cubeb_alsa.c
@@ -379,7 +380,16 @@ $NetBSD: patch-media_libcubeb_src_cubeb__alsa.c,v 1.18 2017/01/25 13:24:51 ryoon
      pthread_mutex_unlock(&cubeb_alsa_mutex);
    }
  
-@@ -842,7 +951,7 @@ alsa_stream_init(cubeb * ctx, cubeb_stre
+@@ -836,13 +945,16 @@ alsa_stream_init(cubeb * ctx, cubeb_stre
+   r = pthread_mutex_init(&stm->mutex, NULL);
+   assert(r == 0);
+ 
++  r = pthread_cond_init(&stm->cond, NULL);
++  assert(r == 0);
++
+   r = alsa_locked_pcm_open(&stm->pcm, SND_PCM_STREAM_PLAYBACK, ctx->local_config);
+   if (r < 0) {
+     alsa_stream_destroy(stm);
      return CUBEB_ERROR;
    }
  
@@ -388,7 +398,7 @@ $NetBSD: patch-media_libcubeb_src_cubeb__alsa.c,v 1.18 2017/01/25 13:24:51 ryoon
    assert(r == 0);
  
    latency_us = latency_frames * 1e6 / stm->params.rate;
-@@ -855,7 +964,7 @@ alsa_stream_init(cubeb * ctx, cubeb_stre
+@@ -855,7 +967,7 @@ alsa_stream_init(cubeb * ctx, cubeb_stre
      latency_us = latency_us < min_latency ? min_latency: latency_us;
    }
  
@@ -397,7 +407,7 @@ $NetBSD: patch-media_libcubeb_src_cubeb__alsa.c,v 1.18 2017/01/25 13:24:51 ryoon
                           stm->params.channels, stm->params.rate, 1,
                           latency_us);
    if (r < 0) {
-@@ -863,15 +972,15 @@ alsa_stream_init(cubeb * ctx, cubeb_stre
+@@ -863,20 +975,17 @@ alsa_stream_init(cubeb * ctx, cubeb_stre
      return CUBEB_ERROR_INVALID_FORMAT;
    }
  
@@ -415,7 +425,12 @@ $NetBSD: patch-media_libcubeb_src_cubeb__alsa.c,v 1.18 2017/01/25 13:24:51 ryoon
 +  r = WRAP(snd_pcm_poll_descriptors)(stm->pcm, stm->saved_fds, stm->nfds);
    assert((nfds_t) r == stm->nfds);
  
-   r = pthread_cond_init(&stm->cond, NULL);
+-  r = pthread_cond_init(&stm->cond, NULL);
+-  assert(r == 0);
+-
+   if (alsa_register_stream(ctx, stm) != 0) {
+     alsa_stream_destroy(stm);
+     return CUBEB_ERROR;
 @@ -902,7 +1011,7 @@ alsa_stream_destroy(cubeb_stream * stm)
    pthread_mutex_lock(&stm->mutex);
    if (stm->pcm) {
@@ -501,7 +516,7 @@ $NetBSD: patch-media_libcubeb_src_cubeb__alsa.c,v 1.18 2017/01/25 13:24:51 ryoon
    pthread_mutex_unlock(&stm->mutex);
  
    return CUBEB_OK;
-@@ -1070,8 +1179,8 @@ alsa_stream_get_position(cubeb_stream * 
+@@ -1070,14 +1179,15 @@ alsa_stream_get_position(cubeb_stream * 
    pthread_mutex_lock(&stm->mutex);
  
    delay = -1;
@@ -512,7 +527,15 @@ $NetBSD: patch-media_libcubeb_src_cubeb__alsa.c,v 1.18 2017/01/25 13:24:51 ryoon
      *position = stm->last_position;
      pthread_mutex_unlock(&stm->mutex);
      return CUBEB_OK;
-@@ -1096,7 +1205,7 @@ alsa_stream_get_latency(cubeb_stream * s
+   }
+ 
+-  assert(delay >= 0);
++  // Comment out to enable alsa-plugins-oss audio playback
++  // assert(delay >= 0);
+ 
+   *position = 0;
+   if (stm->write_position >= (snd_pcm_uframes_t) delay) {
+@@ -1096,7 +1206,7 @@ alsa_stream_get_latency(cubeb_stream * s
    snd_pcm_sframes_t delay;
    /* This function returns the delay in frames until a frame written using
       snd_pcm_writei is sent to the DAC. The DAC delay should be < 1ms anyways. */

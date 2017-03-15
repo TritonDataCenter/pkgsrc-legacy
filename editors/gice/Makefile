@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.52 2016/08/03 10:22:41 adam Exp $
+# $NetBSD: Makefile,v 1.54 2017/02/12 06:25:15 ryoon Exp $
 #
 
 DISTNAME=		gice-0.6.2
-PKGREVISION=		25
+PKGREVISION=		27
 CATEGORIES=		editors
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=gice/}
 EXTRACT_SUFX=		.tgz

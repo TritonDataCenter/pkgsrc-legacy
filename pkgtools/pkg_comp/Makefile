@@ -1,23 +1,47 @@
-# $NetBSD: Makefile,v 1.55 2015/11/21 23:10:27 agc Exp $
+# $NetBSD: Makefile,v 1.58 2017/02/20 11:15:19 jmmv Exp $
 
-PKGNAME=	pkg_comp-1.38
-PKGREVISION=	1
-CATEGORIES=	pkgtools
+DISTNAME=	pkg_comp-2.0
+CATEGORIES=	sysutils
+MASTER_SITES=	${MASTER_SITE_GITHUB:=jmmv/}pkg_comp/releases/download/pkg_comp-2.0/
 
 MAINTAINER=	jmmv@NetBSD.org
-COMMENT=	Build packages inside a chroot jail
+COMMENT=	Automates builds of packages and manages pkgsrc trees
 LICENSE=	modified-bsd
 
-ONLY_FOR_PLATFORM=	NetBSD-*-*
+DEPENDS=	sandboxctl>=1.0:../../sysutils/sandboxctl
 
-WRKSRC=		${WRKDIR}
-NO_CONFIGURE=	YES
-NO_BUILD=	YES
+GNU_CONFIGURE=		yes
+TEST_TARGET=		check
+USE_LANGUAGES=		# empty
+USE_TOOLS=		pkg-config
 
-INSTALLATION_DIRS=	${PKGMANDIR}/man8 sbin
+PKG_SYSCONFSUBDIR=	pkg_comp
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
+CONFIGURE_ARGS+=	PKG_COMP_CONFSUBDIR=
+CONFIGURE_ARGS+=	SANDBOXCTL=${PREFIX}/sbin/sandboxctl
+INSTALL_MAKE_FLAGS+=	pkg_comp_confdir=${EGDIR}
+EGDIR=			${PREFIX}/share/examples/pkg_comp
+CONF_FILES+=		${EGDIR}/default.conf ${PKG_SYSCONFDIR}/default.conf
+CONF_FILES+=		${EGDIR}/extra.mk.conf ${PKG_SYSCONFDIR}/extra.mk.conf
+CONF_FILES+=		${EGDIR}/sandbox.conf ${PKG_SYSCONFDIR}/sandbox.conf
 
-do-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/pkg_comp.sh ${DESTDIR}${PREFIX}/sbin/pkg_comp
-	${INSTALL_MAN} ${FILESDIR}/pkg_comp.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8/pkg_comp.8
+PKG_OPTIONS_VAR=	PKG_OPTIONS.pkg_comp
+PKG_SUPPORTED_OPTIONS=	tests
+PKG_SUGGESTED_OPTIONS=	tests
 
+.include "../../mk/bsd.options.mk"
+
+.if !empty(PKG_OPTIONS:Mtests)
+.  include "../../devel/atf/buildlink3.mk"
+PLIST_SUBST+=		TESTS=
+.else
+CONFIGURE_ARGS+=	--with-atf=no
+PLIST_SUBST+=		TESTS=@comment
+
+post-install:
+	rm -rf "${PREFIX}/share/tests/pkg_comp"
+.endif
+
+BUILDLINK_API_DEPENDS.shtk+=	shtk>=1.7
+.include "../../devel/shtk/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

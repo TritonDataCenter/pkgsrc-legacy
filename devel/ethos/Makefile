@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.24 2016/08/03 10:22:09 adam Exp $
+# $NetBSD: Makefile,v 1.26 2017/02/12 06:24:37 ryoon Exp $
 #
 
 DISTNAME=	ethos-0.2.2
-PKGREVISION=	20
+PKGREVISION=	22
 CATEGORIES=	devel
 MASTER_SITES=	http://ftp.dronelabs.com/sources/ethos/0.2/
 

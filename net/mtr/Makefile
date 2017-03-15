@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.95 2017/01/04 19:41:14 roy Exp $
+# $NetBSD: Makefile,v 1.98 2017/03/07 02:07:28 sevan Exp $
 
 DISTNAME=	mtr-0.87
+PKGREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.bitwizard.nl/mtr/
 
@@ -21,10 +22,6 @@ SPECIAL_PERMS=	sbin/mtr ${SETUID_ROOT_PERMS}
 .include "../../mk/compiler.mk"
 .if !empty(CC_VERSION:Mgcc-3.*)
 BUILDLINK_TRANSFORM+=	rm:-Wno-pointer-sign
-.endif
-
-.if !empty(MACHINE_PLATFORM:MDarwin-??.*-*)
-LIBS+=	-lresolv
 .endif
 
 do-install:

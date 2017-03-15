@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.35 2017/01/16 11:59:28 wiz Exp $
+# $NetBSD: Makefile,v 1.38 2017/02/27 09:49:27 wiz Exp $
 
-DISTNAME=	anki-2.0.40-source
+DISTNAME=	anki-2.0.44-source
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:C/anki/anki2/:C/-source//}
 CATEGORIES=	misc x11
-MASTER_SITES=	http://ankisrs.net/download/mirror/
+MASTER_SITES=	https://apps.ankiweb.net/downloads/current/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	wiz@NetBSD.org

@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.163 2017/01/17 09:10:11 roy Exp $
+# $NetBSD: Makefile,v 1.166 2017/03/04 15:11:10 spz Exp $
 
 DISTNAME=	qemu-2.8.0
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	emulators
-MASTER_SITES=	http://wiki.qemu.org/download/
+MASTER_SITES=	http://download.qemu-project.org/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.qemu.org/
+HOMEPAGE=	http://www.qemu-project.org/
 COMMENT=	CPU emulator using dynamic translation
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND mit AND modified-bsd
 
@@ -16,8 +16,9 @@ NOT_FOR_PLATFORM+=	NetBSD-1.[0-6]*-*
 # qemu 1 does not work on NetBSD-5; see http://gnats.netbsd.org/46565.
 NOT_FOR_PLATFORM+=	NetBSD-5*-*
 
-USE_TOOLS+=		bison gmake makeinfo perl:build pkg-config
 USE_CURSES=		resize_term wide
+USE_LANGUAGES+=		c c++
+USE_TOOLS+=		bison gmake makeinfo perl:build pkg-config
 FAKE_NCURSES=		yes
 UNLIMIT_RESOURCES=	datasize
 HAS_CONFIGURE=		yes
@@ -41,7 +42,7 @@ CONFIGURE_ARGS+=	--python=${PYTHONBIN}
 CONFIGURE_ARGS+=	--smbd=${PREFIX}/sbin/smbd
 CONFIGURE_ARGS+=	--mandir=${PREFIX}/${PKGMANDIR}
 CONFIGURE_ARGS+=	--enable-curses
-#HF#CONFIGURE_ARGS+=	--disable-fdt			# HF: build on OS X
+CONFIGURE_ARGS+=	--enable-jemalloc
 CONFIGURE_ARGS+=	--disable-opengl
 CONFIGURE_ENV+=		mansuffix=/${PKGMANDIR}
 
@@ -84,10 +85,10 @@ PKG_SYSCONFSUBDIR=	qemu
 
 REPLACE_PERL+=		scripts/texi2pod.pl
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported yet as of 1.7.0
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported yet as of 2.8.0
 
-BUILDLINK_PASSTHRU_DIRS+= /usr/lib
-BUILDLINK_PASSTHRU_RPATHDIRS+= /usr/lib
+BUILDLINK_PASSTHRU_DIRS+=	/usr/lib
+BUILDLINK_PASSTHRU_RPATHDIRS+=	/usr/lib
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man1 share/doc/qemu
 
@@ -123,7 +124,7 @@ PLIST.nbd=		YES
 CONFIGURE_ARGS+=	--disable-coroutine-pool
 .endif
 
-PLIST_VARS+=		${UE_ARCHS} nbd ivshmem
+PLIST_VARS+=		${UE_ARCHS} nbd
 .for _var_ in ${USER_EMUL}
 PLIST.${_var_}=		YES
 .endfor
@@ -136,11 +137,17 @@ post-install:
 .if empty(OPSYS:MDarwin)
 .include "../../mk/oss.buildlink3.mk"
 .endif
+.include "../../archivers/lzo/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
+.include "../../devel/jemalloc/buildlink3.mk"
+.include "../../devel/snappy/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../graphics/png/buildlink3.mk"
 .include "../../lang/python/extension.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
+.include "../../www/curl/buildlink3.mk"
 .include "../../x11/pixman/buildlink3.mk"
 .include "../../mk/curses.buildlink3.mk"
+.include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

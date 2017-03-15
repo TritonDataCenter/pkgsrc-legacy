@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.17 2017/01/01 14:43:26 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2017/03/03 12:38:29 wiz Exp $
 
 DISTNAME=	zfec-1.4.24
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	converters
 MASTER_SITES=	${MASTER_SITE_PYPI:=z/zfec/}
 
@@ -15,6 +15,7 @@ BUILD_DEPENDS+=	${PYPKGPREFIX}-darcsver-[0-9]*:../../devel/py-darcsver
 
 DEPENDS+=	${PYPKGPREFIX}-argparse-[0-9]*:../../devel/py-argparse
 DEPENDS+=	${PYPKGPREFIX}-setuptools_trial-[0-9]*:../../devel/py-setuptools_trial
+DEPENDS+=	${PYPKGPREFIX}-pyutil>=1.3.19:../../devel/py-pyutil
 DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 CFLAGS.SunOS+=	-std=c99 -D_XOPEN_SOURCE=600
@@ -24,7 +25,7 @@ REPLACE.python.old=    /usr/bin/env python
 REPLACE.python.new=    ${PYTHONBIN}
 REPLACE_FILES.python=  zfec/cmdline_zfec.py zfec/cmdline_zunfec.py zfec/test/test_zfec.py
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-twisted via py-setuptools_trial
+PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-darcsver
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

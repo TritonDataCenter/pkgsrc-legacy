@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.39 2016/07/09 06:38:22 wiz Exp $
+# $NetBSD: Makefile,v 1.41 2017/02/28 15:20:06 ryoon Exp $
 
-DISTNAME=	pfstools-2.0.4
-PKGREVISION=	3
+DISTNAME=	pfstools-2.0.5
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pfstools/}
 EXTRACT_SUFX=	.tgz
@@ -17,7 +17,6 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		bash perl pkg-config
 CMAKE_ARGS+=		-DBASH_EXECUTABLE=${TOOLS_BASH}
 CMAKE_ARGS+=		-DPKGMANDIR=${PKGMANDIR}
-CMAKE_ARGS+=		-DWITH_FFTW=NO
 CMAKE_ARGS+=		-DWITH_MATLAB=NO
 CMAKE_ARGS+=		-DWITH_OpenCV=NO
 
@@ -43,6 +42,6 @@ SUBST_SED.perl=		-e 's,@PERL_PATH@,${PERL5},g'
 .include "../../graphics/netpbm/buildlink3.mk"
 .include "../../graphics/openexr/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
-#.include "../../math/fftw/buildlink3.mk"
+.include "../../math/fftw/buildlink3.mk"
 .include "../../math/gsl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

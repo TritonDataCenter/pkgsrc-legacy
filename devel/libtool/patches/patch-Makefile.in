@@ -1,0 +1,35 @@
+$NetBSD: patch-Makefile.in,v 1.1 2017/03/06 16:14:07 jperkin Exp $
+
+Avoid generating info pages.
+
+--- Makefile.in.orig	2015-02-15 16:14:14.000000000 +0000
++++ Makefile.in
+@@ -790,9 +790,7 @@ doc_libtool_TEXINFOS = $(doc_dir)/PLATFO
+ 			  $(notes_texi)
+ 
+ dist_man1_MANS = $(libtool_1) $(libtoolize_1)
+-update_mans = \
+-  PATH=".$(PATH_SEPARATOR)$$PATH"; export PATH; \
+-  $(HELP2MAN) --output='$@'
++update_mans = true
+ 
+ ltdldir = $(srcdir)/libltdl
+ pkgauxdir = $(pkgdatadir)/build-aux
+@@ -1901,7 +1899,7 @@ all-am: Makefile $(INFO_DEPS) $(LTLIBRAR
+ 		$(HEADERS) config.h all-local
+ installdirs: installdirs-recursive
+ installdirs-am:
+-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(infodir)" "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(includedir)" "$(DESTDIR)$(ltdlincludedir)"; do \
++	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(includedir)" "$(DESTDIR)$(ltdlincludedir)"; do \
+ 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+ 	done
+ install: $(BUILT_SOURCES)
+@@ -1973,7 +1971,7 @@ info: info-recursive
+ info-am: $(INFO_DEPS)
+ 
+ install-data-am: install-data-local install-includeHEADERS \
+-	install-info-am install-ltdlincludeHEADERS install-man
++	install-ltdlincludeHEADERS install-man
+ 
+ install-dvi: install-dvi-recursive
+ 

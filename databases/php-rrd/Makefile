@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2016/09/11 17:03:25 taca Exp $
+# $NetBSD: Makefile,v 1.5 2017/02/12 06:25:10 ryoon Exp $
 
 MODNAME=	rrd
 PECL_VERSION=	1.1.3
+PKGREVISION=	2
 CATEGORIES=	databases
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

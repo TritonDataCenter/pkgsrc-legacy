@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.33 2016/08/03 10:22:25 adam Exp $
+# $NetBSD: Makefile,v 1.35 2017/02/12 06:24:59 ryoon Exp $
 
 .include "../../x11/wxGTK28/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/wxGTK/wxGTK28-contrib/}
-PKGREVISION=	6
+PKGREVISION=	8
 COMMENT=	Contrib libraries for wxWidgets GTK
 
 USE_TOOLS+=		gmake

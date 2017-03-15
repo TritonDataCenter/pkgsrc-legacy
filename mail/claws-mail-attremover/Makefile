@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.46 2017/01/01 16:06:24 adam Exp $
+# $NetBSD: Makefile,v 1.49 2017/03/04 01:51:04 mef Exp $
 #
 
 PLUGIN_NAME=    att_remover
-PKGREVISION= 3
 .include "../../mail/claws-mail/plugins.mk"
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

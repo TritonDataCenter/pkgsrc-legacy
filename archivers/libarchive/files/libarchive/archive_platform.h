@@ -147,8 +147,30 @@
  * acl_set_file(), and ACL_USER, we assume it has the rest of the
  * POSIX.1e draft functions used in archive_read_extract.c.
  */
-#if HAVE_SYS_ACL_H && HAVE_ACL_CREATE_ENTRY && HAVE_ACL_INIT && HAVE_ACL_SET_FILE && HAVE_ACL_USER
+#if HAVE_SYS_ACL_H && HAVE_ACL_CREATE_ENTRY && HAVE_ACL_INIT && HAVE_ACL_SET_FILE
+#if HAVE_ACL_USER
 #define	HAVE_POSIX_ACL	1
+#elif HAVE_ACL_TYPE_EXTENDED
+#define HAVE_DARWIN_ACL 1
+#endif
+#endif
+
+/*
+ * If this platform has <sys/acl.h>, acl(), facl() and ACLENT_T
+ * facl_set() and types aclent_t and ace_t it uses Solaris-style ACL functions
+ */
+#if HAVE_SYS_ACL_H && HAVE_ACL && HAVE_FACL && HAVE_ACLENT_T && \
+    HAVE_DECL_GETACL && HAVE_DECL_GETACLCNT && HAVE_DECL_SETACL
+#define	HAVE_SUN_ACL	1
+#if HAVE_ACE_T && HAVE_DECL_ACE_GETACL && HAVE_DECL_ACE_GETACLCNT && \
+    HAVE_DECL_ACE_SETACL
+#define HAVE_SUN_NFS4_ACL	1
+#endif
+#endif
+
+/* Define if platform supports NFSv4 ACLs */
+#if (HAVE_POSIX_ACL && HAVE_ACL_TYPE_NFS4) || HAVE_SUN_NFS4_ACL || HAVE_DARWIN_ACL
+#define HAVE_NFS4_ACL	1
 #endif
 
 /*
@@ -157,6 +179,15 @@
  */
 #if defined(HAVE_FCHMOD) || defined(HAVE_FUTIMES) || defined(HAVE_ACL_SET_FD) || defined(HAVE_ACL_SET_FD_NP) || defined(HAVE_FCHOWN)
 #define	CAN_RESTORE_METADATA_FD
+#endif
+
+/*
+ * glibc 2.24 deprecates readdir_r
+ */
+#if defined(HAVE_READDIR_R) && (!defined(__GLIBC__) || !defined(__GLIBC_MINOR__) || __GLIBC__ < 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ < 24))
+#define	USE_READDIR_R	1
+#else
+#undef	USE_READDIR_R
 #endif
 
 /* Set up defaults for internal error codes. */

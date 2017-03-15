@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.25 2016/08/03 10:22:21 adam Exp $
+# $NetBSD: Makefile,v 1.27 2017/02/12 06:24:53 ryoon Exp $
 
 DISTNAME=	gnome-desktop-3.20.1
-PKGREVISION=	2
+PKGREVISION=	4
 PKGNAME=	${DISTNAME:S/desktop/desktop3/}
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-desktop/${PKGVERSION_NOREV:R}/}

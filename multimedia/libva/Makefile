@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2015/09/16 12:28:53 tnn Exp $
+# $NetBSD: Makefile,v 1.14 2017/03/06 10:19:57 maya Exp $
 #
 
-DISTNAME=	libva-1.1.0
-PKGREVISION=	2
+DISTNAME=	libva-1.7.3
+PKGREVISION=	4
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.freedesktop.org/software/vaapi/releases/libva/
 EXTRACT_SUFX=	.tar.bz2
@@ -18,9 +18,8 @@ USE_TOOLS+=	autoreconf autoconf automake gmake pkg-config
 
 .include "../../mk/bsd.prefs.mk"
 
-DRIVER_SEARCH_PATH=	${PREFIX}/lib/xorg/modules/dri
+DRIVER_SEARCH_PATH=	${X11BASE}/lib/dri
 
-CONFIGURE_ARGS+=	--enable-i965-driver
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--with-drivers-path=${DRIVER_SEARCH_PATH:Q}
 
@@ -33,15 +32,14 @@ PKGCONFIG_OVERRIDE+=	libva-tpi.pc.in
 PKGCONFIG_OVERRIDE+=	libva-x11.pc.in
 PKGCONFIG_OVERRIDE+=	libva.pc.in
 
-PLIST_VARS+=		egl
 
 pre-configure:
 	cd ${WRKSRC} && autoreconf -i
 
-.include "../../graphics/MesaLib/buildlink3.mk"
-.if !empty(MESALIB_SUPPORTS_EGL:Myes)
-PLIST.egl=		yes
-.endif
+# To avoid a PLIST mismatch with base Xorg
+CONFIGURE_ARGS+=	--disable-glx
+CONFIGURE_ARGS+=	--disable-egl
+
 .include "../../x11/libXfixes/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"

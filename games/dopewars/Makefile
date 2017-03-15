@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.65 2016/08/03 10:22:45 adam Exp $
+# $NetBSD: Makefile,v 1.67 2017/02/12 06:25:20 ryoon Exp $
 
 DISTNAME=	dopewars-1.5.12
-PKGREVISION=	24
+PKGREVISION=	26
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=dopewars/}
 

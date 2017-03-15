@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.57 2017/01/01 14:43:24 wiz Exp $
+# $NetBSD: Makefile,v 1.59 2017/02/12 06:25:06 ryoon Exp $
 
 DISTNAME=		solfege-3.14.1
-PKGREVISION=		25
+PKGREVISION=		27
 CATEGORIES=		audio
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=solfege/}
 

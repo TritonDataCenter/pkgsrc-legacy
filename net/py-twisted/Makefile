@@ -1,13 +1,15 @@
-# $NetBSD: Makefile,v 1.30 2016/11/30 12:28:50 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2017/02/16 11:10:21 wiz Exp $
 
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
 PKGREVISION=	1
 COMMENT=	Framework for writing networked applications
 .include "../../net/py-twisted/Makefile.common"
 
+DEPENDS+=	${PYPKGPREFIX}-automat-[0-9]*:../../devel/py-automat
 DEPENDS+=	${PYPKGPREFIX}-constantly-[0-9]*:../../devel/py-constantly
 DEPENDS+=	${PYPKGPREFIX}-incremental-[0-9]*:../../devel/py-incremental
 DEPENDS+=	${PYPKGPREFIX}-OpenSSL>=0.6:../../security/py-OpenSSL
+DEPENDS+=	${PYPKGPREFIX}-service_identity-[0-9]*:../../security/py-service_identity
 DEPENDS+=	${PYPKGPREFIX}-ZopeInterface>=3.0.1:../../devel/py-ZopeInterface
 
 REPLACE_PYTHON+=	src/twisted/mail/test/pop3testserver.py
@@ -25,10 +27,9 @@ pre-install:
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
-		for i in cftp ckeygen conch mailmail pyhtmlizer tkconch trial twist twistd; \
-		do \
-			${MV} $$i $$i-${PYVERSSUFFIX}; \
-		done
+	for i in cftp ckeygen conch mailmail pyhtmlizer tkconch trial twist twistd; do \
+		${MV} $$i $$i-${PYVERSSUFFIX}; \
+	done
 
 # Do not "make package" after running "make test"; this will result in files
 # being installed that should not be.
@@ -41,5 +42,4 @@ CHECK_FILES_SKIP+=	${PREFIX}/${PYSITELIB}/twisted/plugins/dropin.cache
 # egg.mk restricts the Python version list
 .include "../../lang/python/egg.mk"
 .include "../../lang/python/application.mk"
-
 .include "../../mk/bsd.pkg.mk"

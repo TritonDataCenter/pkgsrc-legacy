@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2016/03/08 15:35:59 taca Exp $
+# $NetBSD: Makefile,v 1.11 2017/02/18 13:18:17 taca Exp $
 
-DISTNAME=	rugged-0.24.0
+DISTNAME=	rugged-0.25.1.1
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -13,5 +13,6 @@ USE_TOOLS+=	cmake pkg-config
 CONFIGURE_ARGS+=	--use-system-libraries
 
 .include "../../devel/libgit2/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

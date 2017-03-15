@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.904 2017/02/03 15:33:57 hauke Exp $
+# $NetBSD: Makefile,v 1.910 2017/03/07 10:18:26 wiz Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -695,6 +695,7 @@ SUBDIR+=	py-4Suite
 SUBDIR+=	py-Excelerator
 SUBDIR+=	py-HappyDoc
 SUBDIR+=	py-JWT
+SUBDIR+=	py-Levenshtein
 SUBDIR+=	py-Tempita
 SUBDIR+=	py-Unidecode
 SUBDIR+=	py-Whoosh
@@ -738,11 +739,13 @@ SUBDIR+=	py-libxml2
 SUBDIR+=	py-libxslt
 SUBDIR+=	py-loremipsum
 SUBDIR+=	py-lxml
+SUBDIR+=	py-m2r
 SUBDIR+=	py-marisa
 SUBDIR+=	py-markdown
 SUBDIR+=	py-markdown2
 SUBDIR+=	py-markupsafe
 SUBDIR+=	py-mecab
+SUBDIR+=	py-mistune
 SUBDIR+=	py-mkdocs
 SUBDIR+=	py-mkdocs-bootstrap
 SUBDIR+=	py-mkdocs-bootswatch
@@ -762,6 +765,7 @@ SUBDIR+=	py-snowballstemmer
 SUBDIR+=	py-sphinx
 SUBDIR+=	py-sphinx-rtd-theme
 SUBDIR+=	py-sphinx-theme-cloud
+SUBDIR+=	py-sphinxcontrib-newsfeed
 SUBDIR+=	py-textile
 SUBDIR+=	py-tinycss
 SUBDIR+=	py-uritemplate
@@ -798,6 +802,7 @@ SUBDIR+=	ruby-amrita
 SUBDIR+=	ruby-bluecloth
 SUBDIR+=	ruby-buftok
 SUBDIR+=	ruby-builder
+SUBDIR+=	ruby-builder30
 SUBDIR+=	ruby-cabocha
 SUBDIR+=	ruby-classifier-reborn
 SUBDIR+=	ruby-coderay
@@ -908,6 +913,7 @@ SUBDIR+=	unroff
 SUBDIR+=	untex
 SUBDIR+=	uriparser
 SUBDIR+=	urlview
+SUBDIR+=	verify-synopsis
 SUBDIR+=	vis
 SUBDIR+=	wbxml2
 SUBDIR+=	wdiff

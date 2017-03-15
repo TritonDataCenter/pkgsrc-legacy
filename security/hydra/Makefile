@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.71 2016/12/04 05:17:40 ryoon Exp $
+# $NetBSD: Makefile,v 1.73 2017/02/12 06:25:57 ryoon Exp $
 #
 
 DISTNAME=	hydra-7.5
-PKGREVISION=	16
+PKGREVISION=	18
 CATEGORIES=	security
 MASTER_SITES=	http://freeworld.thc.org/releases/
 

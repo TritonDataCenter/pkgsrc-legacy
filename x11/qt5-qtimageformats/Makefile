@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2016/12/17 14:19:00 joerg Exp $
+# $NetBSD: Makefile,v 1.21 2017/02/28 15:20:01 ryoon Exp $
 
 DISTNAME=	qtimageformats-opensource-src-${QTVERSION}
 PKGNAME=	qt5-qtimageformats-${QTVERSION}
-PKGREVISION=	5
+PKGREVISION=	8
 COMMENT=	Qt5 module for Image formats
 
 BUILD_TARGET=		sub-src

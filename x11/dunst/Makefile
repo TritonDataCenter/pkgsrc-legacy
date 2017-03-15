@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2016/08/26 17:16:08 joerg Exp $
+# $NetBSD: Makefile,v 1.8 2017/02/12 06:26:10 ryoon Exp $
 
 DISTNAME=	dunst-1.1.0
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	x11
 MASTER_SITES=	http://www.knopwob.org/public/dunst-release/
 EXTRACT_SUFX=	.tar.bz2

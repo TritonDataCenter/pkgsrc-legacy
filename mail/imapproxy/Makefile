@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.17 2016/03/05 11:28:48 jperkin Exp $
+# $NetBSD: Makefile,v 1.19 2017/02/25 13:48:52 mef Exp $
 #
 
-DISTNAME=	up-imapproxy-1.2.7
+DISTNAME=	squirrelmail-imap_proxy-1.2.7
 PKGNAME=	imapproxy-1.2.7
 PKGREVISION=	5
 CATEGORIES=	mail
-MASTER_SITES=	http://www.imapproxy.org/downloads/
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=squirrelmail/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.imapproxy.org/

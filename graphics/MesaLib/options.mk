@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.49 2016/02/25 13:37:46 jperkin Exp $
+# $NetBSD: options.mk,v 1.52 2017/03/02 06:00:03 maya Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.MesaLib
 PKG_SUPPORTED_OPTIONS=		llvm dri
@@ -7,18 +7,7 @@ PKG_SUGGESTED_OPTIONS=
 # The LLVM option enables JIT accelerated software rendering and
 # is also required to support the latest RADEON GPUs, so enable it
 # by default on platforms where such GPUs might be encountered.
-.if \
-	!empty(MACHINE_PLATFORM:MNetBSD-[789].*-i386) ||	\
-	!empty(MACHINE_PLATFORM:MNetBSD-[789].*-x86_64) ||	\
-	!empty(MACHINE_PLATFORM:MNetBSD-[789].*-sparc64) ||	\
-	!empty(MACHINE_PLATFORM:MNetBSD-[789].*-*arm*)
-PKG_SUGGESTED_OPTIONS+=		llvm
-.endif
-
-.if	(!empty(MACHINE_PLATFORM:MLinux-*-i386) ||	\
-	 !empty(MACHINE_PLATFORM:MLinux-*-x86_64)) &&	\
-	(!empty(CC_VERSION:Mgcc-4.[89].*) ||		\
-	 !empty(CC_VERSION:Mgcc-[56].*))
+.if (${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64")
 PKG_SUGGESTED_OPTIONS+=		llvm
 .endif
 
@@ -37,7 +26,7 @@ PLIST_VARS+=	freedreno ilo i915 i965 nouveau r300 r600 radeonsi	\
 # classic DRI
 PLIST_VARS+=	dri swrast_dri i915_dri nouveau_dri i965_dri radeon_dri r200_dri
 # other features
-PLIST_VARS+=	gbm wayland xatracker
+PLIST_VARS+=	gbm vaapi vdpau wayland xatracker
 
 .if !empty(PKG_OPTIONS:Mdri)
 
@@ -163,6 +152,18 @@ CONFIGURE_ARGS+=	--with-gallium-drivers=${GALLIUM_DRIVERS:ts,}
 CONFIGURE_ARGS+=	--with-dri-drivers=${DRI_DRIVERS:ts,}
 
 .if !empty(PKG_OPTIONS:Mllvm)
+# VA-API and VDPAU
+.include "../../multimedia/libva/available.mk"
+.if ${VAAPI_AVAILABLE} == "yes"
+PLIST.vaapi=	yes
+.include "../../multimedia/libva/buildlink3.mk"
+.endif
+.include "../../multimedia/libvdpau/available.mk"
+.if ${VDPAU_AVAILABLE} == "yes"
+PLIST.vdpau=	yes
+.include "../../multimedia/libvdpau/buildlink3.mk"
+.endif
+
 # XA is useful for accelerating xf86-video-vmware
 CONFIGURE_ARGS+=	--enable-xa
 PLIST.xatracker=	yes

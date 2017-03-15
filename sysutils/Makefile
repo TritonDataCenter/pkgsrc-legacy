@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.688 2017/02/01 13:13:23 mef Exp $
+# $NetBSD: Makefile,v 1.692 2017/03/04 19:10:32 bsiegert Exp $
 #
 
 COMMENT=	System utilities
@@ -415,6 +415,7 @@ SUBDIR+=	p5-Sys-SigAction
 SUBDIR+=	p5-Sys-Syslog
 SUBDIR+=	p5-Sys-Utmp
 SUBDIR+=	p5-UPS-Nut
+SUBDIR+=	p5-Unburden-Home-Dir
 SUBDIR+=	p5-Unix-ConfigFile
 SUBDIR+=	p5-Unix-Statgrab
 SUBDIR+=	p5-Unix-Syslog
@@ -444,6 +445,7 @@ SUBDIR+=	py-collectd
 SUBDIR+=	py-dbus
 SUBDIR+=	py-diffoscope
 SUBDIR+=	py-gnome-menus
+SUBDIR+=	py-google-compute-engine
 SUBDIR+=	py-kazoo
 SUBDIR+=	py-magic
 SUBDIR+=	py-notify
@@ -480,6 +482,7 @@ SUBDIR+=	rsyslog-libgcrypt
 SUBDIR+=	rsyslog-mysql
 SUBDIR+=	rsyslog-pgsql
 SUBDIR+=	rsyslog-rabbitmq
+SUBDIR+=	rsyslog-relp
 SUBDIR+=	rsyslog-snmp
 SUBDIR+=	rtty
 SUBDIR+=	ruby-activesambaldap
@@ -501,6 +504,7 @@ SUBDIR+=	safetynet
 SUBDIR+=	salt
 SUBDIR+=	salt-docs
 SUBDIR+=	same
+SUBDIR+=	sandboxctl
 SUBDIR+=	sarah
 SUBDIR+=	screenbrightness
 SUBDIR+=	screenfetch

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.47 2016/08/03 10:22:58 adam Exp $
+# $NetBSD: Makefile,v 1.49 2017/02/12 06:25:33 ryoon Exp $
 #
 
 DISTNAME=	xdx-2.5.0
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	ham
 MASTER_SITES=	http://sourceforge.net/projects/xdxclusterclient/files/latest/download
 

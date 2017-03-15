@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2016/12/04 16:30:01 bsiegert Exp $
+# $NetBSD: Makefile,v 1.13 2017/02/14 21:24:04 joerg Exp $
 
 DISTNAME=	facette-0.4.0dev
-PKGREVISION=	10
+PKGREVISION=	12
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=facette/}
 
@@ -14,6 +14,8 @@ GITHUB_PROJECT=	facette
 GITHUB_TAG=	d77e77680d52d232305d0f12af6e3e1c857903cb
 
 EXTRACT_USING=	bsdtar
+
+BROKEN=		Tries to install uglify-js during build.
 
 USE_TOOLS+=	bsdtar gmake gsed pax pkg-config
 BUILD_DEPENDS+=	go-[0-9]*:../../lang/go

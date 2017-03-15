@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.20 2015/10/07 19:08:06 hubertf Exp $
+# $NetBSD: Makefile,v 1.22 2017/02/20 09:37:11 wiz Exp $
 #
 
 DISTNAME=	netbsd-doc-1.3
+PKGREVISION=	1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -16,7 +17,7 @@ DEPENDS+=	iso8879>=1986:../../textproc/iso8879
 DEPENDS+=	iso12083>=1993:../../textproc/iso12083
 DEPENDS+=	dsssl-docbook-modular>=1.54:../../textproc/dsssl-docbook-modular
 DEPENDS+=	html>=4.0:../../textproc/html
-DEPENDS+=	tidy>=20031002:../../www/tidy
+DEPENDS+=	tidy-[0-9]*:../../www/tidy
 
 META_PACKAGE=	yes
 

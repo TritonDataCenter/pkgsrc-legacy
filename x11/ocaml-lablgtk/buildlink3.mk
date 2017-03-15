@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.12 2016/12/04 05:17:15 ryoon Exp $
+# $NetBSD: buildlink3.mk,v 1.14 2017/02/12 06:24:56 ryoon Exp $
 
 BUILDLINK_TREE+=	ocaml-lablgtk
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	ocaml-lablgtk
 OCAML_LABLGTK_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.ocaml-lablgtk+=	ocaml-lablgtk>=2.6.0nb3
-BUILDLINK_ABI_DEPENDS.ocaml-lablgtk+=	ocaml-lablgtk>=2.18.5nb1
+BUILDLINK_ABI_DEPENDS.ocaml-lablgtk+=	ocaml-lablgtk>=2.18.5nb4
 BUILDLINK_PKGSRCDIR.ocaml-lablgtk?=	../../x11/ocaml-lablgtk
 
 # options must be exposed if and only if we built with them

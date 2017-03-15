@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.35 2016/08/03 10:22:47 adam Exp $
+# $NetBSD: Makefile,v 1.37 2017/02/12 06:25:22 ryoon Exp $
 
 DISTNAME=	rftg-0.9.4
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	http://keldon.net/rftg/
 EXTRACT_SUFX=	.tar.bz2

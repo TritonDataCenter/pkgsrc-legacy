@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.116 2016/08/03 10:22:20 adam Exp $
+# $NetBSD: Makefile,v 1.118 2017/02/12 06:24:51 ryoon Exp $
 
 DISTNAME=	metacity-2.34.13
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	wm x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/metacity/2.34/}
 EXTRACT_SUFX=	.tar.xz

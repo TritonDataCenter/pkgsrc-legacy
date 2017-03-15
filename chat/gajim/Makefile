@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2017/01/01 14:43:25 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2017/02/12 06:25:07 ryoon Exp $
 
 DISTNAME=	gajim-0.15
-PKGREVISION=	14
+PKGREVISION=	16
 CATEGORIES=	chat python
 MASTER_SITES=	http://www.gajim.org/downloads/0.15/
 EXTRACT_SUFX=	.tar.bz2

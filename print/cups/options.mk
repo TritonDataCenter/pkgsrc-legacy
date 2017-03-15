@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.19 2016/12/30 07:08:34 adam Exp $
+# $NetBSD: options.mk,v 1.21 2017/02/17 23:45:48 wiz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.cups
 PKG_SUPPORTED_OPTIONS=	acl dnssd kerberos pam tcpwrappers
@@ -59,6 +59,12 @@ CONFIGURE_ARGS+=	--disable-dnssd
 CONFIGURE_ARGS+=	--enable-gssapi
 .else
 CONFIGURE_ARGS+=	--disable-gssapi
+# https://github.com/apple/cups/issues/4947
+SUBST_CLASSES+=		nokerb
+SUBST_STAGE.nokerb=	post-build
+SUBST_SED.nokerb+=	-e '\%<Policy kerberos>%,\%</Policy>%s/^/\#/'
+SUBST_FILES.nokerb+=	conf/cupsd.conf
+SUBST_MESSAGE.nokerb=	Commenting out kerberos section in config.
 .endif
 
 .if !empty(PKG_OPTIONS:Mlibusb)
@@ -77,7 +83,7 @@ MESSAGE_SRC+=		${PKGDIR}/MESSAGE.pam
 PLIST.pam=		yes
 .else
 CONFIGURE_ARGS+=	--disable-pam
-MESSAGE_SRC=		${.CURDIR}/MESSAGE
+MESSAGE_SRC+=		${.CURDIR}/MESSAGE
 .endif
 
 .if !empty(PKG_OPTIONS:Mtcpwrappers)

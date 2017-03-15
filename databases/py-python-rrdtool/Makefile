@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.7 2017/01/01 14:43:28 wiz Exp $
+# $NetBSD: Makefile,v 1.9 2017/02/12 06:25:10 ryoon Exp $
 
 DISTNAME=	python-rrdtool-1.4.7
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/python-rrdtool/}
 

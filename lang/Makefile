@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.450 2017/01/01 15:52:09 leot Exp $
+# $NetBSD: Makefile,v 1.455 2017/02/21 21:46:16 minskim Exp $
 #
 
 COMMENT=	Programming languages
@@ -154,6 +154,7 @@ SUBDIR+=	opensource-cobol
 SUBDIR+=	oracle-jdk8
 SUBDIR+=	oracle-jre8
 SUBDIR+=	ossp-js
+SUBDIR+=	owl-lisp
 SUBDIR+=	p2c
 SUBDIR+=	p5-Switch
 SUBDIR+=	parrot
@@ -174,6 +175,8 @@ SUBDIR+=	py-basicproperty
 SUBDIR+=	py-byterun
 SUBDIR+=	py-cxfreeze
 SUBDIR+=	py-hy
+SUBDIR+=	py-js2py
+SUBDIR+=	py-jsparser
 SUBDIR+=	py-pyrex
 SUBDIR+=	py-pythonz
 SUBDIR+=	py-six
@@ -198,6 +201,8 @@ SUBDIR+=	ruby-coffee-script
 SUBDIR+=	ruby-coffee-script-source
 SUBDIR+=	ruby-doc-stdlib
 SUBDIR+=	ruby-execjs
+SUBDIR+=	ruby-gherkin
+SUBDIR+=	ruby-rkelly-remix
 SUBDIR+=	ruby18
 SUBDIR+=	ruby18-base
 SUBDIR+=	ruby21

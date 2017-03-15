@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.32 2016/08/03 10:22:29 adam Exp $
+# $NetBSD: Makefile,v 1.34 2017/02/12 06:25:03 ryoon Exp $
 #
 
 GNOME_VFS_NAME=		cdda
-PKGREVISION=		23
+PKGREVISION=		25
 CATEGORIES=		audio
 
 LICENSE=		gnu-lgpl-v2

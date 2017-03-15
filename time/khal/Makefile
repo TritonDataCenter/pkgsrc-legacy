@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2017/02/05 19:26:55 wiz Exp $
+# $NetBSD: Makefile,v 1.18 2017/03/07 10:43:05 wiz Exp $
 
-DISTNAME=		khal-0.9.1
+DISTNAME=		khal-0.9.3
 CATEGORIES=		time net
 MASTER_SITES=		${MASTER_SITE_PYPI:=k/khal/}
 
@@ -12,6 +12,7 @@ LICENSE=		mit
 DEPENDS+=		${PYPKGPREFIX}-atomicwrites-[0-9]*:../../devel/py-atomicwrites
 DEPENDS+=		${PYPKGPREFIX}-click>=3.2:../../devel/py-click
 DEPENDS+=		${PYPKGPREFIX}-configobj-[0-9]*:../../devel/py-configobj
+DEPENDS+=		${PYPKGPREFIX}-dateutil-[0-9]*:../../time/py-dateutil
 DEPENDS+=		${PYPKGPREFIX}-icalendar>=3.9.2:../../time/py-icalendar
 DEPENDS+=		${PYPKGPREFIX}-pkginfo-[0-9]*:../../devel/py-pkginfo
 BUILD_DEPENDS+=		${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
@@ -23,17 +24,24 @@ DEPENDS+=		${PYPKGPREFIX}-vdirsyncer>=0.5.2:../../time/py-vdirsyncer
 DEPENDS+=		${PYPKGPREFIX}-xdg>=0.17:../../devel/py-xdg
 # not needed, but recommended, so let's just depend on it
 DEPENDS+=		${PYPKGPREFIX}-setproctitle-[0-9]*:../../sysutils/py-setproctitle
+# for the man page, needs khal installed though, see
+# https://github.com/pimutils/khal/issues/598
+#USE_TOOLS+=		gmake
+#BUILD_DEPENDS+=		${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
+#BUILD_DEPENDS+=		${PYPKGPREFIX}-sphinxcontrib-newsfeed-[0-9]*:../../textproc/py-sphinxcontrib-newsfeed
 # TEST_DEPENDS
 BUILD_DEPENDS+=		${PYPKGPREFIX}-freezegun-[0-9]*:../../devel/py-freezegun
 BUILD_DEPENDS+=		${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27 # not supported as of 0.8.0
 
-PYTHON_VERSIONED_DEPENDENCIES=	dateutil
-
 INSTALLATION_DIRS=	share/doc/khal
 REPLACE_PYTHON+=	khal/*/*.py
 REPLACE_PYTHON+=	khal/*.py
+
+# man page generation, see above
+#post-build:
+#	cd ${WRKSRC}/doc && gmake SPHINXBUILD=sphinx-build${PYVERSSUFFIX} man
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/khal.conf.sample ${DESTDIR}${PREFIX}/share/doc/khal
@@ -43,5 +51,4 @@ do-test:
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
-.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

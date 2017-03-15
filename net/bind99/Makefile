@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.62 2017/01/12 00:05:46 taca Exp $
+# $NetBSD: Makefile,v 1.65 2017/02/24 15:46:14 fhajny Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.isc.org/isc/bind9/${BIND_VERSION}/
 
@@ -13,7 +14,7 @@ CONFLICTS+=	host-[0-9]*
 
 MAKE_JOBS_SAFE=	no
 
-BIND_VERSION=	9.9.9-P5
+BIND_VERSION=	9.9.9-P6
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -27,7 +28,7 @@ GNU_CONFIGURE=		yes
 #CONFIG_SHELL=		sh -x
 
 CONFIGURE_ARGS+=	--with-libtool
-CONFIGURE_ARGS+=	--sysconfdir=/etc
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE:Q}
 CONFIGURE_ARGS+=	--disable-openssl-version-check
 CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
@@ -56,7 +57,8 @@ FILES_SUBST+=		BIND_GROUP=${BIND_GROUP:Q} \
 			BIND_USER=${BIND_USER:Q} PAX=${PAX:Q} \
 			SSLBASE=${SSLBASE:Q}
 MESSAGE_SUBST+=		BIND_DIR=${BIND_DIR} BIND_USER=${BIND_USER}
-DOCDIR=			${DESTDIR}${PREFIX}/share/doc/bind9
+
+DOCDIR=			share/doc/bind9
 
 # include/isc/ipv6.h is installed on non-ipv6 platforms
 PLIST_VARS+=	inet6
@@ -67,13 +69,17 @@ PLIST.inet6=	yes
 RCD_SCRIPTS=		lwresd named9
 SMF_METHODS=		named
 
-INSTALLATION_DIRS+=	${DOCDIR} share/doc/bind9/arm
+INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/bind9
+CONF_FILES+=		share/examples/bind9/bind.keys \
+			${PKG_SYSCONFDIR}/bind.keys
+
+INSTALLATION_DIRS+=	${DOCDIR} ${DOCDIR}/arm
 
 post-install:
 .for f in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/${DOCDIR}
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${DOCDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${DESTDIR}${PREFIX}/${DOCDIR}/arm
 
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"

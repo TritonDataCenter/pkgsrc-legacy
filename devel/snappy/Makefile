@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2016/09/19 09:30:36 fhajny Exp $
+# $NetBSD: Makefile,v 1.8 2017/02/26 08:50:19 adam Exp $
 
-DISTNAME=	snappy-1.1.3
+DISTNAME=	snappy-1.1.4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=google/}
 
@@ -11,9 +11,10 @@ LICENSE=	apache-2.0
 
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-USE_LANGUAGES+=	c c++
+USE_LANGUAGES+=		c c++
+USE_LIBTOOL=		yes
+GNU_CONFIGURE=		yes
+PKGCONFIG_OVERRIDE+=	snappy.pc.in
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

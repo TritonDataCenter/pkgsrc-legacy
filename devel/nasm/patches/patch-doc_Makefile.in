@@ -1,0 +1,48 @@
+$NetBSD: patch-doc_Makefile.in,v 1.1 2017/02/14 08:05:30 adam Exp $
+
+Use correct paths and tools.
+Do not build nasmdoc.pdf.
+
+--- doc/Makefile.in.orig	2016-07-06 20:44:04.000000000 +0000
++++ doc/Makefile.in
+@@ -9,7 +9,8 @@ prefix		= @prefix@
+ exec_prefix	= @exec_prefix@
+ bindir		= @bindir@
+ mandir		= @mandir@
+-docdir		= $(prefix)/doc/nasm
++docdir		= $(prefix)/share/doc/nasm
++htmldocdir	= $(docdir)/html
+ infodir		= @infodir@
+ datarootdir	= @datarootdir@
+ 
+@@ -17,7 +18,7 @@ INSTALL		= @INSTALL@
+ INSTALL_PROGRAM	= @INSTALL_PROGRAM@
+ INSTALL_DATA	= @INSTALL_DATA@
+ 
+-PERL		= perl -I$(srcdir)
++PERL		= ${PERL5}
+ MAKEINFO	= makeinfo
+ TEXI2DVI        = texi2dvi
+ TEXI2IPF	= texi2ipf
+@@ -28,7 +29,7 @@ PSTOPDF		= @PSTOPDF@		# BSD/MacOS X util
+ PS2PDF          = @PS2PDF@		# Part of GhostScript
+ 
+ SRCS		= nasmdoc.src inslist.src changes.src version.src
+-OUT		= info html nasmdoc.txt nasmdoc.ps nasmdoc.pdf
++OUT		= info html nasmdoc.txt nasmdoc.ps #nasmdoc.pdf
+ 
+ # exports
+ export srcdir
+@@ -105,7 +106,8 @@ spotless: clean
+ 
+ install: all
+ 	mkdir -p $(INSTALLROOT)$(infodir)
+-	$(INSTALL_DATA) info/* $(INSTALLROOT)$(infodir)
+-	mkdir -p $(INSTALLROOT)$(docdir)/html
+-	$(INSTALL_DATA) html/* $(INSTALLROOT)$(docdir)/html
+-	$(INSTALL_DATA) nasmdoc.ps nasmdoc.pdf nasmdoc.txt $(INSTALLROOT)$(docdir)
++	$(BSD_INSTALL_DATA) info/* $(INSTALLROOT)$(infodir)
++	$(BSD_INSTALL_DATA_DIR) $(INSTALLROOT)$(docdir)
++	$(BSD_INSTALL_DATA_DIR) $(INSTALLROOT)$(htmldocdir)
++	$(BSD_INSTALL_DATA) html/* $(INSTALLROOT)$(htmldocdir)
++	$(BSD_INSTALL_DATA) nasmdoc.ps nasmdoc.txt $(INSTALLROOT)$(docdir)

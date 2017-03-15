@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.21 2016/07/09 06:38:10 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2017/03/05 12:25:28 schmonz Exp $
 #
 
-DISTNAME=		myrepos_1.20160123
+DISTNAME=		myrepos_1.20170129
 PKGNAME=		${DISTNAME:S/_/-/}
-PKGREVISION=		1
 CATEGORIES=		devel
-MASTER_SITES=		${MASTER_SITE_DEBIAN:=pool/main/m/myrepos/}
+MASTER_SITES=		${MASTER_SITE_LOCAL}
 
 MAINTAINER=		schmonz@NetBSD.org
 HOMEPAGE=		http://myrepos.branchable.com/
