@@ -11,7 +11,7 @@
       <service_fmri value="svc:/system/filesystem/local" />
     </dependency>
     <method_context>
-      <method_credential user='varnish' group='varnish' />
+      <method_credential user='@VRNUSER@' group='@VRNGROUP@' />
       <method_environment>
         <envvar name='PATH' value='@PREFIX@/sbin:@PREFIX@/bin:/sbin:/usr/sbin:/usr/bin' />
       </method_environment>
