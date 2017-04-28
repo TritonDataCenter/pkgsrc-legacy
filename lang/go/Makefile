@@ -83,12 +83,6 @@ PLIST_VARS+=	route
 PLIST.route=	yes
 .endif
 
-pre-build:
-	cd ${WRKSRC}/src/syscall && \
-		env GOOS=${LOWER_OPSYS:Q} GOARCH=${GOARCH:Q} \
-		${PERL5} mksyscall_solaris.pl \
-		syscall_solaris.go syscall_solaris_amd64.go > zsyscall_solaris_amd64.go
-
 do-build:
 	cd ${WRKSRC}/src && env GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:Q} GOROOT_FINAL=${GOROOT_FINAL:Q} ${BASH} ./make.bash
 
