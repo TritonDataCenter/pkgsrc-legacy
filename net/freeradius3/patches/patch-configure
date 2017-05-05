@@ -1,0 +1,42 @@
+$NetBSD$
+
+Portable test syntax
+
+--- configure.orig	2016-09-29 15:19:48.000000000 +0000
++++ configure
+@@ -9031,7 +9031,7 @@ fi
+ 
+ smart_prefix=
+ 
+-  if test "x$ac_cv_header_pcap_h" == "xyes"; then
++  if test "x$ac_cv_header_pcap_h" = "xyes"; then
+ 
+ $as_echo "#define HAVE_PCAP_H 1" >>confdefs.h
+ 
+@@ -9274,7 +9274,7 @@ fi
+ 
+ smart_prefix=
+ 
+-  if test "x$ac_cv_header_collectd_client_h" == "xyes"; then
++  if test "x$ac_cv_header_collectd_client_h" = "xyes"; then
+ 
+ $as_echo "#define HAVE_COLLECTDC_H 1" >>confdefs.h
+ 
+@@ -9517,7 +9517,7 @@ fi
+ 
+ smart_prefix=
+ 
+-  if test "x$ac_cv_header_sys_capability_h" == "xyes"; then
++  if test "x$ac_cv_header_sys_capability_h" = "xyes"; then
+ 
+ $as_echo "#define HAVE_CAPABILITY_H 1" >>confdefs.h
+ 
+@@ -12640,7 +12640,7 @@ subdirs="$subdirs $mysubdirs"
+ 
+ 
+ 
+-if test "x$werror" == "xyes"; then
++if test "x$werror" = "xyes"; then
+   CFLAGS="-Werror $CFLAGS"
+ fi
+ 
