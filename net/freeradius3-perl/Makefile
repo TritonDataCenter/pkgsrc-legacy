@@ -5,6 +5,7 @@
 PKGNAME=		${DISTNAME:S/-server/3-perl/}
 PKGREVISION=	1
 COMMENT=		Free RADIUS rlm_perl module
+CATEGORIES=		net perl
 
 CONFIGURE_ARGS+=    --with-rlm_perl
 
