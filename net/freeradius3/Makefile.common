@@ -19,6 +19,7 @@ CFLAGS.SunOS+=  	-D_XPG4_2 -D__EXTENSIONS__
 LIBS.SunOS+=  		-lnsl -lresolv -lsocket
 
 MAKE_ENV+=      	R=${DESTDIR}
+MAKE_ENV+=		PACKAGE=yes
 
 .include "../../databases/gdbm/buildlink3.mk"
 #.include "../../databases/hiredis/buildlink3.mk"
