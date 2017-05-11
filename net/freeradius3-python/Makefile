@@ -1,39 +1,19 @@
 # $NetBSD$
 
-.include "Makefile.common"
+.include "../../net/freeradius3/Makefile.module"
 
-PKGNAME=		${DISTNAME:S/-server/3/}
+PKGNAME=		${DISTNAME:S/-server/3-python/}
 PKGREVISION=	1
-COMMENT=		Free RADIUS server implementation
+COMMENT=		Free RADIUS rlm_python module
+CATEGORIES=		net python
 
-CONFIGURE_ARGS+=    --localstatedir=${VARBASE}
-CONFIGURE_ARGS+=    --sysconfdir=${PKG_SYSCONFBASEDIR}
-CONFIGURE_ARGS+=    --with-logdir=${VARBASE}/log/radiusd
-CONFIGURE_ARGS+=    --without-rlm_krb5
-CONFIGURE_ARGS+=    --without-rlm_ldap
-CONFIGURE_ARGS+=    --without-rlm_perl
-CONFIGURE_ARGS+=    --without-rlm_python
-CONFIGURE_ARGS+=    --without-rlm_redis
-CONFIGURE_ARGS+=    --without-rlm_rediswho
-CONFIGURE_ARGS+=    --without-rlm_ruby
-CONFIGURE_ARGS+=    --without-rlm_sql_oracle
-CONFIGURE_ARGS+=    --without-rlm_sql_unixodbc
-CONFIGURE_ARGS+=    --without-rlm_sql_iodbc
-CONFIGURE_ARGS+=    --without-rlm_sql_mysql
-CONFIGURE_ARGS+=    --without-rlm_sql_postgresql
+CONFIGURE_ARGS+=    --with-rlm_python
 
-post-install:
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/*.crt
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/*.csr
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/*.der
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/*.key
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/*.pem
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/*.p12
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/index.*
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/serial.*
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/dh
-	${RM} -f ${DESTDIR}${PKG_SYSCONFBASEDIR}/raddb/certs/random
+do-install:
+	${INSTALL_LIB_DIR} ${DESTDIR}${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_python.so ${DESTDIR}${PREFIX}/lib
 
+.include "../../lang/python/application.mk"
 
 # url2pkg-marker (please do not remove this line.)
 .include "../../mk/bsd.pkg.mk"
