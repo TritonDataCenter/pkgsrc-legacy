@@ -22,12 +22,5 @@ MAKE_ENV+=      	R=${DESTDIR}
 MAKE_ENV+=		PACKAGE=yes
 
 .include "../../databases/gdbm/buildlink3.mk"
-#.include "../../databases/hiredis/buildlink3.mk"
-#.include "../../databases/iodbc/buildlink3.mk"
-#.include "../../databases/unixodbc/buildlink3.mk"
 .include "../../devel/talloc/buildlink3.mk"
-#.include "../../lang/perl5/buildlink3.mk"
-#.include "../../mk/krb5.buildlink3.mk"
-#.include "../../mk/mysql.buildlink3.mk"
-#.include "../../mk/pgsql.buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
