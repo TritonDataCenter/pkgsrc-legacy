@@ -1,8 +1,0 @@
-# $NetBSD$
-
-.include "../../net/freeradius3/Makefile.common"
-
-DEPENDS+=		freeradius3>=${FREERADIUS_VERSION}:../../net/freeradius3
-
-DISTINFO_FILE=		${.CURDIR}/../../net/freeradius3/distinfo
-PATCHDIR=		${.CURDIR}/../../net/freeradius3/patches
