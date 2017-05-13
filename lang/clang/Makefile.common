@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.19 2017/03/17 22:38:17 adam Exp $
+# $NetBSD: Makefile.common,v 1.21 2017/05/05 22:47:00 kamil Exp $
 # used by lang/clang/Makefile
 # used by lang/clang-static-analyzer/Makefile
 
@@ -17,14 +17,14 @@ PATCHDIR=		${.CURDIR}/../../lang/clang/patches
 CONFIGURE_DIRS=		${WRKDIR}/build
 CMAKE_ARG_PATH=		${WRKSRC}
 
-USE_LANGUAGES=		c c++
+USE_LANGUAGES=		c c++11
 USE_CMAKE=		yes
 GCC_REQD+=		4.8
 
 CMAKE_ARGS+=	-DLLVM_CONFIG=${LLVM_CONFIG_PATH}
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
-CMAKE_ARGS+=	-DCMAKE_C_COMPILER=gcc
-CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=g++
+CMAKE_ARGS+=	-DCMAKE_C_COMPILER=${CC:Q}
+CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX:Q}
 # XXX can't disable static-analyzer without also disabling ARCMT
 CMAKE_ARGS+=	-DCLANG_ENABLE_ARCMT=OFF
 
@@ -81,7 +81,7 @@ SUBST_STAGE.libcxx=		pre-configure
 SUBST_MESSAGE.libcxx=		Patching toolchain to use libstdc++ (matching the host compiler)
 SUBST_FILES.libcxx=		lib/Driver/ToolChains.cpp
 SUBST_FILES.libcxx+=		lib/Driver/Tools.cpp
-SUBST_SED.libcxx=		-e 's,(Major >= 7 || (Major == 6 && Minor == 99 && Micro >= 49) || Major == 0),(false),'
+SUBST_SED.libcxx=		-e 's,(Major >= 7 || Major == 0),(false),'
 
 CMAKE_ARGS+=			-DCLANG_DEFAULT_CXX_STDLIB:STRING="libstdc++"
 .endif
@@ -114,10 +114,6 @@ TEST_ENV+=		LD_LIBRARY_PATH=${WRKDIR}/build/lib
 CMAKE_ARGS+=		-DLLVM_INCLUDE_TESTS=OFF
 CMAKE_ARGS+=		-DCLANG_INCLUDE_TESTS=OFF
 .endif
-
-# At least LLVM 3.9.0 and subprojects don't correctly add C++11 flags
-# automatically.
-CXXFLAGS+=	-std=c++11
 
 post-extract:
 	${RUN} mkdir -p ${WRKDIR}/build

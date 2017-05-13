@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.67 2017/01/16 12:12:59 wiz Exp $
+# $NetBSD: Makefile,v 1.69 2017/05/10 10:45:07 jperkin Exp $
 
 DISTNAME=	libvpx-1.6.1
 CATEGORIES=	multimedia
@@ -11,7 +11,7 @@ HOMEPAGE=	https://chromium.googlesource.com/webm/libvpx
 COMMENT=	On2 VP8 library from Google
 LICENSE=	modified-bsd
 
-USE_LANGUAGES=		c c++
+USE_LANGUAGES=		c c++11
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake bash:build perl:build
 HAS_CONFIGURE=		yes
@@ -80,12 +80,12 @@ CONFIGURE_ARGS+=	--target=ppc32-darwin8-gcc
 CONFIGURE_ARGS+=	--target=x86_64-solaris-gcc
 .  elif ${MACHINE_ARCH} == "i386"
 CONFIGURE_ARGS+=	--target=x86-solaris-gcc
+# Disable libyuv SSE code, it doesn't compile at present.
+CFLAGS+=		-U__SSE2__
 .  endif
 .endif
 
-.include "../../mk/compiler.mk"
 .if !empty(PKGSRC_COMPILER:Mclang)
-CXXFLAGS+=	-std=c++11
 .  if ${OPSYS} == "NetBSD" || ${OPSYS} == "Darwin"
 # https://bugzilla.mozilla.org/show_bug.cgi?id=982693
 SUBST_CLASSES+=		clang

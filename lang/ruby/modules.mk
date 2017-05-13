@@ -1,4 +1,4 @@
-# $NetBSD: modules.mk,v 1.38 2017/04/23 14:12:54 taca Exp $
+# $NetBSD: modules.mk,v 1.40 2017/05/04 15:09:10 taca Exp $
 
 .if !defined(_RUBY_MODULE_MK)
 _RUBY_MODULE_MK=	# defined
@@ -22,15 +22,7 @@ DEPENDS+= ${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
 
 .if defined(RUBY_RAILS_SUPPORTED)
 .include "../../lang/ruby/rails.mk"
-.if ${RUBY_RAILS} > 3
-RUBY_RDOC_REQD?=	2.5.0
 .endif
-.endif
-
-#
-# rdoc version
-#
-.include "../../lang/ruby/rdoc.mk"
 
 CONFIGURE_ENV+=		RUBY=${RUBY:Q} RDOC=${RDOC:Q}
 

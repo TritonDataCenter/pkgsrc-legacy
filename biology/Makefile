@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.40 2015/10/14 17:13:44 leot Exp $
+# $NetBSD: Makefile,v 1.42 2017/05/10 15:09:47 mef Exp $
 #
 
 COMMENT=	Software for the biological sciences

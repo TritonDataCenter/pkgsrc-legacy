@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2428 2017/04/27 06:34:08 jnemeth Exp $
+# $NetBSD: Makefile,v 1.2431 2017/05/10 17:54:09 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -309,6 +309,7 @@ SUBDIR+=	go-nbreader
 SUBDIR+=	go-protobuf
 SUBDIR+=	go-ratelimit
 SUBDIR+=	go-review
+SUBDIR+=	go-sys
 SUBDIR+=	go-termbox
 SUBDIR+=	go-testify
 SUBDIR+=	go-tools
@@ -1990,6 +1991,7 @@ SUBDIR+=	py-repoze.lru
 SUBDIR+=	py-requests
 SUBDIR+=	py-requests-file
 SUBDIR+=	py-requests-ftp
+SUBDIR+=	py-requests-mock
 SUBDIR+=	py-requests-toolbelt
 SUBDIR+=	py-rope
 SUBDIR+=	py-rply
@@ -2204,7 +2206,6 @@ SUBDIR+=	ruby-rb-kqueue
 SUBDIR+=	ruby-rbtree
 SUBDIR+=	ruby-rcsparse
 SUBDIR+=	ruby-rd-mode
-SUBDIR+=	ruby-rdoc
 SUBDIR+=	ruby-readline
 SUBDIR+=	ruby-redmine
 SUBDIR+=	ruby-redmine-flatly-light-theme
