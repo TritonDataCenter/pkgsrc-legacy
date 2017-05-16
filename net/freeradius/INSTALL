@@ -1,0 +1,31 @@
+#!/bin/sh
+# -*- mode: sh; fill-column: 72 -*-
+# $NetBSD$
+#
+# Create default symlinks in ${PKG_SYSCONFDIR} for enabled modules/sites
+#
+
+SITES_ENABLED="default inner-tunnel"
+
+MODS_ENABLED="always attr_filter cache_eap chap date detail detail.log
+	      dhcp digest dynamic_clients eap echo exec expiration expr
+	      files linelog logintime mschap ntlm_auth pap passwd preprocess
+	      radutmp realm replicate soh sradutmp unix unpack utf8"
+
+case ${STAGE} in
+     POST-INSTALL)
+	echo "Enabling default modules and sites"
+	cd @PKG_SYSCONFDIR@
+	ln -sf ./mods-config/preprocess/hints hints
+	ln -sf ./mods-config/preprocess/huntgroups huntgroups
+	ln -sf ./mods-config/files/authorize users
+	cd  @PKG_SYSCONFDIR@/sites-enabled
+	for s in ${SITES_ENABLED}; do
+	    ln -sf ../sites-available/${s} ${s}
+	done
+	cd @PKG_SYSCONFDIR@/mods-enabled
+	for m in ${MODS_ENABLED}; do
+	    ln -sf ../mods-available/${m} ${m}
+	done
+	;;
+esac
