@@ -22,11 +22,6 @@ case ${STAGE} in
 	    ${RM} -f @PKG_SYSCONFDIR@/mods-enabled/${m}
 	done
 	${RMDIR} @PKG_SYSCONFDIR@/sites-enabled
-	${RMDIR} @PKG_SYSCONFDIR@/mods-enabled
-	# Remove the special symlinks if they dangle
-	[ -s @PKG_SYSCONFDIR@/hints ] && ${RM} @PKG_SYSCONFDIR@/hints
-	[ -s @PKG_SYSCONFDIR@/huntgroups ] && ${RM} @PKG_SYSCONFDIR@/huntgroups
-	[ -s @PKG_SYSCONFDIR@/users ] && ${RM} @PKG_SYSCONFDIR@/users
-	
+	${RMDIR} @PKG_SYSCONFDIR@/mods-enabled	
 	;;
 esac
