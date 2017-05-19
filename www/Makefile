@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1236 2017/04/28 14:49:51 wiz Exp $
+# $NetBSD: Makefile,v 1.1239 2017/05/12 10:02:37 wiz Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -591,6 +591,7 @@ SUBDIR+=	pup
 SUBDIR+=	py-ClientForm
 SUBDIR+=	py-FormEncode
 SUBDIR+=	py-HTMLgen
+SUBDIR+=	py-MechanicalSoup
 SUBDIR+=	py-PasteDeploy
 SUBDIR+=	py-PasteScript
 SUBDIR+=	py-Routes
@@ -614,6 +615,7 @@ SUBDIR+=	py-django-appmedia
 SUBDIR+=	py-django-classy-tags
 SUBDIR+=	py-django-cms
 SUBDIR+=	py-django-cmsplugin_gallery
+SUBDIR+=	py-django-contrib-comments
 SUBDIR+=	py-django-easy-thumbnails
 SUBDIR+=	py-django-filer
 SUBDIR+=	py-django-formtools
@@ -692,6 +694,7 @@ SUBDIR+=	py-meld3
 SUBDIR+=	py-mezzanine
 SUBDIR+=	py-mod_wsgi
 SUBDIR+=	py-mod_wsgi-metrics
+SUBDIR+=	py-model_mommy
 SUBDIR+=	py-moin
 SUBDIR+=	py-nbconvert
 SUBDIR+=	py-nbformat
