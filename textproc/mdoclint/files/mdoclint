@@ -1,7 +1,7 @@
 #!@PERL5@
 #
 # $OpenBSD: mdoclint,v 1.48 2016/01/24 20:10:48 schwarze Exp $
-# $NetBSD: mdoclint,v 1.68 2017/05/02 13:59:10 wiz Exp $
+# $NetBSD: mdoclint,v 1.72 2017/05/16 13:27:39 wiz Exp $
 #
 # Copyright (c) 2001-2017 Thomas Klausner
 # All rights reserved.
@@ -39,35 +39,31 @@ use Getopt::Std;
 use constant {
 	OPENBSD => 0,
 	NETBSD => 1,
-	SECTION_NAME => 2,
-	SECTION_SEE_ALSO => 3,
 };
 
 use vars qw(
-	$opt_a $opt_D $opt_d $opt_e $opt_F $opt_f $opt_H $opt_h $opt_l
-	$opt_m $opt_n $opt_o $opt_p $opt_r $opt_S $opt_s $opt_v $opt_w
+	$opt_D $opt_d $opt_e $opt_F $opt_f $opt_h $opt_l
+	$opt_m $opt_n $opt_o $opt_p $opt_r $opt_S $opt_v $opt_w
 	$opt_X $opt_x
 );
 
 
 my $arch=`uname -m`;
 chomp($arch);
-my $options="aDdeFfHhlmnoprSsvwXx";
+my $options="aDdeFfHhlmnoprSvwXx";
 
 sub usage
 	{
-	my $default = OPENBSD ? "-aDdfmnoprSsXx" : "-aDdeflmnoprSsXx";
+	my $default = OPENBSD ? "-DdfmnoprSXx" : "-DdeflmnoprSXx";
 
 	print STDERR <<"EOF";
 mdoclint: verify man page correctness
 usage:	mdoclint [-$options] file ...
-	-a	warn about SEE ALSO section problems
 	-D	warn about bad casing and archs in .Dt
 	-d	warn about bad date strings (in .Dd only)
 	-e	warn about unsorted errors (for functions)
 	-F	fix whitespace problems (asks before overwriting)
 	-f	warn about possible incorrect .Fn syntax
-	-H	warn about characters that produce problems in HTML output
 	-h	display this help text
 	-l	warn about unknown libraries
 	-m	warn about man pages that are not in mdoc(7) format
@@ -76,7 +72,6 @@ usage:	mdoclint [-$options] file ...
 	-p	warn about punctuation problems
 	-r	warn about missing RCS Id
 	-S	warn about any .Sh weirdness
-	-s	warn about whitespace problems
 	-v	verbose output
 	-w	show section header in warnings
 	-X	warn about explicit mentions of the *BSD system names
@@ -251,13 +246,12 @@ sub handle_options
 	$opt_h and usage();
 
 	# default to all warnings if no flag is set
-	unless ($opt_a or $opt_D or $opt_d or $opt_e
-		or $opt_f or $opt_H or $opt_l
+	unless ($opt_D or $opt_d or $opt_e or $opt_f or $opt_l
 		or $opt_m or $opt_n or $opt_o or $opt_p or $opt_r
-		or $opt_S or $opt_s or $opt_X or $opt_x) {
-		$opt_a = $opt_D = $opt_d = $opt_f = $opt_m =
+		or $opt_S or $opt_X or $opt_x) {
+		$opt_D = $opt_d = $opt_f = $opt_m =
 		    $opt_n = $opt_o = $opt_p = $opt_r = $opt_S =
-		    $opt_s = $opt_X = $opt_x = 1;
+		    $opt_X = $opt_x = 1;
 		$opt_e = $opt_l = 1 if NETBSD;
 	}
 }
@@ -307,11 +301,6 @@ sub new
 		changes => 0,
 		oxrcsidseen => 0,
 		nxrcsidseen => 0,
-		lastsh => 0,
-		sasection => 0,
-		saname => '',
-		sarest => ',',
-		in_section => 0,
 		inliteral => 0,
 		shseen => {},
 		last_error_name => '',
@@ -357,22 +346,7 @@ sub parse_macro_args
 			push(@params, $1);
 		}
 	}
-	if (@params > 9 and OPENBSD) {
-		$s->warning("$string holds >9 parameters");
-	}
 	return @params;
-}
-
-sub end_of_section
-{
-	my ($s) = @_;
-
-	if ($s->{in_section} == SECTION_SEE_ALSO and not $s->{sarest} eq "") {
-		$s->warning("unneeded characters at end of SEE ALSO: ",
-		    "`$s->{sarest}'") if $opt_a;
-		# to avoid a second warning at EOF
-		$s->{sarest} = "";
-	}
 }
 
 sub set_section_header
@@ -380,26 +354,11 @@ sub set_section_header
 	my ($s, $section_header) = @_;
 	$section_header = join(' ', $s->parse_macro_args($section_header));
 
-	end_of_section($s);
-
-	if ($section_header eq 'NAME') {
-		$s->{in_section} = SECTION_NAME;
-	} elsif ($section_header eq 'SEE ALSO') {
-		$s->{in_section} = SECTION_SEE_ALSO;
-	} else {
-		$s->{in_section} = 0;
-	}
-
 	if (not $sections{$section_header}) {
 		$s->warning("unknown section header: ",
 		    "`$section_header'") if $opt_S;
 	} else {
-		if ($s->{lastsh} >= $sections{$section_header}) {
-			$s->warning("section header ",
-			    "`$section_header' in wrong order") if $opt_S;
-		}
 		$s->{shseen}->{$section_header} = 1;
-		$s->{lastsh} = $sections{$section_header};
 	}
 
 	$s->{current_section_header} = $section_header;
@@ -423,10 +382,7 @@ sub process_line
 	($s, $_) = @_;
 	chomp;
 	# always cut trailing spaces
-	if (/\s+$/o) {
-		$s->warning("trailing space: `$_'") if $opt_s;
-		s/\s+$//o;
-	}
+	s/\s+$//o;
 	if (/\$OpenBSD\b.*\$/o) {
 		$s->{oxrcsidseen}++;
 		if (OPENBSD and ($s->{oxrcsidseen} > 1)) {
@@ -477,53 +433,14 @@ sub process_line
 		}
 	}
 
-	if ($s->{in_section} == SECTION_NAME) {
+	if ($s->{current_section_header} eq "NAME") {
 		if (/^\.Nm\s+(\S+)/o) {
 			$s->{names}{$1.$s->{sec}} = 1;
-		}
-	} elsif ($s->{in_section} == SECTION_SEE_ALSO) {
-		if (/^\.Xr\s+(\S+)\s+($sections_re)\s?(.*)?$/o) {
-			my ($saname, $sasection, $sarest) = ($1, $2, $3);
-			$saname =~ s/^\\&//o;
-			if ($s->{sasection} gt $sasection
-			    or ($s->{sasection} eq $sasection and
-			    (lc($s->{saname}) gt lc($saname)))) {
-				$s->warning("SEE ALSO: `.Xr $s->{saname} ",
-				    "$s->{sasection}' should be after ",
-				    "`.Xr $saname $sasection'") if $opt_a;
-			}
-			if ($s->{sarest} ne ",") {
-				$s->warning("SEE ALSO: .Xr not separated ",
-				    "by comma, but `$s->{sarest}'") if $opt_a;
-			}
-			$s->{saname} = $saname;
-			$s->{sasection} = $sasection;
-			$s->{sarest} = $sarest;
-		}
-		if (/^\.Rs(?:\s+|$)/o) {
-			if ($s->{sarest} ne "") {
-				$s->warning("SEE ALSO: Not necessary to ",
-				    "separate .Xr from .Rs by ",
-				    "`$s->{sarest}'") if $opt_a;
-			}
-			$s->{sarest} = "";
 		}
 	}
 
 	if (/^\.Fn.*,.+/o) {
 		$s->warning("possible .Fn misuse: `$_'") if $opt_f;
-	}
-	if (OPENBSD) {
-		if (/^(?:[<>])/o or /[^\\][<>]/o) {
-			$s->warning("use \*(Lt \*(Gt (or .Aq) ",
-			    "instead of < >: `$_'") if $opt_H;
-		}
-	}
-	if (NETBSD) {
-		if (/^(?:[<>&])/o or /[^\\][<>&]/o) {
-			$s->warning("use \*[Lt] \*[Gt] (or .Aq) \*[Am] ",
-			    "instead of < > &: `$_'") if $opt_H;
-		}
 	}
 
 	if (/\b(Free|Net|DragonFly|Open)BSD\b/o
@@ -644,12 +561,6 @@ sub finish
 	if (OPENBSD and not $s->{oxrcsidseen}) {
 		$s->warning("Missing RCS Id") if $opt_r;
 	}
-
-	end_of_section($s);
-
-#    	if (not ($fn =~ /$section$/)) {
-#		$s->warning("section doesn't match (internal value: $section)");
-#    	}
 	if ($s->{mandoc_p}) {
 		foreach my $i (qw(NAME SYNOPSIS DESCRIPTION)) {
 			if (not ($s->{shseen}{$i})) {

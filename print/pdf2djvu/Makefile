@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.46 2017/05/02 13:37:32 wiz Exp $
+# $NetBSD: Makefile,v 1.48 2017/05/16 12:43:47 ryoon Exp $
 #
 
-DISTNAME=	pdf2djvu-0.9.4
-PKGREVISION=	6
+DISTNAME=	pdf2djvu-0.9.5
 CATEGORIES=	print
-MASTER_SITES=	https://bitbucket.org/jwilk/pdf2djvu/downloads/
+MASTER_SITES=	https://github.com/jwilk/pdf2djvu/releases/download/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	ryoon@NetBSD.org
@@ -21,8 +20,9 @@ USE_LANGUAGES=		c++
 USE_TOOLS+=		pkg-config gmake intltool msgfmt xgettext
 CONFIGURE_ARGS+=	--localedir=${PREFIX}/${PKGLOCALEDIR}/locale
 
-.include "../../graphics/djvulibre-lib/buildlink3.mk"
-.include "../../print/poppler/buildlink3.mk"
-.include "../../print/poppler-includes/buildlink3.mk"
+.include "../../converters/libiconv/buildlink3.mk"
 .include "../../graphics/GraphicsMagick/buildlink3.mk"
+.include "../../graphics/djvulibre-lib/buildlink3.mk"
+.include "../../print/poppler-includes/buildlink3.mk"
+.include "../../print/poppler/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
