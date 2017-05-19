@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2016/12/15 09:12:41 maya Exp $
+# $NetBSD: Makefile,v 1.9 2017/05/17 16:36:46 gson Exp $
 
-DISTNAME=	jemalloc-4.4.0
+DISTNAME=	jemalloc-4.5.0
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=jemalloc/}
 GITHUB_PROJECT=	jemalloc
@@ -28,5 +29,7 @@ REPLACE_PERL=		bin/jeprof.in
 PKGCONFIG_OVERRIDE=	jemalloc.pc.in
 
 BUILD_TARGET=		all dist
+TEST_TARGET=		check
+TEST_ENV=		LD_LIBRARY_PATH=${WRKSRC}/lib
 
 .include "../../mk/bsd.pkg.mk"

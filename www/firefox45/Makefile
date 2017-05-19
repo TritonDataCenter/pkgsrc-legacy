@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.24 2017/04/22 21:04:02 adam Exp $
+# $NetBSD: Makefile,v 1.27 2017/05/13 02:34:30 khorben Exp $
 
 MOZILLA_PKG_NAME=	firefox45
+PKGREVISION=	1
 FIREFOX_VER=	${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
-MOZ_BRANCH=	45.8
+MOZ_BRANCH=	45.9
 MOZ_BRANCH_MINOR=	.0esr
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
@@ -30,6 +31,8 @@ LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/${MOZILLA_PKG_NAME}
 LDFLAGS.SunOS+=		-lm
 
 NOT_PAX_MPROTECT_SAFE+=	lib/firefox45/firefox
+NOT_PAX_MPROTECT_SAFE+=	lib/firefox45/firefox-bin
+NOT_PAX_MPROTECT_SAFE+=	lib/firefox45/plugin-container
 
 ALL_ENV+=		MOZILLA_PKG_NAME=${MOZILLA_PKG_NAME}
 
