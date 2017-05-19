@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.39 2017/04/11 20:21:02 adam Exp $
+# $NetBSD: Makefile.common,v 1.40 2017/05/05 16:22:29 jperkin Exp $
 #
 # used by databases/mysql56-client/Makefile
 # used by databases/mysql56-server/Makefile
@@ -134,4 +134,12 @@ SUBST_SED.fixpaths+=	-e "s,${WRAPPER_BINDIR}/g++,${CXXPATH},g"
 USE_BUILTIN.editline=	no
 .endif
 
+.include "../../mk/readline.buildlink3.mk"
+.if ${READLINE_TYPE} == "readline"
+CMAKE_ARGS+=		-DWITH_READLINE="system"
+.else
+CMAKE_ARGS+=		-DWITH_EDITLINE="system"
+.endif
+
+.include "../../mk/curses.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
