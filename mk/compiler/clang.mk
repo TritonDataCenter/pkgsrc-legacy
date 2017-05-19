@@ -1,4 +1,4 @@
-# $NetBSD: clang.mk,v 1.15 2015/03/02 19:59:07 joerg Exp $
+# $NetBSD: clang.mk,v 1.17 2017/05/18 08:14:08 jperkin Exp $
 #
 # This is the compiler definition for the clang compiler.
 #
@@ -52,6 +52,13 @@ _COMPILER_ABI_FLAG.64=	-m64
 _COMPILER_LD_FLAG=	-Wl,
 _LINKER_RPATH_FLAG=	-R
 _COMPILER_RPATH_FLAG=	${_COMPILER_LD_FLAG}${_LINKER_RPATH_FLAG}
+
+# The user can choose the level of stack smashing protection.
+.if ${PKGSRC_USE_SSP} == "all"
+_SSP_CFLAGS=		-fstack-protector-all
+.else
+_SSP_CFLAGS=		-fstack-protector
+.endif
 
 # _LANGUAGES.<compiler> is ${LANGUAGES.<compiler>} restricted to the
 # ones requested by the package in USE_LANGUAGES.

@@ -1,4 +1,4 @@
-# $NetBSD: gcc.mk,v 1.176 2017/04/16 23:12:37 khorben Exp $
+# $NetBSD: gcc.mk,v 1.178 2017/05/18 08:14:08 jperkin Exp $
 #
 # This is the compiler definition for the GNU Compiler Collection.
 #
@@ -20,6 +20,10 @@
 #	When set to "yes", the runtime gcc libraries (libgcc, libstdc++
 #	etc) will be used from pkgsrc rather than the native compiler.
 #
+# GCC_VERSION_SUFIXX
+#	Optional suffix for GCC binaries, i.e. if the installed names are like
+#	/usr/bin/g++-5, /usr/bin/gcc-5 etc.
+
 # Package-settable variables:
 #
 # GCC_REQD
@@ -368,14 +372,6 @@ _SSP_CFLAGS=		-fstack-protector-strong
 _SSP_CFLAGS=		-fstack-protector
 .endif
 
-.if ${_PKGSRC_USE_SSP} == "yes"
-_WRAP_EXTRA_ARGS.CC+=	${_SSP_CFLAGS}
-_WRAP_EXTRA_ARGS.CXX+=	${_SSP_CFLAGS}
-CWRAPPERS_APPEND.cc+=	${_SSP_CFLAGS}
-CWRAPPERS_APPEND.cxx+=	${_SSP_CFLAGS}
-CWRAPPERS_APPEND.f77+=	${_SSP_CFLAGS}
-.endif
-
 # GCC has this annoying behaviour where it advocates in a multi-line
 # banner the use of "#include" over "#import" when including headers.
 # This generates a huge number of warnings when building practically all
@@ -720,44 +716,44 @@ _GCCBINDIR=	${_CC:H}
 .if !empty(USE_CROSS_COMPILE:M[yY][eE][sS])
 _GCC_BIN_PREFIX=	${MACHINE_GNU_PLATFORM}-
 .endif
-.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}gcc)
+.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}gcc${GCC_VERSION_SUFFIX})
 _GCC_VARS+=	CC
-_GCC_CC=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}gcc
+_GCC_CC=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}gcc${GCC_VERSION_SUFFIX}
 _ALIASES.CC=	cc gcc
-CCPATH=		${_GCCBINDIR}/${_GCC_BIN_PREFIX}gcc
+CCPATH=		${_GCCBINDIR}/${_GCC_BIN_PREFIX}gcc${GCC_VERSION_SUFFIX}
 PKG_CC:=	${_GCC_CC}
 .endif
-.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}cpp)
+.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}cpp${GCC_VERSION_SUFFIX})
 _GCC_VARS+=	CPP
-_GCC_CPP=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}cpp
+_GCC_CPP=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}cpp${GCC_VERSION_SUFFIX}
 _ALIASES.CPP=	cpp
-CPPPATH=	${_GCCBINDIR}/${_GCC_BIN_PREFIX}cpp
+CPPPATH=	${_GCCBINDIR}/${_GCC_BIN_PREFIX}cpp${GCC_VERSION_SUFFIX}
 PKG_CPP:=	${_GCC_CPP}
 .endif
-.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}g++)
+.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}g++${GCC_VERSION_SUFFIX})
 _GCC_VARS+=	CXX
-_GCC_CXX=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}g++
+_GCC_CXX=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}g++${GCC_VERSION_SUFFIX}
 _ALIASES.CXX=	c++ g++
-CXXPATH=	${_GCCBINDIR}/${_GCC_BIN_PREFIX}g++
+CXXPATH=	${_GCCBINDIR}/${_GCC_BIN_PREFIX}g++${GCC_VERSION_SUFFIX}
 PKG_CXX:=	${_GCC_CXX}
 .endif
-.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}g77)
+.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}g77${GCC_VERSION_SUFFIX})
 _GCC_VARS+=	FC
-_GCC_FC=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}g77
+_GCC_FC=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}g77${GCC_VERSION_SUFFIX}
 _ALIASES.FC=	f77 g77
 FC=		g77
-FCPATH=		${_GCCBINDIR}/${_GCC_BIN_PREFIX}g77
-F77PATH=	${_GCCBINDIR}/${_GCC_BIN_PREFIX}g77
+FCPATH=		${_GCCBINDIR}/${_GCC_BIN_PREFIX}g77${GCC_VERSION_SUFFIX}
+F77PATH=	${_GCCBINDIR}/${_GCC_BIN_PREFIX}g77${GCC_VERSION_SUFFIX}
 PKG_FC:=	${_GCC_FC}
 PKGSRC_FORTRAN?=	g77
 .endif
-.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}gfortran)
+.if exists(${_GCCBINDIR}/${_GCC_BIN_PREFIX}gfortran${GCC_VERSION_SUFFIX})
 _GCC_VARS+=	FC
-_GCC_FC=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}gfortran
+_GCC_FC=	${_GCC_DIR}/bin/${_GCC_BIN_PREFIX}gfortran${GCC_VERSION_SUFFIX}
 _ALIASES.FC=	gfortran
 FC=		gfortran
-FCPATH=		${_GCCBINDIR}/${_GCC_BIN_PREFIX}gfortran
-F77PATH=	${_GCCBINDIR}/${_GCC_BIN_PREFIX}gfortran
+FCPATH=		${_GCCBINDIR}/${_GCC_BIN_PREFIX}gfortran${GCC_VERSION_SUFFIX}
+F77PATH=	${_GCCBINDIR}/${_GCC_BIN_PREFIX}gfortran${GCC_VERSION_SUFFIX}
 PKG_FC:=	${_GCC_FC}
 PKGSRC_FORTRAN?=	gfortran
 .endif
