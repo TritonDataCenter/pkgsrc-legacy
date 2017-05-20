@@ -1922,7 +1922,6 @@ lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/_testcapi.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/array.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/audioop.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/binascii.so
-lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/bsddb185.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/bz2.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/cPickle.so
 lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/cStringIO.so

@@ -3,7 +3,7 @@
 .include "dist.mk"
 
 PKGNAME=	python27-${PY_DISTVERSION}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	lang python
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -134,19 +134,8 @@ PLIST.no-nis=	yes
 .  endif
 .endif
 
-.include "../../mk/bdb.buildlink3.mk"
-MAKE_ENV+=	PY_BDB_TYPE=${BDB_TYPE}
-.if empty(BDB_LIBS)
-BUILDLINK_TRANSFORM+=	rm:-ldb
-.endif
-CFLAGS+=	-DHAVE_DB_185_H
-
 # configure complains about buggy getaddrinfo()
 CONFIGURE_ARGS.OSF1+=	--disable-ipv6
-
-.if defined(BUILDLINK_TRANSFORM)
-MAKE_ENV+=	PY_BDB_TRANSFORM=${BUILDLINK_TRANSFORM:Q}
-.endif
 
 PLIST_SUBST+=	PY_VER_SUFFIX=${PY_VER_SUFFIX:Q}
 
