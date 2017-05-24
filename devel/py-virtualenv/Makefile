@@ -12,12 +12,18 @@ LICENSE=	mit
 
 REPLACE_PYTHON=	virtualenv.py
 
+.include "../../mk/bsd.prefs.mk"
+
 SUBST_CLASSES+=		arch
 SUBST_STAGE.arch=	pre-configure
-SUBST_MESSAGE.arch=	Fixing multiarch support
 SUBST_FILES.arch=	virtualenv.py
+.if !empty(MULTIARCH:M[Yy][Ee][Ss])
 SUBST_SED.arch=		-e 's|@BINARCHSUFFIX32@|${BINARCHSUFFIX.32:S/\///}|'
 SUBST_SED.arch+=	-e 's|@BINARCHSUFFIX64@|${BINARCHSUFFIX.64:S/\///}|'
+.else
+SUBST_SED.arch=		-e 's|@BINARCHSUFFIX32@||'
+SUBST_SED.arch+=	-e 's|@BINARCHSUFFIX64@||'
+.endif
 
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/bin/virtualenv ${DESTDIR}${PREFIX}/bin/virtualenv-${PYVERSSUFFIX} || ${TRUE}
