@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2432 2017/05/17 10:47:28 gson Exp $
+# $NetBSD: Makefile,v 1.2434 2017/05/24 11:29:52 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -816,6 +816,7 @@ SUBDIR+=	p5-Cache-Memcached
 SUBDIR+=	p5-Cache-Simple-TimedExpiry
 SUBDIR+=	p5-Canary-Stability
 SUBDIR+=	p5-Capture-Tiny
+SUBDIR+=	p5-Carp
 SUBDIR+=	p5-Carp-Always
 SUBDIR+=	p5-Carp-Assert
 SUBDIR+=	p5-Carp-Assert-More
@@ -1810,7 +1811,6 @@ SUBDIR+=	py-decorator
 SUBDIR+=	py-dialog
 SUBDIR+=	py-dialog2
 SUBDIR+=	py-distorm3
-SUBDIR+=	py-distribute
 SUBDIR+=	py-docopt
 SUBDIR+=	py-docstyle
 SUBDIR+=	py-doctor

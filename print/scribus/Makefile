@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.108 2017/02/21 16:01:36 joerg Exp $
+# $NetBSD: Makefile,v 1.110 2017/05/19 13:29:04 prlw1 Exp $
 
 DISTNAME=		scribus-1.3.3.14
-PKGREVISION=		27
+PKGREVISION=		28
 CATEGORIES=		print
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=scribus/}
 EXTRACT_SUFX=		.tar.bz2
@@ -39,7 +39,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/scribus/icons/scribus.png \
 		${DESTDIR}${PREFIX}/share/pixmaps
 
-.include "../../print/cups15/buildlink3.mk"
+.include "../../print/cups/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 BUILDLINK_API_DEPENDS.libart+= libart>=2.3.19nb1

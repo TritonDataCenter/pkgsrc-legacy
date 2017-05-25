@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1239 2017/05/12 10:02:37 wiz Exp $
+# $NetBSD: Makefile,v 1.1241 2017/05/24 08:43:13 he Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -13,6 +13,7 @@ SUBDIR+=	album_themes
 SUBDIR+=	amaya
 SUBDIR+=	analog
 SUBDIR+=	ap-auth-kerb
+SUBDIR+=	ap-auth-mellon
 SUBDIR+=	ap-auth-mysql
 SUBDIR+=	ap-authnz-crowd
 SUBDIR+=	ap-fastcgi
@@ -618,6 +619,7 @@ SUBDIR+=	py-django-cmsplugin_gallery
 SUBDIR+=	py-django-contrib-comments
 SUBDIR+=	py-django-easy-thumbnails
 SUBDIR+=	py-django-filer
+SUBDIR+=	py-django-filter
 SUBDIR+=	py-django-formtools
 SUBDIR+=	py-django-inline-ordering
 SUBDIR+=	py-django-kronos

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.43 2017/01/01 14:43:54 wiz Exp $
+# $NetBSD: Makefile,v 1.45 2017/05/19 13:29:04 prlw1 Exp $
 
 DISTNAME=		scribus-1.4.3
-PKGREVISION=		8
+PKGREVISION=		9
 CATEGORIES=		print
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=scribus/}
 EXTRACT_SUFX=		.tar.xz
@@ -34,7 +34,7 @@ post-install:
 		${DESTDIR}${PREFIX}/share/pixmaps
 
 .include "../../devel/boost-headers/buildlink3.mk"
-.include "../../print/cups15/buildlink3.mk"
+.include "../../print/cups/buildlink3.mk"
 .include "../../print/podofo/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
