@@ -1,8 +1,8 @@
 # $NetBSD: Makefile,v 1.30 2017/01/01 14:43:45 wiz Exp $
 
 
-DISTNAME=	offlineimap-6.5.6
-DISTFILES=	v6.5.6.tar.gz
+DISTNAME=	offlineimap-7.1.0
+DISTFILES=	v7.1.0.tar.gz
 CATEGORIES=	mail
 MASTER_SITES=	https://github.com/OfflineIMAP/offlineimap/archive/
 
