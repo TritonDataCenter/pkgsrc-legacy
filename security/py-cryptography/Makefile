@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.53 2017/03/21 16:04:59 wiz Exp $
+# $NetBSD: Makefile,v 1.55 2017/05/29 13:22:31 wiz Exp $
 
-DISTNAME=	cryptography-1.8.1
+DISTNAME=	cryptography-1.8.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/cryptography/}
@@ -18,10 +18,11 @@ DEPENDS+=	${PYPKGPREFIX}-six-[0-9]*:../../lang/py-six
 # actually, TEST_DEPENDS
 BUILD_DEPENDS+=	${PYPKGPREFIX}-iso8601-[0-9]*:../../time/py-iso8601
 BUILD_DEPENDS+=	${PYPKGPREFIX}-pretend-[0-9]*:../../devel/py-pretend
-BUILD_DEPENDS+=	${PYPKGPREFIX}-requests>=0.8:../../devel/py-requests
 BUILD_DEPENDS+=	${PYPKGPREFIX}-test>=0.8:../../devel/py-test
 BUILD_DEPENDS+=	${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
 BUILD_DEPENDS+=	${PYPKGPREFIX}-cryptography_vectors-[0-9]*:../../security/py-cryptography_vectors
+# but py-requests depends on py-cryptography
+#BUILD_DEPENDS+=	${PYPKGPREFIX}-requests>=0.8:../../devel/py-requests
 
 .include "../../lang/python/pyversion.mk"
 

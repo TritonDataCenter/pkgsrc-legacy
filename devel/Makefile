@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2434 2017/05/24 11:29:52 adam Exp $
+# $NetBSD: Makefile,v 1.2437 2017/05/29 11:03:54 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -215,6 +215,7 @@ SUBDIR+=	eclipse
 SUBDIR+=	ecore
 SUBDIR+=	edcommon
 SUBDIR+=	editline
+SUBDIR+=	editorconfig-core
 SUBDIR+=	eet
 SUBDIR+=	eina
 SUBDIR+=	eio
@@ -1411,6 +1412,7 @@ SUBDIR+=	p5-RT-Authen-ExternalAuth
 SUBDIR+=	p5-Readonly
 SUBDIR+=	p5-Readonly-XS
 SUBDIR+=	p5-Ref-Util
+SUBDIR+=	p5-Ref-Util-XS
 SUBDIR+=	p5-Regexp-Assemble
 SUBDIR+=	p5-Regexp-MatchContext
 SUBDIR+=	p5-Regexp-Parser
@@ -1753,6 +1755,7 @@ SUBDIR+=	py-ZopeEvent
 SUBDIR+=	py-ZopeI18NMessageid
 SUBDIR+=	py-ZopeInterface
 SUBDIR+=	py-ZopeSchema
+SUBDIR+=	py-apipkg
 SUBDIR+=	py-appdirs
 SUBDIR+=	py-argcomplete
 SUBDIR+=	py-argh
@@ -1820,6 +1823,7 @@ SUBDIR+=	py-editorconfig-core
 SUBDIR+=	py-entrypoints
 SUBDIR+=	py-enum
 SUBDIR+=	py-enum34
+SUBDIR+=	py-execnet
 SUBDIR+=	py-expect
 SUBDIR+=	py-extras
 SUBDIR+=	py-faker
@@ -2021,6 +2025,7 @@ SUBDIR+=	py-test
 SUBDIR+=	py-test-cov
 SUBDIR+=	py-test-mock
 SUBDIR+=	py-test-runner
+SUBDIR+=	py-test-xdist
 SUBDIR+=	py-testpath
 SUBDIR+=	py-testresources
 SUBDIR+=	py-testscenarios

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2017/03/20 00:25:35 maya Exp $
+# $NetBSD: Makefile,v 1.13 2017/05/29 23:07:49 jlam Exp $
 
 DISTNAME=	sysupgrade-1.5
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/jmmv/sysupgrade/releases/download/sysupgrade-1.5/
 
@@ -16,7 +16,8 @@ USE_TOOLS=		pkg-config
 
 BUILD_DEFS+=		VARBASE
 SYSUPGRADE_CACHEDIR=	${VARBASE}/cache/sysupgrade
-OWN_DIRS=		${SYSUPGRADE_CACHEDIR} root wheel
+OWN_DIRS_PERMS=		${SYSUPGRADE_CACHEDIR} \
+			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0755
 CONFIGURE_ARGS+=	SYSUPGRADE_CACHEDIR=${SYSUPGRADE_CACHEDIR}
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}

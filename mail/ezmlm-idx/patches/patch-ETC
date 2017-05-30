@@ -1,0 +1,13 @@
+$NetBSD: patch-ETC,v 1.1 2017/05/25 20:44:23 schmonz Exp $
+
+PKG_SYSCONFDIR and CONF_FILES support.
+
+--- ETC.orig	2014-05-09 22:28:12.000000000 +0000
++++ ETC
+@@ -1,6 +1,4 @@
+ d:::755:::
+-c:::644:/:ezmlmglrc:
+-c:::644:/:ezmlmsubrc:
+ d:::755:/ch_GB::
+ c:::644:/ch_GB/:ezmlmrc:lang/ch_GB/ezmlmrc
+ d:::755:/ch_GB/text::
