@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.390 2017/04/16 23:12:37 khorben Exp $
+# $NetBSD: bsd.prefs.mk,v 1.392 2017/06/01 02:15:10 jlam Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -378,6 +378,9 @@ SHAREMODE?=		${DOCMODE}
 PKG_FAIL_REASON+=	"missing mk/platform/${OPSYS}.mk"
 .endif
 
+# Set default SHLIB_TYPE to the ${OPSYS}-specific shared library type.
+SHLIB_TYPE?=		${_OPSYS_SHLIB_TYPE}
+
 PKGDIRMODE?=		755
 
 # A meta-package is a package that does not have any files and whose
@@ -683,10 +686,12 @@ PREPEND_PATH+=		${X11BASE}/bin
 .endif
 PREPEND_PATH+=		${LOCALBASE}/bin
 
+.if ${_USE_NEW_PKGINSTALL:Uno} == "no"
 # Support alternative init systems.
 #
 INIT_SYSTEM?=		rc.d
 _BUILD_DEFS+=		INIT_SYSTEM
+.endif
 
 _PKGSRC_MKPIE=	no
 .if (${PKGSRC_MKPIE:tl} == "yes") && \
@@ -734,6 +739,11 @@ _USE_CWRAPPERS=		no
 
 # System features framework
 .include "features/features-vars.mk"
+
+.if ${_USE_NEW_PKGINSTALL:Uno} != "no"
+# Init services framework
+.include "init/bsd.init-vars.mk"
+.endif
 
 # Package system format definitions
 .include "pkgformat/bsd.pkgformat-vars.mk"

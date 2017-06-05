@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.61 2017/04/22 18:27:04 taca Exp $
+# $NetBSD: Makefile,v 1.63 2017/05/30 15:47:51 taca Exp $
 
 DISTNAME=	# empty
-PKGNAME=	ruby-${RUBY_VERSION_FULL}
+PKGNAME=	ruby-${RUBY_VERSION}
 CATEGORIES=	lang ruby
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -15,18 +15,11 @@ CONFLICTS=	pkg_alternatives-[0-9]*
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
 
-RUBY_VERSIONS_ACCEPTED= 23 22 21
-
 .include "../../lang/ruby/rubyversion.mk"
 
 DEPENDS+= ${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
 
-RUBY_COMMANDS=	erb irb ruby testrb
-.if ${RUBY_VER} == "18"
-RUBY_COMMANDS+=	h2rb
-.else
-RUBY_COMMANDS+=	gem rake
-.endif
+RUBY_COMMANDS=	erb gem irb rake ruby testrb
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 CHECK_INTERPRETER_SKIP=	bin/* ${PKGMANDIR}/man1/ruby.1

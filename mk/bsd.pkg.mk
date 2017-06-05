@@ -1,4 +1,4 @@
-#	$NetBSD: bsd.pkg.mk,v 1.2022 2017/05/04 18:30:56 joerg Exp $
+#	$NetBSD: bsd.pkg.mk,v 1.2026 2017/06/01 03:41:44 jlam Exp $
 #
 # This file is in the public domain.
 #
@@ -309,8 +309,10 @@ OVERRIDE_DIRDEPTH?=	2
 
 # Handle alternative init systems
 #
+.if ${_USE_NEW_PKGINSTALL:Uno} == "no"
 .if ${INIT_SYSTEM} == "smf"
 .  include "smf.mk"
+.endif
 .endif
 
 # Define SMART_MESSAGES in /etc/mk.conf for messages giving the tree
@@ -371,13 +373,16 @@ USE_TOOLS+=								\
 # bsd.wrapper.mk
 USE_TOOLS+=	expr
 
-# scripts/shlib-type
-.if ${_OPSYS_SHLIB_TYPE} == "ELF/a.out"
-USE_TOOLS+=	file
-.endif
+.if ${_USE_NEW_PKGINSTALL:Uno} != "no"
+# Init services framework
+.include "init/bsd.init.mk"
 
+# Package tasks framework
+.include "pkgtasks/bsd.pkgtasks.mk"
+.else
 # INSTALL/DEINSTALL script framework
 .include "pkginstall/bsd.pkginstall.mk"
+.endif
 
 # Locking
 .include "internal/locking.mk"
@@ -620,6 +625,12 @@ ${.CURDIR}/${WRKDIR_BASENAME}:
 # MAKEFLAGS.su-${.TARGET}
 #	The additional flags that are passed to the make process.
 #
+# PRE_CMD.su-${.TARGET}
+#	Shell command executed before running the command that requires
+#	root privileges.  This may "exit 0" to short-circuit the command
+#	list and skip executing the command that requires the root
+#	privileges.
+#
 
 _ROOT_CMD=	cd ${.CURDIR} &&					\
 		${PKGSRC_SETENV} ${PKGSRC_MAKE_ENV}				\
@@ -631,11 +642,7 @@ _ROOT_CMD=	cd ${.CURDIR} &&					\
 
 .PHONY: su-target
 su-target: .USE
-	${RUN} \
-	case ${PRE_CMD.su-${.TARGET}:Q}"" in				\
-	"")	;;							\
-	*)	${PRE_CMD.su-${.TARGET}} ;;				\
-	esac;								\
+	${RUN}${PRE_CMD.su-${.TARGET}:U${TRUE}};			\
 	if ${_IS_ROOT_CMD}; then					\
 		${_ROOT_CMD};						\
 	else								\

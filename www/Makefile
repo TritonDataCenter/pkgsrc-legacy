@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1241 2017/05/24 08:43:13 he Exp $
+# $NetBSD: Makefile,v 1.1245 2017/06/04 15:27:21 taca Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -795,6 +795,7 @@ SUBDIR+=	ruby-liquid
 SUBDIR+=	ruby-loofah
 SUBDIR+=	ruby-mechanize
 SUBDIR+=	ruby-multipart-post
+SUBDIR+=	ruby-mustermann
 SUBDIR+=	ruby-mustermann19
 SUBDIR+=	ruby-net-flickr
 SUBDIR+=	ruby-net-http-digest_auth
@@ -821,6 +822,7 @@ SUBDIR+=	ruby-rack-ssl
 SUBDIR+=	ruby-rack-test
 SUBDIR+=	ruby-rack14
 SUBDIR+=	ruby-rack15
+SUBDIR+=	ruby-rack16
 SUBDIR+=	ruby-rails-deprecated_sanitizer
 SUBDIR+=	ruby-rails-html-sanitizer
 SUBDIR+=	ruby-rails32
