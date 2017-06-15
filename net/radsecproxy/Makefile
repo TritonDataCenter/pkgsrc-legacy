@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v2 OR modified-bsd
 
 GNU_CONFIGURE=	YES
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASEDIR:Q}
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 
 EGDIR=		${PREFIX}/share/examples/radsecproxy
 INSTALLATION_DIRS+=	${EGDIR}
@@ -25,5 +25,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/radsecproxy.conf-example \
 		${DESTDIR}${EGDIR}/${CONF}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

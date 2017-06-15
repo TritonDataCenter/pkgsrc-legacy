@@ -29,4 +29,4 @@ SUBST_MESSAGE.conf=	Fixing configuration script.
 .include "../../devel/libnet10/buildlink3.mk"
 .include "../../net/libnids/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"

@@ -209,7 +209,7 @@ PLIST.qt=		yes
 .endif
 
 .if !empty(PKG_OPTIONS:Mopenssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-openssl
 # XXX: https://bugs.freedesktop.org/show_bug.cgi?id=30249
 #CONFIGURE_ARGS+=	--with-openssl-dir=${SSLBASE:Q}

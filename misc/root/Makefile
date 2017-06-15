@@ -66,7 +66,7 @@ post-extract:
 .include "../../graphics/glu/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../x11/libXpm/buildlink3.mk"
 .include "../../x11/libXmu/buildlink3.mk"
 .include "../../x11/libXi/buildlink3.mk"

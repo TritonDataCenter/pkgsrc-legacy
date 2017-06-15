@@ -36,5 +36,5 @@ post-install:
 .include "../../databases/gdbm_compat/buildlink3.mk"
 .endif
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

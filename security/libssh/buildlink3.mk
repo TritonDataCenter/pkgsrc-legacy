@@ -17,7 +17,7 @@ pkgbase := libssh
 .endif
 
 .if !empty(PKG_BUILD_OPTIONS.libssh:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .include "../../devel/argp/buildlink3.mk"

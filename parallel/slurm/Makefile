@@ -41,7 +41,7 @@ PYTHON_FOR_BUILD_ONLY=	yes
 
 CONFIGURE_ARGS+=	--with-munge=$(BUILDLINK_PREFIX.munge:Q)
 .include "../../security/munge/buildlink3.mk" # optional
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/pam.buildlink3.mk"

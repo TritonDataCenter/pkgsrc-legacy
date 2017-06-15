@@ -16,7 +16,7 @@ BUILDLINK_LIBS.xmlsec1+=	-lxmlsec1-openssl
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # XMLSEC1_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-xmlsec1

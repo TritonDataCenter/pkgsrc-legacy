@@ -18,7 +18,7 @@ GSSIMPL.mit-krb5=	mit
 BUILD_DIRS=	plugins
 BUILD_TARGET=	libgssapiv2.la
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"
 
 do-install:

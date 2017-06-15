@@ -46,7 +46,7 @@ CONFIGURE_ARGS+=        --with-kerberos5=no
 ### Support POP3 and IMAP over SSL.
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-ssl=${SSLBASE:Q}
 .else
 CONFIGURE_ARGS+=	--without-ssl

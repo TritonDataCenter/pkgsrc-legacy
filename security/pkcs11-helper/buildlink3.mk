@@ -13,7 +13,7 @@ pkgbase := pkcs11-helper
 .include "../../mk/pkg-build-options.mk"
 
 .if !empty(PKG_BUILD_OPTIONS.pkcs11-helper:Mopenssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 .if !empty(PKG_BUILD_OPTIONS.pkcs11-helper:Mgnutls)
 .  include "../../security/gnutls/buildlink3.mk"

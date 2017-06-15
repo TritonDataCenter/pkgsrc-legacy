@@ -11,7 +11,7 @@ BUILDLINK_PKGSRCDIR.libsylph?=	../../mail/libsylph
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # LIBSYLPH_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-libsylph

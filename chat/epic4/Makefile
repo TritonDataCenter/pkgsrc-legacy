@@ -21,5 +21,5 @@ CFLAGS.OSF1+=	-D_SOCKADDR_LEN
 .include "options.mk"
 
 .include "../../mk/termcap.buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

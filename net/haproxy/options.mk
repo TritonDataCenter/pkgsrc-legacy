@@ -48,6 +48,6 @@ FETCH_MESSAGE+= 	"${DISTDIR}"
 ### Support OpenSSL for termination.
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 BUILD_MAKE_FLAGS+=	USE_OPENSSL=1
 .endif

@@ -13,7 +13,7 @@ COMMENT=		The eXtensible Open Router Platform
 GNU_CONFIGURE=		yes
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake flex
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl:Q}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl:Q}
 
 # The xorp people insist on their own PREFIX.
 # See http://www.xorp.org/bugzilla/show_bug.cgi?id=91
@@ -33,6 +33,6 @@ pre-build:
 # these days. See PR 36974; also there are other warnings with gcc48.
 BUILDLINK_TRANSFORM+=	rm:-Werror
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -14,7 +14,7 @@ CONFIGURE_ARGS+=	--disable-ipv6
 
 .if !empty(PKG_OPTIONS:Mssl)
 USE_OLD_DES_API=	yes
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-crypto
 .endif

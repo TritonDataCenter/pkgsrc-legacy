@@ -23,5 +23,5 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${program} ${DESTDIR}${PREFIX}/bin/${program}
 .endfor
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

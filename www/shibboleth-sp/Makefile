@@ -103,7 +103,7 @@ post-install:
 		${DESTDIR}${PREFIX}/bin/shib-metagen
 
 .include "../../devel/boost-libs/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/log4shib/buildlink3.mk"
 .include "../../textproc/xerces-c/buildlink3.mk"

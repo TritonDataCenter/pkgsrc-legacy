@@ -52,6 +52,6 @@ do-install:
 	    ${DESTDIR}${PREFIX}/share/doc/ucspi-ssl
 .	endfor
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/djbware.mk"
 .include "../../mk/bsd.pkg.mk"

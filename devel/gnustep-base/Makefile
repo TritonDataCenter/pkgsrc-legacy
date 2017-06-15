@@ -47,7 +47,7 @@ INSTALLATION_DIRS+=	share/GNUstep/Frameworks
 .include "../../devel/gnustep-make/buildlink3.mk"
 .include "../../devel/gnustep-objc/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"

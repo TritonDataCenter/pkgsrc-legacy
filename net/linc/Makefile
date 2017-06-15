@@ -22,6 +22,6 @@ CONFIGURE_ARGS+=	--enable-gtk-doc=no
 CONFIGURE_ARGS+=	--with-openssl
 
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

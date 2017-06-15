@@ -25,7 +25,7 @@ SUBST_FILES.config=	pound.8
 SUBST_SED.config=	-e "s,/usr/local/etc/,"${PKG_SYSCONFDIR:Q}"/,g"
 
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-ssl=${SSLBASE}
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

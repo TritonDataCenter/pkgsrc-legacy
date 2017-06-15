@@ -17,6 +17,6 @@ GNU_CONFIGURE=		yes
 
 USE_LANGUAGES=		c
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

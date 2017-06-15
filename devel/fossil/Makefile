@@ -12,7 +12,7 @@ COMMENT=	High-reliability, distributed software configuration management
 LICENSE=	2-clause-bsd
 
 HAS_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl:Q}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl:Q}
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib:Q}
 
 INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1 share/doc/${PKGBASE}
@@ -28,6 +28,6 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/src/linenoise.h \
 		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

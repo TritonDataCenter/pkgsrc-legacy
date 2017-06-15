@@ -7,7 +7,7 @@ PKG_SUGGESTED_OPTIONS=
 .include "../../mk/bsd.prefs.mk"
 .include "../../mk/bsd.options.mk"
 .if !empty(PKG_OPTIONS:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 SUBST_CLASSES+=		openssl
 SUBST_MESSAGE.openssl=	adding openssl option
 SUBST_STAGE.openssl=	post-patch

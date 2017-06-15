@@ -10,7 +10,7 @@ HOMEPAGE=	http://www.nta-monitor.com/tools/ike-scan/
 COMMENT=	Fingerprinting IKE implementation
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 
 SUBST_CLASSES+=		man
 SUBST_STAGE.man=	post-patch
@@ -23,5 +23,5 @@ INSTALLATION_DIRS+=	share/doc/ike-scan
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/ike-scan/README
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

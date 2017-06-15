@@ -44,7 +44,7 @@ USE_GNU_READLINE=	yes
 
 .include "../../devel/readline/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 SUBST_CLASSES+=		pgxs
 SUBST_STAGE.pgxs=	post-build

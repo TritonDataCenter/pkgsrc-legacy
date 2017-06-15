@@ -118,7 +118,7 @@ BUILDLINK_API_DEPENDS.strigi+=	strigi>=0.5.11
 
 # Avahi ? rather than mDNSResponder
 .include "../../net/mDNSResponder/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/polkit-qt/buildlink3.mk"
 .include "../../security/qca2/buildlink3.mk"
 .include "../../mk/fam.buildlink3.mk"

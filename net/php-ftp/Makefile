@@ -13,5 +13,5 @@ LIBS+=			-lssl -lcrypto
 CFLAGS+=		-DHAVE_OPENSSL_EXT
 
 .include "../../lang/php/ext.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

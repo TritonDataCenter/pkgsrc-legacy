@@ -48,11 +48,11 @@ CXXFLAGS+=	-fpermissive -fno-strength-reduce -fno-thread-jumps \
 CONFIGURE_ARGS+=	--disable-instrumentation
 .endif
 
-.include "../../security/openssl/buildlink3.mk"
-.if !exists(${BUILDLINK_PREFIX.openssl}/lib/pkgconfig/openssl.pc)
-OPENSSL_CFLAGS=	-I${BUILDLINK_PREFIX.openssl}/include
-OPENSSL_LIBS=	-L${BUILDLINK_PREFIX.openssl}/lib \
-		-W,-lR${BUILDLINK_PREFIX.openssl}/lib
+.include "../../mk/ssl.buildlink3.mk"
+.if !exists(${BUILDLINK_PREFIX.ssl}/lib/pkgconfig/openssl.pc)
+OPENSSL_CFLAGS=	-I${BUILDLINK_PREFIX.ssl}/include
+OPENSSL_LIBS=	-L${BUILDLINK_PREFIX.ssl}/lib \
+		-W,-lR${BUILDLINK_PREFIX.ssl}/lib
 
 CONFIGURE_ENV+=	OPENSSL_CFLAGS=${OPENSSL_CFLAGS:Q}
 CONFIGURE_ENV+=	OPENSSL_LIBS=${OPENSSL_LIBS:Q}

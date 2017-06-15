@@ -20,7 +20,7 @@ USE_LANGUAGES=	c c++
 CPPFLAGS.NetBSD+=	-D_NETBSD_SOURCE
 
 .include "../../devel/librlog/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/fuse.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

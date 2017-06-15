@@ -35,7 +35,7 @@ LDFLAGS.SunOS+=		-lsocket -lnsl
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../security/cyrus-sasl/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/bdb.buildlink3.mk"

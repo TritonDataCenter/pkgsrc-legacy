@@ -34,6 +34,6 @@ CONFIGURE_ARGS+=	--disable-introspection
 .include "../../x11/libSM/buildlink3.mk"
 .endif
 .include "../../x11/libX11/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

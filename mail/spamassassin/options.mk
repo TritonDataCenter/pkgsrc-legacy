@@ -34,7 +34,7 @@ SUBST_SED.satests+=	-e s!prefork_stress_test=n!prefork_stress_test=${PREFORK_TES
 # Build spamc and spamd with support for connections over SSL
 #
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 DEPENDS+=		p5-IO-Socket-SSL>=0.92:../../security/p5-IO-Socket-SSL
 CONFIGURE_ARGS+=	--enable-ssl
 MAKE_PARAMS+=		ENABLE_SSL=yes

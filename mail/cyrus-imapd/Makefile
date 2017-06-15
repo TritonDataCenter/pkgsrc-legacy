@@ -133,7 +133,7 @@ PERL5_PACKLIST= \
 
 .include "../../lang/perl5/module.mk"
 .include "../../security/cyrus-sasl/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 .include "../../mk/bdb.buildlink3.mk"
 

@@ -46,13 +46,13 @@ CONFIGURE_ARGS+=	ZLIB=true
 ###################
 
 .if !empty(PKG_OPTIONS:Mssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+= SOCKET=openssl
 .endif
 
 .if !empty(PKG_OPTIONS:Mgnutls)
 .include "../../security/libgcrypt/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 CONFIGURE_ARGS+= SOCKET=gnutls
 .endif

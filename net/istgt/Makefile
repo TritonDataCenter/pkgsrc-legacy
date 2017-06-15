@@ -44,5 +44,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/istgt.1 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/istgt.1
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

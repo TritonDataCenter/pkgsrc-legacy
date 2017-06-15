@@ -51,7 +51,7 @@ MAKE_ENV+=	HASH_TYPE="mhash"
 MAKE_ENV+=	HASH_TYPE="native"
 .elif !empty(PKG_OPTIONS:Mopenssl)
 MAKE_ENV+=	HASH_TYPE="openssl"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif
 
 post-install:

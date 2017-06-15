@@ -195,7 +195,7 @@ post-install:
 .include "../../fonts/harfbuzz/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 # Use lib/dbus-1.0/include/dbus/dbus-arch-deps.h from sysutils/dbus
 USE_DBUS-ARCH-DEPS_H=	yes
 .include "../../sysutils/dbus/buildlink3.mk"

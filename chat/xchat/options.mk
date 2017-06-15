@@ -14,7 +14,7 @@ PLIST_VARS+=		dbus
 ### Use OpenSSL libraries for connecting to ircs servers
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.	include "../../security/openssl/buildlink3.mk"
+.	include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-openssl=${SSLBASE:Q}
 .else
 CONFIGURE_ARGS+=	--enable-openssl=no

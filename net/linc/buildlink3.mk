@@ -10,7 +10,7 @@ BUILDLINK_ABI_DEPENDS.linc+=	linc>=1.1.1nb14
 BUILDLINK_PKGSRCDIR.linc?=	../../net/linc
 
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # LINC_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-linc

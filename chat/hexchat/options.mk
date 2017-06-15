@@ -75,7 +75,7 @@ CONFIGURE_ARGS+=	--enable-ntlm=no
 .endif
 
 .if !empty(PKG_OPTIONS:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--enable-openssl=no
 .endif

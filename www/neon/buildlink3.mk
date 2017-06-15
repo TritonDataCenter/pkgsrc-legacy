@@ -10,7 +10,7 @@ BUILDLINK_ABI_DEPENDS.neon+=	neon>=0.30.1nb2
 BUILDLINK_PKGSRCDIR.neon?=	../../www/neon
 
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .endif # NEON_BUILDLINK3_MK
 

@@ -15,7 +15,7 @@ pkgbase := libfetch
 .include "../../mk/pkg-build-options.mk"
 
 .if !empty(PKG_BUILD_OPTIONS.libfetch:Mopenssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 BUILDLINK_LIBS.libfetch+=	-lcrypto -lssl
 .endif
 .endif # LIBFETCH_BUILDLINK3_MK

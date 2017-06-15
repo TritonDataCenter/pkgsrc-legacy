@@ -29,6 +29,6 @@ SUBST_MESSAGE.config=	Fixing configuration file path.
 
 .include "../../net/nagios-plugins/Makefile.plugin"
 .include "../../net/radiusclient-ng/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

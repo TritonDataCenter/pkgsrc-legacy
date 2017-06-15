@@ -19,7 +19,7 @@ pkgbase := gnome-vfs
 .include "../../devel/GConf/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../sysutils/dbus-glib/buildlink3.mk"
 
 .endif # GNOME_VFS_BUILDLINK3_MK

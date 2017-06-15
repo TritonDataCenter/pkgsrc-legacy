@@ -102,7 +102,7 @@ CONFIGURE_ARGS+=	--disable-libopencore-amrwb
 .if !empty(PKG_OPTIONS:Mopenssl)
 CONFIGURE_ARGS+=	--enable-nonfree
 CONFIGURE_ARGS+=	--enable-openssl
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-openssl
 .endif

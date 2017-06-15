@@ -73,5 +73,5 @@ RCD_SCRIPTS=		prosody
 .include "../../lang/lua/tool.mk"
 .include "../../devel/libidn/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

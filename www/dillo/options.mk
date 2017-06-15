@@ -12,7 +12,7 @@ CONFIGURE_ARGS+=	--enable-ipv6
 
 .if !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--enable-ssl
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-ssl
 .endif

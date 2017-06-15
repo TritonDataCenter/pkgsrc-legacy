@@ -64,6 +64,6 @@ DL_AUTO_VARS=		yes
 .endif
 .include "../../archivers/lz4/buildlink3.mk"
 .include "../../archivers/lzo/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

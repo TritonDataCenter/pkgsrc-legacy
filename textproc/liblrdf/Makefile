@@ -24,7 +24,7 @@ pre-configure:
 	cd ${WRKSRC} && rm m4/* && autoreconf -fi
 
 .include "../../audio/ladspa/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
 .include "../../textproc/raptor2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

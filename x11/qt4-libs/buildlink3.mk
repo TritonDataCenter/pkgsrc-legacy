@@ -34,7 +34,7 @@ PTHREAD_OPTS+=	require
 .  include "../../x11/libXinerama/buildlink3.mk"
 .  endif
 .endif
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 
 pkgbase := qt4-libs

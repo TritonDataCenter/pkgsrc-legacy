@@ -179,6 +179,6 @@ post-install:
 .include "../../print/cups/buildlink3.mk"
 .include "../../print/ghostscript/buildlink3.mk"
 .include "../../devel/libusb1/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

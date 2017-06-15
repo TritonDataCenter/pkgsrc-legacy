@@ -42,7 +42,7 @@ MAKE_ENV+=	INSTALL_ROOT=${DESTDIR}
 .include "../../audio/SDL_mixer/buildlink3.mk"
 .include "../../audio/espeak/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../x11/qt4-libs/buildlink3.mk"
 .include "../../x11/qt4-tools/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

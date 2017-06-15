@@ -35,6 +35,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/httpd.conf \
 	    ${DESTDIR}${PREFIX}/share/examples/mod_auth_radius
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/apache.module.mk"
 .include "../../mk/bsd.pkg.mk"

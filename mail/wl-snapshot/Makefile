@@ -42,7 +42,7 @@ EMACS_BUILDLINK=	# empty
 .include "../../devel/semi/buildlink3.mk"
 .include "../../editors/emacs/modules.mk"
 .include "../../misc/bbdb/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 post-install:
 	set -e; \

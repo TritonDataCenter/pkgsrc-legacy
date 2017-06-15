@@ -22,7 +22,7 @@ MAKE_ENV+=		FETCH_WITH_INET6=no
 MAKE_ENV+=		FETCH_WITH_OPENSSL=yes
 LDFLAGS+=		-lssl -lcrypto
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 MAKE_ENV+=		FETCH_WITH_OPENSSL=no
 .endif

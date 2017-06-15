@@ -27,6 +27,6 @@ post-install:
 
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../www/c-icap/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

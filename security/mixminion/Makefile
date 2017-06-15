@@ -16,9 +16,9 @@ PYTHON_VERSIONS_INCOMPATIBLE=  34 35 36 # not yet ported as of 0.0.8alpha3
 
 TEST_TARGET=		test
 
-MAKE_ENV+=		OPENSSL_PREFIX=${BUILDLINK_PREFIX.openssl:Q}
+MAKE_ENV+=		OPENSSL_PREFIX=${BUILDLINK_PREFIX.ssl:Q}
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

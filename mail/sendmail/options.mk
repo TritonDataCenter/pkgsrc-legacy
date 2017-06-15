@@ -36,7 +36,7 @@ PKG_OPTIONS_LEGACY_OPTS+=	starttls:tls ffr_tls_1:sendmail-ffr-tls
 ### Use OpenSSL libraries for SMTP STARTTLS support
 ###
 .if !empty(PKG_OPTIONS:Mtls)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 
 ###

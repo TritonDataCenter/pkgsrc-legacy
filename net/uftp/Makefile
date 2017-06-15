@@ -17,8 +17,8 @@ MAKE_FILE=	makefile
 
 INSTALLATION_DIRS+=	bin sbin ${PKGMANDIR}/man1
 
-MAKE_ENV+=	LIB="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.openssl}/lib"
+MAKE_ENV+=	LIB="${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.ssl}/lib"
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

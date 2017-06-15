@@ -23,7 +23,7 @@ MAKE_ENV+=		FETCH_WITH_INET6=no
 .if !empty(PKG_OPTIONS:Mopenssl)
 MAKE_ENV+=		FETCH_WITH_OPENSSL=yes
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 MAKE_ENV+=		FETCH_WITH_OPENSSL=no
 .endif

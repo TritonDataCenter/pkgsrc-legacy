@@ -12,6 +12,10 @@ BUILDLINK_PASSTHRU_DIRS+=	${LOCALBASE}/libressl/include
 BUILDLINK_PASSTHRU_DIRS+=	${LOCALBASE}/libressl/lib
 CPPFLAGS+=			-I${PREFIX}/libressl/include
 LDFLAGS+=			${COMPILER_RPATH_FLAG}${PREFIX}/libressl/lib -L${PREFIX}/libressl/lib
+
+SSLBASE=	${LOCALBASE}/libressl
+BUILD_DEFS+=	SSLBASE
+
 .endif	# LIBRESSL_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-libressl

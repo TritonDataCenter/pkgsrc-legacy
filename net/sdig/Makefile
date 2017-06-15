@@ -26,5 +26,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/sdig.conf.5 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man5/
 
 .include "../../net/net-snmp/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

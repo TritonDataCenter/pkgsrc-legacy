@@ -28,7 +28,7 @@ CONFIGURE_ARGS+=	--without-update
 .include "../../chat/ekg/buildlink3.mk"
 .include "../../chat/libtlen/buildlink3.mk"
 .include "../../chat/loudmouth/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/libSM/buildlink3.mk"
 .include "../../x11/libXScrnSaver/buildlink3.mk"

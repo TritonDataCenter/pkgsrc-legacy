@@ -128,7 +128,7 @@ post-install:
 .include "../../devel/libidn/buildlink3.mk"
 .include "../../net/udns/buildlink3.mk"
 .include "../../security/gsasl/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"

@@ -15,7 +15,7 @@ USE_TOOLS+=		pkg-config
 
 INSTALLATION_DIRS=	lib/gkrellm2/plugins
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../sysutils/gkrellm/buildlink3.mk"
 .include "../../net/net-snmp/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -6,7 +6,7 @@ PKG_SUPPORTED_OPTIONS=	tls
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mtls)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-tls
 .else
 CONFIGURE_ARGS+=	--disable-tls

@@ -58,7 +58,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/rfc4407.txt ${DESTDIR}${SIDDOC}
 	${INSTALL_DATA} ${WRKSRC}/rfc4408.txt ${DESTDIR}${SIDDOC}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mail/libmilter/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

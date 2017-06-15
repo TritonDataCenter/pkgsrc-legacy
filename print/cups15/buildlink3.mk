@@ -24,7 +24,7 @@ pkgbase := cups
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../mk/curses.buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # CUPS_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-cups

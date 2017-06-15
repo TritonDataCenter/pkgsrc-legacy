@@ -32,7 +32,7 @@ do-install:
 	    ${DESTDIR}${PREFIX}/lib/httpd
 
 .include "../../mk/apache.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/lasso/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"

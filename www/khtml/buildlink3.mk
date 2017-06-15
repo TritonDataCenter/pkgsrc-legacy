@@ -10,7 +10,7 @@ BUILDLINK_ABI_DEPENDS.khtml?=	khtml>=5.25.0nb7
 BUILDLINK_PKGSRCDIR.khtml?=	../../www/khtml
 
 .include "../../graphics/giflib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/kjs/buildlink3.mk"
 .include "../../devel/kparts/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

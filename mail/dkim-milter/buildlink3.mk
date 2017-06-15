@@ -10,7 +10,7 @@ BUILDLINK_ABI_DEPENDS.dkim-milter+=	dkim-milter>=2.8.3nb5
 BUILDLINK_PKGSRCDIR.dkim-milter?=	../../mail/dkim-milter
 BUILDLINK_DEPMETHOD.dkim-milter?=	build
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mail/libmilter/buildlink3.mk"
 .endif # DKIM_MILTER_BUILDLINK3_MK
 

@@ -19,7 +19,7 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		flex perl:run yacc
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-berkeleydb=${BUILDLINK_PREFIX.db4}
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 
 PTHREAD_OPTS+=		require
 REPLACE_PERL=		contrib/cfdoc
@@ -31,7 +31,7 @@ INSTALLATION_DIRS=	${PKGMANDIR}/man8 ${VARBASE}/cfengine/inputs
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/*.8 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bdb.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

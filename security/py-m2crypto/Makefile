@@ -12,11 +12,11 @@ LICENSE=	m2crypto-license
 
 DEPENDS+=	${PYPKGPREFIX}-typing-[0-9]*:../../devel/py-typing
 
-PYSETUPBUILDARGS=	build_ext --openssl=${BUILDLINK_PREFIX.openssl}
+PYSETUPBUILDARGS=	build_ext --openssl=${BUILDLINK_PREFIX.ssl}
 
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # not yet ported as of 0.26.0
 
 .include "../../lang/python/egg.mk"
 .include "../../devel/swig/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -29,7 +29,7 @@ pre-build:
 	${LN} -sf ${WRKSRC:Q}/lib/fnmatch.h ${WRKSRC:Q}/fnmatch.h
 
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../www/neon/buildlink3.mk"
 

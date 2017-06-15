@@ -133,6 +133,6 @@ CMAKE_ARGS+=	-DREADLINE_INCLUDE_DIR=${BUILDLINK_PREFIX.editlinereadline}/include
 
 .include "../../mk/curses.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 PKG_SUPPORTED_OPTIONS+=	dtrace embedded-server ndb-cluster sphinx

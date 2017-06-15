@@ -32,5 +32,5 @@ pre-configure:
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

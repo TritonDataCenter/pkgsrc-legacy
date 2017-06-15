@@ -9,7 +9,7 @@ PKG_SUGGESTED_OPTIONS=	openssl
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-ssl-dir=${SSLBASE:Q}
 .else
 CONFIGURE_ARGS+=	--without-openssl

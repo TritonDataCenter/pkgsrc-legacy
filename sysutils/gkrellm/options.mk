@@ -9,7 +9,7 @@ PKG_SUGGESTED_OPTIONS=		ssl
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 GKRELLM_SSL_TYPE=	openssl
 .endif
 

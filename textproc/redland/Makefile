@@ -37,7 +37,7 @@ CONFIGURE_ENV+=		ac_cv_path_IODBC_CONFIG=no
 PKGCONFIG_OVERRIDE+=	redland.pc.in
 
 .include "../../devel/libltdl/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 BUILDLINK_API_DEPENDS.raptor2+=	raptor2>=2.0.7
 .include "../../textproc/raptor2/buildlink3.mk"
 .include "../../textproc/rasqal/buildlink3.mk"

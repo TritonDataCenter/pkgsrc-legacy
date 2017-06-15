@@ -18,10 +18,10 @@ PLIST_VARS+=		ssl tcpwrappers
 ###
 .if !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--with-ssl=openssl
-CONFIGURE_ENV+=		SSL_CFLAGS="-I${BUILDLINK_PREFIX.openssl}/include"
+CONFIGURE_ENV+=		SSL_CFLAGS="-I${BUILDLINK_PREFIX.ssl}/include"
 CONFIGURE_ENV+=		SSL_LIBS="-lssl -lcrypto"
 BUILDLINK_API_DEPENDS.openssl+=openssl>=0.9.8a
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 PLIST.ssl=		yes
 .elif !empty(PKG_OPTIONS:Mgnutls)
 CONFIGURE_ARGS+=	--with-ssl=gnutls

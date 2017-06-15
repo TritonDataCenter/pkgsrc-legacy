@@ -28,7 +28,7 @@ CPPFLAGS+=		-L${PREFIX}/lib
 
 CONFIGURE_ARGS+=	--with-libnet=${BUILDLINK_PREFIX.libnet11}
 CONFIGURE_ARGS+=	--with-libpcap=${BUILDLINK_PREFIX.libpcap}
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ARGS+=	--with-libpcre=${BUILDLINK_PREFIX.pcre}
 CONFIGURE_ARGS+=	--with-libncurses=${BUILDLINK_PREFIX.ncurses}
 CONFIGURE_ARGS+=	--enable-plugins
@@ -58,5 +58,5 @@ post-install:
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

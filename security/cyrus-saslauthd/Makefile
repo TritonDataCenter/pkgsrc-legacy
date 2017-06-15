@@ -29,7 +29,7 @@ FILES_SUBST+=		ROOT_USER=${REAL_ROOT_USER:Q}
 
 INSTALLATION_DIRS=	bin
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 SUBST_CLASSES+=		sysconf
 SUBST_MESSAGE.sysconf=	Fixing path to ${PKG_SYSCONFDIR}

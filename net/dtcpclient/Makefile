@@ -38,7 +38,7 @@ INSTALLATION_DIRS=	${PKGMANDIR}/cat8 ${PKGMANDIR}/man8 sbin
 # builtin openssl on platforms where that exists, which isn't good.
 .if ${OPSYS} != "NetBSD" || ${OPSYS} != "OpenBSD" || \
     ${OPSYS} != "FreeBSD" || ${OPSYS} != "DragonFly"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .include "../../mk/bsd.pkg.mk"

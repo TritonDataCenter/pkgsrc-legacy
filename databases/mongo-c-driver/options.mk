@@ -21,7 +21,7 @@ PLIST_VARS+=	ssl
 
 # Enable OpenSSL support
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-ssl=yes
 PLIST.ssl=		yes
 .else

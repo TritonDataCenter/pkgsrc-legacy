@@ -20,7 +20,7 @@ USE_TOOLS+=		gmake pkg-config autoconf automake
 pre-configure:
 	cd ${WRKSRC} && autoreconf -f -i
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/libp11/buildlink3.mk"
 .include "../../mk/pam.buildlink3.mk"
 

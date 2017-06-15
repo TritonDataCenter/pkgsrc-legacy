@@ -12,7 +12,7 @@ COMMENT=	Remote file administration and integrity tool
 LICENSE=	modified-bsd
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ARGS+=	--with-radminddir=${RADMINDDIR}
 CONFIGURE_ENV+=		diffpath=${TOOLS_DIFF:Q}
 # XXX configure script checks for path to echo, which pkgsrc does not
@@ -33,5 +33,5 @@ OWN_DIRS_PERMS+=	${RADMINDDIR}/cert ${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0700
 RCD_SCRIPTS=		radmind
 
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -13,7 +13,7 @@ pkgbase := libeXosip2
 .include "../../mk/pkg-build-options.mk"
 
 .if !empty(PKG_BUILD_OPTIONS.libeXosip2:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .include "../../net/libcares/buildlink3.mk"

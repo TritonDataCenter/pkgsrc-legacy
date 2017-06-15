@@ -81,5 +81,5 @@ BUILDLINK_API_DEPENDS.libsoup+=	libsoup>=2.26.0
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../devel/GConf/buildlink3.mk"
 .include "../../security/libgnome-keyring/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

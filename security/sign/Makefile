@@ -22,5 +22,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/man/sign.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 	${LN} -sf sign ${DESTDIR}${PREFIX}/bin/unsign
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

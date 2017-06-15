@@ -24,7 +24,7 @@ USE_LIBTOOL=	yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 
 REPLACE_PERL=	enforcer/utils/convert_database.pl
 REPLACE_PERL+=	enforcer/utils/migrate_id_mysql.pl
@@ -88,6 +88,6 @@ post-install:
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../net/ldns/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

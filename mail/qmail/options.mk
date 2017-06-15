@@ -120,7 +120,7 @@ PLIST_VARS+=		tls
 .  if empty(PKG_OPTIONS:Msasl)
 PKG_OPTIONS+=		sasl
 .  endif
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 TLSSASL_PATCH=		netqmail-1.05-tls-smtpauth-20070417.patch
 PATCHFILES+=		${TLSSASL_PATCH}
 SITES.${TLSSASL_PATCH}=	https://raw.githubusercontent.com/shupp/legacy-qmail-related/master/patches/

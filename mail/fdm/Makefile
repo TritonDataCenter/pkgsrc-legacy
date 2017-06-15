@@ -30,7 +30,7 @@ post-install:
 	cd ${WRKSRC}/examples && pax -rwpam . ${DESTDIR}${EGDIR}
 	${INSTALL_DATA} ${WRKSRC}/MANUAL ${DESTDIR}${DOCDIR}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../databases/tdb/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

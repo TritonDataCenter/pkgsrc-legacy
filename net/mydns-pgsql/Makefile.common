@@ -44,6 +44,6 @@ USERGROUP_PHASE+=	pre-install
 post-install:
 	${WRKSRC}/src/mydns/mydns --dump-config > ${DESTDIR}${EGDIR}/mydns.conf
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

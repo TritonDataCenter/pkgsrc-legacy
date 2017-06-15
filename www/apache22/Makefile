@@ -174,10 +174,10 @@ REPLACE_PERL=		docs/cgi-examples/printenv
 # ap_mod, and _AP_CFG_ARGS.ap_mod is a whitespace separated list of
 # configure script options for ap_mod.
 #
-AP_DEPENDS.ssl=	../../security/openssl/buildlink3.mk
+AP_DEPENDS.ssl=		../../mk/ssl.buildlink3.mk
 AP_DEPENDS.deflate=	../../devel/zlib/buildlink3.mk
 
-AP_CFG_ARGS.ssl=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+AP_CFG_ARGS.ssl=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 AP_CFG_ARGS.deflate=	--with-z=${BUILDLINK_PREFIX.zlib}
 
 #.if ${APACHE_MODULES} == "all-shared"

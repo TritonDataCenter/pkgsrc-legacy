@@ -14,7 +14,7 @@ PKG_SUGGESTED_OPTIONS=		inet6
 .  include "../../security/gnutls/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-gnutls
 .else
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 
 ###

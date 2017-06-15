@@ -36,7 +36,7 @@ post-install:
 .include "../../devel/eina/buildlink3.mk"
 .include "../../devel/eet/buildlink3.mk"
 .include "../../devel/ecore/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../x11/libXScrnSaver/buildlink3.mk"
 .include "../../x11/libXcomposite/buildlink3.mk"

@@ -23,6 +23,6 @@ CONFIGURE_ARGS+=	--with-sqlite
 .endif
 
 .if !empty(PKG_OPTIONS:Mssl)
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
-.  include "../../security/openssl/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
+.  include "../../mk/ssl.buildlink3.mk"
 .endif

@@ -27,7 +27,7 @@ pre-configure:
 .include "../../devel/gnustep-make/buildlink3.mk"
 .include "../../devel/gnustep-base/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../databases/openldap-client/buildlink3.mk"
 .include "../../mk/pgsql.buildlink3.mk"
 .include "../../mk/mysql.buildlink3.mk"

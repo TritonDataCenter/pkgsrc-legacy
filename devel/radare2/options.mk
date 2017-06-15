@@ -8,7 +8,7 @@ PKG_SUGGESTED_OPTIONS=		debug
 
 # SSL support
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-openssl
 .endif
 

@@ -79,7 +79,7 @@ BUILDLINK_TRANSFORM+=	rm:-DGDK_PIXBUF_DISABLE_DEPRECATED
 .include "../../devel/libsmi/buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 .include "../../lang/python/application.mk"
 .include "../../mk/krb5.buildlink3.mk"

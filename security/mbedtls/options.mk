@@ -22,7 +22,7 @@ CMAKE_ARGS+=		-DENABLE_PROGRAMS=OFF
 
 .if !empty(PKG_OPTIONS:Mtests)
 . if !empty(PKG_OPTIONS:Mmbedtls-tools)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CMAKE_ARGS+=		-DENABLE_TESTING=ON
 PLIST.tests=		yes
 . else

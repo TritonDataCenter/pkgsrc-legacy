@@ -31,6 +31,6 @@ BUILD_DIRS=		. plugins
 INSTALL_DIRS=		. plugins
 
 .include "../../devel/ncurses/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -44,7 +44,7 @@ PKGCONFIG_OVERRIDE+=	libopendkim/opendkim.pc.in
 PLIST_SRC+=		${PKGDIR}/PLIST
 
 BUILDLINK_API_DEPENDS.openssl+=		openssl>=0.9.8
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 BUILDLINK_API_DEPENDS.libmilter+=	libmilter>=8.13.0
 .include "../../mail/libmilter/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

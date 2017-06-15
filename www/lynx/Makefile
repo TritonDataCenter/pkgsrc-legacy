@@ -44,7 +44,7 @@ CONFIGURE_ARGS+=	--without-included-gettext
 
 # With SSL, lynx can get https:// and snews:// URL's.
 CONFIGURE_ARGS+=	--with-ssl
-CPPFLAGS+=		-I${BUILDLINK_PREFIX.openssl}/include/openssl
+CPPFLAGS+=		-I${BUILDLINK_PREFIX.ssl}/include/openssl
 
 # Note: --enable-{default-colors,scrollbar} are simply ignored
 # for certain settings of --with-screen.
@@ -76,5 +76,5 @@ CONFIGURE_ENV+=		BUILD_CC=${NATIVE_CC:Q}
 .include "../../devel/gettext-tools/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

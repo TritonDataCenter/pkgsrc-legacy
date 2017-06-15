@@ -28,7 +28,7 @@ do-install:
 .include "../../graphics/libgnomecanvas/buildlink3.mk"
 .include "../../lang/camlp4/buildlink3.mk"
 .include "../../lang/ocaml/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../x11/ocaml-lablgtk/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -106,6 +106,6 @@ BUILDLINK_API_DEPENDS.mit-krb5+= mit-krb5>=1.4.0
 .  include "../../mk/krb5.buildlink3.mk"
 .endif
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

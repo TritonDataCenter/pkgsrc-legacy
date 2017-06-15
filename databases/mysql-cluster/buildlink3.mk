@@ -12,7 +12,7 @@ BUILDLINK_INCDIRS.mysql-cluster?=	include/mysql
 BUILDLINK_LIBDIRS.mysql-cluster?=	lib
 
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif	# MYSQL_CLUSTER_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-mysql-cluster

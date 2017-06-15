@@ -11,5 +11,5 @@ LICENSE=	ruby-license
 USE_LANGUAGES=	c c++
 
 .include "../../lang/ruby/gem.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

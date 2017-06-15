@@ -10,7 +10,7 @@ BUILDLINK_PKGSRCDIR.librdkafka?=	../../devel/librdkafka
 
 .include "../../archivers/lz4/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .endif	# LIBRDKAFKA_BUILDLINK3_MK
 

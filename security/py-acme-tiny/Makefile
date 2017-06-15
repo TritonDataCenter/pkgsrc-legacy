@@ -24,5 +24,5 @@ do-install:
 	${INSTALL} -m 0644 ${WRKSRC}/README.md ${DESTDIR}${PREFIX}/share/doc/${PYPKGPREFIX}-acme-tiny/README.md
 
 .include "../../lang/python/application.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

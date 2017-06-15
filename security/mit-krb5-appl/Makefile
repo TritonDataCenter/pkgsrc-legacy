@@ -67,6 +67,6 @@ pre-configure:
 	cd ${WRKSRC}; autoconf -I ${WRKSRC} -f;
 
 .include "../../mk/termcap.buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/mit-krb5/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

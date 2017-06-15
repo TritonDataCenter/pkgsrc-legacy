@@ -24,7 +24,7 @@ CONF_FILES=	${PREFIX}/share/examples/up-imapproxy/imapproxy.conf \
 INSTALLATION_DIRS+= sbin share/doc/up-imapproxy share/examples/up-imapproxy
 INSTALL_MAKE_FLAGS+=	prefix=${DESTDIR}${PREFIX}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 
 post-install:

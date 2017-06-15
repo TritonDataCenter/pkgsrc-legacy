@@ -28,5 +28,5 @@ SUBST_SED.awk=		-e "s,/usr/bin/env *awk,${AWK},"
 SUBST_MESSAGE.awk=	Fixing path to awk.
 
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

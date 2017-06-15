@@ -622,21 +622,33 @@ TOOLS_PATH.mtree=		${LOCALBASE}/bin/mtree
 .endif
 
 .if !defined(TOOLS_IGNORE.openssl) && !empty(_USE_TOOLS:Mopenssl)
+.  include "../../mk/ssl.buildlink3.mk"
+.  if ${SSL_TYPE} == "openssl"
 #
 # Ensure we use pkgsrc openssl if we're not using builtin.
 #
 CHECK_BUILTIN.openssl:=		yes
-.  include "../../security/openssl/builtin.mk"
+.    include "../../security/openssl/builtin.mk"
 CHECK_BUILTIN.openssl:=		no
-.  if !empty(USE_BUILTIN.openssl:M[nN][oO])
+.    if !empty(USE_BUILTIN.openssl:M[nN][oO])
 _TOOLS_USE_PKGSRC.openssl=	yes
-.  endif
-.  if !empty(PKGPATH:Msecurity/openssl)
+.    endif
+.    if !empty(PKGPATH:Msecurity/openssl)
 MAKEFLAGS+=			TOOLS_IGNORE.openssl=
-.  elif !empty(_TOOLS_USE_PKGSRC.openssl:M[yY][eE][sS])
+.    elif !empty(_TOOLS_USE_PKGSRC.openssl:M[yY][eE][sS])
 TOOLS_DEPENDS.openssl?=		openssl>=0.9.6:../../security/openssl
 TOOLS_CREATE+=			openssl
 TOOLS_PATH.openssl=		${LOCALBASE}/bin/openssl
+.    endif
+.  elif ${SSL_TYPE} == "libressl"
+_TOOLS_USE_PKGSRC.openssl=	yes
+.    if !empty(PKGPATH:Msecurity/libressl)
+MAKEFLAGS+=			TOOLS_IGNORE.openssl=
+.    elif !empty(_TOOLS_USE_PKGSRC.openssl:M[yY][eE][sS])
+TOOLS_DEPENDS.openssl?=		libressl>=2.2.6:../../security/libressl
+TOOLS_CREATE+=			openssl
+TOOLS_PATH.openssl=		${LOCALBASE}/libressl/bin/openssl
+.    endif
 .  endif
 .endif
 

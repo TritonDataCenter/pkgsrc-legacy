@@ -15,7 +15,7 @@ COMMENT=	Secure, high-integrity replacement for CVS
 WRKSRC=		${WRKDIR}/${OPENCM_VERSION}/base
 USE_TOOLS+=	gmake gzip makeinfo lex
 GNU_CONFIGURE=	YES
-CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ARGS+=	KRB5_BUILDLINK=${KRB5BASE:Q}
 
 CHECK_INTERPRETER_SKIP+=	share/opencm/tools/cvsconvert.py
@@ -35,7 +35,7 @@ post-install:
 
 .include "../../devel/boehm-gc/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../mk/readline.buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"

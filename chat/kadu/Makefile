@@ -22,7 +22,7 @@ LIBS+=			${LIBOSSAUDIO}
 
 .include "../../audio/libsndfile/buildlink3.mk"
 .include "../../chat/ekg/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../x11/qt3-libs/buildlink3.mk"
 .include "../../x11/qt3-tools/buildlink3.mk"
 

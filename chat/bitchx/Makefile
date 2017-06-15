@@ -25,6 +25,6 @@ SUBST_FILES.manpage+=	doc/BitchX.1
 SUBST_SED.manpage+=	-e 's,@PREFIX@,${PREFIX},g'
 
 .include "../../archivers/bzip2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/terminfo.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

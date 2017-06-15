@@ -62,7 +62,7 @@ CWRAPPERS_APPEND.cc+=	-Wno-error=unused-local-typedefs -Wno-error=unused-but-set
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../mk/fuse.buildlink3.mk"
 .include "../../net/libdnet/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/xml-security-c/buildlink3.mk"
 
 .include "options.mk"

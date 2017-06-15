@@ -16,5 +16,5 @@ CONFIGURE_ARGS+=	--with-fd_setsize=2048
 CONFIGURE_ARGS+=	--with-docdir=${PREFIX}/share/doc/pen
 CONFIGURE_ARGS+=	--with-ssl=${SSLBASE:Q}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -16,5 +16,5 @@ GNU_CONFIGURE=		yes
 
 MAKE_FLAGS=		lisp_LISP=
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

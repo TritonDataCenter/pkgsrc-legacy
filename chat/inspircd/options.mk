@@ -59,7 +59,7 @@ CONFIGURE_ARGS+=	--disable-remote-ipv6
 ### Enable OpenSSL support
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.	include "../../security/openssl/buildlink3.mk"
+.	include "../../mk/ssl.buildlink3.mk"
 BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.7
 CONFIGURE_ARGS+=	--enable-openssl
 MODULES+=		m_ssl_openssl.cpp

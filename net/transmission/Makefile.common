@@ -43,6 +43,6 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=2.0.10
 ALL_ENV+=	"OPENSSL_CFLAGS=-I${SSLBASE}/include"
 ALL_ENV+=	"OPENSSL_LIBS=-L${SSLBASE}/lib -lcrypto -lssl"
 .include "../../devel/libgetopt/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

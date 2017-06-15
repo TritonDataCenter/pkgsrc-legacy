@@ -10,7 +10,7 @@ PKG_SUGGESTED_OPTIONS=		ssl
 ### SSL support
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-ssl=${SSLBASE:Q}
 .else
 CONFIGURE_ARGS+=	--without-ssl

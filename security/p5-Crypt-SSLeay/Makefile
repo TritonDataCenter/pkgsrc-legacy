@@ -25,6 +25,6 @@ post-extract:
 	chmod a-x ${WRKSRC}/lib/Net/SSL.pm
 
 .include "../../lang/perl5/module.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

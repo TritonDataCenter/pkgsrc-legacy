@@ -21,5 +21,5 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ssl_proxy ${DESTDIR}${PREFIX}/bin/ssl_proxy
 	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${DOCDIR}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

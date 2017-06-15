@@ -76,7 +76,7 @@ CFLAGS+=	-DUSYNERGY_LITTLE_ENDIAN
 BUILDLINK_TRANSFORM+=	rm:-ldl
 .endif
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .if !exists(/System/Library/Frameworks/Carbon.framework)
 .include "../../x11/libXext/buildlink3.mk"

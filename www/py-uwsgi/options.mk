@@ -40,7 +40,7 @@ UWSGI_JSON=			json=false;
 
 UWSGI_SSL=			ssl=auto;
 .if !empty(PKG_OPTIONS:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 UWSGI_SSL=			ssl=true;
 .else
 UWSGI_SSL=			ssl=false;

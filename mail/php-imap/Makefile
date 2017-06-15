@@ -25,6 +25,6 @@ CONFIGURE_ARGS.SunOS+=	--with-${MODNAME}-ssl=yes
 CONFIGURE_ARGS.*+=	--with-${MODNAME}-ssl=${SSLBASE}
 
 .include "../../mail/imap-uw/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"

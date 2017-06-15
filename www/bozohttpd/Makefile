@@ -33,5 +33,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/bozohttpd.8 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man8
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

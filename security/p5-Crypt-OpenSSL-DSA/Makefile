@@ -14,6 +14,6 @@ LICENSE=		${PERL5_LICENSE}
 
 PERL5_PACKLIST=		auto/Crypt/OpenSSL/DSA/.packlist
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

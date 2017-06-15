@@ -64,7 +64,7 @@ SMF_METHODS=		postgresql
 SMF_NAME=		postgresql
 
 .include "../../databases/postgresql92-client/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 # Avoid conflict between "${SSLBASE}/include/openssl/des.h" and
 # "/usr/include/crypt.h" -- we want the definitions in the former.

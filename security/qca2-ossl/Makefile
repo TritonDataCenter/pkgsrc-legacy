@@ -24,5 +24,5 @@ CONFIGURE_ARGS+=	--with-openssl-lib=${SSLBASE}/lib
 INSTALL_MAKE_FLAGS+=	INSTALL_ROOT=${DESTDIR}
 
 .include "../../security/qca2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

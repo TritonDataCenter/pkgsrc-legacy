@@ -102,7 +102,7 @@ pre-configure:
 .include "../../net/avahi/buildlink3.mk"
 .include "../../net/samba/buildlink3.mk"
 .include "../../security/libssh/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/libplist/buildlink3.mk"

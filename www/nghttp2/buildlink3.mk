@@ -14,7 +14,7 @@ pkgbase := nghttp2
 
 .if !empty(PKG_BUILD_OPTIONS.nghttp2:Mnghttp2-asio)
 .  include "../../devel/boost-libs/buildlink3.mk"
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 .endif # NGHTTP2_BUILDLINK3_MK
 

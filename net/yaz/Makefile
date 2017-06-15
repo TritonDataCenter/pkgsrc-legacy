@@ -21,7 +21,7 @@ GNU_CONFIGURE=	YES
 USE_LIBTOOL=	YES
 USE_TOOLS+=	pkg-config tclsh
 CONFIGURE_ARGS+=	--with-iconv=${BUILDLINK_PREFIX.libiconv}
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ARGS+=	--with-xml2=${BUILDLINK_PREFIX.libxml2}
 
 # backtrace and backtrace_symbols
@@ -42,7 +42,7 @@ REPLACE_FILES.tclsh=	util/yaz-asncomp
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../mk/readline.buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"

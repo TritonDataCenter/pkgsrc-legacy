@@ -14,7 +14,7 @@ CONFIGURE_ARGS+=	--with-tls=gnutls
 .  include "../../security/gnutls/buildlink3.mk"
 .elif !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--with-tls=openssl
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-tls
 .endif

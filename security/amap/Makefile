@@ -27,7 +27,7 @@ SUBST_STAGE.conf=	pre-configure
 SUBST_SED.conf=		-e 's|@PREFIX@|${PREFIX}|g'
 SUBST_SED.conf+=	-e 's|@MANDIR@|${PREFIX}/man|g'
 SUBST_SED.conf+=	-e 's|@COMPILER_RPATH_FLAG@|${COMPILER_RPATH_FLAG}|g'
-SUBST_SED.conf+=	-e 's|@SSLBASE@|${BUILDLINK_PREFIX.openssl}|g'
+SUBST_SED.conf+=	-e 's|@SSLBASE@|${BUILDLINK_PREFIX.ssl}|g'
 SUBST_SED.conf+=	-e "s|@UNAME@|${UNAME}|g"
 SUBST_SED.conf+=	-e "s|@GREP@|${GREP}|g"
 SUBST_SED.conf+=	-e "s|@SED@|${SED}|g"
@@ -48,5 +48,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/appdefs.rpc ${DESTDIR}${EGDIR}
 
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

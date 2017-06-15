@@ -21,7 +21,7 @@ SUBST_CLASSES+=		libs
 SUBST_STAGE.libs=	post-patch
 SUBST_FILES.libs=	site.config.m4.dist dk-filter/Makefile.m4 \
 			devtools/M4/header.m4
-SUBST_SED.libs=		-e 's|@SSLBASE@|${BUILDLINK_PREFIX.openssl}|g'
+SUBST_SED.libs=		-e 's|@SSLBASE@|${BUILDLINK_PREFIX.ssl}|g'
 SUBST_SED.libs+=	-e 's|@LMBASE@|${BUILDLINK_PREFIX.libmilter}|g'
 SUBST_SED.libs+=	-e 's|@PTHREAD@|${BUILDLINK_PREFIX.pthread}|g'
 SUBST_SED.libs+=	-e 's|@PTHREAD_LDFLAGS@|${PTHREAD_LDFLAGS:Q} ${PTHREAD_LIBS:Q}|g'
@@ -71,7 +71,7 @@ do-install:
 	${INSTALL_DATA} $$file ${DESTDIR}${PREFIX}/share/doc/dk-milter/libdk; done
 
 .include "options.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 BUILDLINK_API_DEPENDS.libmilter+=	libmilter>=8.13.0
 .include "../../mail/libmilter/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

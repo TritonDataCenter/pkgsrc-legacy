@@ -53,7 +53,7 @@ CONF_FILES+=	share/postgresql/${f}.sample ${PKG_SYSCONFDIR}/${f}
 .endfor
 
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 SUBST_CLASSES+=		pgxs
 SUBST_STAGE.pgxs=	post-build

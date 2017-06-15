@@ -9,7 +9,7 @@ BUILDLINK_API_DEPENDS.opusfile+=	opusfile>=0.5
 BUILDLINK_ABI_DEPENDS.opusfile?=	opusfile>=0.7
 BUILDLINK_PKGSRCDIR.opusfile?=	../../audio/opusfile
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../audio/libopus/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
 .endif	# OPUSFILE_BUILDLINK3_MK

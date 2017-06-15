@@ -31,6 +31,6 @@ SUBST_SED.paths=	-e 's,/usr/,${PREFIX}/,g'
 
 .include "options.mk"
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

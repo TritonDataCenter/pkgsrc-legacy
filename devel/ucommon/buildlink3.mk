@@ -17,7 +17,7 @@ pkgbase := ucommon
 .endif
 
 .if !empty(PKG_BUILD_OPTIONS.ucommon:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .if !empty(PKG_BUILD_OPTIONS.ucommon:Mstatic)
@@ -25,7 +25,7 @@ BUILDLINK_DEPMETHOD.ucommon?=	build
 .endif
 
 .include "../../mk/dlopen.buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .endif # UCOMMON_BUILDLINK3_MK
 

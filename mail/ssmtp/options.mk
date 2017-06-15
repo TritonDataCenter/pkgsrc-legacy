@@ -12,7 +12,7 @@ CONFIGURE_ARGS+=	--enable-inet6
 
 .if !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--enable-ssl
-CFLAGS+=		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.openssl}/lib
-CFLAGS+=		-L${BUILDLINK_PREFIX.openssl}/lib
-.include "../../security/openssl/buildlink3.mk"
+CFLAGS+=		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.ssl}/lib
+CFLAGS+=		-L${BUILDLINK_PREFIX.ssl}/lib
+.include "../../mk/ssl.buildlink3.mk"
 .endif

@@ -8,7 +8,7 @@ PKG_SUGGESTED_OPTIONS+=	embedded-server
 
 .include "../../mk/bsd.options.mk"
 
-.	include "../../security/openssl/buildlink3.mk"
+.	include "../../mk/ssl.buildlink3.mk"
 
 # Enable DTrace support
 .if !empty(PKG_OPTIONS:Mdtrace)

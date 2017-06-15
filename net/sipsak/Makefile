@@ -24,5 +24,5 @@ SUBST_SED.inline=	-e 's/^inline //g'
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

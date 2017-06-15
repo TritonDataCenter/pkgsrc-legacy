@@ -24,7 +24,7 @@ EXTRACT_ONLY=	${DISTFILES:N*.pdf}
 PERL5_PACKLIST=	auto/CSP/.packlist
 
 CSPHOME=	${VARBASE}/csp
-OPENSSLBIN=	${BUILDLINK_PREFIX.openssl}/bin/openssl
+OPENSSLBIN=	${BUILDLINK_PREFIX.ssl}/bin/openssl
 OWN_DIRS=	${CSPHOME}
 INSTALLATION_DIRS=	share/doc/csp
 
@@ -42,5 +42,5 @@ post-install:
 	${INSTALL_DATA} ${DISTDIR}/${CSPGUIDE} ${DESTDIR}${PREFIX}/share/doc/csp
 
 .include "../../lang/perl5/module.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

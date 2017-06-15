@@ -37,7 +37,7 @@ CXXFLAGS+=	-Wno-error=c++11-narrowing
 
 .include "options.mk"
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"

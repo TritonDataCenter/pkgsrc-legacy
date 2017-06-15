@@ -56,7 +56,7 @@ CFLAGS+=	-DUSE_WHOSON
 ### Support SSL/TLS connections.
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .  if !empty(PKG_OPTIONS:Mimapuw-cleartextpwd)
 MAKE_FLAGS+=	SSLTYPE=unix	# plaintext auth
 .  else

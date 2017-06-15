@@ -111,7 +111,7 @@ LOOKUP_LIBS+=-lwrap
 .if !empty(PKG_OPTIONS:Mexim-tls)
 LOCAL_MAKEFILE_OPTIONS+=SUPPORT_TLS=yes
 LOOKUP_LIBS+=-lssl -lcrypto
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .if !empty(PKG_OPTIONS:Mexim-transport-lmtp)

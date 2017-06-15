@@ -12,7 +12,7 @@ LICENSE=	modified-bsd
 
 GNU_CONFIGURE=	yes
 
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

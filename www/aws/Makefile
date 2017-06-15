@@ -27,7 +27,7 @@ MY_MAKE_ENV+=		ADA_PROJECT_PATH=${PREFIX}/lib/gnat
 MY_MAKE_ENV+=		AWK=awk
 MY_MAKE_ENV+=		PATH=${PREFIX}/gcc5-aux/bin:${PATH}
 MY_CONF_ENV+=		PATH=${PREFIX}/gcc5-aux/bin:${PATH}
-CONFIGURE_ARGS+=	LPATH=${BUILDLINK_PREFIX.openssl}/lib
+CONFIGURE_ARGS+=	LPATH=${BUILDLINK_PREFIX.ssl}/lib
 CONFIGURE_ARGS+=	ZPATH=${BUILDLINK_PREFIX.zlib}/lib
 
 # Link options were added for the aws library
@@ -44,7 +44,7 @@ SUBST_FILES.rpath=	src/src.gpr include/include.gpr \
 SUBST_SED.rpath=	-e "s,@ADDITIONAL_RPATH@,${ADDITIONAL_RPATH}," \
 			-e "s,@PREFIX@,${PREFIX},g" \
 			-e "s,@RFLAG@,${LINKER_RPATH_FLAG},g" \
-			-e "s,@SSL_RPATH@,${BUILDLINK_PREFIX.openssl}/lib,g"
+			-e "s,@SSL_RPATH@,${BUILDLINK_PREFIX.ssl}/lib,g"
 ADDITIONAL_RPATH=	${PREFIX}/lib:${PREFIX}/lib/aws/relocatable
 
 GENERATE_PLIST=  cd ${DESTDIR}${PREFIX};

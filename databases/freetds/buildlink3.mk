@@ -19,7 +19,7 @@ pkgbase := freetds
 .endif
 
 .if !empty(PKG_BUILD_OPTIONS.freetds:Mopenssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 .endif # FREETDS_BUILDLINK3_MK
 

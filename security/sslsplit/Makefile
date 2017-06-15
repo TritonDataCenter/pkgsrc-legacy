@@ -15,7 +15,7 @@ MAKE_FILE=	GNUmakefile
 USE_TOOLS+=	gmake
 
 MAKE_ENV+=	LIBEVENT_BASE=${BUILDLINK_PREFIX.libevent}
-MAKE_ENV+=	OPENSSL_BASE=${BUILDLINK_PREFIX.openssl}
+MAKE_ENV+=	OPENSSL_BASE=${BUILDLINK_PREFIX.ssl}
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
@@ -24,5 +24,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/sslsplit.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
 .include "../../devel/libevent/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

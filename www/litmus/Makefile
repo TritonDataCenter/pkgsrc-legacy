@@ -15,7 +15,7 @@ USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-ssl=openssl
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../www/neon/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

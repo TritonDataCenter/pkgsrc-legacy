@@ -29,7 +29,7 @@ LIBS+=		-lkrb5 -lkadm5srv
 CPPFLAGS+=	-DDO_SAMBA
 .endif
 
-LIBS+=		-L${BUILDLINK_PREFIX.openssl}/lib
+LIBS+=		-L${BUILDLINK_PREFIX.ssl}/lib
 MAKE_ENV+=	EXTRA_LIBS=${LIBS:M*:Q}
 
 .include "../../databases/openldap/Makefile.common"

@@ -29,7 +29,7 @@ RCD_SCRIPTS=		slpd
 
 INSTALLATION_DIRS=	share/doc/openslp
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 post-extract:
 	@${FIND} ${WRKSRC} -name "CVS" -print | ${XARGS} ${RM} -rf

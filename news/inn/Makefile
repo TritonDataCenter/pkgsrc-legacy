@@ -196,5 +196,5 @@ post-install:
 	${CHMOD} 644 ${DESTDIR}${PREFIX}/lib/${file}
 .endfor
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

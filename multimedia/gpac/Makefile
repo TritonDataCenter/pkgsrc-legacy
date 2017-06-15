@@ -42,7 +42,7 @@ pre-build:
 .include "../../multimedia/ffmpeg3/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
 .include "../../multimedia/xvidcore/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXv/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"

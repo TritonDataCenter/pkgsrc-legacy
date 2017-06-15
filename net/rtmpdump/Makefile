@@ -29,6 +29,6 @@ SUBST_FILES.fix-paths=		Makefile
 SUBST_FILES.fix-paths+=		librtmp/Makefile
 SUBST_SED.fix-paths=		-e 's,/usr/local,${PREFIX},g'
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

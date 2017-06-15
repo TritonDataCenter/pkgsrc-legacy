@@ -56,12 +56,12 @@ CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .  if ${OPSYS} == "SunOS"
 CONFIGURE_ARGS+=	--with-openssl=yes
 LIBS.SunOS+=		-lcrypto
 .  else
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 .  endif
 .else
 CONFIGURE_ARGS+=	--without-openssl

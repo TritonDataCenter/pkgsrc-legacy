@@ -26,7 +26,7 @@ SUBST_SED.pthread=	-e 's|-lpthread||g'
 BUILD_DIRS=	x11vnc
 INSTALL_DIRS=	x11vnc classes
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../net/libvncserver/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"

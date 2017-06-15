@@ -27,5 +27,5 @@ SUBST_FILES.htpasswd=	htpasswd.1 mini_httpd.8
 SUBST_SED.htpasswd=	-e 's/\([^.]\)htpasswd/\1mhtpasswd/g'
 SUBST_SED.htpasswd+=	-e 's/^htpasswd/m&/'
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

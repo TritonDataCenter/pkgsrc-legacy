@@ -60,6 +60,6 @@ do-install:
 prepare-rtunes-conf:
 	${RUN} ${ECHO_MSG} "stream to ${RTUNES_SERVER}" >> ${RTUNES_CONF:Q}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

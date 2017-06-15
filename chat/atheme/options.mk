@@ -11,7 +11,7 @@ PKG_SUGGESTED_OPTIONS=	ssl
 ### Compile in OpenSSL support
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-ssl
 .else
 CONFIGURE_ARGS+=	--disable-ssl

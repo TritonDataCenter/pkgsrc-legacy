@@ -22,7 +22,7 @@ CONFIGURE_ARGS+=	--enable-email
 ##
 .if !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--enable-sslmitm
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 
 # PLIST.avscan is shared between content scanners

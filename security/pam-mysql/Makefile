@@ -26,7 +26,7 @@ INSTALLATION_DIRS=	${DOCDIR}
 post-install:
 	cd ${WRKSRC:Q} && ${INSTALL_DATA} CREDITS ChangeLog README ${DESTDIR}${DOCDIR}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/mysql.buildlink3.mk"
 .include "../../mk/pam.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

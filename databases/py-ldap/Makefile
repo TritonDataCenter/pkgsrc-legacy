@@ -27,7 +27,7 @@ SUBST_VARS.setup=	PY_LDAP_LIBRARY_DIRS PY_LDAP_INCLUDE_DIRS PY_LDAP_LIBS
 REPLACE_PYTHON=		Lib/ldap/controls/readentry.py
 
 .include "../../databases/openldap-client/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

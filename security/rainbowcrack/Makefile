@@ -28,5 +28,5 @@ post-install:
 		${DESTDIR}${PREFIX}/share/doc/rainbowcrack/
 	${INSTALL_DATA} ${WRKSRC}/src/charset.txt ${DESTDIR}${PREFIX}/share/rainbowcrack
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

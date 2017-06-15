@@ -30,5 +30,5 @@ CFLAGS.SunOS+=	-std=c99 -D_XOPEN_SOURCE=600
 BUILDLINK_API_DEPENDS.gmp+=	gmp>=5.0
 .include "../../devel/gmp/buildlink3.mk"
 .include "../../lang/python/distutils.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -55,5 +55,5 @@ post-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${DOCDIR}
 
 .include "../../converters/libiconv/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -31,6 +31,6 @@ PKG_FAIL_REASON+=	"apple-common-crypto not available on this system"
 CONFIGURE_ARGS+=	--without-openssl
 .else
 CONFIGURE_ARGS+=	--with-openssl=${SSLBASE}
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 MAKE_FLAGS+=		NO_APPLE_COMMON_CRYPTO=1
 .endif

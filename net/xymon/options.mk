@@ -33,10 +33,10 @@ CONFIGURE_ENV+=		SNMP=n
 
 # include support for ssl
 .if !empty(PKG_OPTIONS:Mssl)
-CONFIGURE_ARGS+=	"--sslinclude" "${BUILDLINK_PREFIX.openssl}/include"
-CONFIGURE_ARGS+=	"--ssllib" "${BUILDLINK_PREFIX.openssl}/lib"
+CONFIGURE_ARGS+=	"--sslinclude" "${BUILDLINK_PREFIX.ssl}/include"
+CONFIGURE_ARGS+=	"--ssllib" "${BUILDLINK_PREFIX.ssl}/lib"
 CONFIGURE_ENV+=		ENABLESSL=y
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ENV+=		ENABLESSL=n
 .endif

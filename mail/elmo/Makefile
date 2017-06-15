@@ -18,11 +18,11 @@ GNU_CONFIGURE=		yes
 REPLACE_PERL=		src/elmoconf.pl
 
 CONFIGURE_ARGS+=	--with-gpgme-prefix=${BUILDLINK_PREFIX.gpgme}
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 # I get segmentation faults when not compiled with debug enabled
 CONFIGURE_ARGS+=	--enable-debug
 
 .include "../../mk/curses.buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/gpgme/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

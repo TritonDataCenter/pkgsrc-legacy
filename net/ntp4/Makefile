@@ -63,7 +63,7 @@ CONFIGURE_ARGS+=	--enable-linuxcaps
 
 CPPFLAGS.Linux+=	-D_GNU_SOURCE	# for struct in6_pktinfo
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 CONFIGURE_ARGS+=	--with-openssl-incdir=${SSLBASE}/include
 CONFIGURE_ARGS+=	--with-openssl-libdir=${SSLBASE}/lib

@@ -17,6 +17,6 @@ MAKE_ENV+=	USE_GLOBAL_DEPS=true
 
 GNU_CONFIGURE=	yes
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../lang/erlang/module.mk"
 .include "../../mk/bsd.pkg.mk"

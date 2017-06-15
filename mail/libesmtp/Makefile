@@ -24,6 +24,6 @@ CONFIGURE_ARGS+=	--disable-isoc
 CONFIGURE_ARGS+=	--enable-emulate-getaddrinfo
 .endif
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

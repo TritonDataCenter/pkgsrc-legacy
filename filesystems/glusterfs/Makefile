@@ -120,7 +120,7 @@ CONFIGURE_ARGS+=	--enable-debug
 
 .include "../../mk/bsd.prefs.mk"
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/userspace-rcu/buildlink3.mk"

@@ -14,7 +14,7 @@ BUILDLINK_PKGSRCDIR.ecore?=	../../devel/ecore
 .include "../../graphics/evas-buffer/buildlink3.mk"
 .include "../../graphics/evas-software-x11/buildlink3.mk"
 .include "../../graphics/evas/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../x11/libXScrnSaver/buildlink3.mk"
 .include "../../x11/libXcomposite/buildlink3.mk"

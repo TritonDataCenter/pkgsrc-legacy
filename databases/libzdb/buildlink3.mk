@@ -22,7 +22,7 @@ pkgbase := libzdb
 .  include "../../mk/mysql.buildlink3.mk"
 .endif
 .if !empty(PKG_BUILD_OPTIONS.libzdb:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .endif	# LIBZDB_BUILDLINK3_MK

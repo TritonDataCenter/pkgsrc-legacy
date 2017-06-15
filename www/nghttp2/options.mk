@@ -21,7 +21,7 @@ CONFIGURE_ARGS+=	--with-boost-system
 CONFIGURE_ARGS+=	--with-boost-thread
 PLIST.asio=		yes
 .include "../../devel/boost-libs/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--with-boost=no
 .endif
@@ -39,7 +39,7 @@ PLIST.tools=		yes
 .include "../../devel/libev/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../net/libcares/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/jansson/buildlink3.mk"
 .include "../../www/spdylay/buildlink3.mk"
 .else

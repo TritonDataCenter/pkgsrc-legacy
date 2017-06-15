@@ -13,7 +13,7 @@ pkgbase := net-snmp
 .include "../../mk/pkg-build-options.mk"
 
 .if !empty(PKG_BUILD_OPTIONS.net-snmp:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .include "../../security/tcp_wrappers/buildlink3.mk"

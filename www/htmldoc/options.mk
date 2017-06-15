@@ -14,7 +14,7 @@ PKG_SUGGESTED_OPTIONS=		ssl
 .if !empty(PKG_OPTIONS:Mssl) || !empty(PKG_OPTIONS:Mgnutls)
 CONFIGURE_ARGS+=	--enable-ssl
 .  if !empty(PKG_OPTIONS:Mssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-openssl
 CONFIGURE_ARGS+=	--with-openssl-libs=${SSLBASE:Q}/lib
 CONFIGURE_ARGS+=	--with-openssl-includes=${SSLBASE:Q}/include

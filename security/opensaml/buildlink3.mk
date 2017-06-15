@@ -9,7 +9,7 @@ BUILDLINK_API_DEPENDS.opensaml+=	opensaml>=2.3
 BUILDLINK_ABI_DEPENDS.opensaml+=	opensaml>=2.5.3nb7
 BUILDLINK_PKGSRCDIR.opensaml?=		../../security/opensaml
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif	# OPENSAML_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-opensaml

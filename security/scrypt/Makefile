@@ -14,5 +14,5 @@ GNU_CONFIGURE=	yes
 TEST_TARGET=	test
 UNLIMIT_RESOURCES=	datasize
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

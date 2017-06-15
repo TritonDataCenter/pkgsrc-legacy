@@ -63,7 +63,7 @@ CHECK_INTERPRETER_SKIP+=	share/webmin/webmin-gentoo-init
 
 ALL_ENV+=	tempdir=${WRKDIR}/.tmp
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 post-extract:
 	${CP} ${FILESDIR}/acl_config-dragonfly ${WRKSRC}/acl/config-dragonfly

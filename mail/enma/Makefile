@@ -63,6 +63,6 @@ post-install:
 .include "../../mail/libmilter/buildlink3.mk"
 BUILDLINK_API_DEPENDS.ldns+=	ldns>=1.6.0
 .include "../../net/ldns/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -23,9 +23,9 @@ CONFIGURE_ENV+=		ac_cv_header_security_pam_appl_h=no
 ### Build with OpenSSL as the underlying crypto library.
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-ssl-includes=${BUILDLINK_PREFIX.openssl}/include
-CONFIGURE_ARGS+=	--with-ssl-libraries=${BUILDLINK_PREFIX.openssl}/lib
+.  include "../../mk/ssl.buildlink3.mk"
+CONFIGURE_ARGS+=	--with-ssl-includes=${BUILDLINK_PREFIX.ssl}/include
+CONFIGURE_ARGS+=	--with-ssl-libraries=${BUILDLINK_PREFIX.ssl}/lib
 .else
 CONFIGURE_ARGS+=	--disable-ssl
 .endif

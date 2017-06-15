@@ -85,7 +85,7 @@ PLIST.mysql=		yes
 ### HTTPS support
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
 .endif
 

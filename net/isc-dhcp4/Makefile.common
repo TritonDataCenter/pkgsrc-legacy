@@ -93,4 +93,4 @@ post-configure:
 				${CONFIGURE_ARGS}		\
 				${BIND_CONFIGURE_ARGS}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"

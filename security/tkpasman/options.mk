@@ -8,9 +8,9 @@ PKG_SUGGESTED_OPTIONS=		ssl
 
 # SSL support
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIG_SUBST+=		USE_OPENSSL="true"
-CONFIG_SUBST+=		OPENSSL="${BUILDLINK_PREFIX.openssl}/bin/openssl"
+CONFIG_SUBST+=		OPENSSL="${BUILDLINK_PREFIX.ssl}/bin/openssl"
 .else
 CONFIG_SUBST+=		USE_OPENSSL="false"
 CONFIG_SUBST+=		OPENSSL=""

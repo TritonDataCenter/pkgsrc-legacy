@@ -36,7 +36,7 @@ SUBST_STAGE.libs=	pre-configure
 SUBST_FILES.libs=	devtools/Site/site.config.m4
 SUBST_FILES.libs+=	dkim-filter/dkim-filter.conf.5 dkim-filter/dkim-stats.8
 SUBST_FILES.libs+=	dkim-filter/Makefile.m4
-SUBST_SED.libs+=	-e 's|@SSLBASE@|${BUILDLINK_PREFIX.openssl}|g'
+SUBST_SED.libs+=	-e 's|@SSLBASE@|${BUILDLINK_PREFIX.ssl}|g'
 SUBST_SED.libs+=	-e 's|@LMBASE@|${BUILDLINK_PREFIX.libmilter}|g'
 SUBST_SED.libs+=	-e 's|@PTHREAD@|${BUILDLINK_PREFIX.pthread}|g'
 SUBST_SED.libs+=	-e 's|@PTHREAD_LDFLAGS@|${PTHREAD_LDFLAGS} ${PTHREAD_LIBS}|g'
@@ -105,7 +105,7 @@ post-install:
 .	endif
 
 BUILDLINK_API_DEPENDS.openssl+=		openssl>=0.9.8
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 BUILDLINK_API_DEPENDS.libmilter+=	libmilter>=8.13.0
 .include "../../mail/libmilter/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

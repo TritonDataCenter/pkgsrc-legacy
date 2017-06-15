@@ -17,7 +17,7 @@ pkgbase := mongo-c-driver
 .endif
 
 .if !empty(PKG_BUILD_OPTIONS.mongo-c-driver:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .include "../../devel/libbson/buildlink3.mk"

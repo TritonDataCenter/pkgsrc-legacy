@@ -37,7 +37,7 @@ CONF_FILES=		${EGDIR}/sample.esmtprc \
 INSTALLATION_DIRS=	${EGDIR} share/doc/esmtp
 
 .include "../../mail/libesmtp/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 
 post-install:

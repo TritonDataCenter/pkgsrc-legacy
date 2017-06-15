@@ -18,7 +18,7 @@ pkgbase := libzrtpcpp
 
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../net/ccrtp/buildlink3.mk"
 .endif # LIBZRTPCPP_BUILDLINK3_MK
 

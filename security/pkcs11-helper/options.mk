@@ -9,7 +9,7 @@ PKG_SUGGESTED_OPTIONS=	openssl
 # crypto engines to use
 
 .if !empty(PKG_OPTIONS:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=--enable-crypto-engine-openssl
 .else
 CONFIGURE_ARGS+=--disable-crypto-engine-openssl

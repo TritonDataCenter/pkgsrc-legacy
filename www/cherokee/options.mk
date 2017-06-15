@@ -35,7 +35,7 @@ CONFIGURE_ARGS+=	--disable-ipv6
 .if !empty(PKG_OPTIONS:Mssl)
 PLIST.ssl=		yes
 CONFIGURE_ARGS+=	--with-libssl=${SSLBASE}
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-libssl
 .endif

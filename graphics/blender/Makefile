@@ -90,7 +90,7 @@ post-install:
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../math/fftw/buildlink3.mk"
 #.include "../../multimedia/ffmpeg010/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 .include "../../lang/python/application.mk"
 

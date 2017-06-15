@@ -15,8 +15,8 @@ USE_TOOLS+=	gmake
 
 CONFIGURE_ARGS+=--with-pcap-inc=${BUILDLINK_PREFIX.libpcap}/include \
 		--with-pcap-lib=${BUILDLINK_PREFIX.libpcap}/lib \
-		--with-openssl-inc=${BUILDLINK_PREFIX.openssl}/include \
-		--with-openssl-lib=${BUILDLINK_PREFIX.openssl}/lib
+		--with-openssl-inc=${BUILDLINK_PREFIX.ssl}/include \
+		--with-openssl-lib=${BUILDLINK_PREFIX.ssl}/lib
 
 INSTALL_MAKE_FLAGS+=	BINDIR=${DESTDIR}${PREFIX}/sbin \
 			MANDIR=${DESTDIR}${PREFIX}/${PKGMANDIR}
@@ -24,5 +24,5 @@ INSTALL_MAKE_FLAGS+=	BINDIR=${DESTDIR}${PREFIX}/sbin \
 CFLAGS.SunOS+=	-Du_int16_t=uint16_t
 
 .include "../../net/libpcap/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -26,7 +26,7 @@ CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/khtmlrc \
 		${PKG_SYSCONFDIR}/xdg/khtmlrc
 
 .include "../../graphics/giflib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/kjs/buildlink3.mk"
 .include "../../devel/kparts/buildlink3.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"

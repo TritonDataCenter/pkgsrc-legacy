@@ -14,7 +14,7 @@ LIBESMTP=	-lesmtp
 CONFIGURE_ENV+=	LIBESMTP=${LIBESMTP:Q}
 MAKE_ENV+=	LIBESMTP=${LIBESMTP:Q}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # LIBESMTP_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-libesmtp

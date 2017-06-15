@@ -46,7 +46,7 @@ CONFIGURE_ARGS+=	--without-tcl
 CONFIGURE_ARGS+=	--enable-pkgsrc-libtool
 CONFIGURE_ARGS+=	--without-system-verto
 CONFIGURE_ARGS+=	--disable-aesni
-CONFIGURE_ENV+=		BUILDLINK_PREFIX_OPENSSL=${BUILDLINK_PREFIX.openssl:Q}
+CONFIGURE_ENV+=		BUILDLINK_PREFIX_OPENSSL=${BUILDLINK_PREFIX.ssl:Q}
 CONFIGURE_ENV+=		DEFKTNAME=FILE:${PKG_SYSCONFDIR}/krb5.keytab
 MAKE_ENV+=		ROOT_USER=${ROOT_USER}
 LIBS.SunOS=		-lrt
@@ -80,5 +80,5 @@ post-install:
 	done
 
 BUILDLINK_API_DEPENDS.openssl+= openssl>=1.0.1
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -34,5 +34,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/example.conf				\
 		${DESTDIR}${PREFIX}/share/examples/bnc/bnc.conf
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

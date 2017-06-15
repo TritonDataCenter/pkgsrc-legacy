@@ -17,7 +17,7 @@ USE_GNU_CONFIGURE_HOST=	${USE_CROSS_COMPILE}
 OVERRIDE_DIRDEPTH=	4
 USE_TOOLS+=		gmake perl:run flex
 
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 
 PTHREAD_OPTS+=		require native
 CONFIGURE_ARGS+=	--enable-threads
@@ -88,7 +88,7 @@ pre-build:
 post-install:
 	chmod -R go-w ${DESTDIR}${PREFIX}/lib/erlang/lib
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

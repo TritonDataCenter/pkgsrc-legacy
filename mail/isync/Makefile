@@ -12,13 +12,13 @@ LICENSE=	gnu-gpl-v2
 USE_LANGUAGES=		c99
 BDB_ACCEPTED=		db4 db5
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 LDFLAGS+=		-lcrypto
 
 post-patch:
 	${TOUCH} ${WRKSRC}/configure ${WRKSRC}/aclocal.m4 ${WRKSRC}/Makefile.in
 
 BUILDLINK_TRANSFORM+=	l:db:${BDB_TYPE}
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bdb.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

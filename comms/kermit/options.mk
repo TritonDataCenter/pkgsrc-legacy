@@ -41,7 +41,7 @@ MAKE_ENV+=	K5INC=${K5INC:Q} K5LIB=${K5LIB:Q}
 
 .if !empty(PKG_OPTIONS:Mssl)
 BUILD_TARGET_OPTIONS+=	+ssl
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 # Set to empty
 SSLINC=		-I${WRKDIR}/.buildlink/include
 SSLLIB=		-L${WRKDIR}/.buildlink/lib ${COMPILER_RPATH_FLAG}${WRKDIR}/.buildlink/lib

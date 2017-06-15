@@ -12,10 +12,10 @@ PKG_SUGGESTED_OPTIONS=	tls
 ### STARTTLS support
 ###
 .if !empty(PKG_OPTIONS:Mtls)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CCARGS+=	-DUSE_TLS
-AUXLIBS+=	-L${BUILDLINK_PREFIX.openssl}/lib			\
-		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.openssl}/lib	\
+AUXLIBS+=	-L${BUILDLINK_PREFIX.ssl}/lib			\
+		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.ssl}/lib	\
 		-lssl -lcrypto
 .else
 CCARGS+=	-DNO_TLS

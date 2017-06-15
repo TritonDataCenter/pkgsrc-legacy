@@ -17,12 +17,12 @@ USE_TOOLS+=	gmake
 GNU_CONFIGURE=		yes
 
 CONFIGURE_ARGS+=	--with-ldns=${BUILDLINK_PREFIX.ldns}
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/drill
 
 BUILDLINK_API_DEPENDS.ldns+=    ldns>=${VERSION}
 
 .include "../../net/ldns/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

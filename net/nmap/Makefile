@@ -21,7 +21,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-liblinear=${BUILDLINK_PREFIX.liblinear}
 CONFIGURE_ARGS+=	--with-libpcap=${BUILDLINK_PREFIX.libpcap}
 CONFIGURE_ARGS+=	--with-libpcre=${BUILDLINK_PREFIX.pcre}
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ARGS+=	--without-subversion
 
 BUILD_DEFS+=		IPV6_READY
@@ -69,6 +69,6 @@ post-install:
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../math/liblinear/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 #.include "../../devel/subversion-base/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

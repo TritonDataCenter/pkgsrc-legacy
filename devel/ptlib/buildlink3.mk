@@ -14,7 +14,7 @@ CONFIGURE_ENV+=    PTLIB_CONFIG=${PTLIB_CONFIG:Q}
 
 .include "../../devel/SDL/buildlink3.mk"
 .include "../../databases/openldap-client/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .endif # PTLIB_BUILDLINK3_MK

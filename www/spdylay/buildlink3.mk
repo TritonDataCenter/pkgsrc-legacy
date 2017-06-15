@@ -11,7 +11,7 @@ BUILDLINK_PKGSRCDIR.spdylay?=	../../www/spdylay
 
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .endif # SPDYLAY_BUILDLINK3_MK
 

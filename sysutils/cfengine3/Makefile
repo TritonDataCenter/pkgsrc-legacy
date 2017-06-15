@@ -27,7 +27,7 @@ CONFIGURE_ARGS+=	--datadir=${CFENGINE_DIR:Q}
 CONFIGURE_ARGS+=	--with-masterdir=${PKG_SYSCONFDIR:Q}
 CONFIGURE_ARGS+=	--with-sysconfdir=${PKG_SYSCONFDIR:Q}
 CONFIGURE_ARGS+=	--with-workdir=${CFENGINE_DIR:Q}
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl:Q}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl:Q}
 CONFIGURE_ARGS+=	--with-pcre=${BUILDLINK_PREFIX.pcre:Q}
 
 CONFIGURE_DIRS+=	. ${WRKDIR}/cfengine-masterfiles-${PKGVERSION_NOREV}
@@ -103,7 +103,7 @@ post-install:
 	done
 
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

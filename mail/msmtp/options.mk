@@ -14,9 +14,9 @@ PKG_SUGGESTED_OPTIONS=	inet6 ssl
 ### SSL support
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-ssl=openssl
-CONFIGURE_ARGS+=	--with-libssl-prefix=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-libssl-prefix=${BUILDLINK_PREFIX.ssl}
 .elif !empty(PKG_OPTIONS:Mgnutls)
 .  include "../../security/gnutls/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-ssl=gnutls

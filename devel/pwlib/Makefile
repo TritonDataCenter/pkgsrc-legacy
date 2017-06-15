@@ -64,7 +64,7 @@ post-install:
 		${INSTALL_DATA} $$f ${DESTDIR}${PREFIX}/$$f;	\
 	done
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

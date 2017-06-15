@@ -27,7 +27,7 @@ CONFIGURE_ARGS+=	--enable-plugin="${PLUGINS}"
 post-build:
 	${CP} ${PKGDIR}/PLIST ${WRKDIR}/.PLIST_SRC
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/libidn/buildlink3.mk"
 .include "../../devel/popt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

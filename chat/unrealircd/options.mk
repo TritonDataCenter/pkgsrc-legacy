@@ -26,7 +26,7 @@ CONFIGURE_ENV+=		ac_cv_ip6=no
 ### Enable SSL support
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.	include "../../security/openssl/buildlink3.mk"
+.	include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-ssl=${SSLBASE}
 .endif
 

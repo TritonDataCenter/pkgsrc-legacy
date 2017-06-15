@@ -20,5 +20,5 @@ CONFIGURE_ARGS+=	--with-cyrus-sasl
 
 .if !empty(PKG_OPTIONS:Mtls)
 CONFIGURE_ARGS+=	--with-tls
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif

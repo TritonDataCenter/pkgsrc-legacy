@@ -46,7 +46,7 @@ CONFIGURE_ARGS+=	--with-message-dir=${PKG_SYSCONFDIR}/msg
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/netatalk
 CONFIGURE_ARGS+=	--with-uams-path=${PREFIX}/libexec/netatalk/uams
 CONFIGURE_ARGS+=	--with-bdb=${BDBBASE}
-CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ENV+=		MACHINE_ARCH=${MACHINE_ARCH}
 
 MAKE_DIRS+=		${PKG_SYSCONFDIR}/msg
@@ -91,7 +91,7 @@ post-install:
 .endif
 
 .include "../../security/libgcrypt/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 .include "../../mk/bdb.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

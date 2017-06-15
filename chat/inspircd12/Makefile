@@ -89,7 +89,7 @@ post-extract:
 .if !empty(USE_BUILTIN.openssl:M[yY][eE][sS]) && !empty(PKG_OPTIONS:Mssl)
 	${CP} ${FILESDIR}/openssl.pc ${WRKSRC}/openssl.pc
 SUBST_FILES.conf+=	${WRKSRC}/openssl.pc
-SUBST_SED.conf+=	-e "s|@SSLBASE@|${BUILDLINK_PREFIX.openssl}|g"
+SUBST_SED.conf+=	-e "s|@SSLBASE@|${BUILDLINK_PREFIX.ssl}|g"
 SUBST_SED.conf+=	-e "s|@SSLVER@|${BUILTIN_VERSION.openssl}|g"
 .endif
 

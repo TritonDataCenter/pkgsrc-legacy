@@ -9,7 +9,7 @@ PKG_OPTIONS_LEGACY_VARS+=	QPOPPER_USE_DRAC:drac
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
 .else
 CONFIGURE_ARGS+=	--without-ssl

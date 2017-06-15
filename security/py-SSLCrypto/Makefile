@@ -15,5 +15,5 @@ DEPENDS+=	${PYPKGPREFIX}-pyrex>=0.9.4.1:../../lang/py-pyrex
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-pyrex
 
 .include "../../lang/python/distutils.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

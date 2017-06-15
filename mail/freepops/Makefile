@@ -62,7 +62,7 @@ PKG_USERS_VARS+=		FREEPOPSD_USER
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

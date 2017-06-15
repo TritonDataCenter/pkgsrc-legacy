@@ -17,7 +17,7 @@ pkgbase := ccrtp
 .endif
 
 .if !empty(PKG_BUILD_OPTIONS.ccrtp:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .include "../../devel/ucommon/buildlink3.mk"

@@ -14,7 +14,7 @@ BUILDLINK_API_DEPENDS.gnutls+=	gnutls>=3.0.0
 
 .if !empty(PKG_OPTIONS:Mopenssl)
 BUILDLINK_API_DEPENDS.openssl+=	openssl>=1.0.0
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CMAKE_ARGS+=	-DCRYPTO_OPENSSL=ON
 .else
 CMAKE_ARGS+=	-DCRYPTO_OPENSSL=OFF

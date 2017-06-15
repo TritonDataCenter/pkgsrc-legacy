@@ -35,8 +35,8 @@ CONFIGURE_ARGS+=	--without-libgcrypt
 
 .if !empty(PKG_OPTIONS:Mopenssl)
 CONFIGURE_ARGS+=	--with-openssl
-CONFIGURE_ARGS+=	--with-libssl-prefix=${BUILDLINK_PREFIX.openssl}
-.include "../../security/openssl/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-libssl-prefix=${BUILDLINK_PREFIX.ssl}
+.include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-openssl
 .endif

@@ -55,9 +55,9 @@ CONFIGURE_ARGS+=	--disable-nntp
 
 .if !empty(PKG_OPTIONS:Mssl)
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 
 .elif !empty(PKG_OPTIONS:Mgnutls)
 

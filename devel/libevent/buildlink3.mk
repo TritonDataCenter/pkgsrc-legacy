@@ -9,7 +9,7 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=0.6
 BUILDLINK_ABI_DEPENDS.libevent+=	libevent>=2.0.22nb1
 BUILDLINK_PKGSRCDIR.libevent?=		../../devel/libevent
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # LIBEVENT_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-libevent

@@ -12,5 +12,5 @@ LICENSE=	isc AND modified-bsd AND 2-clause-bsd
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

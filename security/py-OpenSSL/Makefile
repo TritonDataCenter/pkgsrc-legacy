@@ -16,5 +16,5 @@ DEPENDS+=	${PYPKGPREFIX}-six>=1.5.2:../../lang/py-six
 BUILD_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 
 .include "../../lang/python/egg.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

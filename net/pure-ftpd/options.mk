@@ -26,7 +26,7 @@ CONFIGURE_ARGS+=	--with-pgsql
 .endif
 
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-tls
 CONFIGURE_ARGS+=	--with-certfile=${SSLKEYS}/pure-ftpd.pem
 SUBST_CLASSES+=		cert

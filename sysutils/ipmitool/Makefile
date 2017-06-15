@@ -19,5 +19,5 @@ CONFIGURE_ARGS.SunOS+=		--enable-solaris-opt
 
 # ipmitool uses rl_event_hook
 .include "../../devel/readline/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

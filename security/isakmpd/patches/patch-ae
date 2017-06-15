@@ -23,8 +23,8 @@ $NetBSD: patch-ae,v 1.5 2003/12/30 15:57:53 bad Exp $
  # mandatory for gmp
 -CFLAGS+=	-I/usr/pkg/include
 -LDADD+=		-L/usr/pkg/lib
-+CFLAGS+=	-I@BUILDLINK_PREFIX.openssl@/include -I@BUILDLINK_PREFIX.openssl@/include/openssl
-+LDADD+=		-L@BUILDLINK_PREFIX.openssl@/lib
++CFLAGS+=	-I@BUILDLINK_PREFIX.ssl@/include -I@BUILDLINK_PREFIX.ssl@/include/openssl
++LDADD+=		-L@BUILDLINK_PREFIX.ssl@/lib
  
  IPSEC_SRCS=	pf_key_v2.c
  IPSEC_CFLAGS=	-DUSE_PF_KEY_V2
@@ -46,4 +46,4 @@ $NetBSD: patch-ae,v 1.5 2003/12/30 15:57:53 bad Exp $
 -.elif  exists(/usr/include/openssl/rsa.h)
 -	ln -sf /usr/include/openssl ssl
 -.endif
-+	ln -sf @BUILDLINK_PREFIX.openssl@/include/openssl ssl
++	ln -sf @BUILDLINK_PREFIX.ssl@/include/openssl ssl

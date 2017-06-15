@@ -28,6 +28,6 @@ CMAKE_ARGS+=		-DBUILD_TOOLS_DOCS=ON
 CMAKE_ARGS+=		-DENABLE_SSL_SUPPORT=ON
 
 .include "../../devel/popt/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

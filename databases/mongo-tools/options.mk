@@ -12,5 +12,5 @@ MONGO_TAGS+=		sasl
 
 .if !empty(PKG_OPTIONS:Mssl)
 MONGO_TAGS+=		ssl
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif

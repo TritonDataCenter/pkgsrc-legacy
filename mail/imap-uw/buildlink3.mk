@@ -14,7 +14,7 @@ BUILDLINK_PKGSRCDIR.imap-uw?=	../../mail/imap-uw
 BUILDLINK_LDFLAGS.imap-uw+=	-flat_namespace
 . endif
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # IMAP_UW_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-imap-uw

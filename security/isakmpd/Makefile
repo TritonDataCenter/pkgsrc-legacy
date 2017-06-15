@@ -31,7 +31,7 @@ SUBST_CLASSES+=		ssl
 SUBST_STAGE.ssl=	pre-configure
 SUBST_MESSAGE.ssl=	Fixing references to buildlink directories
 SUBST_FILES.ssl=	sysdep/netbsd/Makefile.sysdep
-SUBST_VARS.ssl=		BUILDLINK_PREFIX.openssl
+SUBST_VARS.ssl=		BUILDLINK_PREFIX.ssl
 
 SUBST_CLASSES+=		cfg
 SUBST_STAGE.cfg=	pre-configure
@@ -55,5 +55,5 @@ SUBST_VARS.destdir=	BINOWN BINGRP MANOWN MANGRP
 INSTALLATION_DIRS+=	sbin ${PKGMANDIR}/man5 ${PKGMANDIR}/cat5
 INSTALLATION_DIRS+=	${PKGMANDIR}/man8 ${PKGMANDIR}/cat8
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

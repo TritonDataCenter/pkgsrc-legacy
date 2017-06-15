@@ -13,7 +13,7 @@ BUILDLINK_PKGSRCDIR.dovecot?=		../../mail/dovecot2
 pkgbase:=	dovecot
 .include "../../mk/pkg-build-options.mk"
 .if !empty(PKG_BUILD_OPTIONS.dovecot:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .elif !empty(PKG_BUILD_OPTIONS.dovecot:Mgnutls)
 .  include "../../security/gnutls/buildlink3.mk"
 .endif

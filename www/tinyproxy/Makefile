@@ -61,5 +61,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/filter-howto.txt \
 		${DESTDIR}${PREFIX}/share/doc/tinyproxy/
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

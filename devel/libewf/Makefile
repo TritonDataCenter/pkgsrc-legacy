@@ -19,7 +19,7 @@ USE_LANGUAGES=	c c++
 
 PKGCONFIG_OVERRIDE+=	libewf.pc.in
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../filesystems/fuse/buildlink3.mk"
 .include "../../devel/libuuid/buildlink3.mk"

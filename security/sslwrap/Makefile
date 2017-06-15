@@ -15,9 +15,9 @@ LDADD.SunOS=	-lnsl -lsocket
 MAKE_ENV+=	LDADD=${LDADD:Q}
 USE_BSD_MAKEFILE=	yes
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
-.if !exists(${BUILDLINK_PREFIX.openssl}/include/openssl/e_os.h)
+.if !exists(${BUILDLINK_PREFIX.ssl}/include/openssl/e_os.h)
 CFLAGS+=	-DFLAT_INC
 .endif
 

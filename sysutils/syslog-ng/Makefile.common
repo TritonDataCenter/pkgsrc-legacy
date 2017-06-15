@@ -61,6 +61,6 @@ REPLACE_PERL+=		lib/merge-grammar.pl
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/ivykis/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../sysutils/eventlog/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

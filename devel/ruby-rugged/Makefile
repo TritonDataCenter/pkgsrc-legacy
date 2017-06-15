@@ -13,6 +13,6 @@ USE_TOOLS+=	cmake pkg-config
 CONFIGURE_ARGS+=	--use-system-libraries
 
 .include "../../devel/libgit2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

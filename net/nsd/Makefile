@@ -46,7 +46,7 @@ CONFIGURE_ARGS+=--with-user=${NSD_USER}
 CONFIGURE_ARGS+=--with-dbfile=${VARBASE}/nsd/nsd.db
 CONFIGURE_ARGS+=--with-xfrdfile=${VARBASE}/nsd/nsd-xfrd.state
 CONFIGURE_ARGS+=--with-libevent=${BUILDLINK_PREFIX.libevent}
-CONFIGURE_ARGS+=--with-ssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=--with-ssl=${BUILDLINK_PREFIX.ssl}
 
 RCD_SCRIPTS=	nsd
 
@@ -64,5 +64,5 @@ INSTALLATION_DIRS=	share/examples/nsd
 INSTALLATION_DIRS+=	${VARBASE}/nsd
 
 .include "../../devel/libevent/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

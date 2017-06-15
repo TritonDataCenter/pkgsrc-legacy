@@ -46,5 +46,5 @@ CONFIGURE_ARGS+=	--without-sqlite
 ###
 .if !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--enable-openssl
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .endif

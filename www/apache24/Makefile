@@ -48,7 +48,7 @@ BUILDLINK_API_DEPENDS.apr+=	apr>=1.5.0
 BUILDLINK_API_DEPENDS.apr-util+=	apr-util>=1.5.3
 .include "../../devel/apr-util/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
@@ -157,7 +157,7 @@ SUBST_SED.abs_srcdir=		-e 's|^\(abs_srcdir =\) .*|\1 ${PREFIX}/share/httpd|'
 REPLACE_PERL=		docs/cgi-examples/printenv
 
 .  include "../../devel/zlib/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ARGS+=	--with-z=${BUILDLINK_PREFIX.zlib}
 
 post-extract:

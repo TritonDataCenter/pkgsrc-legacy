@@ -20,5 +20,5 @@ MODULE_EXT=	la
 MESSAGE_SUBST+=	MODULE_NAME=authn_otp_module
 
 .include "../../mk/apache.module.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

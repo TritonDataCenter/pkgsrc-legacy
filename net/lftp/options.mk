@@ -18,7 +18,7 @@ CONFIGURE_ARGS+=	--without-openssl
 .elif !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--without-gnutls
 CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-gnutls
 CONFIGURE_ARGS+=	--without-openssl

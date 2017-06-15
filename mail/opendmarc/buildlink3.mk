@@ -9,7 +9,7 @@ BUILDLINK_API_DEPENDS.opendmarc+=	opendmarc>=1.1.3nb2
 BUILDLINK_ABI_DEPENDS.opendmarc?=	opendmarc>=1.3.1nb2
 BUILDLINK_PKGSRCDIR.opendmarc?=	../../mail/opendmarc
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mail/libmilter/buildlink3.mk"
 .endif	# OPENDMARC_BUILDLINK3_MK
 

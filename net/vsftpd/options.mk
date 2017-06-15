@@ -21,15 +21,15 @@ SUBST_STAGE.pam=	pre-configure
 .endif
 
 .if !empty(PKG_OPTIONS:Mssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 SUBST_CLASSES+=		ssl
 SUBST_FILES.ssl=	builddefs.h
 SUBST_SED.ssl+=		-e 's,undef VSF_BUILD_SSL,define VSF_BUILD_SSL,g'
 SUBST_SED.ssl+=		-e 's,/usr/share/ssl/certs/vsftpd.pem,${SSLCERTS}/vsftpd.pem,g'
 SUBST_STAGE.ssl=	pre-configure
 
-LIBS+=		-L${BUILDLINK_PREFIX.openssl}
-LIBS+=		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.openssl}
+LIBS+=		-L${BUILDLINK_PREFIX.ssl}
+LIBS+=		${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.ssl}
 LIBS+=		-lssl -lcrypto
 .endif
 

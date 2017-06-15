@@ -24,7 +24,7 @@ CONFIGURE_ARGS+=	--disable-nls
 .if !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--with-openssl
 CONFIGURE_ARGS+=	--with-gnutls=no
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 USE_TOOLS+=		pkg-config
 .else
 CONFIGURE_ARGS+=	--with-gnutls

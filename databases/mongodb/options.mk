@@ -11,7 +11,7 @@ PKG_SUGGESTED_OPTIONS+=	wiredtiger
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 SCONS_ARGS+=		--ssl
 .endif
 

@@ -20,7 +20,7 @@ CONF_FILES+=		${PREFIX}/share/examples/kdelibs3/applications.menu \
 			${PKG_SYSCONFDIR}/xdg/menus/applications.menu
 
 CONFIGURE_ARGS+=	--with-distribution="NetBSD pkgsrc"
-CONFIGURE_ARGS+=	--with-ssl-dir="${BUILDLINK_PREFIX.openssl}"
+CONFIGURE_ARGS+=	--with-ssl-dir="${BUILDLINK_PREFIX.ssl}"
 
 SGML_CATALOGS=		${PREFIX}/share/kde/apps/ksgmltools2/customization/catalog
 SGML_CATALOGS+=		${PREFIX}/share/kde/apps/ksgmltools2/docbook/xml-dtd-4.1.2/docbook.cat
@@ -117,7 +117,7 @@ LUA_VERSIONS_ACCEPTED=	51
 .include "../../graphics/openexr/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../net/mDNSResponder/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/aspell/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"

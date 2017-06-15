@@ -12,7 +12,7 @@ BUILDLINK_PKGSRCDIR.libetpan?=	../../mail/libetpan
 BDB_ACCEPTED?=	db4 db5 db6
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../security/cyrus-sasl/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/bdb.buildlink3.mk"

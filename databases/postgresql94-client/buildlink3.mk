@@ -15,7 +15,7 @@ BUILDLINK_FILES.postgresql94-client+=	bin/pg_config
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # POSTGRESQL94_CLIENT_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-postgresql94-client

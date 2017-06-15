@@ -26,6 +26,6 @@ post-install:
 	${MV} ${DESTDIR}${PKG_SYSCONFDIR}/adtool.cfg.dist ${DESTDIR}${EGDIR}
 
 .include "../../databases/openldap-client/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

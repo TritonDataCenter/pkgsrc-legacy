@@ -26,5 +26,5 @@ CONFIGURE_ARGS+=	--with-pam
 ###
 .if !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--with-openssl
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif

@@ -18,7 +18,7 @@ CONFIGURE_ARGS+=		--with-libz=${BUILDLINK_PREFIX.zlib:Q}
 BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.8
 CONFIGURE_ARGS+=		--with-libgcrypt=no
 CONFIGURE_ARGS+=		--with-openssl=${SSLBASE:Q}
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .if !empty(PKG_OPTIONS:Mlibgcrypt)

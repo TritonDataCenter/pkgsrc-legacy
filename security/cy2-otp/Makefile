@@ -15,7 +15,7 @@ CONFIGURE_ARGS+=	--with-openssl=${SSLBASE:Q}
 BUILD_DIRS=	plugins
 BUILD_TARGET=	libotp.la
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 do-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${PLUGINDIR}

@@ -15,7 +15,7 @@ USE_TOOLS+=	gmake
 
 CONFIGURE_ARGS+=	--enable-optimize
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

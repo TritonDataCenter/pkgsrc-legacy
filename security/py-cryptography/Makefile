@@ -35,5 +35,5 @@ do-test:
 	cd ${WRKSRC} && py.test-${PYVERSSUFFIX}
 
 .include "../../lang/python/egg.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

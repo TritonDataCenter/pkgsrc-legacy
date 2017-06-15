@@ -28,7 +28,7 @@ do-install:
 
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mail/libetpan/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bdb.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

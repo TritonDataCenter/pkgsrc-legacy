@@ -43,6 +43,6 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=2.0
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../mk/fuse.buildlink3.mk"
 .include "../../net/mDNSResponder/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

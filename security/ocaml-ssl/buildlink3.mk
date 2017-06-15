@@ -10,7 +10,7 @@ BUILDLINK_ABI_DEPENDS.ocaml-ssl+=	ocaml-ssl>=0.5.3
 BUILDLINK_PKGSRCDIR.ocaml-ssl?=	../../security/ocaml-ssl
 
 .include "../../lang/ocaml/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # OCAML_SSL_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-ocaml-ssl

@@ -10,7 +10,7 @@ BUILDLINK_ABI_DEPENDS.libssh2+=	libssh2>=1.7.0nb1
 BUILDLINK_PKGSRCDIR.libssh2?=	../../security/libssh2
 
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # LIBSSH2_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-libssh2

@@ -15,5 +15,5 @@ RUBYGEM_OPTIONS+=	--format-executable
 USE_GCC_RUNTIME=	yes
 
 .include "../../lang/ruby/gem.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

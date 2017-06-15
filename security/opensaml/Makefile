@@ -19,7 +19,7 @@ CONFIGURE_ARGS+=	--disable-doxygen-doc
 .include "../../devel/libidn/buildlink3.mk"
 .include "../../devel/log4shib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/xml-security-c/buildlink3.mk"
 .include "../../textproc/xerces-c/buildlink3.mk"
 .include "../../textproc/xmltooling/buildlink3.mk"

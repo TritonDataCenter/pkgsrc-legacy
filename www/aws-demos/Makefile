@@ -29,7 +29,7 @@ MY_MAKE_ENV+=		ADA_PROJECT_PATH=${PREFIX}/lib/gnat
 MY_MAKE_ENV+=		AWK=awk
 MY_MAKE_ENV+=		PATH=${PREFIX}/gcc5-aux/bin:${PATH}
 MY_CONF_ENV+=		PATH=${PREFIX}/gcc5-aux/bin:${PATH}
-CONFIGURE_ARGS+=	LPATH=${BUILDLINK_PREFIX.openssl}/lib
+CONFIGURE_ARGS+=	LPATH=${BUILDLINK_PREFIX.ssl}/lib
 CONFIGURE_ARGS+=	ZPATH=${BUILDLINK_PREFIX.zlib}/lib
 
 SUBST_CLASSES+= 	lpath
@@ -83,7 +83,7 @@ PLIST.ldap=		yes
 .endif
 
 .if !empty(PKG_BUILD_OPTIONS.awk:Mssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	SOCKET=openssl
 DEMO_DIRS+=		agent
 DEMO_DIRS+=		runme
@@ -92,7 +92,7 @@ PLIST.ssl=		yes
 
 .if !empty(PKG_BUILD_OPTIONS.awk:Mgnutls)
 .include "../../security/libgcrypt/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 CONFIGURE_ARGS+=	SOCKET=gnutls
 DEMO_DIRS+=		agent

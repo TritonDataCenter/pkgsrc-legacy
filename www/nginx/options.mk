@@ -25,7 +25,7 @@ CONFIGURE_ARGS+=	--with-debug
 .endif
 
 .if !empty(PKG_OPTIONS:Mssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--with-mail_ssl_module
 CONFIGURE_ARGS+=	--with-http_ssl_module
 .endif

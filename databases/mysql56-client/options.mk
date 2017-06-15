@@ -11,7 +11,7 @@ PKG_SUGGESTED_OPTIONS+=	embedded-server ssl
 
 # Enable OpenSSL support
 .if !empty(PKG_OPTIONS:Mssl)
-.	include "../../security/openssl/buildlink3.mk"
+.	include "../../mk/ssl.buildlink3.mk"
 CMAKE_ARGS+=		-DWITH_SSL=system
 .else
 CMAKE_ARGS+=		-DWITH_SSL=no

@@ -13,5 +13,5 @@ PKG_SUGGESTED_OPTIONS+=		openssl
 
 .if !empty(PKG_OPTIONS:Mopenssl)
 BUILDLINK_API_DEPENDS.openssl+=	openssl>=0.9.8
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif

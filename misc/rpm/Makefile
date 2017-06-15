@@ -100,6 +100,6 @@ pre-configure:
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../devel/popt/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../sysutils/file/buildlink3.mk" # for libmagic.
 .include "../../mk/bsd.pkg.mk"

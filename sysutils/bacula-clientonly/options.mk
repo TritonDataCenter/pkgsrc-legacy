@@ -20,8 +20,8 @@ PLIST_SUBST+=		STATIC="@comment "
 .endif
 
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
+.  include "../../mk/ssl.buildlink3.mk"
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
 .else
 CONFIGURE_ARGS+=	--without-openssl
 .endif

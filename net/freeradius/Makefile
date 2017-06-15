@@ -108,7 +108,7 @@ CONF_FILES_PERMS+=	${EGDIR}/${f} ${PKG_SYSCONFDIR}/${f} \
 			${RADIUS_USER} ${RADIUS_GROUP} 0640
 .endfor
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 

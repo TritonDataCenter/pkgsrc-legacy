@@ -30,7 +30,7 @@ CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
 .if !empty(PKG_OPTIONS:Mopenssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=	--disable-fish --with-openssl
 .else
 CONFIGURE_ARGS+=	--without-openssl

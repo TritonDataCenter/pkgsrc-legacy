@@ -32,5 +32,5 @@ LICENSE=	apache-2.0 OR modified-bsd
 #	cd ${WRKSRC} && py.test-${PYVERSSUFFIX}
 
 .include "../../lang/python/egg.mk"
-#.include "../../security/openssl/buildlink3.mk"
+#.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -15,8 +15,8 @@ USE_LANGUAGES=	c99
 MAKE_FLAGS+=	BINDIR=${DESTDIR}${PREFIX}/bin
 MAKE_FLAGS+=	MAN1DIR=${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
-LDADD_EXTRA=	${COMPILER_RPATH_FLAG:Q}${BUILDLINK_PREFIX.openssl}/lib
-LDADD_EXTRA+=	-L${BUILDLINK_PREFIX.openssl}/lib
+LDADD_EXTRA=	${COMPILER_RPATH_FLAG:Q}${BUILDLINK_PREFIX.ssl}/lib
+LDADD_EXTRA+=	-L${BUILDLINK_PREFIX.ssl}/lib
 
 OPSYSVARS+=		LDADD_EXTRA
 LDADD_EXTRA.SunOS+=	-lsocket -lnsl
@@ -39,5 +39,5 @@ MESSAGE_SUBST+=	PKG_SYSCONFDIR=${PKG_SYSCONFDIR:Q}
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/spiped
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

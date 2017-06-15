@@ -133,7 +133,7 @@ CONFIGURE_ARGS+=	--disable-snmp
 .if !empty(PKG_OPTIONS:Mssl)
 CONFIGURE_ARGS+=	--enable-ssl --with-openssl=${SSLBASE:Q}
 CONFIGURE_ARGS+=	--enable-ssl-crtd
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 PLIST.ssl=		yes
 .endif
 

@@ -14,7 +14,7 @@ BUILDLINK_PKGSRCDIR.qore?=	../../lang/qore
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../math/mpfr/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif	# QORE_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-qore

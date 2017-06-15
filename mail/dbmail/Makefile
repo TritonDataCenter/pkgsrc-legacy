@@ -56,5 +56,5 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.8.0
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../mail/gmime/buildlink3.mk"
 .include "../../security/mhash/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -57,5 +57,5 @@ post-install:
 .include "../../net/libtelnet/buildlink3.mk"
 .include "../../net/libvncserver/buildlink3.mk"
 .include "../../security/libssh2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

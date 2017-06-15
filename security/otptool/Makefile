@@ -35,5 +35,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/otptool.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 
 .include "../../www/apache22/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

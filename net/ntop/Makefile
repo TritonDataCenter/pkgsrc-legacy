@@ -20,7 +20,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/share/ntop
 CONFIGURE_ARGS+=	--with-gdbm-root=${BUILDLINK_PREFIX.gdbm}
-CONFIGURE_ARGS+=	--with-ossl-root=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ossl-root=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ARGS+=	--with-pcap-root=${BUILDLINK_PREFIX.libpcap}
 CONFIGURE_ARGS+=	--with-zlib-root=${BUILDLINK_PREFIX.zlib}
 
@@ -48,5 +48,5 @@ pre-configure:
 .include "../../lang/python/application.mk"
 .include "../../net/GeoIP/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

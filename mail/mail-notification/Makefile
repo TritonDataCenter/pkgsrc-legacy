@@ -47,7 +47,7 @@ CONFIGURE_ARGS+=	sasl=no
 
 # Whether to add SSL support.
 .if !empty(PKG_OPTIONS:Mssl)
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	ssl=no
 .endif

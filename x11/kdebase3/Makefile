@@ -31,7 +31,7 @@ REQD_DIRS+=		${PREFIX}/share/kde/fonts
 REQD_DIRS+=		${PREFIX}/share/kde/fonts/override
 
 CONFIGURE_ARGS+=	--with-ldap="${BUILDLINK_PREFIX.openldap-client}"
-CONFIGURE_ARGS+=	--with-ssl-dir="${BUILDLINK_PREFIX.openssl}"
+CONFIGURE_ARGS+=	--with-ssl-dir="${BUILDLINK_PREFIX.ssl}"
 CONFIGURE_ARGS+=	--without-java
 CONFIGURE_ENV+=		kde_cv_defines_imake_version=8 \
 			kde_cv_defines_imake="XBINDIR=${X11BASE:Q}/bin XLIBDIR=${X11BASE:Q}/lib" \
@@ -212,7 +212,7 @@ CONFIGURE_ENV.NetBSD+=	kde_cv_path_fontconfig_config='NONE'
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/openexr/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../x11/kdelibs3/buildlink3.mk"
 .include "../../x11/libXcursor/buildlink3.mk"
 .include "../../x11/libXrandr/buildlink3.mk"

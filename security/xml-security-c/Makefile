@@ -16,6 +16,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	XERCESCROOT="${BUILDLINK_PREFIX.xerces-c}"
 
 BUILDLINK_API_DEPENDS.openssl+= openssl>=0.9.7
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/xerces-c/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

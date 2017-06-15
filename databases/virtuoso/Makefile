@@ -36,6 +36,6 @@ MAKE_ENV+=	ISQL=isql-vt
 .include "options.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../databases/iodbc/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

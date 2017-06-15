@@ -46,7 +46,7 @@ CONFIGURE_ARGS+=	--with-message-dir=${PKG_SYSCONFDIR}/msg
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/db
 CONFIGURE_ARGS+=	--with-uams-path=${PREFIX}/libexec/netatalk/uams
 CONFIGURE_ARGS+=	--with-bdb=${BUILDLINK_PREFIX.db5}
-CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ARGS+=	--with-libevent-header=${BUILDLINK_PREFIX.libevent}/include
 CONFIGURE_ARGS+=	--with-libevent-lib=${BUILDLINK_PREFIX.libevent}/lib
 CONFIGURE_ARGS+=	--without-mysql-config
@@ -90,7 +90,7 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=2
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 .include "../../databases/db5/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

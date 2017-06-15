@@ -24,5 +24,5 @@ MAKE_ENV+=		PERL_MM_USE_DEFAULT=1	# avoid network question
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/perl5/module.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -22,7 +22,7 @@ do-test:
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/libssh2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../lang/python/pyversion.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../www/http-parser/buildlink3.mk"

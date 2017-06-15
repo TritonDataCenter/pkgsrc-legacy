@@ -32,6 +32,6 @@ CONFIGURE_ARGS+=	--disable-ipv6
 .  include "../../security/gnutls/buildlink3.mk"
 CONFIGURE_ARGS+=--with-ssl=gnutls
 .else
-.  include "../../security/openssl/buildlink3.mk"
+.  include "../../mk/ssl.buildlink3.mk"
 CONFIGURE_ARGS+=--with-ssl=openssl
 .endif

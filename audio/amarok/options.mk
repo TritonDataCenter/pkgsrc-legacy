@@ -38,7 +38,7 @@ BUILDLINK_API_DEPENDS.libmtp+=	libmtp>=1.0
 .if !empty(PKG_OPTIONS:Mmp3tunes)
 .include "../../chat/loudmouth/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .endif

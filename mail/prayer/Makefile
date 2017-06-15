@@ -69,6 +69,6 @@ INSTALLATION_DIRS+=	${EGDIR}
 .include "../../mk/bdb.buildlink3.mk"
 .include "../../mk/krb5.buildlink3.mk"
 .include "../../mk/pam.buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/tidy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

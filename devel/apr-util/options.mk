@@ -48,8 +48,8 @@ CONFIGURE_ARGS+=	--without-sqlite3
 .if !empty(PKG_OPTIONS:Mssl)
 PLIST.ssl=		yes
 CONFIGURE_ARGS+=	--with-crypto
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
-.  include "../../security/openssl/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
+.  include "../../mk/ssl.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-crypto
 .endif

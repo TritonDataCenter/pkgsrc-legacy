@@ -76,7 +76,7 @@ pre-build:
 .include "../../lang/perl5/module.mk"
 BUILDLINK_API_DEPENDS.cyrus-sasl+=	cyrus-sasl>=2.1.17
 .include "../../security/cyrus-sasl/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 
 # Only imap/mupdate needs to be build with pthreads support, so selectively

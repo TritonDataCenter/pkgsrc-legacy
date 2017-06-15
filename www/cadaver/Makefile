@@ -22,7 +22,7 @@ LIBS+=			${BUILDLINK_LDADD.termcap}
 #			mandir=${DESTDIR:Q}${PREFIX:Q}/${PKGMANDIR:Q}
 
 .include "../../mk/readline.buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../www/neon/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"

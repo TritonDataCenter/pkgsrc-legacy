@@ -15,7 +15,7 @@ LICENSE=		2-clause-bsd
 WRKSRC=			${WRKDIR}/tls1.5
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.openssl}
+CONFIGURE_ARGS+=	--with-ssl-dir=${BUILDLINK_PREFIX.ssl}
 CONFIGURE_ENV+=		LOCALBASE=${LOCALBASE:Q}
 MAKE_ENV+=		TCLLIB="${BUILDLINK_PREFIX.tcl}/lib"
 
@@ -27,5 +27,5 @@ PLIST_SUBST+=		TCL_SONUM=${TCL_SONUM}
 
 
 .include "../../lang/tcl/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

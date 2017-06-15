@@ -9,7 +9,7 @@ BUILDLINK_API_DEPENDS.liboauth+=	liboauth>=0.8.9
 BUILDLINK_ABI_DEPENDS.liboauth?=	liboauth>=1.0.3nb4
 BUILDLINK_PKGSRCDIR.liboauth?=	../../security/liboauth
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .endif	# LIBOAUTH_BUILDLINK3_MK
 

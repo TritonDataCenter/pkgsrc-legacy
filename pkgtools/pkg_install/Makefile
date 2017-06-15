@@ -117,7 +117,7 @@ BUILDLINK_API_DEPENDS.libarchive+=	libarchive>=3.3.1
 .if !empty(USE_BUILTIN.openssl:M[yY][eE][sS])
 CONFIGURE_ARGS+=	--with-ssl
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .if empty(USE_BUILTIN.bzip2:M[yY][eE][sS]) || \

@@ -87,5 +87,5 @@ post-install:
 	${INSTALL_DATA} ${SAMPLE_DIR}/roadwarrior/server/racoon.conf-radius \
 	    ${DESTDIR}${EXAMPLE_DIR}/roadwarrior/server
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -21,7 +21,7 @@ MAKE_ENV+=	INCORE_LUA=0
 .endif
 
 .if !empty(PKG_OPTIONS:Mssl)
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 MAKE_ENV+=	SSL=1
 .else
 MAKE_ENV+=	SSL=0

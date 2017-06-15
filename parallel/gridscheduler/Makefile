@@ -104,12 +104,12 @@ post-patch:
 		${ECHO} "        `${WRKSRC}/source/dist/util/arch`" ; \
 		${FALSE} ; \
 	fi
-	( ${ECHO} "set OPENSSL_HOME = ${BUILDLINK_PREFIX.openssl}" ; \
+	( ${ECHO} "set OPENSSL_HOME = ${BUILDLINK_PREFIX.ssl}" ; \
 	${ECHO} "set BERKELEYDB_HOME = ${BUILDLINK_PREFIX.db4}" ; \
 	${ECHO} "set BDB_INCLUDE_SUBDIR = db4" ; \
 	${ECHO} "set BDB_LIB_SUFFIX = 4" ; \
 	${ECHO} "set PERL = ${PERL5}" ) > ${WRKSRC}/source/aimk.private
-	( ${ECHO} "OPENSSLBASE=${BUILDLINK_PREFIX.openssl}" ; \
+	( ${ECHO} "OPENSSLBASE=${BUILDLINK_PREFIX.ssl}" ; \
 	${ECHO} "BERKELEYDBBASE=${BUILDLINK_PREFIX.db4}" ) > ${WRKSRC}/source/distinst.private
 
 SUBST_CLASSES+=		paths
@@ -142,7 +142,7 @@ do-install:
 	for f in archive checkpoint deadlock dump load printlog recover stat upgrade verify ; do \
 		ln -s ${DESTDIR}${LOCALBASE}/bin/db4_$${f} ${DESTDIR}${SGE_ROOT}/utilbin/${SGE_ARCH}/db_$${f} ; done
 	ln -s ${DESTDIR}${LOCALBASE}/bin/berkeley_db4_svc ${DESTDIR}${SGE_ROOT}/utilbin/${SGE_ARCH}/berkeley_db_svc
-	ln -s ${DESTDIR}${BUILDLINK_PREFIX.openssl}/bin/openssl ${DESTDIR}${SGE_ROOT}/utilbin/${SGE_ARCH}/openssl
+	ln -s ${DESTDIR}${BUILDLINK_PREFIX.ssl}/bin/openssl ${DESTDIR}${SGE_ROOT}/utilbin/${SGE_ARCH}/openssl
 	cd ${DESTDIR}${SGE_ROOT} && ${SETENV} SGE_ROOT=${SGE_ROOT} DESTDIR=${DESTDIR} ./util/setfileperm.sh -auto \
 		${SGE_ROOT}
 	for f in ${DESTDIR}${SGE_ROOT}/bin/${SGE_ARCH}/q* ; do \
@@ -160,7 +160,7 @@ CHECK_INTERPRETER_SKIP=	sge/hadoop/pestart.sh \
 .include "../../parallel/hwloc/buildlink3.mk" # optional?
 .include "../../databases/db4/buildlink3.mk" # 4.2 at least
 .include "../../x11/libXpm/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../lang/tcl/buildlink3.mk"
 .include "../../mk/motif.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

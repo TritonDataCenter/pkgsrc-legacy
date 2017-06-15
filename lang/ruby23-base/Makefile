@@ -103,7 +103,7 @@ post-install:
 .include "../../mk/bdb.buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/libyaml/buildlink3.mk"
 .include "../../lang/ruby/Makefile.common"
 .include "../../mk/bsd.pkg.mk"

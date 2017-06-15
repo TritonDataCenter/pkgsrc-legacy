@@ -15,7 +15,7 @@ BUILDLINK_FILES.postgresql96-client+=	bin/pg_config
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # POSTGRESQL96_CLIENT_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-postgresql96-client

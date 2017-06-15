@@ -14,5 +14,5 @@ LICENSE=	modified-bsd
 GNU_CONFIGURE=	yes
 USE_TOOLS+=	pod2man
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

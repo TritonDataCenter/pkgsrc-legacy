@@ -27,7 +27,7 @@ pkgbase := openldap-client
 .      include "../../security/cyrus-sasl/buildlink3.mk"
 .    endif
 .  endif
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .endif # OPENLDAP_BUILDLINK3_MK
 
 BUILDLINK_TREE+=	-openldap-client

@@ -11,8 +11,8 @@ PKG_SUGGESTED_OPTIONS+=	embedded-server mysqlmanager ndb-cluster pstack ssl
 ### Enable OpenSSL support
 ###
 .if !empty(PKG_OPTIONS:Mssl)
-.	include "../../security/openssl/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
+.	include "../../mk/ssl.buildlink3.mk"
+CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.ssl}
 .else
 CONFIGURE_ARGS+=	--without-ssl
 .endif

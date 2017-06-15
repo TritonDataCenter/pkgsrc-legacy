@@ -20,6 +20,6 @@ USE_TOOLS+=	gmake
 
 CONFIGURE_ARGS+=	--with-cadir=${SSLCERTS}
 
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

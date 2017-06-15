@@ -55,7 +55,7 @@ post-install:
 .include "../../databases/openldap-client/buildlink3.mk"
 .include "../../devel/SDL/buildlink3.mk"
 .include "../../graphics/libv4l/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"

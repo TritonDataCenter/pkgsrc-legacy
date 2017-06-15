@@ -18,7 +18,7 @@ pkgbase := heimdal
 .if !empty(PKG_BUILD_OPTIONS.heimdal:Mldap)
 .  include "../../databases/openldap-client/buildlink3.mk"
 .endif
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 
 CHECK_BUILTIN.heimdal:=	yes
 .include "../../security/heimdal/builtin.mk"

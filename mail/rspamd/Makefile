@@ -132,7 +132,7 @@ post-extract:
 .include "../../devel/libevent/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
 .include "../../mail/gmime/buildlink3.mk"
-.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/ssl.buildlink3.mk"
 .include "../../sysutils/file/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

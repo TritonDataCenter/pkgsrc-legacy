@@ -24,8 +24,8 @@ CONFIGURE_ARGS+=	--without-gnutls
 
 .if !empty(PKG_OPTIONS:Mopenssl)
 PLIST.openssl=		yes
-CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
-.  include "../../security/openssl/buildlink3.mk"
+CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.ssl}
+.  include "../../mk/ssl.buildlink3.mk"
 .endif
 
 .if !empty(PKG_OPTIONS:Mdebug)
