@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.10 2016/05/23 14:27:35 adam Exp $
+# $NetBSD: Makefile.common,v 1.16 2017/05/12 19:37:54 adam Exp $
 #
 # This Makefile fragment is included by all PostgreSQL packages built from
 # the main sources of the PostgreSQL distribution except jdbc-postgresql.
@@ -8,22 +8,15 @@
 #	<lang>-postgresql	client-side interface to PostgreSQL
 #	postgresql-<lang>	server-side module for PostgreSQL backend
 #
-# used by databases/postgresql94-adminpack/Makefile
 # used by databases/postgresql94-client/Makefile
-# used by databases/postgresql94-datatypes/Makefile
-# used by databases/postgresql94-dblink/Makefile
+# used by databases/postgresql94-contrib/Makefile
 # used by databases/postgresql94-docs/Makefile
-# used by databases/postgresql94-fuzzystrmatch/Makefile
-# used by databases/postgresql94-monitoring/Makefile
-# used by databases/postgresql94-pgcrypto/Makefile
 # used by databases/postgresql94-plperl/Makefile
 # used by databases/postgresql94-plpython/Makefile
 # used by databases/postgresql94-pltcl/Makefile
-# used by databases/postgresql94-replicationtools/Makefile
 # used by databases/postgresql94-server/Makefile
-# used by databases/postgresql94-upgrade/Makefile
 
-DISTNAME=	postgresql-9.4.8
+DISTNAME=	postgresql-9.4.12
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL:=source/v${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=	.tar.bz2
@@ -80,14 +73,11 @@ CONFIGURE_ARGS+=	--without-zlib
 
 # sys/ucred.h shouldn't be included on Solaris, causes conflicts between
 # procfs and largefile.
-.if ${OPSYS} == "SunOS"
-CONFIGURE_ENV+=		ac_cv_header_sys_ucred_h=no
-.endif
+CONFIGURE_ENV.SunOS+=	ac_cv_header_sys_ucred_h=no
 
 # configure fails on OpenBSD and MirBSD if thread safety is enabled.
-.if ${OPSYS} == "OpenBSD" || ${OPSYS} == "MirBSD"
-CONFIGURE_ARGS+=	--disable-thread-safety
-.endif
+CONFIGURE_ARGS.MirBSD+=		--disable-thread-safety
+CONFIGURE_ARGS.OpenBSD+=	--disable-thread-safety
 
 # PGSQL_BLCKSZ is the size in bytes of a PostgreSQL disk page or block.
 # This also limits the size of a tuple.  The valid values are powers

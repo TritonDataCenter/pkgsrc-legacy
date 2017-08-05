@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2016/05/23 14:27:35 adam Exp $
+@comment $NetBSD: PLIST,v 1.8 2017/05/12 19:37:54 adam Exp $
 bin/postgres
 bin/postmaster
 include/postgresql/server/plpgsql.h
@@ -179,6 +179,7 @@ share/postgresql/timezone/America/Edmonton
 share/postgresql/timezone/America/Eirunepe
 share/postgresql/timezone/America/El_Salvador
 share/postgresql/timezone/America/Ensenada
+share/postgresql/timezone/America/Fort_Nelson
 share/postgresql/timezone/America/Fort_Wayne
 share/postgresql/timezone/America/Fortaleza
 share/postgresql/timezone/America/Glace_Bay
@@ -252,6 +253,7 @@ share/postgresql/timezone/America/Port_of_Spain
 share/postgresql/timezone/America/Porto_Acre
 share/postgresql/timezone/America/Porto_Velho
 share/postgresql/timezone/America/Puerto_Rico
+share/postgresql/timezone/America/Punta_Arenas
 share/postgresql/timezone/America/Rainy_River
 share/postgresql/timezone/America/Rankin_Inlet
 share/postgresql/timezone/America/Recife
@@ -307,6 +309,7 @@ share/postgresql/timezone/Asia/Aqtau
 share/postgresql/timezone/Asia/Aqtobe
 share/postgresql/timezone/Asia/Ashgabat
 share/postgresql/timezone/Asia/Ashkhabad
+share/postgresql/timezone/Asia/Atyrau
 share/postgresql/timezone/Asia/Baghdad
 share/postgresql/timezone/Asia/Bahrain
 share/postgresql/timezone/Asia/Baku
@@ -327,6 +330,7 @@ share/postgresql/timezone/Asia/Dhaka
 share/postgresql/timezone/Asia/Dili
 share/postgresql/timezone/Asia/Dubai
 share/postgresql/timezone/Asia/Dushanbe
+share/postgresql/timezone/Asia/Famagusta
 share/postgresql/timezone/Asia/Gaza
 share/postgresql/timezone/Asia/Harbin
 share/postgresql/timezone/Asia/Hebron
@@ -392,6 +396,7 @@ share/postgresql/timezone/Asia/Ust-Nera
 share/postgresql/timezone/Asia/Vientiane
 share/postgresql/timezone/Asia/Vladivostok
 share/postgresql/timezone/Asia/Yakutsk
+share/postgresql/timezone/Asia/Yangon
 share/postgresql/timezone/Asia/Yekaterinburg
 share/postgresql/timezone/Asia/Yerevan
 share/postgresql/timezone/Atlantic/Azores
@@ -531,6 +536,7 @@ share/postgresql/timezone/Europe/Rome
 share/postgresql/timezone/Europe/Samara
 share/postgresql/timezone/Europe/San_Marino
 share/postgresql/timezone/Europe/Sarajevo
+share/postgresql/timezone/Europe/Saratov
 share/postgresql/timezone/Europe/Simferopol
 share/postgresql/timezone/Europe/Skopje
 share/postgresql/timezone/Europe/Sofia
