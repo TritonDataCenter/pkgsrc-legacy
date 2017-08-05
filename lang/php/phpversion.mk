@@ -83,8 +83,8 @@ PHPVERSION_MK=	defined
 # Define each PHP's version.
 PHP53_VERSION=	5.3.29
 PHP54_VERSION=	5.4.45
-PHP55_VERSION=	5.5.32
-PHP56_VERSION=	5.6.18
+PHP55_VERSION=	5.5.38
+PHP56_VERSION=	5.6.31
 
 # Define initial release of major version.
 PHP53_RELDATE=	20090630

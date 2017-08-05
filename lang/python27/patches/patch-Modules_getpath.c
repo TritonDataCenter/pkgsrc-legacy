@@ -1,18 +1,9 @@
-$NetBSD: patch-Modules_getpath.c,v 1.2 2014/11/02 13:31:11 spz Exp $
+$NetBSD: patch-Modules_getpath.c,v 1.3 2015/04/24 03:01:36 rodent Exp $
 
 * from cygport 2.7.3-getpath-exe-extension.patch
 
---- Modules/getpath.c.orig	2014-06-30 02:05:43.000000000 +0000
+--- Modules/getpath.c.orig	2014-12-10 15:59:55.000000000 +0000
 +++ Modules/getpath.c
-@@ -118,7 +118,7 @@
- 
- #ifndef PYTHONPATH
- #define PYTHONPATH PREFIX "/lib/python" VERSION ":" \
--              EXEC_PREFIX "/lib/python" VERSION "/lib-dynload"
-+              EXEC_PREFIX "/lib/python" VERSION "/lib-dynload@LIBARCHSUFFIX@"
- #endif
- 
- #ifndef LANDMARK
 @@ -331,7 +331,7 @@
          else
              strncpy(exec_prefix, home, MAXPATHLEN);
