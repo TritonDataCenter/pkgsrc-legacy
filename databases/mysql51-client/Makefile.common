@@ -3,7 +3,7 @@
 # used by databases/mysql51-client/Makefile
 # used by databases/mysql51-server/Makefile
 
-DISTNAME=	mysql-5.1.72
+DISTNAME=	mysql-5.1.73
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL:=MySQL-5.1/}
 

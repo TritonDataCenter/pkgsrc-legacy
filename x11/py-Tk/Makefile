@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.60 2014/03/13 11:08:53 jperkin Exp $
+# $NetBSD: Makefile,v 1.62 2016/02/02 07:38:29 dbj Exp $
 
 PKGNAME=	${PYPKGPREFIX}-Tk-${PY_DISTVERSION}
 PKGREVISION=	4
@@ -21,8 +21,7 @@ PY_PATCHPLIST=		yes
 PY_SETUP_SUBST+=	BLPREFIX=${LOCALBASE}
 PY_SETUP_SUBST+=	TCLRTPREFIX=${BUILDLINK_PREFIX.tcl}
 PY_SETUP_SUBST+=	TKRTPREFIX=${BUILDLINK_PREFIX.tk}
-PY_SETUP_SUBST+=	X11PREFIX=${X11BASE}
-PY_SETUP_SUBST+=	X11RTPREFIX=${X11BASE}
+PY_SETUP_SUBST+=	X11BASE=${X11BASE}
 PYSETUPINSTALLARGS+=	--install-lib ${PREFIX}/${PYLIB}/lib-dynload${LIBARCHSUFFIX}
 
 .include "../../mk/bsd.prefs.mk"
@@ -48,4 +47,5 @@ do-patch:
 .include "../../lang/python/srcdist.mk"
 .include "../../lang/tcl/buildlink3.mk"
 .include "../../x11/tk/buildlink3.mk"
+.include "../../x11/libX11/builtin.mk"
 .include "../../mk/bsd.pkg.mk"
