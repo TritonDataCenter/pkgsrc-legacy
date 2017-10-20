@@ -1,7 +1,10 @@
-$NetBSD: distinfo,v 1.68 2015/11/03 21:34:33 agc Exp $
+$NetBSD: distinfo,v 1.86 2017/06/21 02:47:45 pgoyette Exp $
 
-SHA1 (tiff-4.0.6.tar.gz) = 280e27704eaca5f592b82e71ac0c78b87395e2de
-RMD160 (tiff-4.0.6.tar.gz) = 3d5d6951a36baf32ab0e0958d3b4a9413b7f2e07
-SHA512 (tiff-4.0.6.tar.gz) = 2c8dbaaaab9f82a7722bfe8cb6fcfcf67472beb692f1b7dafaf322759e7016dad1bc58457c0f03db50aa5bd088fef2b37358fcbc1524e20e9e14a9620373fdf8
-Size (tiff-4.0.6.tar.gz) = 2192991 bytes
+SHA1 (tiff-4.0.8.tar.gz) = 88717c97480a7976c94d23b6d9ed4ac74715267f
+RMD160 (tiff-4.0.8.tar.gz) = 0d8bc26c98035810c73b8f876f76dc48efba7da8
+SHA512 (tiff-4.0.8.tar.gz) = 5d010ec4ce37aca733f7ab7db9f432987b0cd21664bd9d99452a146833c40f0d1e7309d1870b0395e947964134d5cfeb1366181e761fe353ad585803ff3d6be6
+Size (tiff-4.0.8.tar.gz) = 2065574 bytes
 SHA1 (patch-configure) = a0032133f06b6ac92bbf52349fabe83f74ea14a6
+SHA1 (patch-libtiff_tif_dir.h) = 50f565eac6a7157a7c99923f4b3ffaf31b021644
+SHA1 (patch-libtiff_tif_dirinfo.c) = cd0e4da46f62d888128e558c16ebcc6a867274df
+SHA1 (patch-libtiff_tif_dirread.c) = d98b5cb0ceca8f5923c015b09f04da3b8af094e5
