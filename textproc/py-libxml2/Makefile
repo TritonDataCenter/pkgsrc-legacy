@@ -1,28 +1,26 @@
-# $NetBSD: Makefile,v 1.50 2014/10/20 19:11:23 drochner Exp $
+# $NetBSD: Makefile,v 1.57 2017/10/31 13:15:44 fhajny Exp $
 
-DISTNAME=	libxml2-2.9.2
+.include "../../textproc/libxml2/Makefile.common"
+
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	textproc python
-MASTER_SITES=	ftp://xmlsoft.org/libxml2/
-#MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libxml2/2.9/}
 
-MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://xmlsoft.org/
 COMMENT=	Python wrapper for libxml2
 LICENSE=	modified-bsd
 
 USE_GCC_RUNTIME=	yes
 
-WRKSRC=		${WRKDIR}/${DISTNAME}/python
+PYSETUPSUBDIR=	python
 NO_CONFIGURE=	YES
 
 SUBST_CLASSES+=		setup
 SUBST_MESSAGE.setup=	Fixing hardcoded paths.
 SUBST_STAGE.setup=	pre-build
-SUBST_FILES.setup=	setup.py
+SUBST_FILES.setup=	python/setup.py
 SUBST_SED.setup=	-e "/ROOT/s,'/usr','${BUILDLINK_PREFIX.libxml2}',g"
 SUBST_SED.setup+=	-e "/^\"/s,/usr/include,${BUILDLINK_PREFIX.iconv}/include,g"
 SUBST_SED.setup+=	-e "/^\"/s,/usr/local/include,${BUILDLINK_PREFIX.iconv}/include,g"
+
+BUILDLINK_TRANSFORM.Darwin+=	opt:-bundle:-dynamiclib
 
 EGG_NAME=	${DISTNAME:S/-/_python-/}
 
