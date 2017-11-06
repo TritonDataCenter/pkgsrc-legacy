@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.83 2014/12/04 09:28:24 he Exp $
+@comment $NetBSD: PLIST,v 1.5 2017/10/30 15:08:13 fhajny Exp $
 bin/Magick++-config
 bin/Magick-config
 bin/MagickCore-config
@@ -33,8 +33,6 @@ include/ImageMagick-${IM_MAJOR_LIB_VER}/Magick++/STL.h
 include/ImageMagick-${IM_MAJOR_LIB_VER}/Magick++/TypeMetric.h
 include/ImageMagick-${IM_MAJOR_LIB_VER}/magick/ImageMagick.h
 include/ImageMagick-${IM_MAJOR_LIB_VER}/magick/MagickCore.h
-include/ImageMagick-${IM_MAJOR_LIB_VER}/magick/PreRvIcccm.h
-include/ImageMagick-${IM_MAJOR_LIB_VER}/magick/accelerate.h
 include/ImageMagick-${IM_MAJOR_LIB_VER}/magick/animate.h
 include/ImageMagick-${IM_MAJOR_LIB_VER}/magick/annotate.h
 include/ImageMagick-${IM_MAJOR_LIB_VER}/magick/api.h
@@ -192,7 +190,9 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/LICENSE
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/NEWS.txt
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/ImageMagick.ico
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/affine.png
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/annotate.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/arc.png
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/atop.gif
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/background.jpg
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/black.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/bluebells_clipped.jpg
@@ -203,6 +203,7 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/button.gif
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/configure.jpg
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/cylinder_shaded.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/difference.png
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/donate.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/examples.jpg
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/frame.jpg
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/fuzzy-magick.png
@@ -217,10 +218,12 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/logo-sm.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/logo.jpg
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/logo.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/montage.jpg
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/navy.png
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/networkredux.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/objects.gif
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/objects.jpg
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/objects.png
-share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/navy.png
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/over.gif
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/patterns/bricks.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/patterns/checkerboard.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/patterns/circles.png
@@ -291,6 +294,7 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/smile.gif
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/sponsor.jpg
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/sprite.jpg
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/t-shirt.png
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/transloadit.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/wand.ico
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/wand.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/images/white-highlight.png
@@ -313,6 +317,7 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/Magick++/Exception.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/Magick++/FormatCharacters.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/Magick++/Future.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/Magick++/Geometry.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/Magick++/Image++.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/Magick++/Image.fig
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/Magick++/Image.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/Magick++/Image.png
@@ -341,6 +346,7 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/advanced-unix-installation.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/advanced-windows-installation.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/animate.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/api.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/api/Image++.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/api/MagickCore/ImageMagick_8h-source.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/api/MagickCore/ImageMagick_8h.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/api/MagickCore/MagickCore_8h-source.html
@@ -1127,6 +1133,9 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/conjure.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/connected-components.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/contact.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/convert.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/css/README.txt
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/css/magick.css
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/develop.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/display.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/distribute-pixel-cache.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/download.html
@@ -1137,6 +1146,7 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/export.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/favicon.ico
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/formats.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/fx.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/gradient.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/high-dynamic-range.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/history.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/identify.html
@@ -1144,23 +1154,29 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/import.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/index.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/install-source.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/jp2.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/js/README.txt
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/js/magick.js
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/license.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/links.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/magick++.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/magick-core.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/magick-script.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/magick-vector-graphics.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/magick-wand.html
-share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/magick.css
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/magick.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/miff.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/mirror.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/mogrify.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/montage.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/motion-picture.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/opencl.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/openmp.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/perl-magick.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/porting.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/quantize.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/resources.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/search.html
+share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/security-policy.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/sitemap.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/source/analyze.c
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/source/coder.xml
@@ -1185,11 +1201,8 @@ share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/source/type-ghostscript.xml
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/source/type-windows.xml
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/source/type.xml
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/source/wand.c
-share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/sponsors.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/stream.html
-share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/subversion.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/support.html
-share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/t-shirt.html
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/wand.png
 share/doc/ImageMagick-${IM_MAJOR_LIB_VER}/www/webp.html
 share/examples/ImageMagick/coder.xml
@@ -1201,7 +1214,9 @@ share/examples/ImageMagick/mime.xml
 share/examples/ImageMagick/policy.xml
 share/examples/ImageMagick/quantization-table.xml
 share/examples/ImageMagick/thresholds.xml
+share/examples/ImageMagick/type-apple.xml
 share/examples/ImageMagick/type-dejavu.xml
 share/examples/ImageMagick/type-ghostscript.xml
+share/examples/ImageMagick/type-urw-base35.xml
 share/examples/ImageMagick/type-windows.xml
 share/examples/ImageMagick/type.xml
