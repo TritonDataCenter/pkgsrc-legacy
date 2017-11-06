@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	ImageMagick
 IMAGEMAGICK_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.ImageMagick+=	ImageMagick>=5.5.7.11nb1
-BUILDLINK_ABI_DEPENDS.ImageMagick+=	ImageMagick>=6.8.9.7nb2
+BUILDLINK_ABI_DEPENDS.ImageMagick+=	ImageMagick>=6.9.7.9nb1
 BUILDLINK_PKGSRCDIR.ImageMagick?=	../../graphics/ImageMagick
 
 pkgbase := ImageMagick
@@ -15,8 +15,8 @@ pkgbase := ImageMagick
 .if !empty(PKG_BUILD_OPTIONS.ImageMagick:Mdjvu)
 .include "../../graphics/djvulibre-lib/buildlink3.mk"
 .endif
-.if !empty(PKG_BUILD_OPTIONS.ImageMagick:Mjasper)
-.include "../../graphics/jasper/buildlink3.mk"
+.if !empty(PKG_BUILD_OPTIONS.ImageMagick:Mjp2)
+.include "../../graphics/openjpeg/buildlink3.mk"
 .endif
 .if !empty(PKG_BUILD_OPTIONS.ImageMagick:Mopenexr)
 .include "../../graphics/openexr/buildlink3.mk"

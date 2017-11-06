@@ -20,8 +20,8 @@ PERL5_PACKLIST=		auto/Image/Magick/.packlist
 BUILD_DIRS=		${PERL5_CONFIGURE_DIRS}
 
 pre-configure:
-	${LN} -sf ${WRKSRC}/PerlMagick/quantum/quantum.pm ${WRKSRC}/PerlMagick/quantum/Q16.pm
-	${LN} -sf ${WRKSRC}/PerlMagick/quantum/quantum.xs ${WRKSRC}/PerlMagick/quantum/Q16.xs
+	${LN} -sf ${WRKSRC}/PerlMagick/quantum/quantum.pm ${WRKSRC}/PerlMagick/quantum/Q16HDRI.pm
+	${LN} -sf ${WRKSRC}/PerlMagick/quantum/quantum.xs ${WRKSRC}/PerlMagick/quantum/Q16HDRI.xs
 
 post-configure: perl5-configure
 
