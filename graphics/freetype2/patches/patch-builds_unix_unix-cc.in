@@ -1,6 +1,9 @@
-$NetBSD: patch-ab,v 1.17 2011/08/03 08:25:41 cheusov Exp $
+$NetBSD: patch-builds_unix_unix-cc.in,v 1.1 2017/09/18 16:54:06 adam Exp $
 
---- builds/unix/unix-cc.in.orig	2010-08-31 11:04:28.000000000 +0000
+Provide tag to libtool.
+Use CFLAGS when compiling executables.
+
+--- builds/unix/unix-cc.in.orig	2017-03-30 10:20:23.000000000 +0000
 +++ builds/unix/unix-cc.in
 @@ -89,7 +89,7 @@ ANSIFLAGS := @XX_ANSIFLAGS@
  #
@@ -11,9 +14,9 @@ $NetBSD: patch-ab,v 1.17 2011/08/03 08:25:41 cheusov Exp $
  
  # Linker flags.
  #
-@@ -101,12 +101,12 @@ LDFLAGS := @LDFLAGS@
+@@ -101,14 +101,14 @@ LDFLAGS := @LDFLAGS@
  CCraw_build  := @CC_BUILD@	# native CC of building system
- E_BUILD      := @EXEEXT_BUILD@	# extension for exexutable on building system
+ E_BUILD      := @EXEEXT_BUILD@	# extension for executable on building system
  EXPORTS_LIST := $(OBJ_DIR)/ftexport.sym
 -CCexe        := $(CCraw_build)	# used to compile `apinames' only
 +CCexe        := $(CCraw_build) @CFLAGS@	# used to compile `apinames' only
@@ -25,4 +28,7 @@ $NetBSD: patch-ab,v 1.17 2011/08/03 08:25:41 cheusov Exp $
 +LINK_LIBRARY = $(LIBTOOL) --tag=CC --mode=link $(CCraw) -o $@ $(OBJECTS_LIST) \
                            -rpath $(libdir) -version-info $(version_info) \
                            $(LDFLAGS) -no-undefined \
-                           # -export-symbols $(EXPORTS_LIST)
+-                          -export-symbols $(EXPORTS_LIST)
++                          # -export-symbols $(EXPORTS_LIST)
+ 
+ # EOF
