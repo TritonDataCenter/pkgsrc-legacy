@@ -4,4 +4,3 @@ SHA1 (ImageMagick-6.9.9-20.tar.xz) = 551b9684a0ec02b8993f59ed127cd13d976516a6
 RMD160 (ImageMagick-6.9.9-20.tar.xz) = f52fe28e5988d08083428d1a21fae8921f9526b0
 SHA512 (ImageMagick-6.9.9-20.tar.xz) = 36c241490ee41de5cd72e5bc297ac2353a0d4574337776445798b0c5823f491304c3f3a728d420d03f66b652eafcdb68ec2992347321ac3919c1d72c0afdb849
 Size (ImageMagick-6.9.9-20.tar.xz) = 8994128 bytes
-SHA1 (patch-Makefile.in) = bb747b5e062f2a59e307289b5b33861dd5f96ab0
