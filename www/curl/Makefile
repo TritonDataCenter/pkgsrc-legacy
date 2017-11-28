@@ -34,19 +34,10 @@ USE_TOOLS+=		perl
 
 .include "options.mk"
 
-do-install-multiarch-hook:
-	${MKDIR} ${DESTDIR}/${PREFIX}/include/curl/${INCARCHSUFFIX}
-	${MV} ${DESTDIR}/${PREFIX}/include/curl/curlbuild.h		\
-		${DESTDIR}/${PREFIX}/include/curl/${INCARCHSUFFIX}
-
 post-install:
 .for f in MANUAL TheArtOfHttpScripting FAQ
 	${INSTALL_DATA} ${WRKSRC}/docs/${f} ${DESTDIR}${PREFIX}/share/doc/curl/
 .endfor
-.if !empty(MULTIARCH:M[Yy][Ee][Ss])
-	${INSTALL_DATA} ${FILESDIR}/curlbuild.h				\
-		${DESTDIR}/${PREFIX}/include/curl
-.endif
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
