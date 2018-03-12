@@ -3,7 +3,7 @@
 # used by graphics/p5-PerlMagick/Makefile
 
 IM_MAJOR_VER=		6.9.9
-IM_MINOR_VER=		20
+IM_MINOR_VER=		37
 IM_MAJOR_LIB_VER=	6
 
 .if (${IM_MINOR_VER} != NONE)
