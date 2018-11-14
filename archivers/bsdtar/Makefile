@@ -12,6 +12,8 @@ CONFIGURE_ARGS+=	--enable-bsdtar=static
 CONFIGURE_ARGS+=	--disable-bsdcpio
 CONFIGURE_ARGS+=	--disable-shared
 
+CONFIGURE_ENV+=	ac_cv_lib_charset_locale_charset=no
+
 .include "../../archivers/bzip2/builtin.mk"
 .include "../../archivers/xz/builtin.mk"
 .include "../../devel/zlib/builtin.mk"
