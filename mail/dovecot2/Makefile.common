@@ -1,20 +1,22 @@
-# $NetBSD: Makefile.common,v 1.13 2017/08/25 08:29:04 adam Exp $
+# $NetBSD: Makefile.common,v 1.33 2019/08/29 01:05:20 taca Exp $
 #
 # when updating to a new release, update ABI depends in
 # the buildlink3.mk file as well, since the plugins' version
 # must match (see PR 49563).
 #
 # used by mail/dovecot2/Makefile
-# used by mail/dovecot2/Makefile.plugin
+# used by mail/dovecot2-gssapi/Makefile
+# used by mail/dovecot2-ldap/Makefile
 # used by mail/dovecot2-mysql/Makefile
 # used by mail/dovecot2-pgsql/Makefile
+# used by mail/dovecot2-sqlite/Makefile
 
-DISTNAME=	dovecot-2.2.32
+DISTNAME=	dovecot-2.3.7.2
 CATEGORIES=	mail
-MASTER_SITES=	https://www.dovecot.org/releases/${PKGVERSION_NOREV:R}/
+MASTER_SITES=	https://dovecot.org/releases/${PKGVERSION_NOREV:R:R}/
 
 MAINTAINER=	adam@NetBSD.org
-HOMEPAGE=	http://www.dovecot.org/
+HOMEPAGE=	https://www.dovecot.org/
 COMMENT=	Secure IMAP and POP3 server
 LICENSE=	mit AND gnu-lgpl-v2.1 AND modified-bsd
 
@@ -25,13 +27,22 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake pkg-config rpcgen
 GNU_CONFIGURE=		yes
 
+BUILD_DEFS+=		VARBASE
+
 .include "../../mk/bsd.prefs.mk"
+
+.if "${PKGPATH}" != "mail/dovecot2"
+DEPENDS+=		dovecot>=${PKGVERSION_NOREV}{nb*,}:../../mail/dovecot2
+.endif
 
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-ssldir=${SSLDIR}
 CONFIGURE_ARGS+=	--without-gssapi
 CONFIGURE_ARGS+=	--without-ldap
+
+# Leave pkgsrc to enable compiler security features as appropriate.
+CONFIGURE_ARGS+=	--disable-hardening
 
 # Enable generic SQL backend support
 CONFIGURE_ARGS+=	--with-sql
@@ -45,7 +56,7 @@ CONFIGURE_ARGS.SunOS+=	--with-notify=none
 
 # Sharing sources between binary and lib triggers libtool bugs
 # mv: rename .deps/auth-stats.Tpo to .deps/auth-stats.Po: No such file or directory
-MAKE_JOBS_SAFE=	no
+#MAKE_JOBS_SAFE=	no
 
 .include "options.mk"
 

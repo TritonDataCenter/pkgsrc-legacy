@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.94 2017/05/15 12:31:10 jperkin Exp $
+# $NetBSD: Makefile,v 1.100 2019/07/23 15:11:24 taca Exp $
 
 .include "../../mail/dovecot2/Makefile.common"
 
@@ -22,7 +22,7 @@ EGDIR=			${PREFIX}/share/examples/dovecot
 
 CNFS_cmd=		${SED} -ne "s,^share/examples/dovecot/,,p" PLIST
 CNFS=			${CNFS_cmd:sh}
-CONF_FILES=		${EGDIR}/dovecot.conf ${PKG_SYSCONFDIR}/dovecot/dovecot-example.conf
+CONF_FILES=		${EGDIR}/dovecot.conf ${PKG_SYSCONFDIR}/dovecot/dovecot.conf
 .for file in ${CNFS}
 CONF_FILES+=		${EGDIR}/${file:Q} ${PKG_SYSCONFDIR}/dovecot/${file:Q}
 .endfor
@@ -31,8 +31,6 @@ INSTALLATION_DIRS+=	libexec/dovecot sbin share/doc/dovecot
 INSTALLATION_DIRS+=	share/examples/dovecot share/examples/dovecot/conf.d
 OWN_DIRS=		${PKG_SYSCONFDIR}/dovecot/
 OWN_DIRS+=		${PKG_SYSCONFDIR}/dovecot/conf.d
-
-BUILD_DEFS+=		VARBASE
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/dovecot-openssl.cnf ${DESTDIR}${EGDIR}

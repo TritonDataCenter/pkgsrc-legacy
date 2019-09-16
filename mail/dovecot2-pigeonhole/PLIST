@@ -1,12 +1,12 @@
-@comment $NetBSD: PLIST,v 1.12 2016/11/12 11:22:29 adam Exp $
+@comment $NetBSD: PLIST,v 1.17 2018/10/23 16:30:03 adam Exp $
 bin/sieve-dump
 bin/sieve-filter
 bin/sieve-test
 bin/sievec
 include/dovecot/sieve/edit-mail.h
+include/dovecot/sieve/mail-raw.h
 include/dovecot/sieve/pigeonhole-config.h
 include/dovecot/sieve/pigeonhole-version.h
-include/dovecot/sieve/realpath.h
 include/dovecot/sieve/rfc2822.h
 include/dovecot/sieve/sieve-actions.h
 include/dovecot/sieve/sieve-address-parts.h
@@ -55,9 +55,9 @@ include/dovecot/sieve/sieve-stringlist.h
 include/dovecot/sieve/sieve-types.h
 include/dovecot/sieve/sieve-validator.h
 include/dovecot/sieve/sieve.h
-include/dovecot/sieve/strtrim.h
 lib/dovecot/doveadm/lib10_doveadm_sieve_plugin.la
 lib/dovecot/lib90_sieve_plugin.la
+lib/dovecot/lib95_imap_filter_sieve_plugin.la
 lib/dovecot/lib95_imap_sieve_plugin.la
 lib/dovecot/libdovecot-sieve.la
 lib/dovecot/settings/libmanagesieve_login_settings.la
@@ -75,14 +75,19 @@ man/man1/sievec.1
 man/man1/sieved.1
 man/man7/pigeonhole.7
 share/aclocal/dovecot-pigeonhole.m4
+share/doc/dovecot/example-config/sieve-ldap.conf
 share/doc/dovecot/sieve/extensions/duplicate.txt
 share/doc/dovecot/sieve/extensions/editheader.txt
 share/doc/dovecot/sieve/extensions/include.txt
 share/doc/dovecot/sieve/extensions/spamtest-virustest.txt
 share/doc/dovecot/sieve/extensions/vacation.txt
+share/doc/dovecot/sieve/extensions/vnd.dovecot.environment.txt
+share/doc/dovecot/sieve/extensions/vnd.dovecot.report.txt
 share/doc/dovecot/sieve/locations/dict.txt
 share/doc/dovecot/sieve/locations/file.txt
 share/doc/dovecot/sieve/locations/ldap.txt
+share/doc/dovecot/sieve/plugins/imap_filter_sieve.txt
+share/doc/dovecot/sieve/plugins/imapsieve.txt
 share/doc/dovecot/sieve/plugins/sieve_extprograms.txt
 share/examples/dovecot/conf.d/20-managesieve.conf
 share/examples/dovecot/conf.d/90-sieve-extprograms.conf
